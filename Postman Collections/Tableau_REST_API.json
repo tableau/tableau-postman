@@ -1113,6 +1113,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "aad78f95-46c3-4e00-be0d-8a9ba2fee505",
                 "exec": [
                   "",
                   "if (responseCode.code===204)",
@@ -1124,8 +1125,7 @@
                   "    tests[\"Signout failed. Error: \" + responseBody] = responseCode.code === 204;",
                   "}"
                 ],
-                "type": "text/javascript",
-                "id": "aad78f95-46c3-4e00-be0d-8a9ba2fee505"
+                "type": "text/javascript"
               }
             }
           ],
@@ -1148,7 +1148,7 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{protocol}}://{{server}}/api/{{api}}/auth/signout",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signout",
             "description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to Sign In.\n\nURI\n1. POST /api/api-version/auth/signout\n"
           },
           "response": []
@@ -5819,127 +5819,127 @@
   ],
   "variable": [
     {
-      "id": "f8c95870-3c58-48b4-bfe9-a91d54d26807",
+      "id": "e20a3322-a862-4b68-aaa8-d048a91a7a54",
       "key": "username",
       "value": ""
     },
     {
-      "id": "61665a7b-7623-437a-aa51-d55b84c34876",
+      "id": "56d5bb6a-cb9a-4082-9a2e-d00ac28bc794",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "19ca5122-0f4b-4047-b2a3-6dfdc6e5ce4e",
+      "id": "e3049033-193a-4cbc-9853-bad904e4352c",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "80f675c9-53cf-45e6-b9a6-0f3ef61a2602",
+      "id": "e4570dee-043d-4b9e-a686-3f39707961e6",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "7abf8e5b-291c-4913-8c7a-aee9e05ce5cb",
+      "id": "88a5ec7c-35db-4087-9ca8-88568eaaa1f2",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "3eca6968-601a-4a87-b960-c40292c7b092",
+      "id": "4e511cec-1f8d-43e5-ae2b-2c92cc80a3c3",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "c012d0ff-d2fb-4e34-a424-25b3334f8c09",
+      "id": "546263a9-082e-4530-99c4-d1b2572db8d1",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "eaa50f7c-9531-450f-913b-b15f5f06a78e",
+      "id": "a3521024-b188-441d-b809-567da8131f53",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "17db80b2-c598-4493-8e22-dd4c1c6e4dcf",
+      "id": "0d12b261-a96c-4b93-8358-f37bd3a0a744",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "2cb7e712-945a-4189-85e7-7ac121bf01dd",
+      "id": "84df7240-5c32-4af2-ad68-5aaab1e85684",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "a74e412e-263e-4df6-9682-8fae43775faf",
+      "id": "1875af75-ce3e-4fe4-9d92-75372ab9bb38",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "153d3eea-19e1-4767-ac33-e2f4c9377fab",
+      "id": "d19d884a-dc65-43ee-9262-e11c6c784e53",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "3fb00740-07d7-4666-9b61-3950c6f0390c",
+      "id": "9888dfb0-f7ae-4f96-85ac-402088d5a9f3",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "7af86df8-9836-4035-97a2-4e6340d58da2",
+      "id": "db0734d3-12a7-4c8d-8e71-229a597fb0ba",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "6b551089-bc96-458d-b836-06b9dc52611e",
+      "id": "451c9bc3-8704-4c35-8af0-188e405ead80",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "9f6d010e-c9d6-4435-9c37-ee36b402d250",
+      "id": "8f7950d8-dcb0-49e5-9ff9-f0c6cc1caf96",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "a5c84a7d-c90e-4b35-90fe-54ec954721b8",
+      "id": "d09aff06-078e-4670-b019-cb081ac6b341",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "b23338b9-3a73-4da9-ab7b-26dea892ee86",
+      "id": "1167a4c0-b37d-42f6-bc34-3d9d5231d2d7",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "ea1cb2b3-f208-4af7-a8b5-b528ccc69611",
+      "id": "2c9f0a63-a1d3-440f-8cd8-9eb302e1ac66",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "1cf129d3-7303-478b-9a3f-8ac286f238ce",
+      "id": "6417fc31-1fa4-49df-906a-1f88f7ea845b",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "9d967b97-7156-41d0-8069-9a026ac2886d",
+      "id": "2eb5cce3-e97b-496b-b5ad-05a475b8a356",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "7d56cca5-7a4a-4aa1-ad45-908410dcd065",
+      "id": "849edb5c-319e-4b01-b215-c1b1b1118f4a",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "8761cc1d-9202-4c16-9295-6cfa0569454a",
+      "id": "d1767acd-1b18-47ab-8054-9bb0f70d1e46",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "9ffbbd24-c6d7-4266-b32d-c1932a107a19",
+      "id": "1bec5954-48b7-41e6-b292-34cd0e07efe9",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "3966bfaa-f5d7-44bb-81db-3157703b8d1a",
+      "id": "e7e8e52d-5a55-4ecb-b728-a8a261dd8ffe",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
