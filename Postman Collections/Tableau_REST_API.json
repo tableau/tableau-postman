@@ -4359,7 +4359,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "6d46616c-9a1d-45dc-8aa3-38a6779db8e8",
                 "exec": [
                   "if (responseCode.code===200) {",
                   "    tests[\"User list received\"] = true;",
@@ -4371,7 +4371,7 @@
                   "}",
                   ""
                 ],
-                "id": "6d46616c-9a1d-45dc-8aa3-38a6779db8e8"
+                "type": "text/javascript"
               }
             }
           ],
@@ -4387,7 +4387,7 @@
                 "value": "{{token}}"
               }
             ],
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/users",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/sites/{{site-id}}/users",
             "description": "Get all users in site\n\nURIs\n1. GET /api/api-version/sites/site-id/users\n1. GET /api/api-version/sites/site-id/users?filter=filter-expression\n1. GET /api/api-version/sites/site-id/users?sort=sort-expression\n1. GET /api/api-version/sites/site-id/users?pageSize=page-size&pageNumber=page-number\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the users.\n* filter-expression  (Optional) An expression that lets you specify a subset of users to return. You can filter on predefined fields such as name and lastLogin. You can include multiple filter expressions. For more information, see Filtering and Sorting.\n* sort-expression  (Optional) An expression that lets you specify the order in which user information is returned. If you do not specify a sort expression, the sort order of the information that's returned is undefined. For more information, see Filtering and Sorting.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results.\n"
           },
           "response": []
@@ -5819,127 +5819,127 @@
   ],
   "variable": [
     {
-      "id": "8dd1e27f-5d68-4d29-acdd-0c75c435c740",
+      "id": "1deae678-5cf5-455e-ae28-f1c710bba4bc",
       "key": "username",
       "value": ""
     },
     {
-      "id": "f266a80a-6cca-469c-9a1a-8da26aa9a61e",
+      "id": "54454181-f42b-4536-a222-fa7cb3c7e65a",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "493967b1-622f-49fc-a2ea-648e6cc2f326",
+      "id": "0f363f5d-28ab-47c0-8d44-8da4384ee791",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "1ba66375-bf24-466f-b2b0-a06abcbfcdc3",
+      "id": "a9432563-7507-4fd8-ba5d-46b59cdb78c1",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "a38d2d24-523b-4b5a-b8be-18a8bca89c8f",
+      "id": "bff28ed3-af3a-40f4-9efd-c74e9fc195ba",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "df258ce4-9d51-415f-bb31-9b43c891097c",
+      "id": "c10b67cc-b089-493a-bb31-3c2a7d6085d8",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "50b6eb5c-4225-47e5-a55b-cdb2b717b5b4",
+      "id": "4f559ef7-c9df-484e-8093-1a0820a690f1",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "75026197-f7e7-4855-8343-7328a5f53e8a",
+      "id": "436b5b9c-2914-46dd-bf5d-48258caa3ce2",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "dc2d7fa6-9466-4219-8a50-2b08f1b92e5a",
+      "id": "6d76d5aa-8525-4967-9b3d-6f1561811125",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "15c7b33b-a7bb-4dd8-a89a-0cb3fffe340f",
+      "id": "dee91a71-a241-4c28-8689-24812dc8da88",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "165ba64b-74c9-4e2c-a0c5-39598eaa122a",
+      "id": "880d3368-219a-4ba1-85f9-ec2d5b96d6d7",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "6167f9cd-a28d-4572-8fcf-d2688e5564c4",
+      "id": "e8cef004-ae31-449e-915d-a6751b962613",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "ea49d114-c7f4-4f5c-8a80-a5f2f5350d89",
+      "id": "32735f6e-f3f4-4d8c-9ff6-88605eb63ef8",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "56f093e9-a1cc-4740-9e80-97fb1c6bda9e",
+      "id": "d62306c0-4721-47f6-b7bd-49b9838b301a",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "c4dac50c-3a96-4356-b142-bf60fdfe8c55",
+      "id": "451e80cf-35ee-44ad-a266-0de1fd826403",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "7d36f007-659e-4daa-ae65-d026976d5e49",
+      "id": "4b111f3b-1ff4-4d54-b5d0-ec2f336991a9",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "f05644ac-77f4-4b11-96ad-debce169e3f4",
+      "id": "7f0bd9b0-1364-4a0e-9be8-228a43237abe",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "9a6c76bf-76d4-41f4-b001-5ca8de1fca9a",
+      "id": "09591cce-8959-482a-a145-1bf05d0854b4",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "1b1909f3-2c16-4f8f-92aa-39698c6e4f44",
+      "id": "627c7d2d-a892-45c6-8e9a-b79e55b8b8f8",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "b778b9f6-e4d2-4223-aed0-d1ac0dd347f1",
+      "id": "482f90a9-6fb4-497e-b540-ab03b0a82d84",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "076c6519-92ee-441a-a2c2-4e9b67c86f00",
+      "id": "ab7335d9-b07c-4227-aea6-5147d2622417",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "6020aa75-a445-4217-af5e-bc8985bcbce5",
+      "id": "67d7e7d7-6704-4dfe-bcdf-af109a9e75c8",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "be90e88e-e65c-4169-a371-ed59d2fd00b0",
+      "id": "54ee1c5a-c246-41de-bae9-8a229be45b92",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "c741f26f-ff4e-461a-b580-53ee2b4c4aab",
+      "id": "a4e7018f-fa85-4d1d-bc75-9ac4c269a712",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "481e6856-197d-46f3-8a3d-97dbae3465e2",
+      "id": "394be401-b0c3-454f-ad4a-b24be17aac7c",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
