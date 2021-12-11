@@ -948,7 +948,7 @@
                 }
               }
             },
-            "url": "{{protocol}}://{{server}}/api/{{api}}/auth/signin",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signin",
             "description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
           },
           "response": []
@@ -5801,127 +5801,127 @@
   ],
   "variable": [
     {
-      "id": "f83e3e39-f633-481a-8d51-23a00a7f1e9d",
+      "id": "474da7e0-a1b6-4f6e-aacb-64817d100ace",
       "key": "user",
       "value": ""
     },
     {
-      "id": "50a8dd7c-93f4-4113-946f-4f332085c3a1",
+      "id": "1b83993b-15d4-422d-b41d-9ec274e7901b",
       "key": "password",
       "value": ""
     },
     {
-      "id": "ddd5101b-8f9c-4181-ad87-a42983f72905",
+      "id": "c8602f86-fe4f-4cec-85c6-6550de27d244",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "eebd18f5-c8b2-47eb-9665-2d659359d69f",
+      "id": "b9a6319c-0fc9-4f55-ab5d-211d90f5c92a",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "66282cad-b26c-4500-8795-4c5318a871a4",
+      "id": "c6793be2-a856-4a9f-8820-ab8f4ed983a3",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "fea80a68-4198-419d-aa67-b58d3806bd89",
+      "id": "2aca36e8-5676-4d43-be09-fe35954c85fd",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "9ea74bde-8138-4ef8-85db-88d4e04a2455",
+      "id": "a5756cd5-1a92-4839-97a5-a9f79bb771a2",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "d153ee3e-1780-4ffe-8c0f-910ff57e05e8",
+      "id": "0838612b-0e87-4ea1-be14-eb33b27d70b1",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "e8c13f65-ca0a-449c-ba19-de126b2408c5",
+      "id": "9c4e3e8e-9436-494b-8296-13ed271c699a",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "5d93f125-bd26-4157-b87f-e7463040cefc",
+      "id": "f59201cc-4f97-451d-963c-7060739e3e94",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "6eb76f09-6bd9-48ed-a358-b253912c681a",
+      "id": "ff87358f-7e93-4633-a8a0-04f3e99fe802",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "e51170cc-38cf-4034-9ec9-21714cd1726c",
+      "id": "59f31342-df1b-48e4-8c12-df0ce0ed32f8",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "9a93c8bf-d862-4637-bb7b-b37dd2b1a612",
+      "id": "76cee8d8-17d2-41aa-960d-8c886e20e01f",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "87bc7e84-e259-45bb-ae55-60a7f6663f3a",
+      "id": "9abdc84b-b333-46fa-9af1-1ca898aa2ff7",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "c518cf4b-bada-48e8-90fa-7c43bc638968",
+      "id": "f13067a9-bd92-4c59-82c5-30bb8963860e",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "53fbb7fd-bc78-4635-a6b5-137f8d07e09f",
+      "id": "a56c5f97-a2c2-4735-b449-a73739a5e363",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "420fa99d-dd66-4368-af63-7d7e05c2e4bc",
+      "id": "2d0705ed-4b0f-497f-8bc5-83c81cc2fae8",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "65bdc3fd-45d5-4868-a5ee-e9ba79065eb5",
+      "id": "91ff3c3e-1996-465a-becf-3f77dc69a8e0",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "53f3685f-f36a-4a65-b149-b7ec223acb5e",
+      "id": "3f9f3cb7-c1c7-4224-bbb5-5be0548398c2",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "0eba6299-453a-4660-af25-403cfbf36827",
+      "id": "85541e77-aa32-49cd-9618-39fc236c6608",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "6af2cfbf-5abf-4d2a-af98-2812e99ad407",
+      "id": "6228a0b6-56ef-41ba-ba83-0d48777a4190",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "163e648c-02b5-460c-b2fd-952c94199482",
+      "id": "3ce937c7-2eab-4100-9974-6fe6365a21cf",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "bf80cae1-2a67-4803-88b8-4e8962d629ba",
+      "id": "64642392-0eb8-491d-8aa3-3f95dc3eccf3",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "aa4f5b6c-2591-432d-8d1e-3d86f57c4c57",
+      "id": "b83d93e8-db1d-4eb5-ac46-cf1c69b6561f",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "1a490a99-5fab-44da-aca6-0655ccb54a87",
+      "id": "a33eedf9-42cc-4095-a7bc-202fb51794f3",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
