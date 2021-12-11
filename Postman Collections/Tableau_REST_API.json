@@ -1009,7 +1009,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n    <credentials name=\"{{userName}}\" password=\"{{password}}\">\n        <site contentUrl=\"{{contentUrl}}\" />\n    </credentials>\n</tsRequest>",
+              "raw": "<tsRequest>\n    <credentials name=\"{{username}}\" password=\"{{user-password}}\">\n        <site contentUrl=\"{{contentUrl}}\" />\n    </credentials>\n</tsRequest>",
               "options": {
                 "raw": {
                   "language": "xml"
@@ -5801,127 +5801,127 @@
   ],
   "variable": [
     {
-      "id": "a736c404-8324-4597-85f5-f6a3207d4c12",
+      "id": "a414148b-04bc-46f3-b9fb-af1508353f5b",
       "key": "username",
       "value": ""
     },
     {
-      "id": "65c5a629-0582-418b-a0e6-351d4fbe0243",
+      "id": "22e3d89b-c514-4a55-b9d0-ad7af2eee936",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "4f54a53c-7de6-4d7d-a385-06339e25102e",
+      "id": "4a968c12-d1ac-4715-aada-f169f9110840",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "4b020323-0ed0-4d62-ba2e-1450a057267b",
+      "id": "055d91a0-0ed6-4008-bd50-875ffd66b978",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "95811494-70bc-4835-b28c-66c4b3595ed2",
+      "id": "0e695fa4-5de5-451e-ac8e-26288444f88d",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "c340eaac-b1f7-4efc-a1e3-32618716eefa",
+      "id": "fd442f1f-3ed4-4df2-b7a3-c899f40042b9",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "b0e47eb2-3c3d-4cd3-aa87-82ba7cf37234",
+      "id": "006fc9dd-50d2-4071-84f7-9032b8b91510",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "2658ac91-c003-4d49-8f41-8cf37afe7e81",
+      "id": "99bf6656-be80-4a59-87a6-470e95846739",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "1cbda698-5776-4639-9757-c61d9f0ef581",
+      "id": "5fc14867-16f2-4a12-bb91-6a654dee7bd8",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "49005823-fe94-4a24-b4db-0aca3f4f220b",
+      "id": "852792f4-44f3-46be-bf71-c274a07d3b27",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "ff847359-6732-4da4-862b-36d8d9355394",
+      "id": "84f31fd9-92aa-48cc-9629-5143bf70a0db",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "a8642dd7-88be-4539-a33a-f9a302f5dd81",
+      "id": "9bbc0236-82a9-4b2a-865d-6aa6c95050cd",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "49863681-487d-486f-a6a9-e882e1b781eb",
+      "id": "bb90e646-e9f6-4b33-973f-dc689f2a583a",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "202fd6d0-ae3f-4a96-8284-790d20f2a000",
+      "id": "a3b78087-92e9-4e80-9b5f-2195d37736fa",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "652858aa-34ea-487f-971e-bfb1fb717465",
+      "id": "5ff9fc87-90d9-4c56-8380-2442b6ed586b",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "18846ab0-be05-42ac-bf0c-759e0ebc617a",
+      "id": "2e44032a-4b61-4fe6-b1a9-3208267908a7",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "4467447a-b7da-4424-8987-fec2660a65cc",
+      "id": "659a55e6-3312-4933-bb43-af9982f2e74a",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "17808870-d827-4437-a193-6fb8620f6696",
+      "id": "0609cd8d-1d02-433e-969d-0aba466876df",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "2b44680c-db64-4398-8895-e9995cf2bdef",
+      "id": "2f75dec8-8bef-4150-bd1b-e245cab69851",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "0f314da9-8cef-4e7e-8bc0-578900d9d94a",
+      "id": "a166bb31-6e2a-40d3-aea1-8922d81d5835",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "4c69b62c-dfde-4d94-ba50-7c9a0e88d401",
+      "id": "712d633a-75ad-4171-8502-da7493f3fbf5",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "94ca792f-b6b4-4c1f-8772-4005586644af",
+      "id": "c09a44e5-d190-4fd8-8a9a-b8adf7242baf",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "a21f0c8b-dfca-4039-ab2e-4d14e9cc4080",
+      "id": "c908cb7d-6043-402f-ad30-8b7967052122",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "e98b58a4-8016-44a0-b9b1-a0069527da7d",
+      "id": "57084bcf-6255-4b7f-bd8b-05b867479bc9",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "b8721562-ef87-4e95-836a-27c7c6e7a306",
+      "id": "a47964ad-ea29-486e-88d1-eff664681696",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
