@@ -1040,19 +1040,28 @@
                 "exec": [
                   "const json = xml2Json(responseBody);",
                   "",
-                  "if ( responseCode.code===200)",
-                  "{",
-                  "    pm.environment.set(\"apiKey\", json.tsResponse.credentials.$.token);",
-                  "    pm.environment.set(\"siteId\", json.tsResponse.credentials.site.$.id);",
-                  "    pm.environment.set(\"userId\", json.tsResponse.credentials.user.$.id);",
-                  "",
-                  "    tests[\"apiKey env variable set = \" + pm.environment.get(\"apiKey\")] = responseBody.has(\"apiKey\");",
-                  "    tests[\"siteId env variable set = \" + pm.environment.get(\"siteId\")] = true;",
-                  "    tests[\"userId env variable set = \" + pm.environment.get(\"userId\")] = true;",
-                  "",
+                  "if (responseCode.code===200) {",
+                  "    // check values & set variables",
+                  "    pm.test(`api-key environment variable set = ${json.tsResponse.credentials.$.token}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.$.token);",
+                  "        pm.environment.unset(\"api-key\");",
+                  "        pm.environment.set(\"api-key\", json.tsResponse.credentials.$.token);",
+                  "    });",
+                  "    pm.test(`site-id environment variable set = ${json.tsResponse.credentials.site.$.id}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.site.$.id);",
+                  "        pm.environment.unset(\"site-id\");",
+                  "        pm.environment.set(\"site-id\", json.tsResponse.credentials.site.$.id);",
+                  "    });",
+                  "    // check values only",
+                  "    pm.test(`response body contentUrl value = ${json.tsResponse.credentials.site.$.contentUrl}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.site.$.contentUrl);",
+                  "    });",
+                  "    pm.test(`response body user id value = ${json.tsResponse.credentials.user.$.id}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.user.$.id);",
+                  "    });",
                   "}",
-                  "else",
-                  "{",
+                  "",
+                  "else {",
                   "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
                   "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
                   "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
@@ -5810,127 +5819,127 @@
   ],
   "variable": [
     {
-      "id": "2a407158-e299-4819-83c8-740400b4c63c",
+      "id": "8dd1e27f-5d68-4d29-acdd-0c75c435c740",
       "key": "username",
       "value": ""
     },
     {
-      "id": "213b1e4d-71e1-4cba-8393-515c88cff0e2",
+      "id": "f266a80a-6cca-469c-9a1a-8da26aa9a61e",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "5b5f8cf8-c9d6-4694-a76f-e6e0803b1144",
+      "id": "493967b1-622f-49fc-a2ea-648e6cc2f326",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "c60f9963-fbf4-4220-98da-563f77332795",
+      "id": "1ba66375-bf24-466f-b2b0-a06abcbfcdc3",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "c5f57d85-96ef-417b-976c-b0da54c04b88",
+      "id": "a38d2d24-523b-4b5a-b8be-18a8bca89c8f",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "dc318529-cd76-48f7-922f-806eb0b4f310",
+      "id": "df258ce4-9d51-415f-bb31-9b43c891097c",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "5e009539-116f-44cf-8382-c8c6769ac5a8",
+      "id": "50b6eb5c-4225-47e5-a55b-cdb2b717b5b4",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "c08ff695-e444-4df7-aac1-b113ba7cc9ab",
+      "id": "75026197-f7e7-4855-8343-7328a5f53e8a",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "dd5d3093-b217-49e9-9980-8106eb269f88",
+      "id": "dc2d7fa6-9466-4219-8a50-2b08f1b92e5a",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "382beb68-16a4-4112-a541-ab8acf35cf64",
+      "id": "15c7b33b-a7bb-4dd8-a89a-0cb3fffe340f",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "d63aa73e-0f5e-4c76-a5a2-8907bc8d1d05",
+      "id": "165ba64b-74c9-4e2c-a0c5-39598eaa122a",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "9ce0fc7f-5c91-4ab2-a2af-5af51b670199",
+      "id": "6167f9cd-a28d-4572-8fcf-d2688e5564c4",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "e1dfc958-fffa-4882-845c-f98084890bf4",
+      "id": "ea49d114-c7f4-4f5c-8a80-a5f2f5350d89",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "b057fe9d-076c-474f-82dc-7ccf044d3338",
+      "id": "56f093e9-a1cc-4740-9e80-97fb1c6bda9e",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "5dd45e5a-90ab-44d6-9194-60e397d1f0b7",
+      "id": "c4dac50c-3a96-4356-b142-bf60fdfe8c55",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "75760a20-8dc2-4a6f-bb4e-e78d759e714f",
+      "id": "7d36f007-659e-4daa-ae65-d026976d5e49",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "df1dc878-297c-4a6d-be6e-5b1e8ddeb72d",
+      "id": "f05644ac-77f4-4b11-96ad-debce169e3f4",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "ea9a2626-0301-4339-a57f-17fc2154a132",
+      "id": "9a6c76bf-76d4-41f4-b001-5ca8de1fca9a",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "000ebfd5-0993-4d53-81fa-78b83425cf9b",
+      "id": "1b1909f3-2c16-4f8f-92aa-39698c6e4f44",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "ae87c743-b9a4-4d1d-a301-781534da9ce0",
+      "id": "b778b9f6-e4d2-4223-aed0-d1ac0dd347f1",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "b36ca59c-b28f-4480-ae4e-37aa7eb798d9",
+      "id": "076c6519-92ee-441a-a2c2-4e9b67c86f00",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "4dc1573f-958f-4636-bc6b-0aea019d06ac",
+      "id": "6020aa75-a445-4217-af5e-bc8985bcbce5",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "8c3f8274-62d9-4831-9226-7f3c56bf0b54",
+      "id": "be90e88e-e65c-4169-a371-ed59d2fd00b0",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "e6832ffd-3665-4978-9d79-866ad9536032",
+      "id": "c741f26f-ff4e-461a-b580-53ee2b4c4aab",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "83e543ba-0b90-485e-96ad-d7da9b89dacd",
+      "id": "481e6856-197d-46f3-8a3d-97dbae3465e2",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
