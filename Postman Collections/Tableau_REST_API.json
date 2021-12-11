@@ -5739,7 +5739,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "071222d7-ce80-426c-bbf7-b8f9c942a5be",
+        "id": "b9fa59e1-179a-4385-badd-7496f53c5d34",
         "type": "text/javascript",
         "exec": [
           "/*",
@@ -5791,7 +5791,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "71696d1f-45b6-4ab9-a9a2-5019d087b1cf",
+        "id": "2e3e7fee-3810-4ae2-939d-86e231ea89e0",
         "type": "text/javascript",
         "exec": [
           ""
@@ -5801,127 +5801,127 @@
   ],
   "variable": [
     {
-      "id": "497f08f9-1d46-4c6f-9e46-aaa339512073",
-      "key": "user",
+      "id": "cb4cb37c-3dfe-4898-adee-bc7c5e9279c0",
+      "key": "username",
       "value": ""
     },
     {
-      "id": "d35db334-4d2a-472d-9b5b-495e47fcceac",
-      "key": "password",
-      "value": ""
-    },
-    {
-      "id": "d6bba48a-1c8a-46a7-8e1b-b3cab5a9970b",
+      "id": "cc1761f4-7664-457a-bb99-759c89833d47",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "19c389f3-d626-4576-87cf-5520487f9d8d",
+      "id": "685b1947-9150-49f3-89f6-7f66dc0a1743",
+      "key": "password",
+      "value": ""
+    },
+    {
+      "id": "926558f5-0f08-4d73-aac3-687de22bd8f8",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "bbc7f448-c5ec-4fcc-a795-c2d3ace7cfa8",
+      "id": "52ad8b71-6563-4f0d-bc91-b7f3082f1a2d",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "25dfd4a5-e7ed-48a0-9f19-ea377951b681",
+      "id": "f0916615-af28-433b-b246-f23c47c17796",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "a0d45818-3376-45e5-9c90-efd17bf81a95",
+      "id": "5e5ca1ac-a934-4e57-8877-e42aafbb5079",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "abb2c5d9-6b19-465c-b402-784d67a622d7",
+      "id": "f45a8f8f-528c-4fa9-96e4-a5b5a8e4f9f3",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "ffca9a02-50c1-4a52-8a92-7dd64e08686d",
+      "id": "c8dfd078-805b-43f2-8f52-ac83d6bd45e0",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "570d94cd-4078-4a9b-b30a-6038c49dc147",
+      "id": "e50c8f1c-e191-4b50-9946-e0d588fe2c74",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "aefb994d-7b17-46b2-95f7-ef4ffc709ff7",
+      "id": "9bb8a796-2105-4275-8de4-d3bdda7cf94e",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "d05c65dc-4085-4ee3-84be-acc370ed5ff1",
+      "id": "ca416791-33af-431e-ac12-83be5508507b",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "fdbe81ed-fde5-4ee3-9437-d382fb22d3e6",
+      "id": "822805ff-39fb-4d2a-b841-1e8bc39e3628",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "cd235ba5-7920-4d89-9c21-acd8664fe8cd",
+      "id": "f0ce69a2-0e40-4204-bcfa-e5532df90bb4",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "7c31b321-03ba-4b98-9781-d0bf9a50994c",
+      "id": "2f6bec47-cbb7-47a0-9911-fcc72b5aac90",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "b56effdc-8069-4f5e-9b57-740ed3bf9304",
+      "id": "1da0af0f-9c32-4e47-a2c5-7a5f053d7c9b",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "3ccec081-5149-4290-a5ef-d2620f576ab2",
+      "id": "b8b06127-fda6-4b50-88c5-10514a8419fc",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "be3523ac-11a6-433f-8b47-fb6108dda4ec",
+      "id": "0c22a374-752a-43d4-aab2-0ca6eb3a93f4",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "45886eb8-ee97-4b8c-80b5-b57451c67699",
+      "id": "195fa4be-6260-4fb2-9ce5-b683ff2ef296",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "1756e056-01f5-44ed-a758-a8645b30d762",
+      "id": "0af9a127-e1f1-4284-a49e-b55995e64feb",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "29a4777b-4f81-46bb-8a39-cfd0139e8232",
+      "id": "f70470c4-b20d-41f5-9bcc-786352156edb",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "8c1349a2-286f-402c-aa12-693de3d8182d",
+      "id": "a86fed22-d481-48b5-a4dc-9b3f9bcaa79a",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "c1d9c580-6bd8-4ef7-ac2f-e44a4132dba3",
+      "id": "6ab79fb0-3c43-4c79-a6ec-65413efe93fe",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "b868e5fa-a7b1-4796-b65e-a7d2682da64b",
+      "id": "06d9ffcb-28a0-4476-b23f-f6d246a20c55",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "97b23fa3-e432-420d-b855-d02add2dcd2d",
+      "id": "db94ab78-5d22-4235-b798-606860f2ebce",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
