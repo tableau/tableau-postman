@@ -1036,6 +1036,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "1dc8077d-53b3-448a-8e6b-f35dae50d874",
                 "exec": [
                   "const json = xml2Json(responseBody);",
                   "",
@@ -1059,18 +1060,17 @@
                   "}",
                   ""
                 ],
-                "type": "text/javascript",
-                "id": "1dc8077d-53b3-448a-8e6b-f35dae50d874"
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
+                "id": "c1a5754c-2287-4f37-bb81-67779ecfd724",
                 "exec": [
                   ""
                 ],
-                "type": "text/javascript",
-                "id": "c1a5754c-2287-4f37-bb81-67779ecfd724"
+                "type": "text/javascript"
               }
             }
           ],
@@ -1086,14 +1086,14 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n    <credentials name=\"{{adminUsername}}\" password=\"{{adminPassword}}\">\n        <site contentUrl=\"{{contentUrl}}\" />\n        <user id=\"{{userId}}\"/>\n    </credentials>\n</tsRequest>",
+              "raw": "<tsRequest>\n    <credentials name=\"{{admin-username}}\" password=\"{{admin-password}}\">\n        <site contentUrl=\"{{content-url}}\" />\n        <user id=\"{{user-id}}\"/>\n    </credentials>\n</tsRequest>",
               "options": {
                 "raw": {
                   "language": "xml"
                 }
               }
             },
-            "url": "{{protocol}}://{{server}}/api/{{api}}/auth/signin",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signin",
             "description": "Impersonate a Tableau User"
           },
           "response": []
@@ -5810,127 +5810,127 @@
   ],
   "variable": [
     {
-      "id": "aff1971e-9c4c-44bf-8146-689783e2247c",
+      "id": "2a407158-e299-4819-83c8-740400b4c63c",
       "key": "username",
       "value": ""
     },
     {
-      "id": "40e9a7e0-fc65-4254-a279-29b766015965",
+      "id": "213b1e4d-71e1-4cba-8393-515c88cff0e2",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "a37f5687-a64f-4d76-9c27-e54b89600d8d",
+      "id": "5b5f8cf8-c9d6-4694-a76f-e6e0803b1144",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "13030841-d660-4af5-b8a8-1bad70fd5f34",
+      "id": "c60f9963-fbf4-4220-98da-563f77332795",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "de0e0ee8-a1af-4d07-b5ef-b8678baceee8",
+      "id": "c5f57d85-96ef-417b-976c-b0da54c04b88",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "8bc5bf95-c66a-4076-bdd6-d5f3efd9c832",
+      "id": "dc318529-cd76-48f7-922f-806eb0b4f310",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "cfc1b884-b92c-409b-b5ac-9129d1531900",
+      "id": "5e009539-116f-44cf-8382-c8c6769ac5a8",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "e71153bb-4776-458d-a7c1-0c157c4bd3eb",
+      "id": "c08ff695-e444-4df7-aac1-b113ba7cc9ab",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "50320770-ebff-4f5b-a79c-3ed354ba3c0f",
+      "id": "dd5d3093-b217-49e9-9980-8106eb269f88",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "ec8132c2-938d-4474-9327-79a3f09bc76d",
+      "id": "382beb68-16a4-4112-a541-ab8acf35cf64",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "43fdd426-f08a-424d-b4b1-a8e743c89566",
+      "id": "d63aa73e-0f5e-4c76-a5a2-8907bc8d1d05",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "dc4cfb3b-e2cd-430c-aba1-3eee23807aef",
+      "id": "9ce0fc7f-5c91-4ab2-a2af-5af51b670199",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "816d4c56-396b-43e8-9241-e9787287b838",
+      "id": "e1dfc958-fffa-4882-845c-f98084890bf4",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "d2fcc0b7-0b8c-453f-90fd-a659eb6c100e",
+      "id": "b057fe9d-076c-474f-82dc-7ccf044d3338",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "c93ed495-fa91-4f83-b6ef-e4848dfc6ff0",
+      "id": "5dd45e5a-90ab-44d6-9194-60e397d1f0b7",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "5135a118-3893-4a1d-beb1-e85ec97739b3",
+      "id": "75760a20-8dc2-4a6f-bb4e-e78d759e714f",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "127e3b35-16aa-49af-b5b2-de44cb78113f",
+      "id": "df1dc878-297c-4a6d-be6e-5b1e8ddeb72d",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "2d218bbc-7a3f-4011-8391-d5f39421f3be",
+      "id": "ea9a2626-0301-4339-a57f-17fc2154a132",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "9fe78add-5312-4aa3-a8a6-b56c4d301871",
+      "id": "000ebfd5-0993-4d53-81fa-78b83425cf9b",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "d0da3ec3-2443-405b-b176-be330cdee909",
+      "id": "ae87c743-b9a4-4d1d-a301-781534da9ce0",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "10f0a510-2de7-4a4c-8796-f420a3c8dc13",
+      "id": "b36ca59c-b28f-4480-ae4e-37aa7eb798d9",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "aab91f27-7843-447c-a769-a891b15b849a",
+      "id": "4dc1573f-958f-4636-bc6b-0aea019d06ac",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "42517bbe-29eb-412e-9cb3-85b0b62f89d3",
+      "id": "8c3f8274-62d9-4831-9226-7f3c56bf0b54",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "56f8ef48-1650-471b-98a6-008317ddf2c9",
+      "id": "e6832ffd-3665-4978-9d79-866ad9536032",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "66038816-a45c-47db-abed-799900268f91",
+      "id": "83e543ba-0b90-485e-96ad-d7da9b89dacd",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
