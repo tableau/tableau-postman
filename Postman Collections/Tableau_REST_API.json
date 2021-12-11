@@ -963,19 +963,28 @@
                 "exec": [
                   "const json = xml2Json(responseBody);",
                   "",
-                  "if (responseCode.code===200)",
-                  "{",
-                  "    pm.environment.set(\"apiKey\", json.tsResponse.credentials.$.token);",
-                  "    pm.environment.set(\"siteId\", json.tsResponse.credentials.site.$.id);",
-                  "    pm.environment.set(\"userId\", json.tsResponse.credentials.user.$.id);",
-                  "",
-                  "    tests[\"apiKey env variable set = \" + pm.environment.get(\"apiKey\")] = responseBody.has(\"apiKey\");",
-                  "    tests[\"siteId env variable set = \" + pm.environment.get(\"siteId\")] = true;",
-                  "    tests[\"userId env variable set = \" + pm.environment.get(\"userId\")] = true;",
-                  "",
+                  "if (responseCode.code===200) {",
+                  "    // check values & set variables",
+                  "    pm.test(`api-key environment variable set = ${json.tsResponse.credentials.$.token}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.$.token);",
+                  "        pm.environment.unset(\"api-key\");",
+                  "        pm.environment.set(\"api-key\", json.tsResponse.credentials.$.token);",
+                  "    });",
+                  "    pm.test(`site-id environment variable set = ${json.tsResponse.credentials.site.$.id}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.site.$.id);",
+                  "        pm.environment.unset(\"site-id\");",
+                  "        pm.environment.set(\"site-id\", json.tsResponse.credentials.site.$.id);",
+                  "    });",
+                  "    // check values only",
+                  "    pm.test(`response body contentUrl value = ${json.tsResponse.credentials.site.$.contentUrl}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.site.$.contentUrl);",
+                  "    });",
+                  "    pm.test(`response body user id value = ${json.tsResponse.credentials.user.$.id}`, function () {",
+                  "        pm.expect(json.tsResponse.credentials.user.$.id);",
+                  "    });",
                   "}",
-                  "else",
-                  "{",
+                  "",
+                  "else {",
                   "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
                   "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
                   "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
@@ -1009,14 +1018,14 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n    <credentials name=\"{{username}}\" password=\"{{user-password}}\">\n        <site contentUrl=\"{{contentUrl}}\" />\n    </credentials>\n</tsRequest>",
+              "raw": "<tsRequest>\n    <credentials name=\"{{username}}\" password=\"{{user-password}}\">\n        <site contentUrl=\"{{content-url}}\" />\n    </credentials>\n</tsRequest>",
               "options": {
                 "raw": {
                   "language": "xml"
                 }
               }
             },
-            "url": "{{protocol}}://{{server}}/api/{{api}}/auth/signin",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signin",
             "description": "Impersonate a Tableau User"
           },
           "response": []
@@ -5801,127 +5810,127 @@
   ],
   "variable": [
     {
-      "id": "a414148b-04bc-46f3-b9fb-af1508353f5b",
+      "id": "aff1971e-9c4c-44bf-8146-689783e2247c",
       "key": "username",
       "value": ""
     },
     {
-      "id": "22e3d89b-c514-4a55-b9d0-ad7af2eee936",
+      "id": "40e9a7e0-fc65-4254-a279-29b766015965",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "4a968c12-d1ac-4715-aada-f169f9110840",
+      "id": "a37f5687-a64f-4d76-9c27-e54b89600d8d",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "055d91a0-0ed6-4008-bd50-875ffd66b978",
+      "id": "13030841-d660-4af5-b8a8-1bad70fd5f34",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "0e695fa4-5de5-451e-ac8e-26288444f88d",
+      "id": "de0e0ee8-a1af-4d07-b5ef-b8678baceee8",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "fd442f1f-3ed4-4df2-b7a3-c899f40042b9",
+      "id": "8bc5bf95-c66a-4076-bdd6-d5f3efd9c832",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "006fc9dd-50d2-4071-84f7-9032b8b91510",
+      "id": "cfc1b884-b92c-409b-b5ac-9129d1531900",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "99bf6656-be80-4a59-87a6-470e95846739",
+      "id": "e71153bb-4776-458d-a7c1-0c157c4bd3eb",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "5fc14867-16f2-4a12-bb91-6a654dee7bd8",
+      "id": "50320770-ebff-4f5b-a79c-3ed354ba3c0f",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "852792f4-44f3-46be-bf71-c274a07d3b27",
+      "id": "ec8132c2-938d-4474-9327-79a3f09bc76d",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "84f31fd9-92aa-48cc-9629-5143bf70a0db",
+      "id": "43fdd426-f08a-424d-b4b1-a8e743c89566",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "9bbc0236-82a9-4b2a-865d-6aa6c95050cd",
+      "id": "dc4cfb3b-e2cd-430c-aba1-3eee23807aef",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "bb90e646-e9f6-4b33-973f-dc689f2a583a",
+      "id": "816d4c56-396b-43e8-9241-e9787287b838",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "a3b78087-92e9-4e80-9b5f-2195d37736fa",
+      "id": "d2fcc0b7-0b8c-453f-90fd-a659eb6c100e",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "5ff9fc87-90d9-4c56-8380-2442b6ed586b",
+      "id": "c93ed495-fa91-4f83-b6ef-e4848dfc6ff0",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "2e44032a-4b61-4fe6-b1a9-3208267908a7",
+      "id": "5135a118-3893-4a1d-beb1-e85ec97739b3",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "659a55e6-3312-4933-bb43-af9982f2e74a",
+      "id": "127e3b35-16aa-49af-b5b2-de44cb78113f",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "0609cd8d-1d02-433e-969d-0aba466876df",
+      "id": "2d218bbc-7a3f-4011-8391-d5f39421f3be",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "2f75dec8-8bef-4150-bd1b-e245cab69851",
+      "id": "9fe78add-5312-4aa3-a8a6-b56c4d301871",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "a166bb31-6e2a-40d3-aea1-8922d81d5835",
+      "id": "d0da3ec3-2443-405b-b176-be330cdee909",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "712d633a-75ad-4171-8502-da7493f3fbf5",
+      "id": "10f0a510-2de7-4a4c-8796-f420a3c8dc13",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "c09a44e5-d190-4fd8-8a9a-b8adf7242baf",
+      "id": "aab91f27-7843-447c-a769-a891b15b849a",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "c908cb7d-6043-402f-ad30-8b7967052122",
+      "id": "42517bbe-29eb-412e-9cb3-85b0b62f89d3",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "57084bcf-6255-4b7f-bd8b-05b867479bc9",
+      "id": "56f8ef48-1650-471b-98a6-008317ddf2c9",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "a47964ad-ea29-486e-88d1-eff664681696",
+      "id": "66038816-a45c-47db-abed-799900268f91",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
