@@ -1183,33 +1183,36 @@
                 "exec": [
                   "const json = xml2Json(responseBody);",
                   "",
+                  "console.log(json)",
+                  "",
                   "//Initialize the environment variables if they don't exist",
-                  "if (postman.getEnvironmentVariable(\"datasource-id\")===undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"datasource-id\", \"notSet\");",
+                  "if (!pm.collectionVariables.get(\"datasource-id\")) {",
+                  "    pm.collectionVariables.set(\"datasource-id\", \"notSet\");",
                   "}",
-                  "if (postman.getEnvironmentVariable(\"datasource-name\")===undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"datasource-name\", \"notSet\");",
+                  "if (!pm.collectionVariables.get(\"datasource-name\")) {",
+                  "    pm.collectionVariables.set(\"datasource-name\", \"notSet\");",
                   "}",
                   "",
                   "const error = (responseCode.code!==200)",
-                  "if (error){",
+                  "if (error) {",
                   "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
                   "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
                   "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
                   "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
                   "    tests[\"full body: \" + responseBody] = false;",
                   "}",
-                  "else",
-                  "{",
-                  "    //These lines have been commented out because they would likely select the Default datasource and we don't want to accidentally delete that",
-                  "    //postman.setEnvironmentVariable(\"datasourceId\", json.tsResponse.datasources.datasource[0].$.id);",
-                  "    //postman.setEnvironmentVariable(\"datasourceName\", json.tsResponse.datasources.datasource[0].$.name);",
+                  "else {",
+                  "    const datasource = json.tsResponse.datasources.datasource;",
                   "",
-                  "    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-                  "    tests[\"datasourceId env variable set = \" + postman.getEnvironmentVariable(\"datasourceId\")] = (postman.getEnvironmentVariable(\"datasourceId\")!==\"notSet\");",
-                  "    tests[\"datasourceName env variable set = \" + postman.getEnvironmentVariable(\"datasourceName\")] = (postman.getEnvironmentVariable(\"datasourceName\")!==\"notSet\");",
+                  "    /* The following ternary operators to set datasource identifiers according to usecase and control for an array of datasources or a single datasource response.",
+                  "     They are disabled by default but can be enabled and modified by uncommenting each line. */",
+                  "",
+                  "    // Array.isArray(datasource) ? (pm.collectionVariables.set(\"datasource-id\", datasource[0].$.id)) : (pm.collectionVariables.set(\"datasource-id\", datasource.$.id));",
+                  "    // Array.isArray(datasource) ? (pm.collectionVariables.set(\"datasource-name\", datasource[0].$.name)) : (pm.collectionVariables.set(\"datasource-name\", datasource.$.name));",
+                  "",
+                  "    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true;",
+                  "    tests[\"datasourceId env variable set = \" + pm.collectionVariables.get(\"datasource-id\")] = (pm.collectionVariables.get(\"datasource-id\")!==\"notSet\");",
+                  "    tests[\"datasourceName env variable set = \" + pm.collectionVariables.get(\"datasource-name\")] = (pm.collectionVariables.get(\"datasource-name\")!==\"notSet\");",
                   "}",
                   ""
                 ],
@@ -1284,7 +1287,7 @@
                 "value": "{{token}}"
               }
             ],
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/sites/{{site-id}}/datasources/{{datasource-id}}",
             "description": "Returns information about the specified data source.\n\nURI\n1. GET /api/api-version/sites/site-id/datasources/datasource-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The site that contains the data source.\n* datasource-id  The ID of the data source to get."
           },
           "response": []
@@ -5807,127 +5810,127 @@
   ],
   "variable": [
     {
-      "id": "f4cb803a-2c59-4614-ae1d-0e7db98ecc8c",
+      "id": "e922699d-6374-408d-938e-676ee7a73210",
       "key": "username",
       "value": ""
     },
     {
-      "id": "d31d5dda-8683-445b-8571-3f7656982f44",
+      "id": "4a61f069-1b48-4535-ad96-5f17603538f0",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "b25b00a2-b493-4b07-ad3f-dd76b3481d6e",
+      "id": "2fb3948e-9cf1-488e-95a1-779fd06708e6",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "3f6c3b76-fddb-4db6-877c-abb9f2c722c5",
+      "id": "526ff1a1-b539-43d6-8d39-c460be334d88",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "cfa7a266-f82b-4aa4-bc76-f4ad524487b8",
+      "id": "9e458990-847c-4f66-96a7-5cbd1a63e0c6",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "a7f6761b-7264-4224-a26f-854b3ac451a8",
+      "id": "59a2325c-001d-4fd1-82e7-b91e1911dcf6",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "a1c756df-b180-415b-95d4-b3a032df73bc",
+      "id": "0ed03afc-877f-4983-8992-2a4ef0b58400",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "9d545222-88ad-4f57-b1f6-cafe577debac",
+      "id": "6f0bfa3c-653f-491a-a996-1371b997e773",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "3a34d36b-d16d-4f77-9e6a-43ddeed085c6",
+      "id": "a3562879-841d-4d64-9eaa-4b14b4b512de",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "dbf45b55-1f01-4b72-ba8b-a8d994963f69",
+      "id": "a9bf79c7-fea9-49c2-b304-b21a0caf60ad",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "551fa1c9-8e73-4a55-9dad-1abaa3fe16f7",
+      "id": "105d2928-2414-49ac-ab04-1f2b0f42a330",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "80212bad-5399-4369-8459-9501b7065083",
+      "id": "82041f92-2b33-493a-8730-9d0b311b046e",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "8aa1ffcf-b0da-4275-af20-d9b298437eaf",
+      "id": "ec8afcb7-43aa-4b54-b84c-5e94c35151f2",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "693ca216-71aa-4dc5-8271-74cf257621b9",
+      "id": "136a361e-d67c-4a75-a48d-e78ca8dc7060",
       "key": "tag",
       "value": ""
     },
     {
-      "id": "a899103e-d060-461d-b6bb-e667c2b6230d",
+      "id": "374a84d7-eed7-47bd-869e-b283d71efe6f",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "1f0c3d8d-1f62-49d5-a5ee-e2dc24303d26",
+      "id": "493ffccc-1f86-4f44-8ce6-9d356dca2160",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "a003703f-9771-4658-96ed-70d9a88af200",
+      "id": "95d2e55c-a3fc-424e-b881-1bc1650c830a",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "2a0ba769-d7a8-4873-a06f-d7a850a7ccb6",
+      "id": "563f514b-762c-4963-bb57-c74af21fe2d3",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "6e5b2ac6-b52d-4c3a-afd0-059bf7720466",
+      "id": "f54ba4fc-139d-466f-af52-0c3c33d1a49d",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "23e678dc-d917-4247-be46-fab45f57a49f",
+      "id": "577bfeeb-4fdd-4a7d-901b-97795c77cfc8",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "485d9f6d-154d-4a5b-9207-fcff3f291067",
+      "id": "b48fb15f-18e7-4dbd-b746-1a7b012345c5",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "284fc8f2-b87b-4068-8995-cb8cd7573fc1",
+      "id": "358d8fbd-52bb-41c3-899b-341b466ce1a6",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "089f8fc1-6a30-4596-8598-c2c0e3269704",
+      "id": "7fa1cd63-fc24-44cf-a960-e0bdb40f4b62",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "2837bd70-f6e8-43c6-974e-0edb1d781c15",
+      "id": "739ca652-45a1-41f7-aa69-20aaf3af2992",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "0f488303-acef-4620-842b-72497a90d7a5",
+      "id": "62eb84c2-bb68-4ce3-9fb4-88e50c98e58e",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     }
