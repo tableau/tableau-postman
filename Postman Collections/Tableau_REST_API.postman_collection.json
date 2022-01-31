@@ -1183,8 +1183,6 @@
                 "exec": [
                   "const json = xml2Json(responseBody);",
                   "",
-                  "console.log(json)",
-                  "",
                   "//Initialize the environment variables if they don't exist",
                   "if (!pm.collectionVariables.get(\"datasource-id\")) {",
                   "    pm.collectionVariables.set(\"datasource-id\", \"notSet\");",
@@ -1202,15 +1200,6 @@
                   "    tests[\"full body: \" + responseBody] = false;",
                   "}",
                   "else {",
-                  "    const datasource = json.tsResponse.datasources.datasource;",
-                  "",
-                  "    /* The following ternary operators to set datasource identifiers according to usecase and control for an array of datasources or a single datasource response.",
-                  "     They are disabled by default but can be enabled and modified by uncommenting each line. */",
-                  "",
-                  "    // Array.isArray(datasource) ? (pm.collectionVariables.set(\"datasource-id\", datasource[0].$.id)) : (pm.collectionVariables.set(\"datasource-id\", datasource.$.id));",
-                  "    // Array.isArray(datasource) ? (pm.collectionVariables.set(\"datasource-name\", datasource[0].$.name)) : (pm.collectionVariables.set(\"datasource-name\", datasource.$.name));",
-                  "",
-                  "    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true;",
                   "    tests[\"datasourceId env variable set = \" + pm.collectionVariables.get(\"datasource-id\")] = (pm.collectionVariables.get(\"datasource-id\")!==\"notSet\");",
                   "    tests[\"datasourceName env variable set = \" + pm.collectionVariables.get(\"datasource-name\")] = (pm.collectionVariables.get(\"datasource-name\")!==\"notSet\");",
                   "}",
@@ -1293,21 +1282,18 @@
           "response": []
         },
         {
-          "name": "Datasources: Delete Datasource",
+          "name": "Delete Datasource",
           "event": [
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "afde1466-6f63-4bac-bc7a-2c51ccef7ec9",
                 "exec": [
-                  "var json = xml2Json(responseBody);",
+                  "const json = xml2Json(responseBody);",
                   "",
-                  "if (responseCode.code == 204) {",
-                  "    tests[\"Deleted: Datasource with name (if set): \" + postman.getEnvironmentVariable(\"datasourceName\") + \" and Id: \" + postman.getEnvironmentVariable(\"datasourceId\") ] = true;",
-                  "    postman.setEnvironmentVariable(\"datasourceId\", \"notSet\");",
-                  "    postman.setEnvironmentVariable(\"datasourceName\", \"notSet\");    ",
-                  "    tests[\"datasourceId env variable set = \" + postman.getEnvironmentVariable(\"datasourceId\")] = !(postman.getEnvironmentVariable(\"revisionId\")!==\"notSet\");",
-                  "    tests[\"revisionName env variable set = \" + postman.getEnvironmentVariable(\"datasourceName\")] = !(postman.getEnvironmentVariable(\"datasourceName\")!==\"notSet\");",
+                  "if (responseCode.code === 204) {",
+                  "    tests[\"Deleted: Datasource with id: \" + pm.collectionVariables.get(\"datasource-id\") ] = true;",
+                  "    pm.collectionVariables.unset(\"datasource-id\");    ",
                   "}",
                   "else",
                   "{",
@@ -1316,11 +1302,9 @@
                   "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
                   "    tests[\"full body: \" + responseBody] = false;",
                   "}",
-                  "",
-                  "",
                   ""
                 ],
-                "id": "afde1466-6f63-4bac-bc7a-2c51ccef7ec9"
+                "type": "text/javascript"
               }
             }
           ],
@@ -1336,7 +1320,7 @@
                 "value": "{{token}}"
               }
             ],
-            "url": "{{protocol}}://{{server}}/api/{{api-version}}/sites/{{site-id}}/datasources/{{datasource-id}}",
+            "url": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}",
             "description": "Deletes the specified Datasource"
           },
           "response": []
@@ -1487,6 +1471,65 @@
             ],
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}/connections",
             "description": "Query DataSource connection information\n\nURI\n1. GET /api/api-version/sites/site-id/datasources/datasource-id/connections\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the data source.\n* datasource-id  The ID of the datasource to return connection information about."
+          },
+          "response": []
+        },
+        {
+          "name": "Add Tags to Data Source",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e60898f1-3935-4d34-beaf-e5d25fd2bf79",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "d169c0ef-1b82-42f8-86ec-2c882fae2145",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n  <tags>\n    <tag label=\"GDP\" />\n  </tags>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/tags"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Tag from Data Source",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e46ca93-db7e-4194-8fda-4483012d4f6f",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "8707b7ee-4660-409d-baee-2b30ad8dd50f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/tags/{{tag-name}}"
           },
           "response": []
         }
@@ -5008,18 +5051,18 @@
               }
             ],
             "url": {
-              "raw": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/views/?includeUsageStatistics=true",
-              "protocol": "http",
+              "raw": "{{protocol}}://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views/?includeUsageStatistics=true",
+              "protocol": "{{protocol}}",
               "host": [
                 "{{server}}"
               ],
               "path": [
                 "api",
-                "{{api}}",
+                "{{api-version}}",
                 "sites",
-                "{{siteId}}",
+                "{{site-id}}",
                 "workbooks",
-                "{{workbookId}}",
+                "{{workbook-id}}",
                 "views",
                 ""
               ],
@@ -5454,7 +5497,7 @@
                 "value": "{{token}}"
               }
             ],
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/users/{{userId}}/workbooks",
+            "url": "{{protocol}}://{{server}}/api/{{api-version}}/sites/{{site-id}}/users/{{user-id}}/workbooks",
             "description": "Query workbooks that the specified user has read capabilities for"
           },
           "response": []
@@ -5748,7 +5791,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "87acb431-0f45-4433-906c-fa88f4f52208",
+        "id": "c49f7fa4-6a25-4528-920f-e712c8abec93",
         "type": "text/javascript",
         "exec": [
           "/*",
@@ -5800,9 +5843,24 @@
     {
       "listen": "test",
       "script": {
-        "id": "514a5a31-bb26-46ae-9e0d-da7fd4d55b00",
+        "id": "967c3b4e-8186-48d9-ad9f-c6c3adf7c17d",
         "type": "text/javascript",
         "exec": [
+          "// convert XML body to JSON",
+          "const json = xml2Json(responseBody);",
+          "",
+          "// avoids running the test if a succesful request does not receive a response body",
+          "if (json !== null) {",
+          "    // Output Tableau errors for debugging (see error codes in reference docs at https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm)",
+          "    if (json.tsResponse.error) {",
+          "        const error = (json.tsResponse.error);",
+          "",
+          "        // If the error code is documented in reference, output error detail and summary",
+          "        pm.test(`Error: ${error.$.code} ${error.summary} - Cause: ${error.detail} (see https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_errors.htm)`, () => {",
+          "            pm.expect(json.tsResponse).not.to.have.property('error');",
+          "        })",
+          "    }",
+          "}",
           ""
         ]
       }
@@ -5810,128 +5868,128 @@
   ],
   "variable": [
     {
-      "id": "3597efef-e192-4e56-8a6e-17e8ec767b8c",
+      "id": "ba1b17c6-dc41-48f0-a167-5e26414ee058",
       "key": "username",
       "value": ""
     },
     {
-      "id": "5b0700b8-7049-4b66-b672-fef6b211ce62",
+      "id": "ff76149d-89f3-4f67-b8bf-b179d0e8b2b9",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "43589708-4fc6-4675-a6ac-155f663e63ac",
+      "id": "cdb58a65-6e26-4395-85a6-01763edbc749",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "f0e6dde5-ccc4-4193-8d8e-35310d356e51",
+      "id": "f3c43bf7-6fa7-4133-9bf3-8f932ea964a0",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "d2eb9001-5f7f-4aa0-8ecb-9b7dc0d5f9c3",
+      "id": "b7bdc570-79f7-489f-940f-4061e2e175cd",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "4b947c7c-1238-4fa9-a263-2fa8e6f7a989",
-      "key": "datasource-name",
-      "value": ""
-    },
-    {
-      "id": "22a3aebe-2b95-496a-9b2b-98da80c21e13",
+      "id": "d783bb4c-83ec-4a11-ae2a-3f7e3bc4c9aa",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "72720103-2f39-4395-bff5-d0228fdd5c9d",
+      "id": "1ee618c2-65fc-49a8-afac-8b116dc7b509",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "ea132cf6-6617-40e2-bebd-313c6a5e0938",
+      "id": "7a245fa5-d4fd-4703-ac73-b6530d565b50",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "61e39f68-966c-44b3-89ce-7b0c60e47fd9",
+      "id": "10e45fdc-abdb-4130-b493-b91ba7a86370",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "486da67d-d034-4177-b264-2e5a30f79484",
+      "id": "ef507c9d-a623-4680-8850-7b54a0fcd775",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "cf2f2ed0-2889-4151-a66a-6d9323e9a8b7",
+      "id": "be597639-fc43-482b-83de-1bcdda3e1f2b",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "87a986e6-1428-45d7-8196-d578045cf194",
+      "id": "86975daa-f6df-4645-9244-bcf1703f47a2",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "860e807e-9f13-4dee-acbb-2dc91bb56e2f",
-      "key": "tag",
+      "id": "6bd46352-d714-4a9d-990a-6f1674f5b057",
+      "key": "tag-name",
       "value": ""
     },
     {
-      "id": "d5001fdc-cc27-49f4-959c-6e312f43af1d",
+      "id": "33d124b6-d076-45e8-b190-0a7d9a9727c3",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "61eb9500-d6a6-4e1e-bfbf-2bf29029081a",
+      "id": "566fae1d-41bf-4a69-8899-44d4defcc885",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "0291d8e2-b5e4-46f1-ac4f-980a61e047fa",
+      "id": "c54723d4-b14c-4189-8a3b-69d71162be5a",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "58dcd6f1-26c9-430b-b2c1-77a57b349d31",
+      "id": "2a338126-bc6f-426d-bb10-d447eae1db11",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "37fc3d95-68f0-41a3-9f4e-2a0020d2177d",
+      "id": "3a7a1513-ca83-4721-b9fe-f4ce1ec2cdf9",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "f12d4628-ed76-4952-9590-6e1dcc409b7e",
+      "id": "5a5d47fe-d8d9-407a-8ee8-7f3b52233f8f",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "4493c370-04ea-4932-89c5-cde597c645cd",
+      "id": "f92faf70-da80-401d-86d5-5d7c5cd4c708",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "11a4e85c-1638-40c8-9190-00d85c12115c",
+      "id": "a394955a-1e60-471d-8c00-20fd33c5fab5",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "e02afa1f-547a-4dfc-a8cc-1364b30e528e",
+      "id": "bdfd4e6b-7f86-4fdf-9c52-c421adba385c",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "5de7d236-eb0a-46b8-bb4c-15a8f800141c",
+      "id": "8a8b8585-b7e7-4333-af1d-cc89ac68a455",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "435466e4-5cf0-4563-9f81-0575c3a45196",
+      "id": "dcd5b5de-6edb-467b-a331-b9f4972575a7",
       "key": "analytics-extensions-connection-luid",
+      "value": ""
+    },
+    {
+      "id": "21f355e5-1de8-4b91-8f85-e49ffca98563",
+      "key": "datasource-name",
       "value": ""
     }
   ]
