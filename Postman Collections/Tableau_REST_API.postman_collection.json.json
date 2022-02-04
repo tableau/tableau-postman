@@ -6478,59 +6478,17 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "c49f7fa4-6a25-4528-920f-e712c8abec93",
+        "id": "d409f196-0967-44bb-bfb4-d64a41a088f1",
         "type": "text/javascript",
         "exec": [
-          "/*",
-          "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-          "    - Every request in this collection will run this script.",
-          "    - To authenticate with different users, create separate environments with username, password and content-url variables",
-          "*/",
-          "",
-          "// xml body used to authenticate and obtain an API Key",
-          "const authBody = `",
-          "<tsRequest>",
-          "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-          "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-          "    </credentials>",
-          "</tsRequest>`;",
-          "",
-          "// authenticate and obtain token value to be set as 'api-key' environment variable",
-          "pm.sendRequest({",
-          "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-          "    method: 'POST',",
-          "    header: {",
-          "        'content-type': 'application/xml',",
-          "    },",
-          "    body: {",
-          "        mode: 'raw',",
-          "        raw: authBody,",
-          "    }",
-          "}, function (err, res) {",
-          "    if (err) {",
-          "        console.log(err);",
-          "    } else {",
-          "        pm.environment.unset(\"api-key\");",
-          "        pm.environment.unset(\"site-id\");",
-          "        // convert the XML response body to JSON",
-          "        const jsonObject = xml2Json(res.text());",
-          "",
-          "        // obtain the API Key from the response body",
-          "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-          "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-          "",
-          "        // set the variables to the returned value",
-          "        pm.environment.set(\"api-key\", apiKey);",
-          "        pm.environment.set(\"site-id\", siteId);",
-          "    };",
-          "});"
+          ""
         ]
       }
     },
     {
       "listen": "test",
       "script": {
-        "id": "967c3b4e-8186-48d9-ad9f-c6c3adf7c17d",
+        "id": "9b381b0e-3a6f-4b89-a3ad-923798fb2d7f",
         "type": "text/javascript",
         "exec": [
           "// convert XML body to JSON",
@@ -6555,167 +6513,167 @@
   ],
   "variable": [
     {
-      "id": "7237c540-6fde-4aba-8614-3e1a1f74f4e3",
+      "id": "3c76f412-6de4-4284-9fe9-06bc5f6f4939",
       "key": "username",
       "value": ""
     },
     {
-      "id": "b6d3452d-f0f2-48af-9703-d4da224bcc7c",
+      "id": "ffbe9b64-f711-4bce-bfeb-1388c84218a9",
       "key": "user-id",
       "value": ""
     },
     {
-      "id": "5260b98f-2090-4c59-8df0-ca1865ee769f",
+      "id": "5c29183f-fa5f-42b6-8657-495b8539c44a",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "631dd0b5-6eaa-4929-b829-f1f2bb85b22b",
+      "id": "767fab36-0d9c-479e-af55-f6ce62bca5a0",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "ee4376c7-f403-4775-9010-e2b3940fa7d0",
+      "id": "65e8cfc5-23d5-444f-a3ac-adc1ebf221a5",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "f6e3d424-59f7-4821-91f6-c0d3f0af3690",
+      "id": "934a51e4-49f9-455b-a8eb-63fae01b2c39",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "8455e3c4-4ece-462d-be0b-b8c638629ec9",
+      "id": "6a0ba75a-b323-401e-8ed3-f193630ff335",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "132d8259-5e4e-4ac3-bc27-6f188b799fea",
+      "id": "d2f7cc1f-da49-4cad-b076-ad04dfffeb1b",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "f994ac7c-a829-4249-9a74-dc46ffe6b0cd",
+      "id": "64a38ffb-36aa-4d94-a8c4-55d43e0b780c",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "00d11aac-4856-49fb-8c60-fa29292a8d91",
+      "id": "5093b274-a15b-4254-bef6-549ba3a1cd11",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "227c2856-1e41-4f96-8f79-834a92c98ed7",
+      "id": "d53dae12-b6eb-4538-8538-e4019fc0fa4b",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "9fe0ca21-9ae9-43c2-bb93-98e4c281f177",
+      "id": "8a5c7993-fcd7-421e-9fcb-2b917b1d563e",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "c9a030ee-16b5-4e12-a7ac-face150cae55",
+      "id": "2ab09710-eedf-403b-9672-32a8de91c26e",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "6dcf1b8e-2a9f-4b19-aa15-52bd8fe4976c",
+      "id": "4ab17833-4c04-41d4-bf68-34480a824a69",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "d5e91e21-5587-4163-8e09-f3d5d2a665d9",
+      "id": "90efd0ad-5f6c-4486-ba8c-8bdc52cc4ab2",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "30595c7b-1de7-4bca-86cf-56ae45aed8b4",
+      "id": "e98e9ecc-0de4-4ec4-b544-0c524ac2fc9e",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "fef30227-3745-46f3-aa05-d681bee5be3a",
+      "id": "5b49c0b1-cfed-47aa-bca8-880645118941",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "9e2bbe39-93e6-4a75-825a-11b07a167131",
+      "id": "c3728e0e-f6db-40c0-96fb-5c3c8ad93e59",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "8c7cc073-e10f-42f9-b870-77e78bf2bff2",
+      "id": "95e76a61-d8ef-4cdc-bbbc-2d315c11abeb",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "eefd6337-6612-4a82-96c5-42a7199c3f5c",
+      "id": "e623dcf0-901d-4d4b-b505-ccd771d6ed3a",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "d1d10675-35de-415c-8051-1f07d69044de",
+      "id": "348e403b-6718-4ed0-91a3-57e11c857fcb",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "621054e4-8801-4b79-9619-3c49a7f9c874",
+      "id": "c1649eee-2e93-4e46-bc02-639804d1de96",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "8e83c77f-67d7-4c64-953d-905554d33eff",
+      "id": "c436de0e-55d2-4156-a2fd-6c1cd5ebbd64",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "b2264cd9-da1f-4b8e-8d0c-c4cd0472a2d8",
+      "id": "dde9d17c-dafa-4855-85db-00a296144e93",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "805c8153-4589-4c3a-ad34-472b4ea2f743",
+      "id": "651348e2-c92a-4982-afd1-b8884651bd27",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "bc6bdad9-58b9-4a58-8dae-7574558afb47",
+      "id": "e1f94113-ebe4-49f5-a7b1-5bd399f8e581",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "41d5355c-a050-40ec-af29-ca1098851698",
+      "id": "41d03b5b-5034-40af-a98b-7fe408bfdbe2",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "682f4bf8-efb4-4296-9bf0-d2adefc2e85e",
+      "id": "1222ff84-5588-4ccb-9fdb-8146e6e3a192",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "848ceb90-7a51-4bb3-bd19-f808d6687ffa",
+      "id": "1362e111-0288-4be6-9664-b6cd54160e25",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "c668c45d-e599-4b2d-9942-d2f2ea680364",
+      "id": "d40d6388-75d6-4747-b40d-555bad75a7fc",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "5698d02f-4c64-4d0f-9d7c-789fd76f886a",
+      "id": "b0713377-71a8-4bff-9816-ce12e41d9fda",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "7ed3a45e-a83c-4e5f-8a58-e7c842b5d516",
+      "id": "00f0382c-beee-41a6-a609-8c24fa2f39d5",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "b57fa87f-a309-4a72-b9d6-fc0678c316c6",
+      "id": "c681ba10-483b-4e23-92cc-f68586f7bcc4",
       "key": "capability-mode",
       "value": ""
     }
