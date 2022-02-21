@@ -7664,45 +7664,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "Update Schedule",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "d44828a0-03b4-4ef0-81a1-1ef827070cd0",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "id": "6d94c6db-893e-4e11-bc24-ba590c0ff661",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "X-Tableau-Auth",
-            "value": "{{token}}"
-          },
-          {
-            "key": "Content-Type",
-            "value": "text/xml"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "<tsResponse>\n  <schedule id=\"{{schedule-id}}\"\n        name=\"schedule-name\"\n        state=\"new-state\"\n        priority=\"schedule-priority\"\n        createdAt=\"datetime-created\"\n        updatedAt=\"datetime-updated\"\n        type=\"Extract-or-Subscription\"\n        frequency=\"schedule-frequency\"\n        nextRunAt=\"datetime-next-run\"\n        endScheduleAt =\"datetime-expiration\"\n        executionOrder=\"Parallel-or-Serial\">\n        <frequencyDetails frequency-expression >\n            <intervals>\n               <interval interval-expression />\n             </intervals>\n        </frequencyDetails>\n  </schedule>\n</tsResponse>"
-        },
-        "url": "{{base-path}}/schedules/{{schedule-id}}",
-        "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule)\n\nModifies settings for the specified schedule, including the name, priority, and frequency details.\n\n#### Attribute Values\n\n| *new-schedule-name* | The new name to give to the schedule. |\n| *new-schedule-priority* | An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Lower numbers have higher priority. |\n| *new-schedule-execution-order* | `Parallel` to allow jobs associated with this schedule to run at the same time, or `Serial` to require the jobs to run one after the other. |\n| *new-schedule-frequency* | <br><br>The granularity of the schedule. Valid values are:<br><br>*   `Hourly`. `Hourly`. Jobs can be scheduled to at intervals specified in run one or more times per day at intervals specified in minutes or hours. The allowed intervals 15 and 30 minutes and 2, 4, 6, 8, and 12 hours.<br>*   `Daily`. Jobs can be scheduled to run once day.<br>*   `Weekly`. Jobs can be scheduled to run one or more times per week.<br>*   `Monthly`. Jobs can be scheduled to run once per month on a specific day.<br><br>The value you provide for *schedule-frequency* determines whether you must include an *end-time* value, and what is required in the contents of the  element.  <br><br><br> |\n| *new-state* | `Active` to enable the schedule, or `Suspended` to disable it. |\n| *start-time* | The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format `HH:MM:SS` (for example, `18:30:00`). This value is required for all schedule frequencies. The entered time will be applied based on the time zone of your server. |\n| *end-time* | If the schedule frequency is `Hourly`, the time of day on which scheduled jobs should stop being run, in the format `HH:MM:SS` (for example, `23:30:00`). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored. The entered time will be applied based on the time zone of your server. |\n| *interval-expression* | <br><br>A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the value specified in *schedule-frequency*.<br><br>**`Hourly`**<br><br>The interval expression is only one of the following:<br><br>*   `hours=\"`*`interval`*`\"` where *interval* is `1`, `2`, `4`, `6`, `8`, or `12`, representing how many hours between jobs.<br>*   `minutes=\"`*`interval`*`\"` where *interval* is `15` or `30`, representing how many minutes between jobs.<br><br>You can specify an interval in hours or minutes, but not both.<br><br>**`Daily`**<br><br>If the schedule frequency is `Daily`, no interval is specified. Any information specified in the  element is ignored.<br><br>**`Weekly`**<br><br>The interval expression is `weekDay=\"`*`weekday`*`\"`, where *weekday* is `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, or `Saturday`.<br><br>You can specify multiple  elements to indicate that scheduled jobs should run on multiple days during the week.<br><br>Note: Updating a schedule without specifying days of the week will reset any existing weekly interval to include all 7 days. If you need the job you are updating to remain scheduled on selected days, make sure to include that information in your update request.<br><br>**`Monthly`**<br><br>The interval expression is `monthDay=\"`*`day`*`\"`, where *day* is either the day of the month (`1`, `2`, etc.) or `LastDay`.<br><br>Note: If you want to specify multiple days in the month, you can do this using the web interface. You cannot create such a monthly schedule using REST API.<br><br> |\n\nAny combination of the attributes inside the  element is valid. Only the attributes and child elements that are included result in updates to the schedule. If no attributes or nested elements are included, no update is made.\n\n#### Permissions\n\nThis method can only be called by server administrators."
-      },
-      "response": []
     }
   ],
   "auth": {
@@ -7751,167 +7712,167 @@
   ],
   "variable": [
     {
-      "id": "bca1b304-0203-4b2b-a7d5-5eee4a25966a",
+      "id": "a60cbd76-baca-47c9-b9de-6e0e176e8320",
       "key": "username",
       "value": ""
     },
     {
-      "id": "bf166716-ab6f-43e6-a2b0-25858af1f4f6",
+      "id": "3896a521-6baf-4a40-b5b8-8c9b9c1d2212",
       "key": "user-id",
       "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "432645ce-294f-4990-af7c-890d41c5916c",
+      "id": "d53ffeaa-87fa-43bd-a636-c1530d75daf5",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "f52222e7-7073-4d3d-905c-4bb73c00f291",
+      "id": "343d6537-5e96-4efc-b479-2d8d32275db6",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "950967c7-54a4-46ee-bf26-441d3c235e11",
+      "id": "bba72092-b0a9-4c24-817c-eab593ef89ec",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "9d809080-893a-4b40-bcf1-4108f2f4c1b0",
+      "id": "551a1da1-92d2-46b7-b434-4aa9f0a09d6b",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "7ad5b27d-9171-4c05-851b-139d018fe526",
+      "id": "58f2267e-5810-46cc-be1e-86b0e415885d",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "e987a8b6-49ca-4733-adfc-12fa78c436f3",
+      "id": "b71a8fd8-2ef2-4e88-8d2f-387c0d252882",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "96ce1170-8481-49df-ae0c-eb5916df9a62",
+      "id": "8f50b653-a50d-4e79-88bb-2c0e32d5acc9",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "9cf8eae8-1592-44c2-b09e-f132b778d013",
+      "id": "33cc062e-9042-4483-83f2-72f4ec9fdc3c",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "801bffa7-7c96-46fc-a49f-757efc0a2761",
+      "id": "80f05245-77bb-4f7e-86c1-eb05deb4b7ba",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "a0b570c4-2e16-4410-b70d-bf745509db03",
+      "id": "0706767d-8268-4771-a51c-34be8079f3d0",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "eebfb2b0-ff7b-4ab7-af3b-50af69e39c42",
+      "id": "99e49067-d0ab-4882-9326-8deb8d5459ce",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "fc59da29-219d-49c0-8a3e-9e645b49c9de",
+      "id": "f9ec78ff-9a36-4db5-a51f-ed561520cea9",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "cc6153a0-27b9-471b-9b09-b0e959e31e8a",
+      "id": "c8f4f80b-646a-42a3-aac7-c6e92e41345a",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "f764c9b0-9935-488c-8cce-19e095f228c9",
+      "id": "31623fe8-1b4c-44e1-8b2f-3cc0769bd74d",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "29c33d67-1c19-481e-97b1-cb9532455adb",
+      "id": "37d140a4-67ed-44b3-ac9b-a9ebfa179548",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "f0d77be2-e788-47ae-95f0-f3d7cc0b6c5a",
+      "id": "c4d34ab3-3093-4db0-a5d5-17340a89b5c1",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "1b07bb44-a36b-4058-98d5-41edb6cbc5ee",
+      "id": "d8a4525f-6bf9-4556-8b88-93c5241e0a36",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "45ea2c5d-e073-43a2-a6f3-fba6691a458a",
+      "id": "adad82e5-9333-4e4a-8009-2a09bdba2b8d",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "3805a254-97f6-4f9b-aa55-20eb22abbd25",
+      "id": "c91f55f9-fdec-4e6f-9347-1d8159c18f4c",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "e8545138-f058-4e40-85fb-af4bf3a60e2f",
+      "id": "175212de-428a-4ae6-868f-6d207647f945",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "0450c55c-160a-47cf-a173-79a70e31a483",
+      "id": "c0376bc8-b269-41dc-9489-862ac6eeb293",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "cc11ba9e-67ab-410b-9383-a002a1b8ca4e",
+      "id": "35715d67-7475-42b9-98de-1124a7f40433",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "489565d8-c011-4c73-a2d4-bf813415a1c9",
+      "id": "277c0045-33e1-44d9-a244-a914d56cdeb0",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "6bdda398-85a0-4fc5-ad27-7f4b18fe3125",
+      "id": "9a6c8df0-7a7b-4e5d-a5aa-8c33c91508b0",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "a2eaf8a6-d20d-4fb3-a7f5-177e44d21d2b",
+      "id": "03cdbc3e-1166-4d3c-bfe3-ca8041e8a6f6",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "59c9aed5-73e4-4a8e-a02b-f41047f88495",
+      "id": "6adbafed-3056-4845-938d-996212b4c9cb",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "a177ad85-543c-4f49-b334-553a75937f99",
+      "id": "88d38dc3-fe23-40aa-907e-3109bc8028f6",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "ed8c912a-b47b-426f-8114-000290b67e07",
+      "id": "e3f0d8c2-41a4-40e5-ad00-93c34dc49679",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "7d1b1af6-bda2-4a97-8751-b67e1e91d692",
+      "id": "4c8ff728-d99d-4744-bb58-2b465be0ce77",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "bc9297df-d4c1-4913-83e3-8c61d99cef39",
+      "id": "e65cad8a-2dc4-4066-ad86-508b256f8be5",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "17fc15fa-01d6-43eb-8790-9027549513a6",
+      "id": "c4e8f46d-8e68-470d-82ed-7c466b14e128",
       "key": "capability-mode",
       "value": ""
     }
