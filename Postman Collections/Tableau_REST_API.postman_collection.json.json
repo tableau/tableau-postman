@@ -820,42 +820,48 @@
       "name": "Authenticate",
       "item": [
         {
-          "name": "Authenticate: Sign-in (As an Admin)",
+          "name": "Revoke Admin PATs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "80be76c4-f2a8-4b82-9a3a-58a74eb16aa4",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "8856d8bf-e588-4385-9ed5-174985207279",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/auth/serverAdminAccessTokens",
+            "description": "Revokes all [personal access tokens(Link opens in a new window)](https://help.tableau.com/current/server/en-us/security_personal_access_tokens.htm) (PATs) created by server administrators. This method is not available for Tableau Online.\n\n#### URI\n\nDELETE /api/*api-version*/auth/serverAdminAccessTokens"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign-in (As an Admin)",
           "event": [
             {
               "listen": "test",
               "script": {
                 "id": "1ffd0e26-f61e-4644-b6c7-dda838fcf6f5",
                 "exec": [
-                  "const json = xml2Json(responseBody);",
-                  "",
-                  "if (pm.response.to.have.status(200)) {",
-                  "    // check values & set variables",
-                  "    pm.test(`api-key environment variable set = ${json.tsResponse.credentials.$.token}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.$.token);",
-                  "        pm.environment.unset(\"api-key\");",
-                  "        pm.environment.set(\"api-key\", json.tsResponse.credentials.$.token);",
-                  "    });",
-                  "    pm.test(`site-id environment variable set = ${json.tsResponse.credentials.site.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.id);",
-                  "        pm.environment.unset(\"site-id\");",
-                  "        pm.environment.set(\"site-id\", json.tsResponse.credentials.site.$.id);",
-                  "    });",
-                  "    // check values only",
-                  "    pm.test(`response body contentUrl value = ${json.tsResponse.credentials.site.$.contentUrl}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.contentUrl);",
-                  "    });",
-                  "    pm.test(`response body user id value = ${json.tsResponse.credentials.user.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.user.$.id);",
-                  "    });",
-                  "}",
-                  "",
-                  "else {",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
                   ""
                 ],
                 "type": "text/javascript"
@@ -881,192 +887,19 @@
                 }
               }
             },
-            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signin",
-            "description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
-          },
-          "response": []
-        },
-        {
-          "name": "Authenticate: Sign-in (As an Admin PAT)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "e3e7ce6b-dc74-4ddf-8140-2a901917a1ec",
-                "exec": [
-                  "const json = xml2Json(responseBody);",
-                  "",
-                  "if (responseCode.code===200) {",
-                  "    // check values & set variables",
-                  "    pm.test(`api-key environment variable set = ${json.tsResponse.credentials.$.token}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.$.token);",
-                  "        pm.environment.unset(\"api-key\");",
-                  "        pm.environment.set(\"api-key\", json.tsResponse.credentials.$.token);",
-                  "    });",
-                  "    pm.test(`site-id environment variable set = ${json.tsResponse.credentials.site.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.id);",
-                  "        pm.environment.unset(\"site-id\");",
-                  "        pm.environment.set(\"site-id\", json.tsResponse.credentials.site.$.id);",
-                  "    });",
-                  "    // check values only",
-                  "    pm.test(`response body contentUrl value = ${json.tsResponse.credentials.site.$.contentUrl}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.contentUrl);",
-                  "    });",
-                  "    pm.test(`response body user id value = ${json.tsResponse.credentials.user.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.user.$.id);",
-                  "    });",
-                  "}",
-                  "",
-                  "else {",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "5ac95903-8d8e-42ac-8079-16a025f5363c",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "<tsRequest>\n    <credentials personalAccessTokenName=\"{{admin-PAT-name}}\" personalAccessTokenSecret=\"{{admin-PAT-secret}}\">\n        <site contentUrl=\"{{content-url}}\"/>\n    </credentials>\n</tsRequest>",
-              "options": {
-                "raw": {
-                  "language": "xml"
-                }
-              }
-            },
             "url": "{{base-path}}/auth/signin",
-            "description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
+            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
           },
           "response": []
         },
         {
-          "name": "Authenticate: Sign in (As Tableau User)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "cf61398b-7eae-4aca-9463-fef4fe6f7231",
-                "exec": [
-                  "const json = xml2Json(responseBody);",
-                  "",
-                  "if (responseCode.code===200) {",
-                  "    // check values & set variables",
-                  "    pm.test(`api-key environment variable set = ${json.tsResponse.credentials.$.token}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.$.token);",
-                  "        pm.environment.unset(\"api-key\");",
-                  "        pm.environment.set(\"api-key\", json.tsResponse.credentials.$.token);",
-                  "    });",
-                  "    pm.test(`site-id environment variable set = ${json.tsResponse.credentials.site.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.id);",
-                  "        pm.environment.unset(\"site-id\");",
-                  "        pm.environment.set(\"site-id\", json.tsResponse.credentials.site.$.id);",
-                  "    });",
-                  "    // check values only",
-                  "    pm.test(`response body contentUrl value = ${json.tsResponse.credentials.site.$.contentUrl}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.contentUrl);",
-                  "    });",
-                  "    pm.test(`response body user id value = ${json.tsResponse.credentials.user.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.user.$.id);",
-                  "    });",
-                  "}",
-                  "",
-                  "else {",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "ef762155-5fba-4a6f-9aab-0814a07b556e",
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "45a1b8b2-d8e1-4861-bdca-9c671ec0ff00",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "<tsRequest>\n    <credentials name=\"{{username}}\" password=\"{{user-password}}\">\n        <site contentUrl=\"{{content-url}}\" />\n    </credentials>\n</tsRequest>",
-              "options": {
-                "raw": {
-                  "language": "xml"
-                }
-              }
-            },
-            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signin",
-            "description": "Impersonate a Tableau User"
-          },
-          "response": []
-        },
-        {
-          "name": "Authenticate: Sign in (Impersonate as Tableau User)",
+          "name": "Sign in (Impersonate as User)",
           "event": [
             {
               "listen": "test",
               "script": {
                 "id": "1dc8077d-53b3-448a-8e6b-f35dae50d874",
                 "exec": [
-                  "const json = xml2Json(responseBody);",
-                  "",
-                  "if (responseCode.code===200) {",
-                  "    // check values & set variables",
-                  "    pm.test(`api-key environment variable set = ${json.tsResponse.credentials.$.token}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.$.token);",
-                  "        pm.environment.unset(\"api-key\");",
-                  "        pm.environment.set(\"api-key\", json.tsResponse.credentials.$.token);",
-                  "    });",
-                  "    pm.test(`site-id environment variable set = ${json.tsResponse.credentials.site.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.id);",
-                  "        pm.environment.unset(\"site-id\");",
-                  "        pm.environment.set(\"site-id\", json.tsResponse.credentials.site.$.id);",
-                  "    });",
-                  "    // check values only",
-                  "    pm.test(`response body contentUrl value = ${json.tsResponse.credentials.site.$.contentUrl}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.site.$.contentUrl);",
-                  "    });",
-                  "    pm.test(`response body user id value = ${json.tsResponse.credentials.user.$.id}`, function () {",
-                  "        pm.expect(json.tsResponse.credentials.user.$.id);",
-                  "    });",
-                  "}",
-                  "",
-                  "else {",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
                   ""
                 ],
                 "type": "text/javascript"
@@ -1102,28 +935,209 @@
                 }
               }
             },
-            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signin",
-            "description": "Impersonate a Tableau User"
+            "url": "{{base-path}}/auth/signin",
+            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
           },
           "response": []
         },
         {
-          "name": "Authenticate: Sign Out",
+          "name": "Sign in (As Tableau User)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cf61398b-7eae-4aca-9463-fef4fe6f7231",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ef762155-5fba-4a6f-9aab-0814a07b556e",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "45a1b8b2-d8e1-4861-bdca-9c671ec0ff00",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n    <credentials name=\"{{auth-username}}\" password=\"{{auth-password}}\">\n        <site contentUrl=\"{{content-url}}\" />\n    </credentials>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/auth/signin",
+            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign-in (As an Admin PAT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e3e7ce6b-dc74-4ddf-8140-2a901917a1ec",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "5ac95903-8d8e-42ac-8079-16a025f5363c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n    <credentials personalAccessTokenName=\"{{admin-PAT-name}}\" personalAccessTokenSecret=\"{{admin-PAT-secret}}\">\n        <site contentUrl=\"{{content-url}}\"/>\n    </credentials>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/auth/signin",
+            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign in (Impersonate as User PAT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7ab628ea-3a6b-4201-871c-ba5c31b2e75e",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "48dd573c-7720-4c2e-a453-cae7f28bdbc3",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "ba53f98f-4ee9-4f55-ab47-639643121fba",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n    <credentials personalAccessTokenName=\"{{admin-PAT-name}}\" personalAccessTokenSecret=\"{{admin-PAT-secret}}\">\n        <site contentUrl=\"{{content-url}}\" />\n        <user id=\"{{user-id}}\"/>\n    </credentials>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/auth/signin",
+            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign in (As Tableau User PAT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1d6b2db3-ad93-4468-b8a3-ece0867223d2",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4a1f18b8-fa9b-491c-8d89-27ed3a625ead",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "e3bb2d2e-09ae-4df0-8773-cc4de1e8de87",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n    <credentials personalAccessTokenName=\"{{auth-PAT-name}}\" personalAccessTokenSecret=\"{{auth-PAT-secret}}\">\n        <site contentUrl=\"{{content-url}}\" />\n    </credentials>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/auth/signin",
+            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign Out",
           "event": [
             {
               "listen": "test",
               "script": {
                 "id": "aad78f95-46c3-4e00-be0d-8a9ba2fee505",
                 "exec": [
-                  "",
-                  "if (responseCode.code===204)",
-                  "{",
-                  "    tests[\"Successful signout.\"] = responseCode.code === 204;",
-                  "}",
-                  "else",
-                  "{",
-                  "    tests[\"Signout failed. Error: \" + responseBody] = responseCode.code === 204;",
-                  "}"
+                  ""
                 ],
                 "type": "text/javascript"
               }
@@ -1140,8 +1154,43 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{protocol}}://{{server}}/api/{{api-version}}/auth/signout",
-            "description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to Sign In.\n\nURI\n1. POST /api/api-version/auth/signout\n"
+            "url": "{{base-path}}/auth/signout",
+            "description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to [**Sign In**](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in).\n\n#### URI\n\nPOST /api/*api-version*/auth/signout"
+          },
+          "response": []
+        },
+        {
+          "name": "Switch Site",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9e501e1c-b40e-4bea-8d6d-5af64331503e",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "d9ebae4f-dfd9-46e0-9ddd-8f69855fb9fe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n    <site contentUrl=\"{{content-url}}\"/>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/auth/switchSite",
+            "description": "Switches you onto another site without having to provide a user name and password again.\n\nThis method allows an authenticated user to switch sites that they have access to. When you call this method, you must provide the current authorization token as the value of the X-Tableau-Auth header. Using the current authentication token, the method signs you in as a user on the site specified in the request payload. The method returns a new authentication token and invalidates the old one. You have the permissions of the user associated with the authorization token. By default, the token is good for 240 minutes. (You can specify a different timeout value for the token by calling the `tsm configuration set` command to change the wgserver.session.idle_limit setting.)\n\n**Note** This method is not available on Tableau Online.\n\n#### URI\n\nPOST /api/*api-version*/auth/switchSite"
           },
           "response": []
         }
@@ -1534,7 +1583,71 @@
           "response": []
         }
       ],
-      "id": "763f221a-93d5-4dae-bb54-68e297955f16"
+      "id": "763f221a-93d5-4dae-bb54-68e297955f16",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "3e719010-e3c2-474e-bd3a-43ef746926d1",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "46e48789-4a97-424b-b4c8-0c775a276bf6",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "DataSource Permissions",
@@ -1680,7 +1793,71 @@
           "response": []
         }
       ],
-      "id": "28baa949-b7dc-42da-bcae-1d1c77cd185b"
+      "id": "28baa949-b7dc-42da-bcae-1d1c77cd185b",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "30c7af4b-3663-41a5-b44e-e92aa5187e38",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "f1b6797d-1084-49e9-a432-4c9418704676",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Favorites",
@@ -2034,7 +2211,71 @@
           "response": []
         }
       ],
-      "id": "585ad229-fd23-4733-9316-9e10bfc98de1"
+      "id": "585ad229-fd23-4733-9316-9e10bfc98de1",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "f0e2e6c4-e6d2-4b21-937f-4d9724d5f901",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "6c819fc1-a2e1-4bff-8a9f-095d0014fa21",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Flows",
@@ -2810,7 +3051,71 @@
           "response": []
         }
       ],
-      "id": "2f5c8169-96b8-4d0e-bc23-0d8ce61d96d7"
+      "id": "2f5c8169-96b8-4d0e-bc23-0d8ce61d96d7",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "03d24bd2-380e-488b-a807-72529afcf8af",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "df29523a-cf69-4676-bbff-0cc4fc2cd1ef",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Jobs",
@@ -2878,7 +3183,71 @@
           "response": []
         }
       ],
-      "id": "439dfc80-0959-45d7-b12d-f46da6e1cb4c"
+      "id": "439dfc80-0959-45d7-b12d-f46da6e1cb4c",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "75cd3194-b82f-4f3b-9cb8-b84ac8fd63a2",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "1723a9ea-773f-46ad-9907-d871ff00f58d",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Permissions (Default)",
@@ -3031,7 +3400,71 @@
           "response": []
         }
       ],
-      "id": "9777c14d-9d59-4149-b23d-fac4ac3d9179"
+      "id": "9777c14d-9d59-4149-b23d-fac4ac3d9179",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "8257f2e7-ae17-4936-96a4-ab9585e398d3",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "ff9ed579-aebd-4d47-9af2-22a272a3d90c",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Project Permissions",
@@ -3175,7 +3608,71 @@
           "response": []
         }
       ],
-      "id": "c8dc81a7-85a5-4f1d-b0bf-3e82edf48d26"
+      "id": "c8dc81a7-85a5-4f1d-b0bf-3e82edf48d26",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "224545a3-52bc-4f79-9120-888bbfe1cd11",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "0f035b97-d2f9-42a9-a4fc-7a024accdc65",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Projects",
@@ -3428,7 +3925,71 @@
           "response": []
         }
       ],
-      "id": "003109e3-beee-4b99-af7d-6ea581b60e84"
+      "id": "003109e3-beee-4b99-af7d-6ea581b60e84",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "016ae6cf-1f67-4964-869f-29b81784d157",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "eed6a69a-a83c-4e69-9ea2-4ed3372a8e87",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Publishing",
@@ -3600,7 +4161,71 @@
           "response": []
         }
       ],
-      "id": "e3b48ad5-fe14-4864-aaca-a9bdb3b714c3"
+      "id": "e3b48ad5-fe14-4864-aaca-a9bdb3b714c3",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "807e6fcb-f04d-4212-8db2-85ea57b826de",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "23e68c1e-296e-46dc-a98f-98fce5c9ee7f",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Revisions",
@@ -3878,7 +4503,71 @@
           "response": []
         }
       ],
-      "id": "8d72d74b-f8a4-4f62-9ead-7048eb3d5aee"
+      "id": "8d72d74b-f8a4-4f62-9ead-7048eb3d5aee",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b3b9ec36-9ae3-4eca-a75b-3e3793a31b86",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "e1e2b4e9-51f1-486a-9ba0-9016d5cb3270",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Schedules",
@@ -4202,7 +4891,71 @@
           "response": []
         }
       ],
-      "id": "826ad481-ea30-44f0-9d96-b4f93c49fc78"
+      "id": "826ad481-ea30-44f0-9d96-b4f93c49fc78",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "7d7a0379-aacc-46e3-9784-323009753b19",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "94b35300-5e4d-4e05-a57e-e46db93dbc2f",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Sites",
@@ -4660,7 +5413,71 @@
           "response": []
         }
       ],
-      "id": "07cedecd-562a-4a31-b5a8-3e3bedf2dbf0"
+      "id": "07cedecd-562a-4a31-b5a8-3e3bedf2dbf0",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "6d685aa8-4398-4819-a0ed-c59787308a23",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "7eeb46b5-3f90-48ab-832c-19f0a8f33a1f",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Subscriptions",
@@ -4920,7 +5737,71 @@
           "response": []
         }
       ],
-      "id": "a1425bf8-c63b-4d48-9dde-a8820faa9740"
+      "id": "a1425bf8-c63b-4d48-9dde-a8820faa9740",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "fead2bad-4302-4a1e-8275-855940d4b578",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "b237cec5-7e26-45ec-9a42-2620562ee430",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Users",
@@ -5170,18 +6051,11 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "8e5df316-9b1f-4978-a80d-af68ab46ccdf",
                 "exec": [
-                  "if (responseCode.code===200) {",
-                  "    tests[\"Updated: User\"] = true;",
-                  "}",
-                  "else if (responseCode.code===401) ",
-                  "{",
-                  "    tests[\"Please sign in.\"] = false;",
-                  "}",
                   ""
                 ],
-                "id": "8e5df316-9b1f-4978-a80d-af68ab46ccdf"
+                "type": "text/javascript"
               }
             }
           ],
@@ -5199,10 +6073,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n <user fullName=\"AmyK\"\n    email=\"AmyK@Amy.com\"\n    password=\"AmyK\"\n    siteRole=\"Publisher\" />\n</tsRequest>"
+              "raw": "<!-- For Tableau Server.. any combination of attributes will work. For more details: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#update_user -->\n<tsRequest>\n    <user \n        fullName=\"AmyK\" \n        email=\"AmyK@Amy.com\"\n        password=\"AmyK\"\n        siteRole=\"Publisher\" \n    />\n<!-- For Tableau Online, only the siteRole can be changed.. -->\n    <!-- <user siteRole=\"Unlicensed\" /> -->\n</tsRequest>\n\n",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
             },
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/users/{{userId}}",
-            "description": "Modifies information about the specified user.\nIf Tableau Server is configured to use local authentication, you can update the user's name, email address, password, or site role.\nIf Tableau Server is configured to use Active Directory for authentication, you can change the user's display name (full name), email address, and site role. However, if you synchronize the user with Active Directory, the display name and email address will be overwritten with the information that's in Active Directory.\n\nURI \n1.  PUT /api/api-version/sites/site-id/users/user-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the user.\n* user-id  The ID of the user to update.\n\n\nAttributes\n* new-full-name  (Optional) The new name for the user. Users can change names without affecting the groups they belong to.\n* new-email  (Optional) The new email address for the user.\n* new-password  (Optional) The new password for the user.\n* new-site-role  (Optional) The new site role. Valid role names are Interactor, Publisher, SiteAdministrator, Unlicensed, UnlicensedWithPublish, Viewer, and ViewerWithPublish.\n**Note:** You cannot use the REST API to set a user to be a server administrator (ServerAdministrator site role).\n* new-auth-setting  (Optional) The new authentication type for the user. You can assign the following values for this attribute: SAML (the user signs in using SAML) or ServerDefault (the user signs in using the authentication method that's set for the server). These values appear on the User page in Tableau Online—the SAML attribute value corresponds to Single sign-on, and the ServerDefault value corresponds to TableauID.\n**Note:** This setting is available only if you are using Tableau Online."
+            "url": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}",
+            "description": "Modifies information about the specified user.\n\nIf Tableau Server is configured to use local authentication, you can update the user's name, email address, password, or site role.\n\nIf Tableau Server is configured to use Active Directory for authentication, you can change the user's display name (full name), email address, and site role. However, if you synchronize the user with Active Directory, the display name and email address will be overwritten with the information that's in Active Directory.\n\nFor Tableau Online, you can update the site role for a user, but you cannot update or change a user's password, user name (email address), or full name.\n\n#### URI\n\nPUT /api/*api-version*/sites/*site-id*/users/*user-id*\n\n#### Parameter Values\n\n| *api-version* | The version of the API to use, such as `3.14`. For more information, see [REST API and Resource Versions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm). |\n| *site-id* | The ID of the site that contains the user. |\n| *user-id* | The ID of the user to update. |"
           },
           "response": []
         },
@@ -5347,7 +6226,71 @@
           "response": []
         }
       ],
-      "id": "372efc08-04ab-4ea0-a29d-d9ef09c1b52b"
+      "id": "372efc08-04ab-4ea0-a29d-d9ef09c1b52b",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "8b3569d1-5293-4f19-b225-5557af32f3dc",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "ee56dd44-6410-4d72-a853-2ab0c87fd2b5",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Workbook Permissions",
@@ -5496,7 +6439,71 @@
           "response": []
         }
       ],
-      "id": "14d40b14-0612-4fb8-bc82-c09397b0f500"
+      "id": "14d40b14-0612-4fb8-bc82-c09397b0f500",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "11fa6b7b-214a-4de6-9421-535b0a5a3467",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "6978a82d-6001-4159-9236-3655bea9628a",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Workbook Views",
@@ -5762,7 +6769,71 @@
           "response": []
         }
       ],
-      "id": "54f1dd71-43fd-4b7c-a5fb-6f6d4859e5fd"
+      "id": "54f1dd71-43fd-4b7c-a5fb-6f6d4859e5fd",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "2efa4c76-e6fd-4954-946f-6f10bed4e6c9",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "826d8e05-2d53-4fd2-9b0e-b5fde7fb6c34",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Workbooks",
@@ -6415,7 +7486,71 @@
           "response": []
         }
       ],
-      "id": "e623774a-0d55-4bcd-b6b6-fc5ff689b81c"
+      "id": "e623774a-0d55-4bcd-b6b6-fc5ff689b81c",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "30094f5b-3193-4db1-9ac2-2c2e33e525a9",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "5bd37e35-4c0a-4aa9-9538-6013fcf40ea9",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Data-Driven Alerts",
@@ -6464,7 +7599,110 @@
           "response": []
         }
       ],
-      "id": "84cca927-f11c-4848-9041-ca5a1f8eeb9e"
+      "id": "84cca927-f11c-4848-9041-ca5a1f8eeb9e",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "cdf0d044-1287-4eb6-b791-13bf91e0bb39",
+            "type": "text/javascript",
+            "exec": [
+              "/*",
+              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+              "    - Every request in this collection will run this script.",
+              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
+              "*/",
+              "",
+              "// xml body used to authenticate and obtain an API Key",
+              "const authBody = `",
+              "<tsRequest>",
+              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+              "    </credentials>",
+              "</tsRequest>`;",
+              "",
+              "// authenticate and obtain token value to be set as 'api-key' environment variable",
+              "pm.sendRequest({",
+              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+              "    method: 'POST',",
+              "    header: {",
+              "        'content-type': 'application/xml',",
+              "    },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: authBody,",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.log(err);",
+              "    } else {",
+              "        pm.environment.unset(\"api-key\");",
+              "        pm.environment.unset(\"site-id\");",
+              "        // convert the XML response body to JSON",
+              "        const jsonObject = xml2Json(res.text());",
+              "",
+              "        // obtain the API Key from the response body",
+              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+              "",
+              "        // set the variables to the returned value",
+              "        pm.environment.set(\"api-key\", apiKey);",
+              "        pm.environment.set(\"site-id\", siteId);",
+              "    };",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "1c90f67b-0ed6-45e0-bc3f-89aa1a333c21",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Update Schedule",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d44828a0-03b4-4ef0-81a1-1ef827070cd0",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "6d94c6db-893e-4e11-bc24-ba590c0ff661",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "X-Tableau-Auth",
+            "value": "{{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "text/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<tsResponse>\n  <schedule id=\"{{schedule-id}}\"\n        name=\"schedule-name\"\n        state=\"new-state\"\n        priority=\"schedule-priority\"\n        createdAt=\"datetime-created\"\n        updatedAt=\"datetime-updated\"\n        type=\"Extract-or-Subscription\"\n        frequency=\"schedule-frequency\"\n        nextRunAt=\"datetime-next-run\"\n        endScheduleAt =\"datetime-expiration\"\n        executionOrder=\"Parallel-or-Serial\">\n        <frequencyDetails frequency-expression >\n            <intervals>\n               <interval interval-expression />\n             </intervals>\n        </frequencyDetails>\n  </schedule>\n</tsResponse>"
+        },
+        "url": "{{base-path}}/schedules/{{schedule-id}}",
+        "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule)\n\nModifies settings for the specified schedule, including the name, priority, and frequency details.\n\n#### Attribute Values\n\n| *new-schedule-name* | The new name to give to the schedule. |\n| *new-schedule-priority* | An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Lower numbers have higher priority. |\n| *new-schedule-execution-order* | `Parallel` to allow jobs associated with this schedule to run at the same time, or `Serial` to require the jobs to run one after the other. |\n| *new-schedule-frequency* | <br><br>The granularity of the schedule. Valid values are:<br><br>*   `Hourly`. `Hourly`. Jobs can be scheduled to at intervals specified in run one or more times per day at intervals specified in minutes or hours. The allowed intervals 15 and 30 minutes and 2, 4, 6, 8, and 12 hours.<br>*   `Daily`. Jobs can be scheduled to run once day.<br>*   `Weekly`. Jobs can be scheduled to run one or more times per week.<br>*   `Monthly`. Jobs can be scheduled to run once per month on a specific day.<br><br>The value you provide for *schedule-frequency* determines whether you must include an *end-time* value, and what is required in the contents of the  element.  <br><br><br> |\n| *new-state* | `Active` to enable the schedule, or `Suspended` to disable it. |\n| *start-time* | The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format `HH:MM:SS` (for example, `18:30:00`). This value is required for all schedule frequencies. The entered time will be applied based on the time zone of your server. |\n| *end-time* | If the schedule frequency is `Hourly`, the time of day on which scheduled jobs should stop being run, in the format `HH:MM:SS` (for example, `23:30:00`). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored. The entered time will be applied based on the time zone of your server. |\n| *interval-expression* | <br><br>A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the value specified in *schedule-frequency*.<br><br>**`Hourly`**<br><br>The interval expression is only one of the following:<br><br>*   `hours=\"`*`interval`*`\"` where *interval* is `1`, `2`, `4`, `6`, `8`, or `12`, representing how many hours between jobs.<br>*   `minutes=\"`*`interval`*`\"` where *interval* is `15` or `30`, representing how many minutes between jobs.<br><br>You can specify an interval in hours or minutes, but not both.<br><br>**`Daily`**<br><br>If the schedule frequency is `Daily`, no interval is specified. Any information specified in the  element is ignored.<br><br>**`Weekly`**<br><br>The interval expression is `weekDay=\"`*`weekday`*`\"`, where *weekday* is `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, or `Saturday`.<br><br>You can specify multiple  elements to indicate that scheduled jobs should run on multiple days during the week.<br><br>Note: Updating a schedule without specifying days of the week will reset any existing weekly interval to include all 7 days. If you need the job you are updating to remain scheduled on selected days, make sure to include that information in your update request.<br><br>**`Monthly`**<br><br>The interval expression is `monthDay=\"`*`day`*`\"`, where *day* is either the day of the month (`1`, `2`, etc.) or `LastDay`.<br><br>Note: If you want to specify multiple days in the month, you can do this using the web interface. You cannot create such a monthly schedule using REST API.<br><br> |\n\nAny combination of the attributes inside the  element is valid. Only the attributes and child elements that are included result in updates to the schedule. If no attributes or nested elements are included, no update is made.\n\n#### Permissions\n\nThis method can only be called by server administrators."
+      },
+      "response": []
     }
   ],
   "auth": {
@@ -6513,167 +7751,167 @@
   ],
   "variable": [
     {
-      "id": "3c76f412-6de4-4284-9fe9-06bc5f6f4939",
+      "id": "2102a68a-9f33-4069-bed5-b1282505c9e4",
       "key": "username",
       "value": ""
     },
     {
-      "id": "ffbe9b64-f711-4bce-bfeb-1388c84218a9",
+      "id": "09fc5c93-0ec4-40ef-a586-d36f088b74b5",
       "key": "user-id",
-      "value": ""
+      "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "5c29183f-fa5f-42b6-8657-495b8539c44a",
+      "id": "102b85a7-ec67-45c0-8c54-820d90374a2c",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "767fab36-0d9c-479e-af55-f6ce62bca5a0",
+      "id": "37f4751e-938b-46c5-b8ea-761510e65a72",
       "key": "datasource-id",
       "value": ""
     },
     {
-      "id": "65e8cfc5-23d5-444f-a3ac-adc1ebf221a5",
+      "id": "a4dd76d4-146f-415e-a3a1-cf08332edcb5",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "934a51e4-49f9-455b-a8eb-63fae01b2c39",
+      "id": "adbd30f9-cd0a-4154-8874-3f976cbabd72",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "6a0ba75a-b323-401e-8ed3-f193630ff335",
+      "id": "298f642a-baac-4594-a95b-98a16adcb85b",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "d2f7cc1f-da49-4cad-b076-ad04dfffeb1b",
+      "id": "d5dcdb88-59cb-4ffe-a0dd-4508133d5341",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "64a38ffb-36aa-4d94-a8c4-55d43e0b780c",
+      "id": "7b8cf0ee-7bcc-40e3-a0c7-92ef66202da6",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "5093b274-a15b-4254-bef6-549ba3a1cd11",
+      "id": "e588c2a0-a245-4a42-a82b-ca4daa5fd1ab",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "d53dae12-b6eb-4538-8538-e4019fc0fa4b",
+      "id": "e81ad6cf-4cb0-47f6-9121-42b7d58b57f1",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "8a5c7993-fcd7-421e-9fcb-2b917b1d563e",
+      "id": "7cf06217-8d7d-4be7-94f4-bb9bd12138a4",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "2ab09710-eedf-403b-9672-32a8de91c26e",
+      "id": "473a3f2f-d7c7-42cd-8f18-ab6bde4f404c",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "4ab17833-4c04-41d4-bf68-34480a824a69",
+      "id": "95dc75a5-83f9-4f84-b091-6d810879abbb",
       "key": "scheduleName",
       "value": ""
     },
     {
-      "id": "90efd0ad-5f6c-4486-ba8c-8bdc52cc4ab2",
+      "id": "f51bb819-ed1b-45ca-a78a-4c44cdf5802d",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "e98e9ecc-0de4-4ec4-b544-0c524ac2fc9e",
+      "id": "40cdebfd-3c0b-4f8c-a609-5631b3a01c7c",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "5b49c0b1-cfed-47aa-bca8-880645118941",
+      "id": "2acdd64e-661d-475f-bf37-e785d6a4f886",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "c3728e0e-f6db-40c0-96fb-5c3c8ad93e59",
+      "id": "25904190-ec2b-4576-ac8a-6046cb9057a4",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "95e76a61-d8ef-4cdc-bbbc-2d315c11abeb",
+      "id": "2f707eb6-9658-4285-8afa-1f4c678deee4",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "e623dcf0-901d-4d4b-b505-ccd771d6ed3a",
+      "id": "9609b230-6101-48e0-9af6-dee9e0301d4a",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "348e403b-6718-4ed0-91a3-57e11c857fcb",
+      "id": "4d62332f-ea8e-4908-9f09-d8d7f71ea67e",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "c1649eee-2e93-4e46-bc02-639804d1de96",
+      "id": "4d85f275-d0cd-45f1-bbcd-57a65f1a2bb4",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "c436de0e-55d2-4156-a2fd-6c1cd5ebbd64",
+      "id": "2c3ade4a-cacf-4982-9998-d3f9bf98e02c",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "dde9d17c-dafa-4855-85db-00a296144e93",
+      "id": "6b14e299-b2b9-474a-9d74-ec11e533157e",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "651348e2-c92a-4982-afd1-b8884651bd27",
+      "id": "8d8c8eac-eb45-482c-95ea-d919d998df07",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "e1f94113-ebe4-49f5-a7b1-5bd399f8e581",
+      "id": "324ff6bc-f28a-4917-93a2-1ee0a30b86a6",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "41d03b5b-5034-40af-a98b-7fe408bfdbe2",
+      "id": "7b662c30-8838-4ad1-b484-6af6470f7dde",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "1222ff84-5588-4ccb-9fdb-8146e6e3a192",
+      "id": "0c6156af-be4f-44e6-8ce3-9b8a53c4402f",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "1362e111-0288-4be6-9664-b6cd54160e25",
+      "id": "fc2b6e7e-a7a2-442d-9784-7e489f8824d1",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "d40d6388-75d6-4747-b40d-555bad75a7fc",
+      "id": "69d6e784-846a-485e-9357-0cb7e16c6482",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "b0713377-71a8-4bff-9816-ce12e41d9fda",
+      "id": "81d5e133-a006-463d-987a-1487bc6f1d6a",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "00f0382c-beee-41a6-a609-8c24fa2f39d5",
+      "id": "b2b90509-0725-4686-85c7-935f7dffe9af",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "c681ba10-483b-4e23-92cc-f68586f7bcc4",
+      "id": "107fac30-c918-420a-94d2-fb0573a059a9",
       "key": "capability-mode",
       "value": ""
     }
