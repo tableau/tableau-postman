@@ -42,7 +42,7 @@
               }
             }
           ],
-          "_postman_id": "3f4b3b7b-47ac-46ea-a938-29f3f861ad08",
+          "id": "3f4b3b7b-47ac-46ea-a938-29f3f861ad08",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -51,10 +51,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <credentials name=\"admin\" password=\"admin\">\n      <site contentUrl=\"\" />\n      </credentials>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <credentials name=\"admin\" password=\"admin\">\n      <site contentUrl=\"\" />\n      </credentials>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/auth/signin",
             "description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
@@ -98,7 +95,7 @@
               }
             }
           ],
-          "_postman_id": "dd756e83-f09e-473b-a9e9-1a34327e7af5",
+          "id": "dd756e83-f09e-473b-a9e9-1a34327e7af5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -112,10 +109,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <project name=\"RestAPI Project\"  \n    description=\"A new project created with the REST API\" /> \n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <project name=\"RestAPI Project\"  \n    description=\"A new project created with the REST API\" /> \n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects",
             "description": "Create a new project in a specific site\n\n* project-name  The name to assign to the project.\n* project-description  (Optional) A description for the project.\n* content-permissions  (Optional) Specify LockedToProject to lock permissions so that users cannot overwrite the default permissions set for the project, or specify ManagedByOwner to allow users to manage permissions for content that they own. For more information, see Lock Content Permissions to the Project. The default is ManagedByOwner."
@@ -167,7 +161,7 @@
               }
             }
           ],
-          "_postman_id": "708efe28-ffa0-4d10-acf9-4f23f7c76c4d",
+          "id": "708efe28-ffa0-4d10-acf9-4f23f7c76c4d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -212,7 +206,7 @@
               }
             }
           ],
-          "_postman_id": "d4efe7ac-f4f7-4a4f-9e55-753f05a97646",
+          "id": "d4efe7ac-f4f7-4a4f-9e55-753f05a97646",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -226,10 +220,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions> \n    <project id=\"{{projectId}}\" />\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"read\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  ",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions> \n    <project id=\"{{projectId}}\" />\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"read\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  "
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/permissions",
             "description": "Adds permissions to the specified project for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\nIf the request body includes a child datasource or <project> element, the request is invalid.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/permissions\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set permissions for.\n\n\nAttributes\n* user-id  The ID (not name) of the user to add permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign permissions to. In Tableau Server 10.0, the valid capabilities for a project are ProjectLeader, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -264,7 +255,7 @@
               }
             }
           ],
-          "_postman_id": "c8f3aa96-07bc-427a-a0e0-87cfd67cfe94",
+          "id": "c8f3aa96-07bc-427a-a0e0-87cfd67cfe94",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -282,10 +273,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n        <capability name=\"Read\" mode=\"Allow\" />\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n        <capability name=\"AddComment\" mode=\"Allow\" />\n        <capability name=\"WebAuthoring\" mode=\"Allow\" />    \n        <capability name=\"Filter\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n        <capability name=\"Read\" mode=\"Allow\" />\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n        <capability name=\"AddComment\" mode=\"Allow\" />\n        <capability name=\"WebAuthoring\" mode=\"Allow\" />    \n        <capability name=\"Filter\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/default-permissions/workbooks",
             "description": "Adds permissions to the specified project that will be applied by default to new workbooks and data sources as they are added to the project. You make separate requests to set default permissions for workbooks and for data sources.\n\nContent owners can override default permissions for their content, but only if project permissions have not been locked. Project permissions can be locked for a new project when you call Create Project or for an existing project by calling Update Project. For more information, see Lock Content Permissions to the Project.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set default permissions for.\n\nAttributes\n* project-id  The <project> element is not required, but can be included. If the <project> element is included, the project-id value must match the project ID in the URI. Any other attributes in the <project> element are ignored.\nuser-id  The ID (not name) of the user to add default permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign. Valid capabilities for a workbook are\n* AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\n* Valid capabilities for a data source are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -320,7 +308,7 @@
               }
             }
           ],
-          "_postman_id": "e59122d9-ec2c-4eee-b186-f89de1a90883",
+          "id": "e59122d9-ec2c-4eee-b186-f89de1a90883",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -338,10 +326,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"Connect\" mode=\"Allow\" />\n        <capability name=\"Read\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"Connect\" mode=\"Allow\" />\n        <capability name=\"Read\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/default-permissions/datasources",
             "description": "Adds permissions to the specified project that will be applied by default to new workbooks and data sources as they are added to the project. You make separate requests to set default permissions for workbooks and for data sources.\n\nContent owners can override default permissions for their content, but only if project permissions have not been locked. Project permissions can be locked for a new project when you call Create Project or for an existing project by calling Update Project. For more information, see Lock Content Permissions to the Project.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set default permissions for.\n\nAttributes\n* project-id  The <project> element is not required, but can be included. If the <project> element is included, the project-id value must match the project ID in the URI. Any other attributes in the <project> element are ignored.\nuser-id  The ID (not name) of the user to add default permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign. Valid capabilities for a workbook are\n* AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\n* Valid capabilities for a data source are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -395,7 +380,7 @@
               }
             }
           ],
-          "_postman_id": "f35106b6-4957-41bd-b0b2-33203819592b",
+          "id": "f35106b6-4957-41bd-b0b2-33203819592b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -440,7 +425,7 @@
               }
             }
           ],
-          "_postman_id": "155ca413-1961-4140-9f07-b7c37d5bccee",
+          "id": "155ca413-1961-4140-9f07-b7c37d5bccee",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -454,10 +439,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <workbook showTabs=\"true\" > \n     <project id=\"{{projectId}}\"/> \n </workbook> \n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <workbook showTabs=\"true\" > \n     <project id=\"{{projectId}}\"/> \n </workbook> \n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
             "description": "Modifies an existing workbook, allowing you to change the owner or project that the workbook belongs to and whether the workbook shows views in tabs.\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to update.\n\n\nAttributes\n* show-tabs-flag  (Optional) Specify true to have the published workbook show views in tabs; otherwise, false. The default is false.\n* new-project-id  (Optional) The ID of a project to assign the workbook to.\n* new-owner-id  (Optional) The ID of a user to assign the workbook to as owner.\n \nAny combination of the elements inside the <workbook> element is valid. Only the attributes and child elements that are included result in updates to the data source. If no attributes or nested elements are included, no update is made.\n\nIf the <project> element is included, the id attribute must be included; other attributes of the <project> element are ignored.\n\nIf the <owner> element is included, the id attribute must be included; other attributes of the <owner> element are ignored."
@@ -486,7 +468,7 @@
               }
             }
           ],
-          "_postman_id": "ae45c10b-9218-4611-b24a-bad505570923",
+          "id": "ae45c10b-9218-4611-b24a-bad505570923",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -500,10 +482,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/auth/signout",
             "description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to Sign In.\n\nURI\n1. POST /api/api-version/auth/signout\n"
@@ -511,7 +490,7 @@
           "response": []
         }
       ],
-      "_postman_id": "1c259885-1ef0-48d0-82d3-5f27224561a7",
+      "id": "1c259885-1ef0-48d0-82d3-5f27224561a7",
       "description": "Sample workflow to demonstrate:\n\n1. Log in (as Admin)\n1. Add a Project\n1. Add Group to the Project\n1. Add Permissions to the Project\n1. Move a workbook to the new project*\n\n* - You can substitute download/publish instead of move if you want to make a copy.  Postman doesn't deal with multi-part forms, but it could be accomplished in any coding language easily."
     },
     {
@@ -551,7 +530,7 @@
               }
             }
           ],
-          "_postman_id": "35af6c1d-a524-472a-b34e-ce9311b3cd19",
+          "id": "35af6c1d-a524-472a-b34e-ce9311b3cd19",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -560,10 +539,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <credentials name=\"admin\" password=\"admin\">\n      <site contentUrl=\"\" />\n      </credentials>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <credentials name=\"admin\" password=\"admin\">\n      <site contentUrl=\"\" />\n      </credentials>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/auth/signin",
             "description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
@@ -617,7 +593,7 @@
               }
             }
           ],
-          "_postman_id": "f698b69e-f570-4c45-8b70-c76a6157544a",
+          "id": "f698b69e-f570-4c45-8b70-c76a6157544a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -635,10 +611,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <user name=\"TESTUSER\"\n    siteRole=\"Viewer\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <user name=\"TESTUSER\"\n    siteRole=\"Viewer\" />\n</tsRequest>"
             },
             "url": "rgoldin-vm10/api/{{api}}/sites/{{siteId}}/users",
             "description": "Adds a user to Tableau Server and assigns the user to the specified site.\nIf Tableau Server is configured to use local authentication, the information you specify is used to create a new user in Tableau Server. To set a full name, password, and email address for the user, call Update User after creating the user.\nIf Tableau Server is configured to use Active Directory for authentication, the user you specify is imported from Active Directory into Tableau Server.\nIf you try to add a user using a specific site role but you have already reached the limit on the number of licenses for your users, the user is added as an unlicensed user. In that case, the response code is 201 (which indicates success), but the siteRole value in the response body is set to Unlicensed."
@@ -690,7 +663,7 @@
               }
             }
           ],
-          "_postman_id": "8eeec64f-50a0-4fb4-af2a-d7d09cb5bcfb",
+          "id": "8eeec64f-50a0-4fb4-af2a-d7d09cb5bcfb",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -728,7 +701,7 @@
               }
             }
           ],
-          "_postman_id": "dd18fd7c-6ab8-4fa7-b8c3-4de573b97217",
+          "id": "dd18fd7c-6ab8-4fa7-b8c3-4de573b97217",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -776,7 +749,7 @@
               }
             }
           ],
-          "_postman_id": "a10a576a-63cb-4765-8ca6-18e132049b08",
+          "id": "a10a576a-63cb-4765-8ca6-18e132049b08",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -790,10 +763,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <user id=\"{{userId}}\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <user id=\"{{userId}}\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users",
             "description": "Adds a user to the specified group.\n\n**NOTE: ** \nNote: After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nURI\n1. POST /api/api-version/sites/site-id/groups/group-id/users\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to add the user to."
@@ -822,7 +792,7 @@
               }
             }
           ],
-          "_postman_id": "0c9b64c9-6f72-4fde-a5a4-0df1a50b9079",
+          "id": "0c9b64c9-6f72-4fde-a5a4-0df1a50b9079",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -836,10 +806,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/auth/signout",
             "description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to Sign In.\n\nURI\n1. POST /api/api-version/auth/signout\n"
@@ -847,7 +814,7 @@
           "response": []
         }
       ],
-      "_postman_id": "83a245ed-56ef-4ab2-a3e2-d54821caae74"
+      "id": "83a245ed-56ef-4ab2-a3e2-d54821caae74"
     },
     {
       "name": "Authenticate",
@@ -866,7 +833,7 @@
               }
             }
           ],
-          "_postman_id": "8856d8bf-e588-4385-9ed5-174985207279",
+          "id": "8856d8bf-e588-4385-9ed5-174985207279",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -901,7 +868,7 @@
               }
             }
           ],
-          "_postman_id": "5d72fc07-6267-4f28-afec-d7c5d9518ced",
+          "id": "5d72fc07-6267-4f28-afec-d7c5d9518ced",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -949,7 +916,7 @@
               }
             }
           ],
-          "_postman_id": "6f7ee202-d4f3-4636-a8b4-11c1a58bbbd4",
+          "id": "6f7ee202-d4f3-4636-a8b4-11c1a58bbbd4",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -997,7 +964,7 @@
               }
             }
           ],
-          "_postman_id": "45a1b8b2-d8e1-4861-bdca-9c671ec0ff00",
+          "id": "45a1b8b2-d8e1-4861-bdca-9c671ec0ff00",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1035,7 +1002,7 @@
               }
             }
           ],
-          "_postman_id": "5ac95903-8d8e-42ac-8079-16a025f5363c",
+          "id": "5ac95903-8d8e-42ac-8079-16a025f5363c",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1090,7 +1057,7 @@
               }
             }
           ],
-          "_postman_id": "ba53f98f-4ee9-4f55-ab47-639643121fba",
+          "id": "ba53f98f-4ee9-4f55-ab47-639643121fba",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1138,7 +1105,7 @@
               }
             }
           ],
-          "_postman_id": "e3bb2d2e-09ae-4df0-8773-cc4de1e8de87",
+          "id": "e3bb2d2e-09ae-4df0-8773-cc4de1e8de87",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1176,7 +1143,7 @@
               }
             }
           ],
-          "_postman_id": "624fed53-29a6-41ce-a4c8-10bdf22606a1",
+          "id": "624fed53-29a6-41ce-a4c8-10bdf22606a1",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1185,10 +1152,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "{{base-path}}/auth/signout",
             "description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to [**Sign In**](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in).\n\n#### URI\n\nPOST /api/*api-version*/auth/signout"
@@ -1209,7 +1173,7 @@
               }
             }
           ],
-          "_postman_id": "d9ebae4f-dfd9-46e0-9ddd-8f69855fb9fe",
+          "id": "d9ebae4f-dfd9-46e0-9ddd-8f69855fb9fe",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1231,7 +1195,7 @@
           "response": []
         }
       ],
-      "_postman_id": "dbfbca24-099b-429f-9ef9-9faaee4a15a3",
+      "id": "dbfbca24-099b-429f-9ef9-9faaee4a15a3",
       "event": [
         {
           "listen": "prerequest",
@@ -1294,7 +1258,7 @@
               }
             }
           ],
-          "_postman_id": "b35b037f-562c-4ad3-9e36-9ecd21d56531",
+          "id": "b35b037f-562c-4ad3-9e36-9ecd21d56531",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1349,7 +1313,7 @@
               }
             }
           ],
-          "_postman_id": "b0891312-8955-4a0a-b131-af9525d15494",
+          "id": "b0891312-8955-4a0a-b131-af9525d15494",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1393,7 +1357,7 @@
               }
             }
           ],
-          "_postman_id": "511064d7-dd46-46aa-b3b8-27038a89711f",
+          "id": "511064d7-dd46-46aa-b3b8-27038a89711f",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1412,7 +1376,7 @@
         },
         {
           "name": "Datasources: Download Datasource",
-          "_postman_id": "a8710358-4a23-41ae-8f66-ab6cb3781ba1",
+          "id": "a8710358-4a23-41ae-8f66-ab6cb3781ba1",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1431,7 +1395,7 @@
         },
         {
           "name": "Datasources: Update DataSource",
-          "_postman_id": "c31653f0-9177-4aa6-a13c-89940625bd51",
+          "id": "c31653f0-9177-4aa6-a13c-89940625bd51",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1445,10 +1409,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <datasource> \n     <project id=\"{{projectId}}\"/> \n     <owner id=\"{{userId}}\" />\n </datasource> \n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <datasource> \n     <project id=\"{{projectId}}\"/> \n     <owner id=\"{{userId}}\" />\n </datasource> \n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}",
             "description": "Update the DataSource's Project or Owner\n\nURI\n1. PUT /api/api-version/sites/site-id/datasources/datasource-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the data source.\n* datasource-id  The ID of the data source to update.\n\nAttributes\n* new-project-id  (Optional) The ID of a project to add the data source to.\n* new-owner-id    (Optional) The ID of a user to assign the data source to as owner.\n"
@@ -1491,7 +1452,7 @@
               }
             }
           ],
-          "_postman_id": "fcf6ba56-7bbc-4550-b638-baed8792929d",
+          "id": "fcf6ba56-7bbc-4550-b638-baed8792929d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1505,10 +1466,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <connection serverAddress=\"newAddr\" serverPort=\"5435\" userName=\"newUserName\" password=\"newPass\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <connection serverAddress=\"newAddr\" serverPort=\"5435\" userName=\"newUserName\" password=\"newPass\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}/connection",
             "description": "Modify the serverAddress, serverPort, userName, and/or password for a specific data connection on a specific datasources\n\nURI\n1. PUT /api/api-version/sites/site-id/datasources/datasource-id/connections/connection-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the data source.\n* datasource-id  The ID of the data source to update.\n* connection-id  The ID of the connection to update. To determine what connections are available for for a data source, call Query Datasource Connections.\n\n\nAttributes\n* server-address  The new server for the connection.\n* port  The new port for the connection\nconnection-username  The new username for the connection.\n* connection-password  The new password for the connection.\n* embed-password  True to embed the password; otherwise, False."
@@ -1548,7 +1506,7 @@
               }
             }
           ],
-          "_postman_id": "e1c24c3e-ec83-49d0-8ad3-92387af1da94",
+          "id": "e1c24c3e-ec83-49d0-8ad3-92387af1da94",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1579,7 +1537,7 @@
               }
             }
           ],
-          "_postman_id": "d169c0ef-1b82-42f8-86ec-2c882fae2145",
+          "id": "d169c0ef-1b82-42f8-86ec-2c882fae2145",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1613,7 +1571,7 @@
               }
             }
           ],
-          "_postman_id": "8707b7ee-4660-409d-baee-2b30ad8dd50f",
+          "id": "8707b7ee-4660-409d-baee-2b30ad8dd50f",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1625,7 +1583,7 @@
           "response": []
         }
       ],
-      "_postman_id": "763f221a-93d5-4dae-bb54-68e297955f16",
+      "id": "763f221a-93d5-4dae-bb54-68e297955f16",
       "event": [
         {
           "listen": "prerequest",
@@ -1722,7 +1680,7 @@
               }
             }
           ],
-          "_postman_id": "33b2b858-9478-4a38-8a42-c1a21c33e738",
+          "id": "33b2b858-9478-4a38-8a42-c1a21c33e738",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1736,10 +1694,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions> \n    <datasource id=\"{{datasourceId}}\" />\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"write\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  ",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions> \n    <datasource id=\"{{datasourceId}}\" />\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"write\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  "
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}/permissions",
             "description": "Adds permissions to the specified data source for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\nIf a specified permission has already been granted or denied for a given user or group, the system ignores it.\n\nIf the request body includes a child workbook or <project> element, the request is invalid.\n\nURI\n1. PUT /api/api-version/sites/site-id/datasources/datasource-id/permissions\n\nAttributes\n* datasource-id  The <datasource> element is not required, but can be included for compatibility with earlier versions of the REST API. If the <datasource> element is included, the datasource-id value must match the data source ID in the URI. Any other attributes in the <datasource> element are ignored.\n* user-id  The ID (not name) of the user to add permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign. For valid capabilities for a data source project are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -1774,7 +1729,7 @@
               }
             }
           ],
-          "_postman_id": "b4858854-9da5-4b6c-a586-e83f0c7bf109",
+          "id": "b4858854-9da5-4b6c-a586-e83f0c7bf109",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1820,7 +1775,7 @@
               }
             }
           ],
-          "_postman_id": "17ab2dfc-fcb2-40c2-961f-1aeaafacafb6",
+          "id": "17ab2dfc-fcb2-40c2-961f-1aeaafacafb6",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1838,7 +1793,7 @@
           "response": []
         }
       ],
-      "_postman_id": "28baa949-b7dc-42da-bcae-1d1c77cd185b",
+      "id": "28baa949-b7dc-42da-bcae-1d1c77cd185b",
       "event": [
         {
           "listen": "prerequest",
@@ -1942,7 +1897,7 @@
               }
             }
           ],
-          "_postman_id": "85f6cb68-202e-419c-a2da-48acbd298d86",
+          "id": "85f6cb68-202e-419c-a2da-48acbd298d86",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -1960,10 +1915,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <favorite label=\"Favorite datasource added by REST API\"> \n    <datasource id=\"{{datasourceId}}\" /> \n  </favorite> \n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <favorite label=\"Favorite datasource added by REST API\"> \n    <datasource id=\"{{datasourceId}}\" /> \n  </favorite> \n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}",
             "description": "Adds the specified data source to the user's favorites.\n\nIf the user already has the data source listed as a favorite with the same label, the operation has no effect. If the label differs, the original favorite is overwritten.\n\n\nURI\n1. PUT /api/api-version/sites/site-id/favorites/user-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* user-id  The ID of the user to add the favorite for.\n\nAttributes\n* \nfavorite-label  A label to assign to the favorite. This value is displayed when you search for favorites on the server.\n* datasource-id  The ID of the data source to add as a favorite."
@@ -2005,7 +1957,7 @@
               }
             }
           ],
-          "_postman_id": "fe28db1f-e045-4583-bcec-afbb8a47b129",
+          "id": "fe28db1f-e045-4583-bcec-afbb8a47b129",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2023,10 +1975,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <subscription subject=\"subscription-subject\">\n    <content type=\"workbook\" id=\"{{workbookId}}\"  />\n    <schedule id=\"{{scheduleId}}\" />\n    <user id=\"{{userId}}\" />\n  </subscription>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <subscription subject=\"subscription-subject\">\n    <content type=\"workbook\" id=\"{{workbookId}}\"  />\n    <schedule id=\"{{scheduleId}}\" />\n    <user id=\"{{userId}}\" />\n  </subscription>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}/datasources/{{datasourceId}}",
             "description": "Deletes the specified data source from the user's favorites. If the specified data source is not a favorite, the operation has no effect.\n\n\nURI\n1. DELETE /api/api-version/sites/site-id/favorites/user-id/datasources/datasource-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* user-id  The ID of the user to add the favorite for.\n* datasource-id  The ID of the data source to remove from the user's favorites.\n"
@@ -2068,7 +2017,7 @@
               }
             }
           ],
-          "_postman_id": "5caba008-ba95-4e80-9e70-28fe9f99e49a",
+          "id": "5caba008-ba95-4e80-9e70-28fe9f99e49a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2086,10 +2035,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <favorite label=\"Favorite VIEW added by REST API\"> \n    <view id=\"{{datasourceId}}\" /> \n  </favorite> \n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <favorite label=\"Favorite VIEW added by REST API\"> \n    <view id=\"{{datasourceId}}\" /> \n  </favorite> \n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}",
             "description": "Adds the specified view to a user's favorites.\n\nIf the user already has the view listed as a favorite with the same label, the operation has no effect. If the label differs, the original favorite is overwritten.\n\n\nURI\n1. PUT /api/api-version/sites/site-id/favorites/user-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* user-id  The ID of the user to add the favorite for.\n\nAttributes\n* \nfavorite-label  A label to assign to the favorite. This value is displayed when you search for favorites on the server.\n* view-id  The ID (not name) of the view to add as a favorite."
@@ -2131,7 +2077,7 @@
               }
             }
           ],
-          "_postman_id": "a2dd387b-6a8f-4b3e-8d89-9d6861a1a73a",
+          "id": "a2dd387b-6a8f-4b3e-8d89-9d6861a1a73a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2145,10 +2091,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "\n\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "\n\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}/views/{{viewId}}",
             "description": "Deletes a view from the user's favorites list."
@@ -2190,7 +2133,7 @@
               }
             }
           ],
-          "_postman_id": "16dbaf12-26bc-4f15-bce3-ed4c14e1f31a",
+          "id": "16dbaf12-26bc-4f15-bce3-ed4c14e1f31a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2204,10 +2147,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <favorite label=\"I was Favorited by REST\"> \n    <workbook id=\"{{workbookId}}\" /> \n  </favorite> \n</tsRequest>\n\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <favorite label=\"I was Favorited by REST\"> \n    <workbook id=\"{{workbookId}}\" /> \n  </favorite> \n</tsRequest>\n\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}",
             "description": "Add a workbook to the favorites list of a user"
@@ -2249,7 +2189,7 @@
               }
             }
           ],
-          "_postman_id": "526f3eaa-5130-490e-99d3-18b53189da54",
+          "id": "526f3eaa-5130-490e-99d3-18b53189da54",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2263,10 +2203,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "\n\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "\n\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}/workbooks/{{workbookId}}",
             "description": "Delete a workbook to the favorites list of a user"
@@ -2274,7 +2211,7 @@
           "response": []
         }
       ],
-      "_postman_id": "585ad229-fd23-4733-9316-9e10bfc98de1",
+      "id": "585ad229-fd23-4733-9316-9e10bfc98de1",
       "event": [
         {
           "listen": "prerequest",
@@ -2345,7 +2282,7 @@
       "item": [
         {
           "name": "Add Flow Permissions",
-          "_postman_id": "05d9c2fe-974d-454b-9bc5-0ed8ec3e305d",
+          "id": "05d9c2fe-974d-454b-9bc5-0ed8ec3e305d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2368,7 +2305,7 @@
         },
         {
           "name": "Add Flow Task to Schedule",
-          "_postman_id": "cfff2d17-fde2-42be-ba3e-6b1f243fc3c9",
+          "id": "cfff2d17-fde2-42be-ba3e-6b1f243fc3c9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2391,7 +2328,7 @@
         },
         {
           "name": "Cancel Flow Run",
-          "_postman_id": "c85a8b8c-31f1-4b63-abde-96b99b205f1f",
+          "id": "c85a8b8c-31f1-4b63-abde-96b99b205f1f",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2405,7 +2342,7 @@
         },
         {
           "name": "Delete Flow",
-          "_postman_id": "78617f39-543d-4872-9c79-dc6cb9dace25",
+          "id": "78617f39-543d-4872-9c79-dc6cb9dace25",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2419,7 +2356,7 @@
         },
         {
           "name": "Delete Flow Permission for Group",
-          "_postman_id": "27b56cb5-7535-40e0-b88d-008c92ee3c73",
+          "id": "27b56cb5-7535-40e0-b88d-008c92ee3c73",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2433,7 +2370,7 @@
         },
         {
           "name": "Delete Flow Permission for User",
-          "_postman_id": "97594a7d-173f-4f18-9831-abe5c767aa50",
+          "id": "97594a7d-173f-4f18-9831-abe5c767aa50",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2447,7 +2384,7 @@
         },
         {
           "name": "Download Flow",
-          "_postman_id": "822825e8-b3d3-4d76-ab8e-b2b35115e1a8",
+          "id": "822825e8-b3d3-4d76-ab8e-b2b35115e1a8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2461,7 +2398,7 @@
         },
         {
           "name": "Get Flow Run",
-          "_postman_id": "2312963f-6f54-4607-ba65-b5fee1a488c8",
+          "id": "2312963f-6f54-4607-ba65-b5fee1a488c8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2475,7 +2412,7 @@
         },
         {
           "name": "Get Flow Runs",
-          "_postman_id": "f83416f8-d0ed-4214-af3b-838f040ecc9b",
+          "id": "f83416f8-d0ed-4214-af3b-838f040ecc9b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2509,7 +2446,7 @@
         },
         {
           "name": "Get Flow Run Task",
-          "_postman_id": "4f69abcb-8a53-4a9f-8ac7-f8597275002d",
+          "id": "4f69abcb-8a53-4a9f-8ac7-f8597275002d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2523,7 +2460,7 @@
         },
         {
           "name": "Get Flow Run Tasks",
-          "_postman_id": "9c23d288-00e8-49e6-b373-9722ef3b7e05",
+          "id": "9c23d288-00e8-49e6-b373-9722ef3b7e05",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2557,7 +2494,7 @@
         },
         {
           "name": "Publish Flow",
-          "_postman_id": "468222e4-0639-4a4f-9eb6-2004e4765cf7",
+          "id": "468222e4-0639-4a4f-9eb6-2004e4765cf7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true,
             "disabledSystemHeaders": {}
@@ -2613,7 +2550,7 @@
         },
         {
           "name": "Query Flow",
-          "_postman_id": "07217778-fd7b-45d8-bb09-778c151d1518",
+          "id": "07217778-fd7b-45d8-bb09-778c151d1518",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2639,7 +2576,7 @@
               }
             }
           ],
-          "_postman_id": "8baaaca6-c7bb-4ba5-b2ed-aa4d53d2ddf9",
+          "id": "8baaaca6-c7bb-4ba5-b2ed-aa4d53d2ddf9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2692,7 +2629,7 @@
         },
         {
           "name": "Query Flows for a User",
-          "_postman_id": "3eb37e02-0055-439c-9b61-48df8fd256ac",
+          "id": "3eb37e02-0055-439c-9b61-48df8fd256ac",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2740,7 +2677,7 @@
         },
         {
           "name": "Query Flow Connections",
-          "_postman_id": "539d61d9-226c-423c-a8db-288e702f439b",
+          "id": "539d61d9-226c-423c-a8db-288e702f439b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2754,7 +2691,7 @@
         },
         {
           "name": "Query Flow Permissions",
-          "_postman_id": "cc5a3476-0ca3-4e0c-bb00-eb1e8c839b9d",
+          "id": "cc5a3476-0ca3-4e0c-bb00-eb1e8c839b9d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2768,7 +2705,7 @@
         },
         {
           "name": "Run Flow Now",
-          "_postman_id": "68f3b7d5-f6f7-449a-99e8-80fc04deaf70",
+          "id": "68f3b7d5-f6f7-449a-99e8-80fc04deaf70",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2817,7 +2754,7 @@
         },
         {
           "name": "Run Flow Task",
-          "_postman_id": "d9c179e1-cb95-4888-a6bd-3e8dcf3b187b",
+          "id": "d9c179e1-cb95-4888-a6bd-3e8dcf3b187b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2831,7 +2768,7 @@
         },
         {
           "name": "Update Flow",
-          "_postman_id": "bde6e240-5f98-4b4d-bb11-3249df52165d",
+          "id": "bde6e240-5f98-4b4d-bb11-3249df52165d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2854,7 +2791,7 @@
         },
         {
           "name": "Update Flow Connection",
-          "_postman_id": "6fdb447c-b643-4ec7-9e61-5bf2158fe96e",
+          "id": "6fdb447c-b643-4ec7-9e61-5bf2158fe96e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2876,7 +2813,7 @@
           "response": []
         }
       ],
-      "_postman_id": "04065d7c-b63c-499b-98f0-adb1eb167146"
+      "id": "04065d7c-b63c-499b-98f0-adb1eb167146"
     },
     {
       "name": "Groups",
@@ -2920,7 +2857,7 @@
               }
             }
           ],
-          "_postman_id": "1da80bad-66d5-4bb8-8215-31b448be6c15",
+          "id": "1da80bad-66d5-4bb8-8215-31b448be6c15",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2934,10 +2871,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <group name=\"myNewGroup\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <group name=\"myNewGroup\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/"
           },
@@ -2988,7 +2922,7 @@
               }
             }
           ],
-          "_postman_id": "2a809eb7-e775-4741-819b-991044867b7a",
+          "id": "2a809eb7-e775-4741-819b-991044867b7a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3043,7 +2977,7 @@
               }
             }
           ],
-          "_postman_id": "79a34968-06ea-43b8-a388-1e4e0a8a3b4a",
+          "id": "79a34968-06ea-43b8-a388-1e4e0a8a3b4a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3057,10 +2991,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <group name=\"updatedGroupName\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <group name=\"updatedGroupName\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}",
             "description": "Updates a group in Tableau Server.\n\nIf the server is configured to use local authentication, the method lets you update the group name. If the server is configured to use Active Directory authentication, the method synchronizes the Tableau Server group with Active Directory.\n\nDuring synchronization, the method updates the group in Tableau Server and modifies the set of users in the group to be the same as those in Active Directory. Users in Active Directory that are not in the group on Tableau Server are added to the group, and users in Tableau Server that are not in the Active Directory group are removed from the Tableau Server group. Users that are no longer in Active Directory at all are unlicensed.\n\nIf the update synchronizes with Active Directory, Tableau Server can perform the update either immediately (synchronously) or by using a background job (asynchronously). If Active Directory contains a large number of users, you should perform the synchronization process as a background job so that the process doesn't time out. By default, synchronizing with Active Directory is performed as a background job (asynchronously).\n\nURI\n1. PUT /api/api-version/sites/site-id/groups/group-id\n1. PUT /api/api-version/sites/site-id/groups/group-id?asJob=background-task\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to update.\n* background-task  true to synchronize with Active Directory as a background task, or false to synchronize immediately (synchronously). The default is true.  **Note: This parameter has no effect if the server is configured to use local authentication.**"
@@ -3098,7 +3029,7 @@
               }
             }
           ],
-          "_postman_id": "c8ae662b-0422-47a3-ae41-0b4c1c7a9d67",
+          "id": "c8ae662b-0422-47a3-ae41-0b4c1c7a9d67",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3112,10 +3043,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <group name=\"myNewGroup1\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <group name=\"myNewGroup1\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}",
             "description": "Deletes the group on a specific site. Deleting a group does not delete the users in group, but users are no longer members of the group. Any permissions that were previously assigned to the group no longer apply.\n\nURI\n1. DELETE /api/api-version/sites/site-id/groups/group-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* group-id  The ID of the group to delete."
@@ -3123,7 +3051,7 @@
           "response": []
         }
       ],
-      "_postman_id": "2f5c8169-96b8-4d0e-bc23-0d8ce61d96d7",
+      "id": "2f5c8169-96b8-4d0e-bc23-0d8ce61d96d7",
       "event": [
         {
           "listen": "prerequest",
@@ -3237,7 +3165,7 @@
               }
             }
           ],
-          "_postman_id": "74c50d68-e1b2-45b8-898a-515bca8613b4",
+          "id": "74c50d68-e1b2-45b8-898a-515bca8613b4",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3255,7 +3183,7 @@
           "response": []
         }
       ],
-      "_postman_id": "439dfc80-0959-45d7-b12d-f46da6e1cb4c",
+      "id": "439dfc80-0959-45d7-b12d-f46da6e1cb4c",
       "event": [
         {
           "listen": "prerequest",
@@ -3352,7 +3280,7 @@
               }
             }
           ],
-          "_postman_id": "4afa8909-3efd-4b5f-978d-abe30d4fdd47",
+          "id": "4afa8909-3efd-4b5f-978d-abe30d4fdd47",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3397,7 +3325,7 @@
               }
             }
           ],
-          "_postman_id": "7001cfc5-9e17-4b8c-adbe-d8b312e4b173",
+          "id": "7001cfc5-9e17-4b8c-adbe-d8b312e4b173",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3411,10 +3339,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "\n"
             },
             "url": "{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/default-permissions/workbooks/groups/{{groupId}}/ShareView/Allow",
             "description": "Removes default permissions from a project. After the default permission has been removed, workbooks or data sources that are added to the project do not get the specified permission by default. You make separate requests to remove default permissions for workbooks and for data sources, and you make separate requests to remove default permissions for a specific group or user.\n\nURI\n1. DELETE /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks/groups/group-id/capability-name/capability-mode\n1. DELETE /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks/users/user-id/capability-name/capability-mode\n1. DELETE /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources/groups/group-id/capability-name/capability-mode\n1. DELETE /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources/users/user-id/capability-name/capability-mode\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set default permissions for.\n* group-id  The ID of the group to remove the default permission for.\nuser-id  The ID of the user to remove default permission for.\n* capability-name The capability to remove the permissions for.\nValid capabilities for a workbook are AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\nValid capabilities for a data source are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to remove the allow permission, or Deny to remove the deny permission. This value is case sensitive.\n"
@@ -3449,7 +3374,7 @@
               }
             }
           ],
-          "_postman_id": "9fd2a658-c0e1-4856-9632-3041dc804769",
+          "id": "9fd2a658-c0e1-4856-9632-3041dc804769",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3467,10 +3392,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"AddComment\" mode=\"Allow\" />\n        <capability name=\"WebAuthoring\" mode=\"Allow\" />       \n      </capabilities>\n    </granteeCapabilities>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"AddComment\" mode=\"Allow\" />\n        <capability name=\"WebAuthoring\" mode=\"Allow\" />       \n      </capabilities>\n    </granteeCapabilities>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/default-permissions/workbooks",
             "description": "Adds permissions to the specified project that will be applied by default to new workbooks and data sources as they are added to the project. You make separate requests to set default permissions for workbooks and for data sources.\n\nContent owners can override default permissions for their content, but only if project permissions have not been locked. Project permissions can be locked for a new project when you call Create Project or for an existing project by calling Update Project. For more information, see Lock Content Permissions to the Project.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set default permissions for.\n\nAttributes\n* project-id  The <project> element is not required, but can be included. If the <project> element is included, the project-id value must match the project ID in the URI. Any other attributes in the <project> element are ignored.\nuser-id  The ID (not name) of the user to add default permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign. Valid capabilities for a workbook are\n* AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\n* Valid capabilities for a data source are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -3478,7 +3400,7 @@
           "response": []
         }
       ],
-      "_postman_id": "9777c14d-9d59-4149-b23d-fac4ac3d9179",
+      "id": "9777c14d-9d59-4149-b23d-fac4ac3d9179",
       "event": [
         {
           "listen": "prerequest",
@@ -3575,7 +3497,7 @@
               }
             }
           ],
-          "_postman_id": "0e324bf0-dd15-48e0-b2de-00822a9396bc",
+          "id": "0e324bf0-dd15-48e0-b2de-00822a9396bc",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3620,7 +3542,7 @@
               }
             }
           ],
-          "_postman_id": "ac8acaa6-2cad-4c06-b1c9-09e3c2fcf85d",
+          "id": "ac8acaa6-2cad-4c06-b1c9-09e3c2fcf85d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3634,10 +3556,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions> \n    <project id=\"{{projectId}}\" />\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"write\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  ",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions> \n    <project id=\"{{projectId}}\" />\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"write\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  "
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/permissions",
             "description": "Adds permissions to the specified project for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\nIf the request body includes a child datasource or <project> element, the request is invalid.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/permissions\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set permissions for.\n\n\nAttributes\n* user-id  The ID (not name) of the user to add permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign permissions to. In Tableau Server 10.0, the valid capabilities for a project are ProjectLeader, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -3672,7 +3591,7 @@
               }
             }
           ],
-          "_postman_id": "cf75d1d0-8790-4b4e-88e7-18feaeb11a8e",
+          "id": "cf75d1d0-8790-4b4e-88e7-18feaeb11a8e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3689,7 +3608,7 @@
           "response": []
         }
       ],
-      "_postman_id": "c8dc81a7-85a5-4f1d-b0bf-3e82edf48d26",
+      "id": "c8dc81a7-85a5-4f1d-b0bf-3e82edf48d26",
       "event": [
         {
           "listen": "prerequest",
@@ -3795,7 +3714,7 @@
               }
             }
           ],
-          "_postman_id": "febd9eee-3f20-4a8c-8a99-a49a9627f993",
+          "id": "febd9eee-3f20-4a8c-8a99-a49a9627f993",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3809,10 +3728,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <project name=\"myNewProj\"  \n    description=\"A new project created with the REST API\" /> \n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <project name=\"myNewProj\"  \n    description=\"A new project created with the REST API\" /> \n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects",
             "description": "Create a new project in a specific site\n\n* project-name  The name to assign to the project.\n* project-description  (Optional) A description for the project.\n* content-permissions  (Optional) Specify LockedToProject to lock permissions so that users cannot overwrite the default permissions set for the project, or specify ManagedByOwner to allow users to manage permissions for content that they own. For more information, see Lock Content Permissions to the Project. The default is ManagedByOwner."
@@ -3851,7 +3767,7 @@
               }
             }
           ],
-          "_postman_id": "db0c2fa2-7b0b-49e2-bd13-3f4627292554",
+          "id": "db0c2fa2-7b0b-49e2-bd13-3f4627292554",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3865,10 +3781,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <project description=\"A new project created with the REST API which has been UPDATED\" /> \n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <project description=\"A new project created with the REST API which has been UPDATED\" /> \n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}",
             "description": "Update an existing project in a specific site\n\n1. PUT /api/api-version/sites/site-id/projects/project-id\n\n* new-name  (Optional) The new name for the project.\n* new-description  (Optional) The new description for the project.\n* new-content-permissions  (Optional) The new permissions setting for the project. Specify LockedToProject to lock permissions so that users cannot overwrite the default permissions set for the project, or specify ManagedByOwner to allow users to manage permissions for content that they own. For more information, see Lock Content Permissions to the Project. The default is ManagedByOwner."
@@ -3905,7 +3818,7 @@
               }
             }
           ],
-          "_postman_id": "aae0186f-83f5-47af-8002-e11c020c15b9",
+          "id": "aae0186f-83f5-47af-8002-e11c020c15b9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -3919,10 +3832,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}",
             "description": "Delete a project"
@@ -3974,7 +3884,7 @@
               }
             }
           ],
-          "_postman_id": "0011b43d-8594-432a-9297-1a5b34027ae7",
+          "id": "0011b43d-8594-432a-9297-1a5b34027ae7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4015,7 +3925,7 @@
           "response": []
         }
       ],
-      "_postman_id": "003109e3-beee-4b99-af7d-6ea581b60e84",
+      "id": "003109e3-beee-4b99-af7d-6ea581b60e84",
       "event": [
         {
           "listen": "prerequest",
@@ -4086,7 +3996,7 @@
       "item": [
         {
           "name": "Publishing: Initiate File Upload",
-          "_postman_id": "563c9a92-e5cc-43a6-8498-aeefac1184cf",
+          "id": "563c9a92-e5cc-43a6-8498-aeefac1184cf",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4100,10 +4010,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/fileUploads",
             "description": "**Note:** When you make this request with Postman the content-type will be multipart/form-data and you will get an error. The only way to get it to work is to copy the request in an application like Charles or Fiddler, edit the content-type to be multipart/mixed and then it will work.\n\nInitiates the upload process for a file. After the upload has been initiated, you call Append to File Upload to send individual blocks of the file to the server. When the complete file has been sent to the server, you call Publish Datasource or Publish Workbook to commit the upload.\n\nInitiate File Upload returns an upload session ID that you pass to Append to File Upload or one of the publishing methods in order to identify the upload session.\n\nThe file size that is returned in the response is initialized to zero (0) megabytes, because no data has yet been loaded. Subsequent calls to Append to File Upload or the publishing APIs update this value.\n\nURI\n1. POST /api/api-version/sites/site-id/fileUploads\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to upload the file to."
@@ -4112,7 +4019,7 @@
         },
         {
           "name": "Publishing: Append to File Upload",
-          "_postman_id": "58458b90-ef97-43c3-a585-c49f8b7d5321",
+          "id": "58458b90-ef97-43c3-a585-c49f8b7d5321",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4137,10 +4044,7 @@
                   "value": "",
                   "type": "file"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/fileUploads/22253:304D185973FF4C3F989854411508C4D0-0:0",
             "description": "**Note:** When you make this request with Postman the content-type will be multipart/form-data and you will get an error. The only way to get it to work is to copy the request in an application like Charles or Fiddler, edit the content-type to be multipart/mixed and then it will work.\n\nUploads a block of data and appends it to the data that is already uploaded. This method is called after an upload has been initiated using Initiate File Upload.\n\nYou call Append to File Upload as many times as needed in order to upload the complete contents of a file. When the final block of data has been uploaded, you call Publish Datasource or Publish Workbook to commit the file.\n\nURI\n1. PUT /api/api-version/sites/site-id/fileUploads/upload-session-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to upload the file to.\n* upload-session-id  The ID of the upload session. You get this value when you start an upload session using Initiate File Upload."
@@ -4149,7 +4053,7 @@
         },
         {
           "name": "Publishing: Publish DataSource",
-          "_postman_id": "93be6e2b-0228-44c2-a3d2-7778c85736b7",
+          "id": "93be6e2b-0228-44c2-a3d2-7778c85736b7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4169,10 +4073,7 @@
                   "value": "<tsRequest><datasource name=\"chunkedDS\" ><connectionCredentials name=\"postgres\" password=\"admin\" embed=\"true\" ></connectionCredentials><project id=\"{{projectId}}\" ></project></datasource></tsRequest>",
                   "type": "text"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": {
               "raw": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources?uploadSessionId=22253:3114A19C524B421B9E560F2D4BFCD822-0:0&datasourceType=tds",
@@ -4204,7 +4105,7 @@
         },
         {
           "name": "Publishing: Publish Workbook",
-          "_postman_id": "4548b5a3-4135-42f1-be81-2636f92bcf62",
+          "id": "4548b5a3-4135-42f1-be81-2636f92bcf62",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4233,10 +4134,7 @@
                   "type": "file",
                   "src": "/Users/jmayo/Migration/Desktop/Embedded Content/Use Cases/Q3 SPIFF - Customer Deployment Leaderboard.twb"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": {
               "raw": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks?overwrite=true",
@@ -4263,7 +4161,7 @@
           "response": []
         }
       ],
-      "_postman_id": "e3b48ad5-fe14-4864-aaca-a9bdb3b714c3",
+      "id": "e3b48ad5-fe14-4864-aaca-a9bdb3b714c3",
       "event": [
         {
           "listen": "prerequest",
@@ -4373,7 +4271,7 @@
               }
             }
           ],
-          "_postman_id": "2c7382ae-d23c-4982-b2ac-40c60f32a8f8",
+          "id": "2c7382ae-d23c-4982-b2ac-40c60f32a8f8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4392,7 +4290,7 @@
         },
         {
           "name": "Datasources: Download Datasource Revision",
-          "_postman_id": "f765cc35-88ef-4281-ab3e-b1ee2db81e6e",
+          "id": "f765cc35-88ef-4281-ab3e-b1ee2db81e6e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4439,7 +4337,7 @@
               }
             }
           ],
-          "_postman_id": "aea34a3c-68be-41b8-afb1-f3e429f3b5d4",
+          "id": "aea34a3c-68be-41b8-afb1-f3e429f3b5d4",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4497,7 +4395,7 @@
               }
             }
           ],
-          "_postman_id": "7ed3c086-42c9-494b-a69a-0ac408989177",
+          "id": "7ed3c086-42c9-494b-a69a-0ac408989177",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4541,7 +4439,7 @@
         },
         {
           "name": "Workbook Management: Download Workbook Revision",
-          "_postman_id": "e6ca5191-57d4-45fb-8bda-a35bcc2087d8",
+          "id": "e6ca5191-57d4-45fb-8bda-a35bcc2087d8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4587,7 +4485,7 @@
               }
             }
           ],
-          "_postman_id": "4725610c-e8ef-4bdb-995b-8eb6f129fd44",
+          "id": "4725610c-e8ef-4bdb-995b-8eb6f129fd44",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4605,7 +4503,7 @@
           "response": []
         }
       ],
-      "_postman_id": "8d72d74b-f8a4-4f62-9ead-7048eb3d5aee",
+      "id": "8d72d74b-f8a4-4f62-9ead-7048eb3d5aee",
       "event": [
         {
           "listen": "prerequest",
@@ -4711,7 +4609,7 @@
               }
             }
           ],
-          "_postman_id": "82d568ff-029f-4e4c-a929-6f75d63feaad",
+          "id": "82d568ff-029f-4e4c-a929-6f75d63feaad",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4729,10 +4627,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <schedule name=\"REST API TEST SCHEDULE\"\n    priority=\"50\" \n    type=\"Extract\"\n    frequency=\"Weekly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"06:00:00\" end=\"16:59:00\">\n     <intervals>\n        <interval weekDay=\"Monday\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <schedule name=\"REST API TEST SCHEDULE\"\n    priority=\"50\" \n    type=\"Extract\"\n    frequency=\"Weekly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"06:00:00\" end=\"16:59:00\">\n     <intervals>\n        <interval weekDay=\"Monday\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects",
             "description": "Creates a new schedule on Tableau Server.\n\nSchedules are not specific to sites. For more information, see Scheduled Refresh Tasks and Subscriptions and Create or Modify a Schedule in the Tableau Server documentation.\n\n**Note:** After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nURI\n1. POST /api/api-version/schedules\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n\nAttributes\n* schedule-name  The name to give to the schedule. This name identifies the schedule in the server environment when users select a schedule and manage schedule information.\n* schedule-priority  An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Higher numbers have higher priority.\n* schedule-type  Extract to create an extract refresh schedule, or Subscription to create a subscription schedule.\n* schedule-execution-order  Parallel to allow jobs associated with this schedule to run at the same time, or Serial to require the jobs to run one after the other.\n* schedule-frequency  The granularity of the schedule. Valid values are:\n  - Hourly. Jobs can be scheduled to run one or more times per day at intervals specified in minutes or hours.\n  - Daily. Jobs can be scheduled to run once per day at a specific time.\n  - Weekly. Jobs can be scheduled to run one or more times per week.\n  - Monthly. Jobs can be scheduled to run once per month on a specific day.\nThe value you provide for schedule-frequency determines whether you must include an end-time value, and what is required in the contents of the <intervals> element.\n* start-time  The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format HH:MM:SS (for example, 18:30:00). This value is required for all schedule frequencies.\n* end-time  If the schedule frequency is Hourly, the time of day on which scheduled jobs should stop being run, in the format HH:MM:SS (for example, 23:30:00). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored.\n* interval-expression  A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the the value specified in schedule-frequency.\n  - Hourly\nThe interval expression is only one of the following:\n    - hours=\"interval\" where interval is 1, 2, 4, 6, 8, or 12, representing how many hours between jobs.\n    - minutes=\"interval\" where interval is 15 or 30, representing how many minutes between jobs.\nYou can specify an interval in hours or minutes, but not both.\n  - Daily\nIf the schedule frequency is Daily, no interval is specified. Any information specified in the <intervals> element is ignored.\n  - Weekly\nThe interval expression is weekDay=\"weekday\", where weekday is Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, or Saturday.\nYou can specify multiple <interval> elements to indicate that scheduled jobs should run on multiple days during the week.\n  - Monthly\nThe interval expression is monthDay=\"day\", where day is either the day of the month (1, 2, etc.) or LastDay.\n"
@@ -4784,7 +4679,7 @@
               }
             }
           ],
-          "_postman_id": "26effd6f-03e1-4017-8272-3714cca4db36",
+          "id": "26effd6f-03e1-4017-8272-3714cca4db36",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4849,7 +4744,7 @@
               }
             }
           ],
-          "_postman_id": "4bfce88f-9068-43a5-8497-3457171933ef",
+          "id": "4bfce88f-9068-43a5-8497-3457171933ef",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4907,7 +4802,7 @@
               }
             }
           ],
-          "_postman_id": "0960c5c8-1a41-475e-b705-74f648b8d2e8",
+          "id": "0960c5c8-1a41-475e-b705-74f648b8d2e8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4925,10 +4820,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <schedule \n    name=\"Modified by the REST API\"\n    priority=\"49\" \n    frequency=\"Hourly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"10:00:00\" end=\"22:00:00\">\n     <intervals>\n        <interval hours=\"2\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <schedule \n    name=\"Modified by the REST API\"\n    priority=\"49\" \n    frequency=\"Hourly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"10:00:00\" end=\"22:00:00\">\n     <intervals>\n        <interval hours=\"2\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/schedules/{{scheduleId}}",
             "description": "Modifies settings for the specified schedule, including the name, priority, and frequency details.\n\n\n1. PUT /api/api-version/schedules/schedule-id\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* schedule-id  The ID of the schedule to update. To determine what schedules are available, call Query Schedules.\n\nAttributes\n* schedule-name  The name to give to the schedule. This name identifies the schedule in the server environment when users select a schedule and manage schedule information.\n* schedule-priority  An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Higher numbers have higher priority.\n* schedule-type  Extract to create an extract refresh schedule, or Subscription to create a subscription schedule.\n* schedule-execution-order  Parallel to allow jobs associated with this schedule to run at the same time, or Serial to require the jobs to run one after the other.\n* schedule-frequency  The granularity of the schedule. Valid values are:\n  - Hourly. Jobs can be scheduled to run one or more times per day at intervals specified in minutes or hours.\n  - Daily. Jobs can be scheduled to run once per day at a specific time.\n  - Weekly. Jobs can be scheduled to run one or more times per week.\n  - Monthly. Jobs can be scheduled to run once per month on a specific day.\nThe value you provide for schedule-frequency determines whether you must include an end-time value, and what is required in the contents of the <intervals> element.\n* start-time  The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format HH:MM:SS (for example, 18:30:00). This value is required for all schedule frequencies.\n* end-time  If the schedule frequency is Hourly, the time of day on which scheduled jobs should stop being run, in the format HH:MM:SS (for example, 23:30:00). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored.\n* interval-expression  A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the the value specified in schedule-frequency.\n  - Hourly\nThe interval expression is only one of the following:\n    - hours=\"interval\" where interval is 1, 2, 4, 6, 8, or 12, representing how many hours between jobs.\n    - minutes=\"interval\" where interval is 15 or 30, representing how many minutes between jobs.\nYou can specify an interval in hours or minutes, but not both.\n  - Daily\nIf the schedule frequency is Daily, no interval is specified. Any information specified in the <intervals> element is ignored.\n  - Weekly\nThe interval expression is weekDay=\"weekday\", where weekday is Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, or Saturday.\nYou can specify multiple <interval> elements to indicate that scheduled jobs should run on multiple days during the week.\n  - Monthly\nThe interval expression is monthDay=\"day\", where day is either the day of the month (1, 2, etc.) or LastDay.\n"
@@ -4973,7 +4865,7 @@
               }
             }
           ],
-          "_postman_id": "0ff156c4-0464-4e42-8948-be31dd6b5604",
+          "id": "0ff156c4-0464-4e42-8948-be31dd6b5604",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4991,10 +4883,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <schedule name=\"REST API TEST SCHEDULE\"\n    priority=\"50\" \n    type=\"Extract\"\n    frequency=\"Weekly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"06:00:00\">\n     <intervals>\n        <interval weekDay=\"Monday\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <schedule name=\"REST API TEST SCHEDULE\"\n    priority=\"50\" \n    type=\"Extract\"\n    frequency=\"Weekly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"06:00:00\">\n     <intervals>\n        <interval weekDay=\"Monday\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/schedules/{{scheduleId}}",
             "description": "Deletes the specified schedule.\n\nURI\n1. DELETE /api/api-version/schedules/schedule-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* schedule-id  The ID of the schedule to delete. To determine what schedules are available, call Query Schedules.\n"
@@ -5002,7 +4891,7 @@
           "response": []
         }
       ],
-      "_postman_id": "826ad481-ea30-44f0-9d96-b4f93c49fc78",
+      "id": "826ad481-ea30-44f0-9d96-b4f93c49fc78",
       "event": [
         {
           "listen": "prerequest",
@@ -5107,7 +4996,7 @@
               }
             }
           ],
-          "_postman_id": "86c83ab7-a5dc-4415-96d2-0403a7eaff45",
+          "id": "86c83ab7-a5dc-4415-96d2-0403a7eaff45",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5121,10 +5010,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <site name=\"NewSiteName\"\n    contentUrl=\"NewSite\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"10\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <site name=\"NewSiteName\"\n    contentUrl=\"NewSite\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"10\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites",
             "description": "Create a new site\n\n* site-name  The name of the site.\n* content-url  The site URL. This value can contain only characters that are valid in a URL.\n* admin-mode  (Optional) Specify ContentAndUsers to allow site administrators to use the server interface and tabcmd commands to add and remove users. (Specifying this option does not give site administrators permissions to manage users using the REST API.) Specify ContentOnly to prevent site administrators from adding or removing users. (Server administrators can always add or remove users.) **Note: You cannot set adminMode to ContentOnly and also set userQuota.**\n* num-users  (Optional) The maximum number of users for the site. If you do not specify this value, the limit depends on the type of licensing configured for the server. For user-based license, the maximum number of users is set by the license. For core-based licensing, there is no limit to the number of users. If you specify a maximum value, only licensed users are counted and server administrators are excluded.\n* storage-quota  (Optional) The maximum amount of space for the new site, in megabytes. If you set a quota and the site exceeds it, publishers will be prevented from uploading new content until the site is under the limit again.\n* disable-subscriptions  (Optional) Specify true to prevent users from being able to subscribe to workbooks on the specified site. The default is false."
@@ -5178,7 +5064,7 @@
               }
             }
           ],
-          "_postman_id": "0926dd76-35cc-4b66-bf55-8ecf52d0e40e",
+          "id": "0926dd76-35cc-4b66-bf55-8ecf52d0e40e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5240,7 +5126,7 @@
               }
             }
           ],
-          "_postman_id": "263a0f4e-096a-4bdb-9866-f5fad68c3bec",
+          "id": "263a0f4e-096a-4bdb-9866-f5fad68c3bec",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5317,7 +5203,7 @@
               }
             }
           ],
-          "_postman_id": "5d0aaa0f-7949-426d-8a6e-ef7ea67d7840",
+          "id": "5d0aaa0f-7949-426d-8a6e-ef7ea67d7840",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5384,7 +5270,7 @@
               }
             }
           ],
-          "_postman_id": "a436d35f-9f03-455c-88b2-6198a8aff762",
+          "id": "a436d35f-9f03-455c-88b2-6198a8aff762",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5398,10 +5284,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <site name=\"{{siteName}}\"\n    contentUrl=\"{{contentUrl\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"11\"\n    state=\"active\"\n    statusReason=\"Update\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <site name=\"{{siteName}}\"\n    contentUrl=\"{{contentUrl\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"11\"\n    state=\"active\"\n    statusReason=\"Update\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}",
             "description": "Update an existing Site\n\n* new-site-name  (Optional) The new name of the site.\n* new-content-url  (Optional) The new site URL. This value can contain only characters that are valid in a URL.\n* new-admin-mode  (Optional) Specify ContentAndUsers to allow site administrators to use the server interface and tabcmd commands to add and remove users. (Specifying this option does not give site administrators permissions to manage users using the REST API.) Specify ContentOnly to prevent site administrators from adding or removing users. (Server administrators can always add or remove users.)\n**Note: You cannot set adminMode to ContentOnly and also set userQuota.**\n* new-num-users  (Optional) The new maximum number of users for the site. Only licensed users are counted and server administrators are excluded.\nSetting this value to -1 removes any value that was set previously. In that case, the limit depends on the type of licensing configured for the server. For user-based licensing, the maximum number of users is set by the license. For core-based licensing, there is no limit to the number of users.\n* new-state  (Optional) Active to set the site to active mode, or Suspended to suspend the site.\n* new-storage-quota  (Optional) The new maximum amount of space for the new site, in megabytes. If you set a quota and the site exceeds it, publishers will be prevented from uploading new content until the site is under the limit again.\n* new-disable-subscriptions  (Optional) true to prevent users from being able to subscribe to workbooks on the specified site.\n* revision-history-enabled  (Optional) true if the site maintains revisions for changes to workbooks and data sources; otherwise, false. The default is false.\n* revision-limit  (Optional) An integer between 2 and 10000 to indicate a limited number of revisions for content.\n* Setting this value to -1 removes any value that was set previously, and effectively removes any limit to the number of revisions that are maintained."
@@ -5433,7 +5316,7 @@
               }
             }
           ],
-          "_postman_id": "53cd6872-6626-4ace-ae24-3feb8860076b",
+          "id": "53cd6872-6626-4ace-ae24-3feb8860076b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5447,10 +5330,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <site name=\"russell\"\n    contentUrl=\"russellSite\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"10\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <site name=\"russell\"\n    contentUrl=\"russellSite\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"10\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}",
             "description": "Deletes the specified site.\nYou can specify the site to delete by using the site ID, the site name, or the content URL. You use the key query string parameter to indicate how you are specifying the site, as shown in the URIs.\n\n1. DELETE /api/api-version/sites/site-id\n1. DELETE /api/api-version/sites/site-name?key=name\n1. DELETE /api/api-version/sites/content-url?key=contentUrl\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to delete.\n* site-name  The name of the site to delete. If you specify a site name, you must also include the parameter key=name.\n* content-url  The URL of the site to delete. If you specify a content URL, you must also include the parameter key=contentUrl. \n"
@@ -5488,7 +5368,7 @@
               }
             }
           ],
-          "_postman_id": "34aaf807-11ea-452b-8a2b-230f5dbf2653",
+          "id": "34aaf807-11ea-452b-8a2b-230f5dbf2653",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5533,7 +5413,7 @@
           "response": []
         }
       ],
-      "_postman_id": "07cedecd-562a-4a31-b5a8-3e3bedf2dbf0",
+      "id": "07cedecd-562a-4a31-b5a8-3e3bedf2dbf0",
       "event": [
         {
           "listen": "prerequest",
@@ -5638,7 +5518,7 @@
               }
             }
           ],
-          "_postman_id": "92da68ff-7738-4c9c-baf5-0d3942b785e4",
+          "id": "92da68ff-7738-4c9c-baf5-0d3942b785e4",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5656,10 +5536,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <subscription subject=\"CustomViewTest2\">\n    <content type=\"View\" id=\"775a9145-3c81-426a-9474-78ea2b07592b\" customizedViewId=\"24\" />\n    <schedule id=\"2814796d-7603-409d-b10d-20a2d3df2032\" />\n    <user id=\"fae9f0f0-98a4-4244-ae0c-d7e35764a588\" />\n  </subscription>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <subscription subject=\"CustomViewTest2\">\n    <content type=\"View\" id=\"775a9145-3c81-426a-9474-78ea2b07592b\" customizedViewId=\"24\" />\n    <schedule id=\"2814796d-7603-409d-b10d-20a2d3df2032\" />\n    <user id=\"fae9f0f0-98a4-4244-ae0c-d7e35764a588\" />\n  </subscription>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/subscriptions",
             "description": "Creates a new subscription to a view or workbook for a specific user. When a user is subscribed to the content, Tableau Server sends the content to the user in email on the schedule that's defined in Tableau Server and specified in this call.\n\nFor more information, see Quick Start: Subscribe to Favorite Views in the Tableau Server documentation.\n\n**Note:** After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\n\nURI\n1. POST /api/api-version/sites/site-id/subscriptions\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n\nAttributes\n* subscription-subject  A description for the subscription. This description is displayed when users list subscriptions for a site in the server environment. A description is required.\n* content-type  Workbook to create a subscription for a workbook, or View to create a subscription for a view.\n* content-id  The ID of the workbook or view to subscribe to.\n* schedule-id  The ID of a schedule to associate the subscription with. To determine what schedules are available, call Query Schedules.\n* user-id  The ID of the user to create the subscription for.\n**Note:** The user must have an email address defined in Tableau Server."
@@ -5691,7 +5568,7 @@
               }
             }
           ],
-          "_postman_id": "bd74d2aa-2c53-49bb-92f1-af8729743145",
+          "id": "bd74d2aa-2c53-49bb-92f1-af8729743145",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5736,7 +5613,7 @@
               }
             }
           ],
-          "_postman_id": "1ede385b-cdf3-41f7-9422-27842274bd63",
+          "id": "1ede385b-cdf3-41f7-9422-27842274bd63",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5785,7 +5662,7 @@
               }
             }
           ],
-          "_postman_id": "210beae3-63bd-4a5b-9d87-f1a957af6c69",
+          "id": "210beae3-63bd-4a5b-9d87-f1a957af6c69",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5803,10 +5680,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <subscription subject=\"MODIFIED by the REST API\" >\n </subscription>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <subscription subject=\"MODIFIED by the REST API\" >\n </subscription>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/subscriptions/{{subscriptionId}}",
             "description": "Modifies an existing subscription, allowing you to change the subject or schedule for the subscription.\n\n**Note:** After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\n\nURI\n1. PUT /api/api-version/sites/site-id/subscriptions/subscription-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* subscription-id  The ID of the subscription to get information for.\n\n\nAttributes\n* new-subscription-subject  (Optional) A new subject for the subscription.\n* new-schedule-id  (Optional) The ID of a schedule to associate this subscription with.\n"
@@ -5841,7 +5715,7 @@
               }
             }
           ],
-          "_postman_id": "f91d38e6-ffcb-46e8-9299-fb80fc4871cb",
+          "id": "f91d38e6-ffcb-46e8-9299-fb80fc4871cb",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5855,10 +5729,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <subscription subject=\"MODIFIED by the REST API\" >\n </subscription>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <subscription subject=\"MODIFIED by the REST API\" >\n </subscription>\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/subscriptions/{{subscriptionId}}",
             "description": "Deletes the specified subscription.\n\n**Note:** After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\n\nURI\n1. DELETE /api/api-version/sites/site-id/subscriptions/subscription-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* subscription-id  The ID of the subscription to get information for.\n\n"
@@ -5866,7 +5737,7 @@
           "response": []
         }
       ],
-      "_postman_id": "a1425bf8-c63b-4d48-9dde-a8820faa9740",
+      "id": "a1425bf8-c63b-4d48-9dde-a8820faa9740",
       "event": [
         {
           "listen": "prerequest",
@@ -5957,7 +5828,7 @@
               }
             }
           ],
-          "_postman_id": "239a9057-7b0e-4c3e-b43f-1908da89902f",
+          "id": "239a9057-7b0e-4c3e-b43f-1908da89902f",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -5995,7 +5866,7 @@
               }
             }
           ],
-          "_postman_id": "349f3b8a-127c-4a56-8d38-17b7e71fff77",
+          "id": "349f3b8a-127c-4a56-8d38-17b7e71fff77",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6059,7 +5930,7 @@
               }
             }
           ],
-          "_postman_id": "69385764-3751-48e5-9de4-9a284aa5ad13",
+          "id": "69385764-3751-48e5-9de4-9a284aa5ad13",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6077,10 +5948,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <user name=\"TESTUSER\"\n    siteRole=\"Viewer\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <user name=\"TESTUSER\"\n    siteRole=\"Viewer\" />\n</tsRequest>"
             },
             "url": "rgoldin-vm10/api/{{api}}/sites/{{siteId}}/users",
             "description": "Adds a user to Tableau Server and assigns the user to the specified site.\nIf Tableau Server is configured to use local authentication, the information you specify is used to create a new user in Tableau Server. To set a full name, password, and email address for the user, call Update User after creating the user.\nIf Tableau Server is configured to use Active Directory for authentication, the user you specify is imported from Active Directory into Tableau Server.\nIf you try to add a user using a specific site role but you have already reached the limit on the number of licenses for your users, the user is added as an unlicensed user. In that case, the response code is 201 (which indicates success), but the siteRole value in the response body is set to Unlicensed."
@@ -6118,7 +5986,7 @@
               }
             }
           ],
-          "_postman_id": "283cfa94-3824-4f34-ac6b-42c8dab10d1e",
+          "id": "283cfa94-3824-4f34-ac6b-42c8dab10d1e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6132,10 +6000,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/users/{{userId}}",
             "description": "Removes a user from the specified site. If a user still owns content (assets) on Tableau Server, the user cannot be deleted unless the ownership is reassigned first.\nIf a user is removed from all sites that the user is a member of, the user is deleted.\n\nURI\n1.  DELETE /api/api-version/sites/site-id/users/user-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the user.\n* user-id  The ID of the user to remove."
@@ -6163,7 +6028,7 @@
               }
             }
           ],
-          "_postman_id": "b6c7641b-eb33-4c0c-82cb-5c641c1754d7",
+          "id": "b6c7641b-eb33-4c0c-82cb-5c641c1754d7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6194,7 +6059,7 @@
               }
             }
           ],
-          "_postman_id": "ff1d0217-4fc9-43b5-878a-e5b5b6b26db9",
+          "id": "ff1d0217-4fc9-43b5-878a-e5b5b6b26db9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6251,7 +6116,7 @@
               }
             }
           ],
-          "_postman_id": "68d7a2ec-caea-4216-a3f4-14a148edc654",
+          "id": "68d7a2ec-caea-4216-a3f4-14a148edc654",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6265,10 +6130,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <user id=\"{{userId}}\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <user id=\"{{userId}}\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users",
             "description": "Adds a user to the specified group.\n\n**NOTE: ** \nNote: After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nURI\n1. POST /api/api-version/sites/site-id/groups/group-id/users\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to add the user to."
@@ -6296,7 +6158,7 @@
               }
             }
           ],
-          "_postman_id": "d4158f40-28a2-4c39-8c23-bc8326f6fb4b",
+          "id": "d4158f40-28a2-4c39-8c23-bc8326f6fb4b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6342,7 +6204,7 @@
               }
             }
           ],
-          "_postman_id": "e75cf1af-5721-4a93-8c8b-90e2f4a89be5",
+          "id": "e75cf1af-5721-4a93-8c8b-90e2f4a89be5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6356,10 +6218,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users/{{userId}}",
             "description": "Remove a specific user from a group"
@@ -6367,7 +6226,7 @@
           "response": []
         }
       ],
-      "_postman_id": "372efc08-04ab-4ea0-a29d-d9ef09c1b52b",
+      "id": "372efc08-04ab-4ea0-a29d-d9ef09c1b52b",
       "event": [
         {
           "listen": "prerequest",
@@ -6464,7 +6323,7 @@
               }
             }
           ],
-          "_postman_id": "c8708b7c-584f-4ad0-aed9-460ab6a3099b",
+          "id": "c8708b7c-584f-4ad0-aed9-460ab6a3099b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6509,7 +6368,7 @@
               }
             }
           ],
-          "_postman_id": "9adf1a92-6895-473c-8119-34b3378c1a4d",
+          "id": "9adf1a92-6895-473c-8119-34b3378c1a4d",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6554,7 +6413,7 @@
               }
             }
           ],
-          "_postman_id": "9df55679-37d0-4d62-ac5b-346201a6ce4b",
+          "id": "9df55679-37d0-4d62-ac5b-346201a6ce4b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6572,10 +6431,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <permissions>\n    <workbook id=\"{{workbookId}}\" />\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"Read\" mode=\"Allow\" />\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ViewComments\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <permissions>\n    <workbook id=\"{{workbookId}}\" />\n    <granteeCapabilities>\n      <user id=\"{{userId}}\" />\n      <capabilities>\n        <capability name=\"Read\" mode=\"Allow\" />\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ViewComments\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>"
             },
             "url": "{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/permissions",
             "description": "Adds permissions to the specified workbook for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id/permissions\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* workbook-id  The ID of the workbook to set permissions for.\n\nAttributes\n* \nworkbook-id  The <workbook> element is not required, but can be included for compatibility with earlier versions of the REST API. If the <workbook> element is included, the workbook-id value must match the workbook ID in the URI. Any other attributes in the <workbook> element are ignored.\n* user-id  The ID (not name) of the user to add permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  \nThe capability to assign. If any capability has already been granted or denied for a specified user or group, that capability is ignored. Valid capabilities for a workbook are AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
@@ -6583,7 +6439,7 @@
           "response": []
         }
       ],
-      "_postman_id": "14d40b14-0612-4fb8-bc82-c09397b0f500",
+      "id": "14d40b14-0612-4fb8-bc82-c09397b0f500",
       "event": [
         {
           "listen": "prerequest",
@@ -6673,7 +6529,7 @@
               }
             }
           ],
-          "_postman_id": "a277fad3-9fec-4cf9-8e86-95e2fff1f03f",
+          "id": "a277fad3-9fec-4cf9-8e86-95e2fff1f03f",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6727,7 +6583,7 @@
               }
             }
           ],
-          "_postman_id": "7f56a433-6e5c-4153-a5b0-407d474206fb",
+          "id": "7f56a433-6e5c-4153-a5b0-407d474206fb",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6781,7 +6637,7 @@
               }
             }
           ],
-          "_postman_id": "079d6434-5ea5-4c0c-9232-c1a67fe6530b",
+          "id": "079d6434-5ea5-4c0c-9232-c1a67fe6530b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6874,7 +6730,7 @@
               }
             }
           ],
-          "_postman_id": "a00fc908-ed47-4920-bcaa-e33b31801b95",
+          "id": "a00fc908-ed47-4920-bcaa-e33b31801b95",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -6913,7 +6769,7 @@
           "response": []
         }
       ],
-      "_postman_id": "54f1dd71-43fd-4b7c-a5fb-6f6d4859e5fd",
+      "id": "54f1dd71-43fd-4b7c-a5fb-6f6d4859e5fd",
       "event": [
         {
           "listen": "prerequest",
@@ -7003,7 +6859,7 @@
               }
             }
           ],
-          "_postman_id": "db750520-ad59-4645-a1e2-1dcc1c518e68",
+          "id": "db750520-ad59-4645-a1e2-1dcc1c518e68",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7067,7 +6923,7 @@
               }
             }
           ],
-          "_postman_id": "15ea36aa-189a-4b36-bfc7-0ec4470b41de",
+          "id": "15ea36aa-189a-4b36-bfc7-0ec4470b41de",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7105,7 +6961,7 @@
               }
             }
           ],
-          "_postman_id": "720a3896-0672-4860-a52c-7fadfc95abee",
+          "id": "720a3896-0672-4860-a52c-7fadfc95abee",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7163,7 +7019,7 @@
               }
             }
           ],
-          "_postman_id": "eeb0947f-2228-4aaf-a054-48ad1b866cc8",
+          "id": "eeb0947f-2228-4aaf-a054-48ad1b866cc8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7181,10 +7037,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n    <tags> \n      <tag label=\"Tagged_by_the_REST_API\" /> \n      <tag label=\"tag2\" />\n    </tags> \n</tsRequest>\n",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n    <tags> \n      <tag label=\"Tagged_by_the_REST_API\" /> \n      <tag label=\"tag2\" />\n    </tags> \n</tsRequest>\n"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/tags",
             "description": "Add one or more tags to a workbook\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id/tags\n\nURI Parameters\n* -version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to add tags to.\n\n\nAttribute Values\n* workbook-id  The workbook to add the tag to. If the workbook is already tagged with a tag that's included in the request body, those tags are ignored and the workbook retains them. If the <tags> element is empty, no new tags are added to the workbook.\n* tag  The text of the tag.\n\n\nTableau Server users who are not server administrators or site administrators can call this method only if they have Read permissions for the workbook (either explicitly or implicitly)."
@@ -7232,7 +7085,7 @@
               }
             }
           ],
-          "_postman_id": "6c31c413-232c-4765-9ff5-b7d35c286c00",
+          "id": "6c31c413-232c-4765-9ff5-b7d35c286c00",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7246,10 +7099,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/tags/{{tag}}",
             "description": "Delete a tag from the specified workbook\n\nURI\n1. DELETE /api/api-version/sites/site-id/workbooks/workbook-id/tags/tag-name\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to remove the tag from.\n* tag-name  The name of the tag to remove from the workbook.\n"
@@ -7277,7 +7127,7 @@
               }
             }
           ],
-          "_postman_id": "3aaf08e2-9180-4ed0-9020-d0afeba5e469",
+          "id": "3aaf08e2-9180-4ed0-9020-d0afeba5e469",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7315,7 +7165,7 @@
               }
             }
           ],
-          "_postman_id": "ec723b0f-ed2b-4144-b54e-4be7f4924046",
+          "id": "ec723b0f-ed2b-4144-b54e-4be7f4924046",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7369,7 +7219,7 @@
               }
             }
           ],
-          "_postman_id": "ab0943c8-1eff-459c-b2f1-c9c3b0cfdea6",
+          "id": "ab0943c8-1eff-459c-b2f1-c9c3b0cfdea6",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7383,10 +7233,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {}
-              }
+              "raw": ""
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}"
           },
@@ -7420,7 +7267,7 @@
               }
             }
           ],
-          "_postman_id": "7f3ae104-27a8-4815-9ecf-f3ee91ec7294",
+          "id": "7f3ae104-27a8-4815-9ecf-f3ee91ec7294",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7498,7 +7345,7 @@
               }
             }
           ],
-          "_postman_id": "0ce1032e-574b-4aa6-801e-696d732f7a96",
+          "id": "0ce1032e-574b-4aa6-801e-696d732f7a96",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7545,7 +7392,7 @@
               }
             }
           ],
-          "_postman_id": "cb3f45a1-0943-4868-9fea-80688187029e",
+          "id": "cb3f45a1-0943-4868-9fea-80688187029e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7564,7 +7411,7 @@
         },
         {
           "name": "Workbook Management: Update Workbook Connections",
-          "_postman_id": "e829c4b6-0dbd-419a-8087-d893de4717ca",
+          "id": "e829c4b6-0dbd-419a-8087-d893de4717ca",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7582,10 +7429,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <connection \n    serverAddress=\"newAddr\" \n    serverPort=\"5435\" \n    userName=\"newUserName\" \n    password=\"newPass\" \n    embedPassword=\"false\" />\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <connection \n    serverAddress=\"newAddr\" \n    serverPort=\"5435\" \n    userName=\"newUserName\" \n    password=\"newPass\" \n    embedPassword=\"false\" />\n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/connections/{{connectionId}}",
             "description": "Updates the server address, port, username, or password for the specified workbook connection.\nAny combination of the attributes inside the <connection> element is valid. If no attributes are included, no update is made.\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id/connections/connection-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to update.\n* connection-id  The ID of the connection to update.\n\n\nAttributes\n* server-address  The new server for the connection.\n* port  The new port for the connection.\n* connection-username  The new username for the connection.\n* connection-password  The new password for the connection.\n* embed-password  True to embed the password; otherwise, False.\n"
@@ -7620,7 +7464,7 @@
               }
             }
           ],
-          "_postman_id": "98b72184-c62a-4356-8ddc-b8eb67c9b911",
+          "id": "98b72184-c62a-4356-8ddc-b8eb67c9b911",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7634,10 +7478,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest> \n  <workbook showTabs=\"true\" > \n     <project id=\"{{projectId}}\"/> \n     <owner id=\"{{userId}}\" />\n </workbook> \n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest> \n  <workbook showTabs=\"true\" > \n     <project id=\"{{projectId}}\"/> \n     <owner id=\"{{userId}}\" />\n </workbook> \n</tsRequest>"
             },
             "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
             "description": "Modifies an existing workbook, allowing you to change the owner or project that the workbook belongs to and whether the workbook shows views in tabs.\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to update.\n\n\nAttributes\n* show-tabs-flag  (Optional) Specify true to have the published workbook show views in tabs; otherwise, false. The default is false.\n* new-project-id  (Optional) The ID of a project to assign the workbook to.\n* new-owner-id  (Optional) The ID of a user to assign the workbook to as owner.\n \nAny combination of the elements inside the <workbook> element is valid. Only the attributes and child elements that are included result in updates to the data source. If no attributes or nested elements are included, no update is made.\n\nIf the <project> element is included, the id attribute must be included; other attributes of the <project> element are ignored.\n\nIf the <owner> element is included, the id attribute must be included; other attributes of the <owner> element are ignored."
@@ -7645,7 +7486,7 @@
           "response": []
         }
       ],
-      "_postman_id": "e623774a-0d55-4bcd-b6b6-fc5ff689b81c",
+      "id": "e623774a-0d55-4bcd-b6b6-fc5ff689b81c",
       "event": [
         {
           "listen": "prerequest",
@@ -7716,7 +7557,7 @@
       "item": [
         {
           "name": "Query Data-Driven Alerts",
-          "_postman_id": "15b06a42-e67f-4c78-bdc9-340ee5bb20a8",
+          "id": "15b06a42-e67f-4c78-bdc9-340ee5bb20a8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7729,7 +7570,7 @@
         },
         {
           "name": "Query Data-Driven Alert Details",
-          "_postman_id": "bc926037-2163-4edc-8381-92d0250096b8",
+          "id": "bc926037-2163-4edc-8381-92d0250096b8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7742,7 +7583,7 @@
         },
         {
           "name": "Add User to Data-Driven Alert",
-          "_postman_id": "03dbec45-5ea4-48a7-b24c-bbd9e289e3ef",
+          "id": "03dbec45-5ea4-48a7-b24c-bbd9e289e3ef",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -7751,17 +7592,14 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "<tsRequest>\n  <user id=\"{{userId}}\"/>\n</tsRequest>",
-              "options": {
-                "raw": {}
-              }
+              "raw": "<tsRequest>\n  <user id=\"{{userId}}\"/>\n</tsRequest>"
             },
             "url": "{{protocol}}://{{server}}/api/{{api}}/sites/{{siteId}}/dataAlerts/{{dataAlertId}}/users"
           },
           "response": []
         }
       ],
-      "_postman_id": "84cca927-f11c-4848-9041-ca5a1f8eeb9e",
+      "id": "84cca927-f11c-4848-9041-ca5a1f8eeb9e",
       "event": [
         {
           "listen": "prerequest",
@@ -7826,6 +7664,45 @@
           }
         }
       ]
+    },
+    {
+      "name": "Update Schedule",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d44828a0-03b4-4ef0-81a1-1ef827070cd0",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "6d94c6db-893e-4e11-bc24-ba590c0ff661",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "X-Tableau-Auth",
+            "value": "{{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "text/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<tsResponse>\n  <schedule id=\"{{schedule-id}}\"\n        name=\"schedule-name\"\n        state=\"new-state\"\n        priority=\"schedule-priority\"\n        createdAt=\"datetime-created\"\n        updatedAt=\"datetime-updated\"\n        type=\"Extract-or-Subscription\"\n        frequency=\"schedule-frequency\"\n        nextRunAt=\"datetime-next-run\"\n        endScheduleAt =\"datetime-expiration\"\n        executionOrder=\"Parallel-or-Serial\">\n        <frequencyDetails frequency-expression >\n            <intervals>\n               <interval interval-expression />\n             </intervals>\n        </frequencyDetails>\n  </schedule>\n</tsResponse>"
+        },
+        "url": "{{base-path}}/schedules/{{schedule-id}}",
+        "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule)\n\nModifies settings for the specified schedule, including the name, priority, and frequency details.\n\n#### Attribute Values\n\n| *new-schedule-name* | The new name to give to the schedule. |\n| *new-schedule-priority* | An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Lower numbers have higher priority. |\n| *new-schedule-execution-order* | `Parallel` to allow jobs associated with this schedule to run at the same time, or `Serial` to require the jobs to run one after the other. |\n| *new-schedule-frequency* | <br><br>The granularity of the schedule. Valid values are:<br><br>*   `Hourly`. `Hourly`. Jobs can be scheduled to at intervals specified in run one or more times per day at intervals specified in minutes or hours. The allowed intervals 15 and 30 minutes and 2, 4, 6, 8, and 12 hours.<br>*   `Daily`. Jobs can be scheduled to run once day.<br>*   `Weekly`. Jobs can be scheduled to run one or more times per week.<br>*   `Monthly`. Jobs can be scheduled to run once per month on a specific day.<br><br>The value you provide for *schedule-frequency* determines whether you must include an *end-time* value, and what is required in the contents of the  element.  <br><br><br> |\n| *new-state* | `Active` to enable the schedule, or `Suspended` to disable it. |\n| *start-time* | The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format `HH:MM:SS` (for example, `18:30:00`). This value is required for all schedule frequencies. The entered time will be applied based on the time zone of your server. |\n| *end-time* | If the schedule frequency is `Hourly`, the time of day on which scheduled jobs should stop being run, in the format `HH:MM:SS` (for example, `23:30:00`). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored. The entered time will be applied based on the time zone of your server. |\n| *interval-expression* | <br><br>A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the value specified in *schedule-frequency*.<br><br>**`Hourly`**<br><br>The interval expression is only one of the following:<br><br>*   `hours=\"`*`interval`*`\"` where *interval* is `1`, `2`, `4`, `6`, `8`, or `12`, representing how many hours between jobs.<br>*   `minutes=\"`*`interval`*`\"` where *interval* is `15` or `30`, representing how many minutes between jobs.<br><br>You can specify an interval in hours or minutes, but not both.<br><br>**`Daily`**<br><br>If the schedule frequency is `Daily`, no interval is specified. Any information specified in the  element is ignored.<br><br>**`Weekly`**<br><br>The interval expression is `weekDay=\"`*`weekday`*`\"`, where *weekday* is `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, or `Saturday`.<br><br>You can specify multiple  elements to indicate that scheduled jobs should run on multiple days during the week.<br><br>Note: Updating a schedule without specifying days of the week will reset any existing weekly interval to include all 7 days. If you need the job you are updating to remain scheduled on selected days, make sure to include that information in your update request.<br><br>**`Monthly`**<br><br>The interval expression is `monthDay=\"`*`day`*`\"`, where *day* is either the day of the month (`1`, `2`, etc.) or `LastDay`.<br><br>Note: If you want to specify multiple days in the month, you can do this using the web interface. You cannot create such a monthly schedule using REST API.<br><br> |\n\nAny combination of the attributes inside the  element is valid. Only the attributes and child elements that are included result in updates to the schedule. If no attributes or nested elements are included, no update is made.\n\n#### Permissions\n\nThis method can only be called by server administrators."
+      },
+      "response": []
     }
   ],
   "auth": {
@@ -7874,202 +7751,169 @@
   ],
   "variable": [
     {
-      "id": "c0f04a90-8bc5-4fc3-b686-76d9cd4fc18b",
+      "id": "047e0d63-f5d9-4f9f-a7ef-543e2c0cbcaa",
       "key": "username",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "6a224746-990a-4840-bac3-3940abb4bf4c",
+      "id": "bcb494ae-77c6-4d5d-a450-ad10d2ff2aaa",
       "key": "user-id",
-      "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728",
-      "type": "string"
+      "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "a11e56e7-c04a-423e-9c0f-c8d7768d7f97",
+      "id": "6998b528-4238-4c8e-8cc7-a162d02e7643",
       "key": "user-password",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "0f372a98-f0b0-47fc-b2e0-6eccfd0b41de",
+      "id": "614c4cfa-b934-40b7-82f0-6b3917ea4143",
       "key": "datasource-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "5e6cb9eb-69e8-42db-8a91-441607964e5d",
+      "id": "03214176-e633-42a8-b9f1-9c1c5760002f",
       "key": "group-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "929aacb9-49e0-4202-92e6-5325e5f5b573",
+      "id": "969d7cbd-5604-44e5-8a8d-284415aade5f",
       "key": "group-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "c1353a61-1659-4d4e-81af-74db1d5eb3c5",
+      "id": "3a620c0a-f42c-4405-b703-6f9bcd224d70",
       "key": "job-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "99228aaf-c919-45cc-8346-2d3948e3a475",
+      "id": "f1679360-4624-4d4c-b7d4-bf80aa3a6a11",
       "key": "job-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "dfc49584-838e-4b4a-9bb4-744714137df3",
+      "id": "8ccaecc5-26ad-4896-99d4-ee29054b6c9f",
       "key": "project-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "66fba838-80c7-4e9c-aafd-857dd9cd4329",
+      "id": "d8739e09-5827-40dc-9251-d5c26640a42a",
       "key": "project-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "1e3552fc-e89a-4cb6-ac9d-9a079cfe544c",
+      "id": "e5c647fb-88ce-4fef-8512-5de9098d2244",
       "key": "upload-session-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "6f765e9b-a9a7-4e96-a99a-0bfa94a34055",
+      "id": "53b3ca9c-1b44-40ca-8d7f-d2f11918bc39",
       "key": "tag-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "09d51171-da42-48cf-be85-182435c7968e",
+      "id": "592e6f3c-378c-4f17-8064-6be3c4c5b9c1",
       "key": "schedule-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "7823b517-8f86-4f5f-b701-df08db172b43",
+      "id": "925af57b-c079-4a4e-84bc-fbc05b3467c7",
       "key": "scheduleName",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "4d7bf36a-5447-41bc-bb4b-95b52f0e922b",
+      "id": "2bbe1f05-8b00-4300-84b9-4fde33a9f3ca",
       "key": "subscription-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "3857cecd-4eda-47fe-bcb1-f77f04fc3227",
+      "id": "32e4d5ac-3dc8-49b1-9ee2-bbe0d3527b5b",
       "key": "revision-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "685bf7c4-6d03-4fc1-a816-2ca9ab545dda",
+      "id": "507ecc5c-04ce-4759-a8a9-7b0ed012639b",
       "key": "view-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "d07ae65e-1b1a-4581-902f-342c32fed324",
+      "id": "3539af64-bcb4-48c5-b252-4599a4a08b96",
       "key": "workbook-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "e9da0ab9-d845-4120-a253-a28ecda1dce6",
+      "id": "305de7fd-00ec-4989-adfe-cc3e96636863",
       "key": "workbook-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "16c6b8a6-d55c-4054-ba70-258084e3f68a",
+      "id": "b2265962-9b4e-4296-a51e-b80a8b6f1189",
       "key": "analytics-extensions-host",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "99aeb295-773a-4735-bf25-eeab597c33a8",
+      "id": "ebef9f98-0930-4048-a1a2-bab8c45a21e4",
       "key": "analytics-extensions-port",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "a0caeddb-a109-4e5e-8277-7e34784b8f3b",
+      "id": "b8a115ff-d6f8-4d4e-bbb0-991fa3c8ffee",
       "key": "analytics-extensions-is-auth-enabled",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "8a74642f-f943-407f-927a-1644aed17a72",
+      "id": "e624bb11-d31f-4ef9-812c-82cd4cb07201",
       "key": "analytics-extensions-connection-luid",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "524dda2e-d9ec-4072-b10c-2b30d282f32f",
+      "id": "daa32849-140f-47a5-b9c9-a12eedfcedab",
       "key": "datasource-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "3aba9068-5d86-47b9-9f1a-58a64e3fb40b",
+      "id": "8e59aaf4-6990-4206-a106-7f8e2179e4b2",
       "key": "admin-username",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "8aeeddad-6c34-4afe-b5b3-94873dc85f8b",
+      "id": "07d8ce10-a38c-4c81-ad76-7a69e8d0d62d",
       "key": "admin-password",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "55e5cee1-e99f-43db-adfe-1ebf0bbc33bb",
+      "id": "3b7b4680-e2e4-41ae-9e0b-76175d182014",
       "key": "flow-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "7b08303a-e5b3-4982-ab67-b154510c2d6a",
+      "id": "737e038b-2124-49c9-80e2-1baab5f455e1",
       "key": "flow-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "af31b488-fbab-49d1-8968-8f9baa891d95",
+      "id": "17b995dc-ff43-4869-bbce-92beaa2f63b4",
       "key": "connection-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "9f09b22c-f041-46da-9ba3-303f9afeb392",
+      "id": "c6c79574-97e3-41a6-b883-9c22a25e04f7",
       "key": "task-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "70dd2631-892f-4852-a88e-8ed6ad164761",
+      "id": "a478f63e-a012-476c-a02c-b109b6809856",
       "key": "flow-run-id",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "cf1d015d-5a15-42b7-995d-df16351b31e8",
+      "id": "2cee3e8a-3ced-414a-8abf-bd7c15d34766",
       "key": "capability-name",
-      "value": "",
-      "type": "string"
+      "value": ""
     },
     {
-      "id": "93dfd4c9-d1a6-45e4-b1f2-96a13d00cb44",
+      "id": "112ca451-0d11-4fbe-968c-f6ba49aed8ea",
       "key": "capability-mode",
-      "value": "",
-      "type": "string"
+      "value": ""
     }
   ]
 }
