@@ -2299,7 +2299,7 @@
               }
             },
             "url": "{{base-path}}/sites/{{site-id}}/flows/{{flow-id}}/permissions",
-            "description": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#add_flow_permissions\n\nAdds permissions to the specified flow for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\n<i>capability-name</i>\t\nThe capability to assign. If any capability has already been granted or denied for a specified user or group, that capability is ignored. Valid capabilities for a flow are <strong>ChangeHierarchy</strong>,<strong> ChangePermissions</strong>,<strong>Delete</strong>, <strong>Execute</strong>, <strong>ExportXml</strong> (Download), <strong>Read</strong> (view), and <strong>Write.</strong>\n\n<i>capability-mode</i>\t\n<strong>Allow</strong> to allow permission, or <strong>Deny</strong> to deny permission. This value is case sensitive."
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#add_flow_permissions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#add_flow_permissions)\n\nAdds permissions to the specified flow for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\n*capability-name*  \nThe capability to assign. If any capability has already been granted or denied for a specified user or group, that capability is ignored. Valid capabilities for a flow are **ChangeHierarchy**, **ChangePermissions**,**Delete**, **Execute**, **ExportXml** (Download), **Read** (view), and **Write.**\n\n*capability-mode*  \n**Allow** to allow permission, or **Deny** to deny permission. This value is case sensitive.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can call this method only if they have permission to set permissions on the flow (either explicitly or implicitly)."
           },
           "response": []
         },
@@ -2322,7 +2322,7 @@
               }
             },
             "url": "{{base-path}}/sites/{{site-id}}/schedules/{{schedule-id}}/flows",
-            "description": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#add_flow_task_to_schedule"
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#add_flow_task_to_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#add_flow_task_to_schedule)\n\nAdds a task to run a flow to an existing schedule.\n\nNote: This method is unavailable if you do not have the Data Management Add-on or Tableau Prep Conductor is disabled for your site.\n\n#### Attribute Values\n\n| *flow-id* | The ID of the flow to add to the schedule. This will include all the output steps in the flow and any output steps created in the future. |\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can only add a flow to a schedule if they own the flow, or are the project leader for the project that contains the workbook."
           },
           "response": []
         },
@@ -2336,7 +2336,7 @@
             "method": "PUT",
             "header": [],
             "url": "{{base-path}}/sites/{{site-id}}/flows/runs/{{flow-run-id}}",
-            "description": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#cancel_flow_run"
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#cancel_flow_run](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#cancel_flow_run)\n\nCancels a flow run that is in progress."
           },
           "response": []
         },
@@ -2350,7 +2350,7 @@
             "method": "DELETE",
             "header": [],
             "url": "{{base-path}}/sites/{{site-id}}/flows/{{flow-id}}",
-            "description": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow"
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow)\n\nDeletes a flow. When a flow is deleted, its associated connections, the output and input steps, any associated scheduled tasks, and run history are also deleted.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can delete a flow for which they have Read (view) and Delete permissions (either explicitly or implicitly)."
           },
           "response": []
         },
@@ -2364,7 +2364,7 @@
             "method": "DELETE",
             "header": [],
             "url": "{{base-path}}/sites/{{site-id}}/flows/{{flow-id}}/permissions/groups/{{group-id}}/{{capability-name}}/{{capability-mode}}",
-            "description": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow_permission\n\n<i>capability-name</i>\t\nThe capability to remove the permission for. Valid capabilities for a flow are <strong>ChangeHierarchy</strong>,<strong> ChangePermissions</strong>,<strong>Delete</strong>, <strong>Execute</strong>, <strong>ExportXml</strong> (Download), <strong>Read</strong> (view), and <strong>Write.</strong>\n\n<i>capability-mode</i>\t\n<strong>Allow</strong> to remove the allow permission, or <strong>Deny</strong> to remove the deny permission. This value is case sensitive."
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow_permission](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow_permission)\n\nDeletes the specified permission from the specified flow for a group or user.\n\n*capability-name*  \nThe capability to remove the permission for. Valid capabilities for a flow are **ChangeHierarchy**, **ChangePermissions**,**Delete**, **Execute**, **ExportXml** (Download), **Read** (view), and **Write.**\n\n*capability-mode*  \n**Allow** to remove the allow permission, or **Deny** to remove the deny permission. This value is case sensitive.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can delete permissions from a flow only if they have **ChangePermissions** permission for flow (either explicitly or implicitly)."
           },
           "response": []
         },
@@ -2378,7 +2378,7 @@
             "method": "DELETE",
             "header": [],
             "url": "{{base-path}}/sites/{{site-id}}/flows/{{flow-id}}/permissions/users/{{user-id}}/{{capability-name}}/{{capability-mode}}",
-            "description": "https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow_permission\n\n<i>capability-name</i>\t\nThe capability to remove the permission for. Valid capabilities for a flow are <strong>ChangeHierarchy</strong>,<strong> ChangePermissions</strong>,<strong>Delete</strong>, <strong>Execute</strong>, <strong>ExportXml</strong> (Download), <strong>Read</strong> (view), and <strong>Write.</strong>\n\n<i>capability-mode</i>\t\n<strong>Allow</strong> to remove the allow permission, or <strong>Deny</strong> to remove the deny permission. This value is case sensitive."
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow_permission](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#delete_flow_permission)\n\nDeletes the specified permission from the specified flow for a group or user.\n\n*capability-name*  \nThe capability to remove the permission for. Valid capabilities for a flow are **ChangeHierarchy**, **ChangePermissions**,**Delete**, **Execute**, **ExportXml** (Download), **Read** (view), and **Write.**\n\n*capability-mode*  \n**Allow** to remove the allow permission, or **Deny** to remove the deny permission. This value is case sensitive.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can delete permissions from a flow only if they have **ChangePermissions** permission for flow (either explicitly or implicitly)."
           },
           "response": []
         },
@@ -3109,138 +3109,6 @@
           "listen": "test",
           "script": {
             "id": "df29523a-cf69-4676-bbff-0cc4fc2cd1ef",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "Jobs",
-      "item": [
-        {
-          "name": "Jobs: Query Job",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var json = xml2Json(responseBody);",
-                  "",
-                  "//Initialize the environment variables if they don't exist",
-                  "if (postman.getEnvironmentVariable(\"jobId\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"jobId\", \"notSet\");",
-                  "}",
-                  "if (postman.getEnvironmentVariable(\"jobName\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"jobName\", \"notSet\");",
-                  "}",
-                  "",
-                  "var error = !(responseCode.code===200)",
-                  "if (error){",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  "else",
-                  "{",
-                  "    //These lines have been commented out because they would likely select the Default job and we don't want to accidentally delete that",
-                  "    //postman.setEnvironmentVariable(\"jobId\", json.tsResponse.jobs.job[0].$.id);",
-                  "    //postman.setEnvironmentVariable(\"jobName\", json.tsResponse.jobs.job[0].$.name);",
-                  "",
-                  "    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-                  "    tests[\"jobId env variable set = \" + postman.getEnvironmentVariable(\"jobId\")] = (postman.getEnvironmentVariable(\"jobId\")===\"notSet\");",
-                  "    tests[\"jobName env variable set = \" + postman.getEnvironmentVariable(\"jobName\")] = (postman.getEnvironmentVariable(\"jobId\")!==\"notSet\");",
-                  "    ",
-                  "}",
-                  ""
-                ],
-                "id": "9ec90f2e-3aa6-4c4a-b8c6-a9edf9a95859"
-              }
-            }
-          ],
-          "id": "74c50d68-e1b2-45b8-898a-515bca8613b4",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "X-Tableau-Auth",
-                "value": "{{token}}"
-              }
-            ],
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/jobs/{{jobId}}",
-            "description": "Returns status information about an asynchronous process. Jobs can be used to import users from Active Directory (the result of a call to Create Group) or synchronize an existing Tableau Server group with Active Directory (the result of a call to Update Group).\n\n\n1. GET /api/api-version/sites/site-id/jobs/job-id\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the projects.\n* job-id  The ID of the job to get status information for."
-          },
-          "response": []
-        }
-      ],
-      "id": "439dfc80-0959-45d7-b12d-f46da6e1cb4c",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "75cd3194-b82f-4f3b-9cb8-b84ac8fd63a2",
-            "type": "text/javascript",
-            "exec": [
-              "/*",
-              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-              "    - Every request in this collection will run this script.",
-              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
-              "*/",
-              "",
-              "// xml body used to authenticate and obtain an API Key",
-              "const authBody = `",
-              "<tsRequest>",
-              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-              "    </credentials>",
-              "</tsRequest>`;",
-              "",
-              "// authenticate and obtain token value to be set as 'api-key' environment variable",
-              "pm.sendRequest({",
-              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-              "    method: 'POST',",
-              "    header: {",
-              "        'content-type': 'application/xml',",
-              "    },",
-              "    body: {",
-              "        mode: 'raw',",
-              "        raw: authBody,",
-              "    }",
-              "}, function (err, res) {",
-              "    if (err) {",
-              "        console.log(err);",
-              "    } else {",
-              "        pm.environment.unset(\"api-key\");",
-              "        pm.environment.unset(\"site-id\");",
-              "        // convert the XML response body to JSON",
-              "        const jsonObject = xml2Json(res.text());",
-              "",
-              "        // obtain the API Key from the response body",
-              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-              "",
-              "        // set the variables to the returned value",
-              "        pm.environment.set(\"api-key\", apiKey);",
-              "        pm.environment.set(\"site-id\", siteId);",
-              "    };",
-              "});"
-            ]
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "1723a9ea-773f-46ad-9907-d871ff00f58d",
             "type": "text/javascript",
             "exec": [
               ""
@@ -4561,394 +4429,6 @@
           "listen": "test",
           "script": {
             "id": "e1e2b4e9-51f1-486a-9ba0-9016d5cb3270",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "Schedules",
-      "item": [
-        {
-          "name": "Schedules: Create Schedule",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var json = xml2Json(responseBody);",
-                  "",
-                  "if (responseCode.code === 200) ",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"scheduleId\", json.tsResponse.schedule.$.id);",
-                  "    postman.setEnvironmentVariable(\"scheduleName\", json.tsResponse.schedule.$.name);",
-                  "",
-                  "    tests[\"Created: schedule with Name: \" + postman.getEnvironmentVariable(\"scheduleName\") + \" and Id: \" + postman.getEnvironmentVariable(\"scheduleId\")] = true;",
-                  "",
-                  "    tests[\"scheduleId env variable set = \" + postman.getEnvironmentVariable(\"scheduleId\")] = true;",
-                  "    tests[\"scheduleName env variable set = \" + postman.getEnvironmentVariable(\"scheduleName\")] = true;",
-                  "    ",
-                  "",
-                  "}",
-                  "else",
-                  "{",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  "",
-                  "",
-                  ""
-                ],
-                "id": "baf9f1a9-e7b8-4bdc-8539-d41ee4633055"
-              }
-            }
-          ],
-          "id": "82d568ff-029f-4e4c-a929-6f75d63feaad",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "X-Tableau-Auth",
-                "value": "{{token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "text/xml"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "<tsRequest>\n  <schedule name=\"REST API TEST SCHEDULE\"\n    priority=\"50\" \n    type=\"Extract\"\n    frequency=\"Weekly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"06:00:00\" end=\"16:59:00\">\n     <intervals>\n        <interval weekDay=\"Monday\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>"
-            },
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects",
-            "description": "Creates a new schedule on Tableau Server.\n\nSchedules are not specific to sites. For more information, see Scheduled Refresh Tasks and Subscriptions and Create or Modify a Schedule in the Tableau Server documentation.\n\n**Note:** After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nURI\n1. POST /api/api-version/schedules\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n\nAttributes\n* schedule-name  The name to give to the schedule. This name identifies the schedule in the server environment when users select a schedule and manage schedule information.\n* schedule-priority  An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Higher numbers have higher priority.\n* schedule-type  Extract to create an extract refresh schedule, or Subscription to create a subscription schedule.\n* schedule-execution-order  Parallel to allow jobs associated with this schedule to run at the same time, or Serial to require the jobs to run one after the other.\n* schedule-frequency  The granularity of the schedule. Valid values are:\n  - Hourly. Jobs can be scheduled to run one or more times per day at intervals specified in minutes or hours.\n  - Daily. Jobs can be scheduled to run once per day at a specific time.\n  - Weekly. Jobs can be scheduled to run one or more times per week.\n  - Monthly. Jobs can be scheduled to run once per month on a specific day.\nThe value you provide for schedule-frequency determines whether you must include an end-time value, and what is required in the contents of the <intervals> element.\n* start-time  The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format HH:MM:SS (for example, 18:30:00). This value is required for all schedule frequencies.\n* end-time  If the schedule frequency is Hourly, the time of day on which scheduled jobs should stop being run, in the format HH:MM:SS (for example, 23:30:00). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored.\n* interval-expression  A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the the value specified in schedule-frequency.\n  - Hourly\nThe interval expression is only one of the following:\n    - hours=\"interval\" where interval is 1, 2, 4, 6, 8, or 12, representing how many hours between jobs.\n    - minutes=\"interval\" where interval is 15 or 30, representing how many minutes between jobs.\nYou can specify an interval in hours or minutes, but not both.\n  - Daily\nIf the schedule frequency is Daily, no interval is specified. Any information specified in the <intervals> element is ignored.\n  - Weekly\nThe interval expression is weekDay=\"weekday\", where weekday is Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, or Saturday.\nYou can specify multiple <interval> elements to indicate that scheduled jobs should run on multiple days during the week.\n  - Monthly\nThe interval expression is monthDay=\"day\", where day is either the day of the month (1, 2, etc.) or LastDay.\n"
-          },
-          "response": []
-        },
-        {
-          "name": "Schedules: Query Extract Refresh Tasks",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var json = xml2Json(responseBody);",
-                  "",
-                  "//Initialize the environment variables if they don't exist",
-                  "if (postman.getEnvironmentVariable(\"jobId\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"jobId\", \"notSet\");",
-                  "}",
-                  "if (postman.getEnvironmentVariable(\"jobName\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"jobName\", \"notSet\");",
-                  "}",
-                  "",
-                  "var error = !(responseCode.code===200)",
-                  "if (error){",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  "else",
-                  "{",
-                  "    //These lines have been commented out because they would likely select the Default job and we don't want to accidentally delete that",
-                  "    //postman.setEnvironmentVariable(\"jobId\", json.tsResponse.jobs.job[0].$.id);",
-                  "    //postman.setEnvironmentVariable(\"jobName\", json.tsResponse.jobs.job[0].$.name);",
-                  "",
-                  "    tests[\"Extract refresh tasks retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-                  "    tests[\"jobId env variable set = \" + postman.getEnvironmentVariable(\"jobId\")] = (postman.getEnvironmentVariable(\"jobId\")===\"notSet\");",
-                  "    tests[\"jobName env variable set = \" + postman.getEnvironmentVariable(\"jobName\")] = (postman.getEnvironmentVariable(\"jobId\")!==\"notSet\");",
-                  "    ",
-                  "}",
-                  ""
-                ],
-                "id": "b4ffa2cf-75f4-4f62-9720-dd45cbb95254"
-              }
-            }
-          ],
-          "id": "26effd6f-03e1-4017-8272-3714cca4db36",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "X-Tableau-Auth",
-                "value": "{{token}}"
-              }
-            ],
-            "url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/schedules/{{scheduleId}}/extracts",
-            "description": "Returns a list of the extract refresh tasks for a specified schedule on the specified site.\n\nTo get the ID of a schedule, call the Query Schedules method. Note that the Query Schedules method is global to the server; schedules are not specific to a site. Therefore, the URI for the Query Schedules method does not include /sites/ or a site ID. However, individual scheduled tasks are specific to a site, and the URI for Query Extract Refresh Tasks must include the site inforamtion.\n\nFor more information about refresh tasks, see Manage Refresh Tasks.\n\n\n1. GET /api/api-version/sites/site-id/schedules/schedule-id/extracts\n1. GET /api/api-version/sites/site-id/schedules/schedule-id/extracts?pageSize=page-size&pageNumber=page-number\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the projects.\n* schedule-id  The ID of the schedule to get extract information for.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results."
-          },
-          "response": []
-        },
-        {
-          "name": "Schedules: Query Schedules",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var json = xml2Json(responseBody);",
-                  "",
-                  "//Initialize the environment variables if they don't exist",
-                  "if (postman.getEnvironmentVariable(\"scheduleId\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"scheduleId\", \"notSet\");",
-                  "}",
-                  "if (postman.getEnvironmentVariable(\"scheduleName\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"scheduleName\", \"notSet\");",
-                  "}",
-                  "",
-                  "var error = !(responseCode.code===200)",
-                  "if (error){",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  "else",
-                  "{",
-                  "    //These lines have been commented out because they would likely select the Default schedule and we don't want to accidentally delete that",
-                  "    //postman.setEnvironmentVariable(\"scheduleId\", json.tsResponse.schedules.schedule[0].$.id);",
-                  "    //postman.setEnvironmentVariable(\"scheduleName\", json.tsResponse.schedules.schedule[0].$.name);",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"scheduleId\", \"notSet\");",
-                  "    postman.setEnvironmentVariable(\"scheduleName\", \"notSet\");",
-                  "",
-                  "    tests[\"Schedules retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-                  "    tests[\"scheduleId env variable set = \" + postman.getEnvironmentVariable(\"scheduleId\")] = (postman.getEnvironmentVariable(\"scheduleId\")!==\"notSet\");",
-                  "    tests[\"scheduleName env variable set = \" + postman.getEnvironmentVariable(\"scheduleName\")] = (postman.getEnvironmentVariable(\"scheduleId\")!==\"notSet\");",
-                  "    ",
-                  "}",
-                  ""
-                ],
-                "id": "18376564-bb9f-4b8d-98ef-fdb54799387e"
-              }
-            }
-          ],
-          "id": "4bfce88f-9068-43a5-8497-3457171933ef",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "X-Tableau-Auth",
-                "value": "{{token}}"
-              }
-            ],
-            "url": "http://{{server}}/api/{{api}}/schedules",
-            "description": "Returns a list of extract and subscription schedules. For each schedule, the API returns the name, frequency, priority, and other information.\n\nFor more information about schedules, see Create or Modify a Schedule.\n\n\n1. GET /api/api-version/schedules\n1. GET /api/api-version/schedules?pageSize=page-size&pageNumber=page-number\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results."
-          },
-          "response": []
-        },
-        {
-          "name": "Schedules: Update Schedule",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var json = xml2Json(responseBody);",
-                  "",
-                  "//Initialize the environment variables if they don't exist",
-                  "if (postman.getEnvironmentVariable(\"scheduleId\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"scheduleId\", \"notSet\");",
-                  "}",
-                  "if (postman.getEnvironmentVariable(\"scheduleName\")==undefined)",
-                  "{",
-                  "    postman.setEnvironmentVariable(\"scheduleName\", \"notSet\");",
-                  "}",
-                  "",
-                  "var error = !(responseCode.code===200)",
-                  "if (error){",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  "else",
-                  "{",
-                  "    ",
-                  "    tests[\"Updated: Schedule\"] = true;",
-                  "   ",
-                  "    ",
-                  "}",
-                  ""
-                ],
-                "id": "1da7a1bf-2242-4666-b6f7-c733553c9aa8"
-              }
-            }
-          ],
-          "id": "0960c5c8-1a41-475e-b705-74f648b8d2e8",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "X-Tableau-Auth",
-                "value": "{{token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "text/xml"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "<tsRequest>\n  <schedule \n    name=\"Modified by the REST API\"\n    priority=\"49\" \n    frequency=\"Hourly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"10:00:00\" end=\"22:00:00\">\n     <intervals>\n        <interval hours=\"2\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>"
-            },
-            "url": "http://{{server}}/api/{{api}}/schedules/{{scheduleId}}",
-            "description": "Modifies settings for the specified schedule, including the name, priority, and frequency details.\n\n\n1. PUT /api/api-version/schedules/schedule-id\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* schedule-id  The ID of the schedule to update. To determine what schedules are available, call Query Schedules.\n\nAttributes\n* schedule-name  The name to give to the schedule. This name identifies the schedule in the server environment when users select a schedule and manage schedule information.\n* schedule-priority  An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Higher numbers have higher priority.\n* schedule-type  Extract to create an extract refresh schedule, or Subscription to create a subscription schedule.\n* schedule-execution-order  Parallel to allow jobs associated with this schedule to run at the same time, or Serial to require the jobs to run one after the other.\n* schedule-frequency  The granularity of the schedule. Valid values are:\n  - Hourly. Jobs can be scheduled to run one or more times per day at intervals specified in minutes or hours.\n  - Daily. Jobs can be scheduled to run once per day at a specific time.\n  - Weekly. Jobs can be scheduled to run one or more times per week.\n  - Monthly. Jobs can be scheduled to run once per month on a specific day.\nThe value you provide for schedule-frequency determines whether you must include an end-time value, and what is required in the contents of the <intervals> element.\n* start-time  The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format HH:MM:SS (for example, 18:30:00). This value is required for all schedule frequencies.\n* end-time  If the schedule frequency is Hourly, the time of day on which scheduled jobs should stop being run, in the format HH:MM:SS (for example, 23:30:00). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored.\n* interval-expression  A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the the value specified in schedule-frequency.\n  - Hourly\nThe interval expression is only one of the following:\n    - hours=\"interval\" where interval is 1, 2, 4, 6, 8, or 12, representing how many hours between jobs.\n    - minutes=\"interval\" where interval is 15 or 30, representing how many minutes between jobs.\nYou can specify an interval in hours or minutes, but not both.\n  - Daily\nIf the schedule frequency is Daily, no interval is specified. Any information specified in the <intervals> element is ignored.\n  - Weekly\nThe interval expression is weekDay=\"weekday\", where weekday is Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, or Saturday.\nYou can specify multiple <interval> elements to indicate that scheduled jobs should run on multiple days during the week.\n  - Monthly\nThe interval expression is monthDay=\"day\", where day is either the day of the month (1, 2, etc.) or LastDay.\n"
-          },
-          "response": []
-        },
-        {
-          "name": "Schedules: Delete Schedule",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var json = xml2Json(responseBody);",
-                  "",
-                  "if (responseCode.code === 204) ",
-                  "{",
-                  "",
-                  "",
-                  "    tests[\"Deleted: schedule with Name: \" + postman.getEnvironmentVariable(\"scheduleName\") + \" and Id: \" + postman.getEnvironmentVariable(\"scheduleId\")] = true;",
-                  "    postman.setEnvironmentVariable(\"scheduleId\", \"notSet\");",
-                  "    postman.setEnvironmentVariable(\"scheduleName\", \"notSet\");",
-                  "    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-                  "    tests[\"scheduleId env variable set = \" + postman.getEnvironmentVariable(\"scheduleId\")] = (postman.getEnvironmentVariable(\"scheduleId\")!==\"notSet\");",
-                  "    tests[\"scheduleName env variable set = \" + postman.getEnvironmentVariable(\"scheduleName\")] = (postman.getEnvironmentVariable(\"scheduleId\")!==\"notSet\");",
-                  "    ",
-                  "",
-                  "}",
-                  "else",
-                  "{",
-                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-                  "    tests[\"full body: \" + responseBody] = false;",
-                  "}",
-                  "",
-                  "",
-                  ""
-                ],
-                "id": "464c8d94-7f19-462b-98d4-616af26c2244"
-              }
-            }
-          ],
-          "id": "0ff156c4-0464-4e42-8948-be31dd6b5604",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "X-Tableau-Auth",
-                "value": "{{token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "text/xml"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "<tsRequest>\n  <schedule name=\"REST API TEST SCHEDULE\"\n    priority=\"50\" \n    type=\"Extract\"\n    frequency=\"Weekly\" \n    executionOrder=\"Parallel\">\n    <frequencyDetails start=\"06:00:00\">\n     <intervals>\n        <interval weekDay=\"Monday\" />\n      </intervals>\n    </frequencyDetails>\n  </schedule>\n</tsRequest>"
-            },
-            "url": "http://{{server}}/api/{{api}}/schedules/{{scheduleId}}",
-            "description": "Deletes the specified schedule.\n\nURI\n1. DELETE /api/api-version/schedules/schedule-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* schedule-id  The ID of the schedule to delete. To determine what schedules are available, call Query Schedules.\n"
-          },
-          "response": []
-        }
-      ],
-      "id": "826ad481-ea30-44f0-9d96-b4f93c49fc78",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "7d7a0379-aacc-46e3-9784-323009753b19",
-            "type": "text/javascript",
-            "exec": [
-              "/*",
-              "    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-              "    - Every request in this collection will run this script.",
-              "    - To authenticate with different users, create separate environments with username, password and content-url variables",
-              "*/",
-              "",
-              "// xml body used to authenticate and obtain an API Key",
-              "const authBody = `",
-              "<tsRequest>",
-              "    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-              "        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-              "    </credentials>",
-              "</tsRequest>`;",
-              "",
-              "// authenticate and obtain token value to be set as 'api-key' environment variable",
-              "pm.sendRequest({",
-              "    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-              "    method: 'POST',",
-              "    header: {",
-              "        'content-type': 'application/xml',",
-              "    },",
-              "    body: {",
-              "        mode: 'raw',",
-              "        raw: authBody,",
-              "    }",
-              "}, function (err, res) {",
-              "    if (err) {",
-              "        console.log(err);",
-              "    } else {",
-              "        pm.environment.unset(\"api-key\");",
-              "        pm.environment.unset(\"site-id\");",
-              "        // convert the XML response body to JSON",
-              "        const jsonObject = xml2Json(res.text());",
-              "",
-              "        // obtain the API Key from the response body",
-              "        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-              "        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-              "",
-              "        // set the variables to the returned value",
-              "        pm.environment.set(\"api-key\", apiKey);",
-              "        pm.environment.set(\"site-id\", siteId);",
-              "    };",
-              "});"
-            ]
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "94b35300-5e4d-4e05-a57e-e46db93dbc2f",
             "type": "text/javascript",
             "exec": [
               ""
@@ -6506,8 +5986,80 @@
       ]
     },
     {
-      "name": "Workbook Views",
+      "name": "Views",
       "item": [
+        {
+          "name": "Query Views for a Workbook",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ce7d932b-d413-4ceb-b10d-76719273d8ab",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "72528c8f-06c1-4648-8f18-abd0c65b3d12",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views/",
+              "host": [
+                "{{base-path}}"
+              ],
+              "path": [
+                "sites",
+                "{{site-id}}",
+                "workbooks",
+                "{{workbook-id}}",
+                "views",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "includeUsageStatistics",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get a list of views in a Workbook\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/views\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/views?includeUsageStatistics=get-usage-information\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to get the views for.\n* (Optional) get-usage-information  true to return usage statistics. The default is false."
+          },
+          "response": []
+        },
+        {
+          "name": "Query View Preview Image",
+          "id": "daa77dd0-1c0c-48a3-89a2-96f3cc154748",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views/{{view-id}}/previewImage"
+          },
+          "response": []
+        },
+        {
+          "name": "Query View Image",
+          "id": "604cebac-7e10-4d2f-a915-12ea1d955402",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/image"
+          },
+          "response": []
+        },
         {
           "name": "Workbook Management: Query View with Preview Image",
           "event": [
@@ -6650,14 +6202,11 @@
               }
             ],
             "url": {
-              "raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/views/{{view-id}}/pdf?orientation=Landscape",
-              "protocol": "http",
+              "raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/pdf?orientation=Landscape",
               "host": [
-                "{{server}}"
+                "{{base-path}}"
               ],
               "path": [
-                "api",
-                "{{api-version}}",
                 "sites",
                 "{{site-id}}",
                 "views",
@@ -6839,7 +6388,7 @@
       "name": "Workbooks",
       "item": [
         {
-          "name": "Workbook Management: Query Workbook",
+          "name": "Query Workbook",
           "event": [
             {
               "listen": "test",
@@ -7484,6 +7033,32 @@
             "description": "Modifies an existing workbook, allowing you to change the owner or project that the workbook belongs to and whether the workbook shows views in tabs.\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to update.\n\n\nAttributes\n* show-tabs-flag  (Optional) Specify true to have the published workbook show views in tabs; otherwise, false. The default is false.\n* new-project-id  (Optional) The ID of a project to assign the workbook to.\n* new-owner-id  (Optional) The ID of a user to assign the workbook to as owner.\n \nAny combination of the elements inside the <workbook> element is valid. Only the attributes and child elements that are included result in updates to the data source. If no attributes or nested elements are included, no update is made.\n\nIf the <project> element is included, the id attribute must be included; other attributes of the <project> element are ignored.\n\nIf the <owner> element is included, the id attribute must be included; other attributes of the <owner> element are ignored."
           },
           "response": []
+        },
+        {
+          "name": "Query Workbooks for Site",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6aadc8c7-1c0a-40c5-a771-e28711f4eedf",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "ace171ea-fd44-4047-ba68-41b5319f29e6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/workbooks",
+            "description": "Returns the workbooks on a site.\nIf the user is not an administrator, the method returns just the workbooks that the user has permissions to view.\n\nURI's\n1. GET /api/api-version/sites/site-id/workbooks\n1. GET /api/api-version/sites/site-id/workbooks?filter=filter-expression\n1. GET /api/api-version/sites/site-id/workbooks?sort=sort-expression\n1. GET /api/api-version/sites/site-id/workbooks?pageSize=page-size&pageNumber=page-number\n\nParameter Values\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbooks.\n* filter-expression  (Optional) An expression that lets you specify a subset of workbooks to return. You can filter on predefined fields such as name, tags, and createdAt. You can include multiple filter expressions. For more information, see Filtering and Sorting.\n* sort-expression  (Optional) An expression that lets you specify the order in which workbook information is returned. If you do not specify a sort expression, the sort order of the information that's returned is undefined. For more information, see Filtering and Sorting.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results.\n"
+          },
+          "response": []
         }
       ],
       "id": "e623774a-0d55-4bcd-b6b6-fc5ff689b81c",
@@ -7666,43 +7241,593 @@
       ]
     },
     {
-      "name": "Update Schedule",
-      "event": [
+      "name": "Jobs, Tasks, and Schedules Methods",
+      "item": [
         {
-          "listen": "test",
-          "script": {
-            "id": "d44828a0-03b4-4ef0-81a1-1ef827070cd0",
-            "exec": [
-              ""
+          "name": "Add Data Source to Schedule",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "edfb5ff1-4f22-438c-9fd4-c23c1026f9d5",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "ded76ef2-43d2-4476-a4e9-a07132275c3c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n  <task>\n    <extractRefresh>\n      <datasource id=\"{{datasource-id}}\" />\n    </extractRefresh>\n  </task>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/sites/{{site-id}}/schedules/{{schedule-id}}/datasources",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#add_data_source_to_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#add_data_source_to_schedule)\n\nAdds a task to refresh a data source to an existing schedule. This method is not available for Tableau Online.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can only add a data source to a schedule if they own the data source, or are the project leader for the project that contains the data source."
+          },
+          "response": []
+        },
+        {
+          "name": "Add Workbook to Schedule",
+          "id": "d3a22b6d-5444-406b-9c45-aab058d502d3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n  <task>\n    <extractRefresh>\n      <workbook id=\"{{workbook-id}}\" />\n    </extractRefresh>\n  </task>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/sites/{{site-id}}/schedules/{{schedule-id}}/workbooks",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#add_workbook_to_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#add_workbook_to_schedule)\n\nAdds a task to refresh or accelerate a workbook to an existing schedule. This method is not available for Tableau Online.\n\nThe task type must match the schedule type. For a list of schedule types, see [Create a Schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm#create_schedule).\n\n#### Permissions\n\nOnly Tableau Server users who are server administrators or site administrators can add a workbook to a data acceleration schedule. Tableau Server users who are not server administrators or site administrators can only add a workbook to other types of schedules if they own the workbook, or are the project leader for the project that contains the workbook."
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Job",
+          "id": "ba35bfbe-4714-4d82-a479-607e15a6bc54",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/jobs/{{job-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#cancel_job](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#cancel_job)\n\nCancels a job specified by job ID. To get a list of job IDs for jobs that are currently queued or in-progress, use the [Query Jobs](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_jobs) method.\n\nThe following jobs can be canceled using the Cancel Job method:\n\n*   Full extract refresh\n*   Incremental extract refresh\n*   Subscription\n*   Flow Run\n*   Data Acceleration\n*   Bridge full extract refresh\n*   Bridge incremental extract refresh\n*   Queue upgrade Thumbnail (Job that puts the upgrade thumbnail job on the queue)\n*   Upgrade Thumbnail\n    \n\n#### Permissions\n\nThis method can only be called by server administrators and site administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Data Acceleration Task",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7f68a96c-73d2-4ef2-a3e1-f41bf2808a80",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "125e20b0-b2ff-47a8-ba53-10359a4d72ba",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml"
+              }
             ],
-            "type": "text/javascript"
-          }
+            "url": "{{base-path}}/sites/{{site-id}}/tasks/dataAcceleration/{{dataAcceleration-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#delete_data_acceleration_task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#delete_data_acceleration_task)\n\nDeletes a data acceleration task.\n\nPermissions\n\nThis method can only be called by server administrators and site administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Extract Refresh Task",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7b5cf5be-c48a-4c6f-b57b-1dcf233d8ac8",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "694d05cf-a16b-4297-9778-060f92da18d6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml"
+              }
+            ],
+            "url": "{{base-path}}/sites/{{site-id}}/tasks/extractRefreshes/{{task-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#delete_extract_refresh_task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#delete_extract_refresh_task)\n\nDeletes an extract refresh task.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can delete an extract refresh task for which they have **Read** (view) and **Delete** permissions (either explicitly or implicitly)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Data Acceleration Tasks in a Site",
+          "id": "2f1292b0-9c56-44e4-8217-43db117702e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/tasks/dataAcceleration",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_data_acceleration_tasks](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_data_acceleration_tasks)\n\nReturns a list of data acceleration tasks for the site.\n\n#### Permissions\n\nThis method can only be called by server administrators and site administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Extract Refresh Task",
+          "id": "7d04e63f-fff8-4402-9a71-7d0958162713",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/tasks/extractRefreshes/{{task-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_extract_refresh_task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_extract_refresh_task)\n\nReturns information about the specified extract refresh task.\n\nThis method shows you information about the scheduled task for the data source extract or a published workbook that connects to the data extract.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can only access the list of extract refresh tasks that they own."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Extract Refresh Tasks in a Site",
+          "id": "0edfc491-af80-4c11-bbe0-bafed1297902",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/sites/{{site-id}}/tasks/extractRefreshes",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_extract_refresh_tasks](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_extract_refresh_tasks)\n\nReturns a list of extract refresh tasks for the site.\n\nThis method shows you information about the scheduled tasks on the specified site for data source extracts or a published workbooks that connect to data extracts.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can only access the list of extract refresh tasks that they own."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Schedule",
+          "id": "b61b6e2b-4b75-42e7-9cc7-7691135324e1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base-path}}/schedules/{{schedule-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get-schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get-schedule)\n\nReturns detailed information about the specified schedule.\n\n#### Permissions\n\nOnly Tableau Server administrators or site administrators can query a schedule."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Extract Refresh Tasks in a Schedule",
+          "id": "9b2e0f20-106a-4703-a35b-1caa062f6d18",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base-path}}/sites/{{site-id}}/schedules/{{schedule-id}}/extracts",
+              "host": [
+                "{{base-path}}"
+              ],
+              "path": [
+                "sites",
+                "{{site-id}}",
+                "schedules",
+                "{{schedule-id}}",
+                "extracts"
+              ],
+              "query": [
+                {
+                  "key": "pageSize",
+                  "value": "page-size",
+                  "description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "pageNumber",
+                  "value": "page-number",
+                  "description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_extract_refresh_tasks](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_extract_refresh_tasks)\n\nReturns a list of the extract refresh tasks for a specified schedule on the specified site.\n\nTo get the ID of a schedule, call the [Query Schedules](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_schedules) method. Note that the **Query Schedules** method is global to the server; schedules are not specific to a site. Therefore, the URI for the **Query Schedules** method does not include `/sites/` or a site ID. However, individual scheduled tasks are specific to a site, and the URI for **Query Extract Refresh Tasks** must include the site information.\n\nFor more information about refresh tasks, see [Manage Refresh Tasks(Link opens in a new window)](https://help.tableau.com/current/server/en-us/help.htm#task.htm).\n\n#### Permissions\n\nThis method can only be called by server administrators and site administrators. When a site administrator calls this method, the payload contains only the tasks that are associated with the site that the user is signed in to."
+          },
+          "response": []
+        },
+        {
+          "name": "Query Jobs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "69aed57d-1188-4c10-ac62-edbafc1b42a6",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "6d9a28a5-4379-4b9a-82c9-f20c5136315d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base-path}}/sites/{{site-id}}/jobs",
+              "host": [
+                "{{base-path}}"
+              ],
+              "path": [
+                "sites",
+                "{{site-id}}",
+                "jobs"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": null,
+                  "description": "Calls to this method can be filtered, as shown in the URI examples shown below. To learn more about filtering, see Filtering and Sorting in the REST API.\n\n",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_jobs](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_jobs)\n\nReturns a list of active jobs on the specified site. To get details on a specific job, pass a job ID returned by this method to the [Query Job](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_job) method. To cancel an active job, pass a job ID returned by this method to the [Cancel Job](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#cancel_job) method.\n\nCalls to this method can be filtered, as shown in the URI examples shown below. To learn more about filtering, see [Filtering and Sorting in the REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_filtering_and_sorting.htm).\n\n#### Permissions\n\nThis method can only be called by server administrators and site administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Run Extract Refresh Task",
+          "id": "9b0004f6-16a3-48f5-b6da-59f8344d3170",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n</tsRequest>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": "{{base-path}}/sites/{{site-id}}/tasks/extractRefreshes/{{task-id}}/runNow",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#run_extract_refresh_task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#run_extract_refresh_task)\n\nRuns the specified extract refresh task.\n\nNote: This method will fail and result in an error if your Server Administrator has disabled the RunNow setting for the site. For more information, see [Tableau Server Settings(Link opens in a new window)](https://help.tableau.com/current/server/en-us/maintenance_set.htm).\n\nThis method runs the scheduled task for the data source extract or the published workbook that connects to the data extract. You must first schedule the task for the extract refresh. You can do this using the [Create Schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#create_schedule) method to create the task. To get information about the extract refresh task, use the [Get Extract Refresh Tasks](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#get_extract_refresh_tasks) method, which returns the **extractRefresh** ID that you use as the *task-id*.\n\nThe method adds the refresh task to the backgrounder queue. Depending upon the backgrounder load, the task might not run immediately. The method returns information about the backgrounder job responsible for running the extract refresh task, including a job id that can be used with the [Query Job](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_job) method to query the status of the extract refresh.\n\nAn extract refresh task can be initiated by a REST API call, a tabcmd command, or a job calling the task on a schedule. A REST request to start a refresh task will fail if the task has been put in the task queue in any of these ways, or is already in progress.\n\n#### Permissions\n\nTableau Server users who are not server administrators or site administrators can only run the extract refresh tasks that they own."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Schedule",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ccc93466-5731-4c7e-94cb-262ba650a8bd",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "521477be-e1bb-4ccb-85b6-b9a5debc4b0e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsResponse>\n  <schedule id=\"{{schedule-id}}\"\n        name=\"schedule-name\"\n        state=\"new-state\"\n        priority=\"schedule-priority\"\n        createdAt=\"datetime-created\"\n        updatedAt=\"datetime-updated\"\n        type=\"Extract-or-Subscription\"\n        frequency=\"schedule-frequency\"\n        nextRunAt=\"datetime-next-run\"\n        endScheduleAt =\"datetime-expiration\"\n        executionOrder=\"Parallel-or-Serial\">\n        <frequencyDetails frequency-expression >\n            <intervals>\n               <interval interval-expression />\n             </intervals>\n        </frequencyDetails>\n  </schedule>\n</tsResponse>"
+            },
+            "url": "{{base-path}}/schedules/{{schedule-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule)\n\nModifies settings for the specified schedule, including the name, priority, and frequency details.\n\n#### Attribute Values\n\n| *new-schedule-name* | The new name to give to the schedule. |\n| *new-schedule-priority* | An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Lower numbers have higher priority. |\n| *new-schedule-execution-order* | `Parallel` to allow jobs associated with this schedule to run at the same time, or `Serial` to require the jobs to run one after the other. |\n| *new-schedule-frequency* | <br><br>The granularity of the schedule. Valid values are:<br><br>*   `Hourly`. `Hourly`. Jobs can be scheduled to at intervals specified in run one or more times per day at intervals specified in minutes or hours. The allowed intervals 15 and 30 minutes and 2, 4, 6, 8, and 12 hours.<br>*   `Daily`. Jobs can be scheduled to run once day.<br>*   `Weekly`. Jobs can be scheduled to run one or more times per week.<br>*   `Monthly`. Jobs can be scheduled to run once per month on a specific day.<br><br>The value you provide for *schedule-frequency* determines whether you must include an *end-time* value, and what is required in the contents of the  element.  <br><br><br> |\n| *new-state* | `Active` to enable the schedule, or `Suspended` to disable it. |\n| *start-time* | The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format `HH:MM:SS` (for example, `18:30:00`). This value is required for all schedule frequencies. The entered time will be applied based on the time zone of your server. |\n| *end-time* | If the schedule frequency is `Hourly`, the time of day on which scheduled jobs should stop being run, in the format `HH:MM:SS` (for example, `23:30:00`). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored. The entered time will be applied based on the time zone of your server. |\n| *interval-expression* | <br><br>A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the value specified in *schedule-frequency*.<br><br>**`Hourly`**<br><br>The interval expression is only one of the following:<br><br>*   `hours=\"`*`interval`*`\"` where *interval* is `1`, `2`, `4`, `6`, `8`, or `12`, representing how many hours between jobs.<br>*   `minutes=\"`*`interval`*`\"` where *interval* is `15` or `30`, representing how many minutes between jobs.<br><br>You can specify an interval in hours or minutes, but not both.<br><br>**`Daily`**<br><br>If the schedule frequency is `Daily`, no interval is specified. Any information specified in the  element is ignored.<br><br>**`Weekly`**<br><br>The interval expression is `weekDay=\"`*`weekday`*`\"`, where *weekday* is `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, or `Saturday`.<br><br>You can specify multiple  elements to indicate that scheduled jobs should run on multiple days during the week.<br><br>Note: Updating a schedule without specifying days of the week will reset any existing weekly interval to include all 7 days. If you need the job you are updating to remain scheduled on selected days, make sure to include that information in your update request.<br><br>**`Monthly`**<br><br>The interval expression is `monthDay=\"`*`day`*`\"`, where *day* is either the day of the month (`1`, `2`, etc.) or `LastDay`.<br><br>Note: If you want to specify multiple days in the month, you can do this using the web interface. You cannot create such a monthly schedule using REST API.<br><br> |\n\nAny combination of the attributes inside the  element is valid. Only the attributes and child elements that are included result in updates to the schedule. If no attributes or nested elements are included, no update is made.\n\n#### Permissions\n\nThis method can only be called by server administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Schedule",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var json = xml2Json(responseBody);",
+                  "",
+                  "if (responseCode.code === 200) ",
+                  "{",
+                  "    postman.setEnvironmentVariable(\"scheduleId\", json.tsResponse.schedule.$.id);",
+                  "    postman.setEnvironmentVariable(\"scheduleName\", json.tsResponse.schedule.$.name);",
+                  "",
+                  "    tests[\"Created: schedule with Name: \" + postman.getEnvironmentVariable(\"scheduleName\") + \" and Id: \" + postman.getEnvironmentVariable(\"scheduleId\")] = true;",
+                  "",
+                  "    tests[\"scheduleId env variable set = \" + postman.getEnvironmentVariable(\"scheduleId\")] = true;",
+                  "    tests[\"scheduleName env variable set = \" + postman.getEnvironmentVariable(\"scheduleName\")] = true;",
+                  "    ",
+                  "",
+                  "}",
+                  "else",
+                  "{",
+                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
+                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
+                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
+                  "    tests[\"full body: \" + responseBody] = false;",
+                  "}",
+                  "",
+                  "",
+                  ""
+                ],
+                "id": "baf9f1a9-e7b8-4bdc-8539-d41ee4633055"
+              }
+            }
+          ],
+          "id": "82d568ff-029f-4e4c-a929-6f75d63feaad",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Tableau-Auth",
+                "value": "{{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/xml"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<tsRequest>\n  <schedule name=\"schedule-name\"\n\tpriority=\"schedule-priority\"\n\ttype=\"schedule-type\"\n\tfrequency=\"schedule-frequency\"\n\texecutionOrder=\"schedule-execution-order\">\n\t  <frequencyDetails start=\"start-time\" end=\"end-time\">\n\t    <intervals>\n\t      <interval interval-expression />\n\t    </intervals>\n \t  </frequencyDetails>\n  </schedule>\n</tsRequest>"
+            },
+            "url": "{{base-path}}/schedules",
+            "description": "Schedules are not specific to sites. For more information, see [Creating a Flow Schedule(Link opens in a new window)](https://help.tableau.com/current/prep/en-us/prep_conductor_create_schedule_definitions.htm), [Extracts and Refresh Schedules(Link opens in a new window)](https://help.tableau.com/current/server/en-us/publish.htm) and [Create or Modify a Schedule(Link opens in a new window)](https://help.tableau.com/current/server/en-us/help.htm#schedule_manage_create.htm) in the Tableau Server documentation. Scheduling flows requires Tableau Prep Conductor to be enabled on your Tableau Server. For more information, see [Enable Tableau Prep Conductor(Link opens in a new window)](https://help.tableau.com/current/prep/en-us/prep_conductor_config_server_overview.htm).\n\n**Note**: After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nAttributes\n\n| **Value** | **Description** |\n| --- | --- |\n| schedule-name | The name to give to the schedule. This name identifies the schedule in the server environment when users select a schedule and manage schedule information. |\n| schedule-priority | An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Lower numbers have higher priority. |\n| schedule-type | Flow to create a flow schedule,Extract to create an extract refresh schedule, Subscription to create a subscription schedule, or DataAcceleration to create a data acceleration schedule. |\n| schedule-execution-order | Parallel to allow jobs associated with this schedule to run at the same time, or Serial to require the jobs to run one after the other. |\n| schedule-frequency | This represents the granularity of the schedule.  <br>  <br>Hourly. Jobs can be scheduled to at intervals specified in run one or more times per day at intervals specified in minutes or hours. The allowed intervals 15 and 30 minutes and 2, 4, 6, 8, and 12 hours.  <br>  <br>Daily. Jobs can be scheduled to run once day.  <br>Weekly. Jobs can be scheduled to run one or more times per week.  <br>Monthly. Jobs can be scheduled to run once per month on a specific day.  <br>The value you provide for schedule-frequency determines whether you must include an end-time value, and what is required in the contents of the element. |\n| start-time | The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format HH:MM:SS (for example, 18:30:00). This value is required for all schedule frequencies. The entered time will be applied based on the time zone of your server. |\n| end-time | If the schedule frequency is Hourly, the time of day on which scheduled jobs should stop being run, in the format HH:MM:SS (for example, 23:30:00). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored. The entered time will be applied based on the time zone of your server. |\n| interval-expression | A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the value specified in schedule-frequency.  <br>Hourly  <br>  <br>The interval expression is only one of the following:  <br>  <br>hours=\"interval\" where interval is 1, 2, 4, 6, 8, or 12, representing how many hours between jobs.  <br>minutes=\"interval\" where interval is 15 or 30, representing how many minutes between jobs.  <br>You can specify an interval in hours or minutes, but not both.  <br>  <br>Daily  <br>  <br>If the schedule frequency is Daily, no interval is specified. Any information specified in the element is ignored.  <br>  <br>Weekly  <br>  <br>The interval expression is weekDay=\"weekday\", where weekday is Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, or Saturday.  <br>  <br>You can specify multiple elements to indicate that scheduled jobs should run on multiple days during the week.  <br>  <br>Monthly  <br>  <br>The interval expression is monthDay=\"day\", where day is either the day of the month (1, 2, etc.) or LastDay.  <br>  <br>Note: If you want to specify multiple days in the month, you can do this using the web interface. You cannot create such a monthly schedule using REST API. |\n\n#### Permissions\n\nThis method can only be called by server administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Schedule",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "464c8d94-7f19-462b-98d4-616af26c2244",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "0ff156c4-0464-4e42-8948-be31dd6b5604",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml"
+              },
+              {
+                "key": "X-Tableau-Auth",
+                "value": "{{token}}"
+              }
+            ],
+            "url": "{{base-path}}/schedules/{{schedule-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#delete_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#delete_schedule)\n\nDeletes the specified schedule.\n\n#### Permissions\n\nThis method can only be called by server administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Query Job",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var json = xml2Json(responseBody);",
+                  "",
+                  "//Initialize the environment variables if they don't exist",
+                  "if (postman.getEnvironmentVariable(\"jobId\")==undefined)",
+                  "{",
+                  "    postman.setEnvironmentVariable(\"jobId\", \"notSet\");",
+                  "}",
+                  "if (postman.getEnvironmentVariable(\"jobName\")==undefined)",
+                  "{",
+                  "    postman.setEnvironmentVariable(\"jobName\", \"notSet\");",
+                  "}",
+                  "",
+                  "var error = !(responseCode.code===200)",
+                  "if (error){",
+                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
+                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
+                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
+                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
+                  "    tests[\"full body: \" + responseBody] = false;",
+                  "}",
+                  "else",
+                  "{",
+                  "    //These lines have been commented out because they would likely select the Default job and we don't want to accidentally delete that",
+                  "    //postman.setEnvironmentVariable(\"jobId\", json.tsResponse.jobs.job[0].$.id);",
+                  "    //postman.setEnvironmentVariable(\"jobName\", json.tsResponse.jobs.job[0].$.name);",
+                  "",
+                  "    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true",
+                  "    tests[\"jobId env variable set = \" + postman.getEnvironmentVariable(\"jobId\")] = (postman.getEnvironmentVariable(\"jobId\")===\"notSet\");",
+                  "    tests[\"jobName env variable set = \" + postman.getEnvironmentVariable(\"jobName\")] = (postman.getEnvironmentVariable(\"jobId\")!==\"notSet\");",
+                  "    ",
+                  "}",
+                  ""
+                ],
+                "id": "9ec90f2e-3aa6-4c4a-b8c6-a9edf9a95859"
+              }
+            }
+          ],
+          "id": "74c50d68-e1b2-45b8-898a-515bca8613b4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tableau-Auth",
+                "value": "{{token}}"
+              }
+            ],
+            "url": "{{base-path}}/sites/{{site-id}}/jobs/{{job-id}}",
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_job](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_job)\n\nReturns status information about an asynchronous process that is tracked using a job. This method can be used to query jobs that are used to do the following:\n\n*   Import users from Active Directory (the result of a call to [Create Group](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#create_group)).\n*   Synchronize an existing Tableau Server group with Active Directory (the result of a call to [Update Group](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_group)).\n*   Run extract refresh tasks (the result of a call to [Run Extract Refresh Task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#run_extract_refresh_task)).\n*   Publish a workbook asynchronously (the result of a call to [Publish Workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#publish_workbook)).\n*   Run workbook or view subscriptions (the result of a call to [Create Subscription](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#create_subscription) or [Update Subscription](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_subscription))\n*   Run a flow task (the result of a call to [Run Flow Task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_flow.htm#RunFlowTask))\n    \n\n#### Permissions\n\nThis method can only be called by server administrators and site administrators."
+          },
+          "response": []
+        },
+        {
+          "name": "Query Schedules",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var json = xml2Json(responseBody);",
+                  "",
+                  "//Initialize the environment variables if they don't exist",
+                  "if (postman.getEnvironmentVariable(\"scheduleId\")==undefined)",
+                  "{",
+                  "    postman.setEnvironmentVariable(\"scheduleId\", \"notSet\");",
+                  "}",
+                  "if (postman.getEnvironmentVariable(\"scheduleName\")==undefined)",
+                  "{",
+                  "    postman.setEnvironmentVariable(\"scheduleName\", \"notSet\");",
+                  "}",
+                  "",
+                  "var error = !(responseCode.code===200)",
+                  "if (error){",
+                  "    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
+                  "    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
+                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
+                  "    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
+                  "    tests[\"full body: \" + responseBody] = false;",
+                  "}",
+                  "else",
+                  "{",
+                  "    //These lines have been commented out because they would likely select the Default schedule and we don't want to accidentally delete that",
+                  "    //postman.setEnvironmentVariable(\"scheduleId\", json.tsResponse.schedules.schedule[0].$.id);",
+                  "    //postman.setEnvironmentVariable(\"scheduleName\", json.tsResponse.schedules.schedule[0].$.name);",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"scheduleId\", \"notSet\");",
+                  "    postman.setEnvironmentVariable(\"scheduleName\", \"notSet\");",
+                  "",
+                  "    tests[\"Schedules retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
+                  "    tests[\"scheduleId env variable set = \" + postman.getEnvironmentVariable(\"scheduleId\")] = (postman.getEnvironmentVariable(\"scheduleId\")!==\"notSet\");",
+                  "    tests[\"scheduleName env variable set = \" + postman.getEnvironmentVariable(\"scheduleName\")] = (postman.getEnvironmentVariable(\"scheduleId\")!==\"notSet\");",
+                  "    ",
+                  "}",
+                  ""
+                ],
+                "id": "18376564-bb9f-4b8d-98ef-fdb54799387e"
+              }
+            }
+          ],
+          "id": "4bfce88f-9068-43a5-8497-3457171933ef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tableau-Auth",
+                "value": "{{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base-path}}/schedules",
+              "host": [
+                "{{base-path}}"
+              ],
+              "path": [
+                "schedules"
+              ],
+              "query": [
+                {
+                  "key": "pageSize",
+                  "value": "page-size",
+                  "description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "pageNumber",
+                  "value": "page-number",
+                  "description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_schedules](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#query_schedules)\n\nReturns a list of flows, extract and subscription schedules. For each schedule, the API returns the name, frequency, priority, and other information.\n\nFor more information about schedules, see [Create or Modify a Schedule(Link opens in a new window)](https://help.tableau.com/current/server/en-us/help.htm#schedule_manage_create.htm).\n\n#### Permissions\n\nThis method can only be called by server administrators and site administrators."
+          },
+          "response": []
         }
       ],
-      "id": "6d94c6db-893e-4e11-bc24-ba590c0ff661",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "X-Tableau-Auth",
-            "value": "{{token}}"
-          },
-          {
-            "key": "Content-Type",
-            "value": "text/xml"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "<tsResponse>\n  <schedule id=\"{{schedule-id}}\"\n        name=\"schedule-name\"\n        state=\"new-state\"\n        priority=\"schedule-priority\"\n        createdAt=\"datetime-created\"\n        updatedAt=\"datetime-updated\"\n        type=\"Extract-or-Subscription\"\n        frequency=\"schedule-frequency\"\n        nextRunAt=\"datetime-next-run\"\n        endScheduleAt =\"datetime-expiration\"\n        executionOrder=\"Parallel-or-Serial\">\n        <frequencyDetails frequency-expression >\n            <intervals>\n               <interval interval-expression />\n             </intervals>\n        </frequencyDetails>\n  </schedule>\n</tsResponse>"
-        },
-        "url": "{{base-path}}/schedules/{{schedule-id}}",
-        "description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_jobs_tasks_and_schedules.htm#update_schedule)\n\nModifies settings for the specified schedule, including the name, priority, and frequency details.\n\n#### Attribute Values\n\n| *new-schedule-name* | The new name to give to the schedule. |\n| *new-schedule-priority* | An integer value between 1 and 100 that determines the default priority of the schedule if multiple tasks are pending in the queue. Lower numbers have higher priority. |\n| *new-schedule-execution-order* | `Parallel` to allow jobs associated with this schedule to run at the same time, or `Serial` to require the jobs to run one after the other. |\n| *new-schedule-frequency* | <br><br>The granularity of the schedule. Valid values are:<br><br>*   `Hourly`. `Hourly`. Jobs can be scheduled to at intervals specified in run one or more times per day at intervals specified in minutes or hours. The allowed intervals 15 and 30 minutes and 2, 4, 6, 8, and 12 hours.<br>*   `Daily`. Jobs can be scheduled to run once day.<br>*   `Weekly`. Jobs can be scheduled to run one or more times per week.<br>*   `Monthly`. Jobs can be scheduled to run once per month on a specific day.<br><br>The value you provide for *schedule-frequency* determines whether you must include an *end-time* value, and what is required in the contents of the  element.  <br><br><br> |\n| *new-state* | `Active` to enable the schedule, or `Suspended` to disable it. |\n| *start-time* | The time of day on which scheduled jobs should run (or if the frequency is hourly, on which they should start being run), in the format `HH:MM:SS` (for example, `18:30:00`). This value is required for all schedule frequencies. The entered time will be applied based on the time zone of your server. |\n| *end-time* | If the schedule frequency is `Hourly`, the time of day on which scheduled jobs should stop being run, in the format `HH:MM:SS` (for example, `23:30:00`). Hourly jobs will occur at the specified intervals between the start time and the end time. For other schedule frequencies, this value is not required; if the attribute is included, it is ignored. The entered time will be applied based on the time zone of your server. |\n| *interval-expression* | <br><br>A value that specifies the interval between jobs associated with the schedule. The value you specify here depends on the value specified in *schedule-frequency*.<br><br>**`Hourly`**<br><br>The interval expression is only one of the following:<br><br>*   `hours=\"`*`interval`*`\"` where *interval* is `1`, `2`, `4`, `6`, `8`, or `12`, representing how many hours between jobs.<br>*   `minutes=\"`*`interval`*`\"` where *interval* is `15` or `30`, representing how many minutes between jobs.<br><br>You can specify an interval in hours or minutes, but not both.<br><br>**`Daily`**<br><br>If the schedule frequency is `Daily`, no interval is specified. Any information specified in the  element is ignored.<br><br>**`Weekly`**<br><br>The interval expression is `weekDay=\"`*`weekday`*`\"`, where *weekday* is `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, or `Saturday`.<br><br>You can specify multiple  elements to indicate that scheduled jobs should run on multiple days during the week.<br><br>Note: Updating a schedule without specifying days of the week will reset any existing weekly interval to include all 7 days. If you need the job you are updating to remain scheduled on selected days, make sure to include that information in your update request.<br><br>**`Monthly`**<br><br>The interval expression is `monthDay=\"`*`day`*`\"`, where *day* is either the day of the month (`1`, `2`, etc.) or `LastDay`.<br><br>Note: If you want to specify multiple days in the month, you can do this using the web interface. You cannot create such a monthly schedule using REST API.<br><br> |\n\nAny combination of the attributes inside the  element is valid. Only the attributes and child elements that are included result in updates to the schedule. If no attributes or nested elements are included, no update is made.\n\n#### Permissions\n\nThis method can only be called by server administrators."
-      },
-      "response": []
+      "id": "407add3c-8a47-487f-8428-4f330812944c"
     }
   ],
   "auth": {
@@ -7716,7 +7841,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "d409f196-0967-44bb-bfb4-d64a41a088f1",
+        "id": "24772d63-ee20-4271-b04a-866cd4f41dfb",
         "type": "text/javascript",
         "exec": [
           ""
@@ -7726,15 +7851,31 @@
     {
       "listen": "test",
       "script": {
-        "id": "9b381b0e-3a6f-4b89-a3ad-923798fb2d7f",
+        "id": "314a0085-2a0a-4a9b-a4cb-c59f6f4aa8bb",
         "type": "text/javascript",
         "exec": [
           "// convert XML body to JSON",
           "const json = xml2Json(responseBody);",
           "",
-          "// avoids running the test if a succesful request does not receive a response body",
-          "if (json !== null) {",
-          "    // Output Tableau errors for debugging (see error codes in reference docs at https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm)",
+          "// avoids running the test if a succesful request does not receive a json response body",
+          "if (json) {",
+          "    // sets api-key and site-id if a credentials property is found",
+          "    if (json.tsResponse.credentials) {",
+          "        // unset environment variables",
+          "        pm.environment.unset(\"api-key\");",
+          "        pm.environment.unset(\"site-id\");",
+          "",
+          "        // obtain the API Key and Site ID from the response body",
+          "        const apiKey = json.tsResponse.credentials.$.token;",
+          "        const siteId = json.tsResponse.credentials.site.$.id;",
+          "",
+          "        // set the variables to the returned value",
+          "        pm.environment.set(\"api-key\", apiKey);",
+          "        pm.environment.set(\"site-id\", siteId);",
+          "   }",
+          "",
+          "    // output Tableau errors for debugging if an error property is found, more information in the documentation for each method",
+          "    // reference docs https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_errors.htm",
           "    if (json.tsResponse.error) {",
           "        const error = (json.tsResponse.error);",
           "",
@@ -7751,169 +7892,176 @@
   ],
   "variable": [
     {
-      "id": "81660bea-256b-4be9-bafc-f4bda0a408ef",
+      "id": "8df043a6-d748-4e12-a48a-6617dd57e9ef",
       "key": "username",
       "value": ""
     },
     {
-      "id": "aa517c40-9f35-4883-99f4-db6d8fcd0923",
+      "id": "73babb83-3883-4118-aea9-20b5c4d18236",
       "key": "user-id",
       "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "6a682224-d565-49f8-b463-2b2bdef98e83",
+      "id": "c0d320ae-bcc4-4961-bbab-49c0dc164cf6",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "6e6e818d-dea5-4f02-8b21-5128da7e19ef",
-      "key": "datasource-id",
-      "value": ""
-    },
-    {
-      "id": "f4b69f1c-beef-43a3-b7a8-272fe59836d5",
+      "id": "6734614d-4f50-4e7b-95a0-aa43ad48797c",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "9a0550c6-64ce-485b-b49b-ec9a905c2c65",
+      "id": "42477071-70b3-4327-b168-6ae0d29148a8",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "6c1f006d-08e5-43df-884f-0b3bace19cc0",
+      "id": "57901c98-467c-4099-90e9-8ceada750f46",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "bae77418-4a0f-4010-836f-a184074e152d",
+      "id": "ad5450ce-ebeb-4896-8612-473e02bf4586",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "66a2f20f-1de4-4faf-8619-303f54c2cb89",
+      "id": "bbb47f97-a8c6-4579-9803-7a79cc997f0d",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "ed9952f7-d4a5-419b-89a8-9f4c647349ad",
+      "id": "74d1d829-15ae-486f-b635-cfa7c095ff9a",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "94093321-9449-4dfb-8970-9ae2c59f7d1a",
+      "id": "7cbbf1ba-002d-4044-994e-e52ac0dcd4fb",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "16bd4b52-e63f-49ad-883b-94ef14fc0f0d",
+      "id": "1e7be110-1568-4fc1-af70-15106c4db461",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "2d5759a0-88d1-4f60-9950-f334727bc6ab",
+      "id": "2e8892f1-e429-46ed-aab2-226b1d26cf84",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "dae3ac63-6244-40b4-b1be-b65c4810b03b",
-      "key": "scheduleName",
+      "id": "31c91710-9ca4-42b9-a00d-bfad3bee38d5",
+      "key": "schedule-name",
       "value": ""
     },
     {
-      "id": "67546dc5-e725-4722-a094-5d27dbd7f062",
+      "id": "5212f032-696a-463a-9baa-327b856fd5a6",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "65f0a19d-a66e-4b00-983f-5cfb7a5e6416",
+      "id": "a8964413-9767-4519-8b44-743a4f6b9c12",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "54df7211-cbb8-4d21-9277-036dca2e4e9b",
+      "id": "19a7affc-3e4c-4102-995b-2796db4a9fe9",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "ae9c39a7-b91d-41e8-85f7-e8a0719c7f50",
+      "id": "cab7468c-bc3a-4fbe-93ad-0d29ae269948",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "c9bc989e-9e6e-4e52-b9b4-d600fa8757b3",
+      "id": "c9703a08-6a22-4217-966a-698372e7a8e5",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "1b754e7a-65a3-4fe9-b889-3ae3c245a2b7",
+      "id": "5b9396d3-0051-41bf-bddf-0329a0e70606",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "4af3596e-27d2-41c5-af35-6b72a9109cd0",
+      "id": "be0bcfa7-e3dc-41b2-bdf8-03d369c8eff5",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "bf93204d-875c-4a4c-8eff-7f06927473a7",
+      "id": "9214e2f9-9e65-4e95-b3e9-8b248aa739a3",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "1eea645e-1e18-48fa-b3d4-aad3caa4e51f",
+      "id": "a50887c1-747d-4f90-8b01-0b71bc40bab6",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "18787415-f65d-448d-a1d5-ddd5edbba178",
+      "id": "276836a9-14fe-4fb2-81cd-da30ba150bd3",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "2eaa12bb-9b46-4cb9-bffd-95d5c66438e0",
+      "id": "c6048077-fe3c-4aac-b083-179a23c3e218",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "42a31459-93e4-44ae-983f-6bc8d44a7c2c",
+      "id": "a44cfbc0-54a3-4c66-9447-264b1de0cdab",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "c05bd4b2-ecc5-47b8-a448-976dcf043f4c",
+      "id": "134d820a-d477-4de6-8567-434ae1b7994d",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "75995c91-fa6a-4256-9c81-87f7f2a727e4",
+      "id": "4508f67e-ac7a-4f2a-956d-39afd28f4826",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "49fa8a9a-fb84-4be5-9874-4e1ed1cbf9c5",
+      "id": "76f0fe1b-196c-4fea-80ba-9a103f1c1750",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "33c63e0c-1b28-47cc-be40-4d4fa426fec5",
+      "id": "f5c4cf36-d168-483a-bb1a-00d50c0253a4",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "558f4a1d-bec1-4e1b-a0c1-02e8d0656214",
+      "id": "3c0c65ce-1b89-418b-981e-1bea3cb98098",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "bb7f627d-3059-4108-bf51-4e4b27c053b7",
+      "id": "76d05e35-98ac-47da-bebf-803a41561318",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "5d27076b-196f-4e6e-9c70-d383a042f926",
+      "id": "7c984832-9c8e-44b3-b175-b51a660052af",
       "key": "capability-mode",
       "value": ""
+    },
+    {
+      "id": "b30b09f1-9b4e-44c5-b3d3-c3f8bb79cac1",
+      "key": "dataAcceleration-id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "2471a9cf-a09e-4ecd-952f-c37a5d7c153b",
+      "key": "datasource-id",
+      "value": "",
+      "type": "string"
     }
   ]
 }
