@@ -887,8 +887,7 @@
                 }
               }
             },
-            "url": "{{base-path}}/auth/signin",
-            "description": "Signs you in as a user on the specified site on Tableau Server or Tableau Online. This call returns a credentials token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes. With administrator permissions on Tableau Server, you can change this timeout by using the [**tsm configuration set**(Link opens in a new window)](https://help.tableau.com/current/server/en-us/cli_configuration-set_tsm.htm) command and setting the **wgserver.session.idle_limit** option.\n\n**Note**: The token is valid for REST API calls and Tableau Metadata API (GraphQL) queries. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP **403 (Forbidden)** error.\n\nIf you are a Tableau Server administrator , you can use your username and password to sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy. User impersonation is not available for Tableau Online sites.\n\nFor more information about authentication, see [Signing In and Signing Out (Authentication)](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm).\n\n**Notes:**\n\n*   SAML single sign on (SSO) authentication does not validate REST API requests. Even if you are manually signed in to your server through SSO, REST API request authentication requires that you first make a REST sign in request, and then use the credentials token from its response in the header of subsequent requests. For information about the requirements for using SAML, see [SAML Requirements.(Link opens in a new window)](https://help.tableau.com/current/server/en-us/saml_requ.htm)\n*   (Tableau Online only) If multi-factor authentication (MFA) is enabled with Tableau authentication, PATs are required. You must use a PAT, instead of user name and password, to make a REST API sign in request to Tableau Online.\n    \n\n#### URI\n\nPOST /api/*api-version*/auth/signin\n\n**Note:** For Tableau Online, the server address in the URI must contain the pod name, such as 10az, 10ay, or us-east-1. For example, the URI to sign in to a site in the 10ay pod would be:  \n  \nhttps://10ay.online.tableau.com/api/*api-version*/auth/signin"
+            "url": "{{base-path}}/auth/signin"
           },
           "response": []
         },
@@ -7892,173 +7891,173 @@
   ],
   "variable": [
     {
-      "id": "f4bf2185-308d-4c6b-963e-af4eb3138d17",
+      "id": "3d384d90-1457-4fd1-8751-942a39240e1a",
       "key": "username",
       "value": ""
     },
     {
-      "id": "0a5d445c-c00d-404b-a5eb-648b1438680e",
+      "id": "f1534b43-73c6-4e22-87bb-58e550196ac4",
       "key": "user-id",
       "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "dd6ac0fe-ce1f-4e09-9987-974913616bb9",
+      "id": "dad47089-6327-468e-b742-b0acc23f8b9e",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "370791d2-c5fe-4751-9b08-a97916eb50fd",
+      "id": "48ae06f9-3ce3-4775-86e6-dad535270f24",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "bd603098-7784-4468-a335-51a4c98e3435",
+      "id": "6db1e65e-e9aa-4fc7-8ce7-f96c9c8510e8",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "906196c9-17dc-4162-af73-937a7976c1a3",
+      "id": "a2a5cb67-64a3-45d1-a5f0-77279a591c1c",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "a1e05731-dd71-4d60-aa10-83309d334b64",
+      "id": "9cd6fcd3-8608-4575-b80e-f8a3cb626ba8",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "d94d826b-8f6c-499e-b855-3b56301e4a27",
+      "id": "39bd2404-20c2-4ca6-9835-ec136b6ac55f",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "75367dd8-25d4-4a35-acc7-35111a16dccf",
+      "id": "eac8f632-8743-4536-ae9a-a58f39351a33",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "d6b62019-d135-4bde-91cd-145caec53570",
+      "id": "e283df0b-2398-4193-aa5b-2a5938ecba2c",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "4ccf2339-4d8f-42b9-8df1-cb5dd23d71b0",
+      "id": "fa47bbb2-249a-432b-bb10-f278ca1eb599",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "41d92952-127c-46da-bfaf-a2d3d21c3088",
+      "id": "09830c12-a1bb-4b13-9521-e95f7a489876",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "34c58df8-e219-44d6-9193-a049a54c1706",
+      "id": "4ed49d91-663e-4554-a2cc-650a4e402e3a",
       "key": "schedule-name",
       "value": ""
     },
     {
-      "id": "48035689-e005-4765-9a68-6365abfd4ac2",
+      "id": "c34c0904-4980-4eb1-93a7-8996bb7815ae",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "923ca548-eec3-4483-a91c-dbaf34f1d579",
+      "id": "85f90662-9ca6-4051-b369-cd59053f8cb1",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "50ceff71-5b0d-42c8-b194-de2d0a8675ac",
+      "id": "ba0095a1-459c-409a-a909-8b230e69970f",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "88cc5fb7-68db-494d-a67a-2e033614f549",
+      "id": "477f595c-d2a1-4e11-8fe0-b847169a7329",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "a6d6cbd4-9445-4287-93eb-7ee1fc3f42bd",
+      "id": "be52adc9-0dae-4049-bacb-4180a73702f1",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "db329d6d-5fd2-4c1e-b4eb-e96da5e0c713",
+      "id": "606f2083-a326-448c-9dc5-a129b250c97e",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "5f7ecf41-cffd-44be-93e9-20070f85eaf9",
+      "id": "66a4a894-b462-4c6f-b789-016eebea6232",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "07647ce7-77bb-404b-8646-6ca5055e20cd",
+      "id": "ef05e730-c578-40b7-b3fd-3e91bc10f161",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "b3c30be7-c1b2-4e13-a7c7-f3e833d1e87c",
+      "id": "2c1abe4e-eb6b-4cd6-be26-c5447a132394",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "2bb92a66-180f-47d4-8423-1ea2ee8028da",
+      "id": "65d857c6-c34a-481e-8fb6-a0f5f6b1d64c",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "896e8059-f7c9-4336-9d48-3d1817b10953",
+      "id": "ce255a6a-411b-47d6-8af1-23c21698c8ea",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "f7c3e648-4306-4061-b5d9-41a14aaa82d5",
+      "id": "776a948b-a587-484f-a1f3-80e133db1f8f",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "4bacb415-c73b-4474-bc49-3dfbc2e5937f",
+      "id": "be5ab6b3-b695-4a1b-be38-2e9bab8279ef",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "592b9868-da64-4a21-94b2-fadb285a1796",
+      "id": "7ba4fb1a-a3b0-4f1b-a3d0-04f92734ea6d",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "a2178498-d9b1-44cb-8b37-aa307ff0cd45",
+      "id": "885a25ea-4918-4f06-8d41-731fc03f93cb",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "3214fdde-6fde-4780-b6c7-ac1bbd7c0ba9",
+      "id": "1f26800a-8949-420e-aa37-b9bb6df2515a",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "ebd4a95c-dbc8-43b9-ad95-be09791e6102",
+      "id": "4431a00a-d6dd-49f9-80c0-263ce6b1d7a9",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "aa2a4b66-7363-4fd4-962e-6341e5e5bcfe",
+      "id": "468baa67-e810-4b38-aa4f-f4955931b2d4",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "4f67fc5a-3ebe-4b76-aba7-0092a08c06a5",
+      "id": "6d0df2e4-0ff4-496d-8e8a-ee132e7d365c",
       "key": "capability-mode",
       "value": ""
     },
     {
-      "id": "7fbd132c-91e1-4846-b2ec-04a743d118a5",
+      "id": "b93cfa52-3707-4039-8322-65b6b9d6529d",
       "key": "dataAcceleration-id",
       "value": "",
       "type": "string"
     },
     {
-      "id": "65883416-df3b-45a6-b44f-9154511a04dd",
+      "id": "95b53e26-97c9-45ba-96fe-7afb907e25eb",
       "key": "datasource-id",
       "value": "",
       "type": "string"
