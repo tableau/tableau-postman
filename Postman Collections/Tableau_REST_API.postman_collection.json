@@ -888,7 +888,7 @@
               }
             },
             "url": "{{base-path}}/auth/signin",
-            "description": "# Docs\n\n[More info here](www.google.com)"
+            "description": "# Docs\n\n[More info here](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_out)"
           },
           "response": []
         },
@@ -7892,173 +7892,173 @@
   ],
   "variable": [
     {
-      "id": "500587e0-783f-4ba1-b699-2442ca853b12",
+      "id": "6b49de4c-0aa3-4871-b43c-43a6b35b3b1e",
       "key": "username",
       "value": ""
     },
     {
-      "id": "6e87a3af-b4c2-4676-96c4-b1119f51b620",
+      "id": "42d7e424-6054-41b1-b1c4-a076f8619678",
       "key": "user-id",
       "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "16044e61-43b9-4f03-8f08-2aa50a0f5081",
+      "id": "6a312db9-318a-413e-b7c1-6843605207f5",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "6bb1ca94-1816-40c2-991a-3d028d0c5bb6",
+      "id": "897cd05b-2739-4494-aaff-db885fee5f2d",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "0f74d6a7-2594-4004-8bb0-eda2bfac481e",
+      "id": "4c61aa8b-dbd4-4df4-bcdf-08a75d65ee2a",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "b2f25be5-2659-4b58-bbd1-d08cc6abd823",
+      "id": "2bbf3b82-e7f1-4567-a847-7453867ca13a",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "2804564e-da91-42ef-8963-866eb95e201c",
+      "id": "58914617-7f69-4b82-8790-91cea2b7c5db",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "6285cf0b-3130-4ba9-aa75-da895eb9a8d5",
+      "id": "4bc0873b-a679-4ea0-8a0f-458efcc15650",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "8aa90332-a2a7-421b-a0a5-f4c6d5d84c09",
+      "id": "0fb9358e-6a08-40f6-97fb-8581f2aa2f5c",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "e0f888c1-1259-4b14-aa57-6f6e25c08f8b",
+      "id": "3e5fc9d0-007d-40ff-a8b7-cabfea75ff29",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "3b71c3ab-7dd1-4183-93c6-1d6171cd8035",
+      "id": "95d5d6f5-e6d4-44d1-b976-b02ca2d85835",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "8d78a2a4-94a6-499b-9940-69528b750f7b",
+      "id": "331dcc87-3b9b-4ed2-a3fd-fb1f69b8a7de",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "308503da-41f3-451f-9438-7bacf9ac980d",
+      "id": "107e59ac-74ad-4054-ad50-361bab8d59ce",
       "key": "schedule-name",
       "value": ""
     },
     {
-      "id": "676a35c9-123d-49cd-b762-394011b66fdb",
+      "id": "dfef6a1d-b301-4e4b-ae72-7af03fa2a796",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "1e521d50-2b3b-4f77-af75-620dd5e935e7",
+      "id": "7620828f-fdae-4742-89d1-9db88386368d",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "d7ec35f1-d636-4a4b-93cf-51af8e4026dc",
+      "id": "6e5b4e37-ff29-4446-b2a4-bf3a1e08874a",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "01ec7bd3-8baf-46bd-b499-4ccad8c66d03",
+      "id": "d29c5c64-e756-4d09-96dc-abfbc7d1c861",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "3597961b-7a9d-4d69-8618-6ada82dc3d52",
+      "id": "4c8b1d31-394e-489f-a758-2a28c944bef9",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "d1a1fc8a-a388-47aa-8da8-2c457ce19885",
+      "id": "61c181e1-8b5a-417f-bc9f-6dd670714eef",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "02c7e7bd-438f-4d4f-9d69-a069bbdb81c0",
+      "id": "fe09ccdd-76b0-4f8d-9eff-b95efd5a85c3",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "0e7ebed0-5106-4a6e-84bb-66ff1271d927",
+      "id": "942cf053-59dc-4731-ad1e-3c8d30efc994",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "359ae673-4319-4dab-ae9f-bfd8ad2af287",
+      "id": "c6e26938-6720-4393-a1ec-f99634df3126",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "7c4dff97-5ffb-498d-9fec-2823ebde3003",
+      "id": "84d74f6e-be09-4a23-8dcf-de82e94cc6ed",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "6bc96673-bddb-4455-a395-f17361f7187d",
+      "id": "c29f80b2-f472-486c-a70d-3ead677c04e5",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "682d3cc5-ccb0-47a2-a3b4-14015663a6ae",
+      "id": "0299b12c-1b81-42fb-91f9-6b082d379f97",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "fa20c043-26f7-443e-9549-9272ccc09c8b",
+      "id": "ef647dac-f6e3-4649-aeaf-a522c39e449e",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "f6909080-fa64-457a-be10-20b5e8691896",
+      "id": "3f9beafd-6986-4525-92b2-0e791bd10693",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "ff2ba096-95f3-4bae-994c-21f3b71a8914",
+      "id": "9d2ec87a-959b-4daf-8c6a-6c1a35c86c6b",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "ab171dad-607d-4a17-8832-8a115ce65f59",
+      "id": "c0653148-400f-4cdf-90da-15e7b3094a01",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "f5a77c71-9716-494a-b28f-5358a3dcbcb4",
+      "id": "a2062c66-e67d-4681-ab0d-6895d28b1f0d",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "2639844e-90b9-43f3-8dab-ce6e3d622ee0",
+      "id": "863d67a3-23bd-4cbd-bc96-c7b6a448f3f1",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "bde5b99d-ac1a-4ea9-b307-4a99ee41a1fb",
+      "id": "243a3f2b-49b4-4be3-932d-f66928735de7",
       "key": "capability-mode",
       "value": ""
     },
     {
-      "id": "453e69db-6a8c-4007-acde-6a67958cf0d2",
+      "id": "992e9887-3d3e-4390-8fd0-0066681e56e0",
       "key": "dataAcceleration-id",
       "value": "",
       "type": "string"
     },
     {
-      "id": "288b48a6-2ae7-4e5f-9394-eaff2e5dad5e",
+      "id": "613acf32-e56a-4436-8463-3e7430c0fba7",
       "key": "datasource-id",
       "value": "",
       "type": "string"
