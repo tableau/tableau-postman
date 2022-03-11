@@ -2,6 +2,7 @@
   "info": {
     "_postman_id": "c3ec8bf7-9432-45e7-a8b3-ed6fa61470f6",
     "name": "Tableau REST API",
+    "description": "tergsdfgfsgdff",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
@@ -7892,173 +7893,173 @@
   ],
   "variable": [
     {
-      "id": "0caf72a1-4d04-4b14-bb6b-d8bdfe7a2916",
+      "id": "e6b1778e-ffe4-4080-928b-ced776906b22",
       "key": "username",
       "value": ""
     },
     {
-      "id": "8fb272b2-fc8e-479c-811d-f5b39daa8588",
+      "id": "3082ddf6-7b03-4421-a1b0-bba3e81f659c",
       "key": "user-id",
       "value": "65a07502-b5aa-4972-b1b9-2e53ba58f728"
     },
     {
-      "id": "d35851c2-d656-4533-a076-80a03c954663",
+      "id": "d6719474-3162-42d4-ac65-5984e7c25a03",
       "key": "user-password",
       "value": ""
     },
     {
-      "id": "676d1004-703b-4c61-9713-985c2cfd7998",
+      "id": "584e2092-2d97-49f9-9faf-1b56bab3b251",
       "key": "group-id",
       "value": ""
     },
     {
-      "id": "6a35ddb4-2f1a-4736-b3a3-4471ffcb759e",
+      "id": "ab939cdc-9013-41ca-9ec2-d4395040ab69",
       "key": "group-name",
       "value": ""
     },
     {
-      "id": "4b3f872c-dc85-4373-ae1e-d991879258a3",
+      "id": "c8798a73-b353-4481-ace5-63c5d2e1f9ca",
       "key": "job-id",
       "value": ""
     },
     {
-      "id": "8cec84dc-5928-4b1b-83b5-cf37245e3201",
+      "id": "0f5601c5-5482-41cc-ab5b-b069fb4d8de2",
       "key": "job-name",
       "value": ""
     },
     {
-      "id": "62266619-ab13-412e-a79a-0eb103f1370c",
+      "id": "2cb5dea0-8b45-461f-a5bb-ecd1053b8859",
       "key": "project-id",
       "value": ""
     },
     {
-      "id": "82e920c8-61f6-4691-8ca6-2184953c32cf",
+      "id": "d4d91b89-cdaa-4cb4-ad62-47b6bc9fce3c",
       "key": "project-name",
       "value": ""
     },
     {
-      "id": "c3b73597-6703-4ae2-9611-32cb58f73946",
+      "id": "d1a14360-74c4-48df-8ef6-cea70ce2efb8",
       "key": "upload-session-id",
       "value": ""
     },
     {
-      "id": "ae2213ec-4cb2-4ca9-9ef4-b91ef818f406",
+      "id": "d6bb468a-d20e-40ae-9519-69345b3e7bcd",
       "key": "tag-name",
       "value": ""
     },
     {
-      "id": "e7506a1d-8f15-4f0d-ab9f-50d2c6d412e7",
+      "id": "8553cd2f-b2d6-43ce-ba5a-053007db7878",
       "key": "schedule-id",
       "value": ""
     },
     {
-      "id": "a1f1ca60-3a13-4c6a-b884-a804a897c394",
+      "id": "18afadae-5f8a-4c93-8ea1-9b30289d626d",
       "key": "schedule-name",
       "value": ""
     },
     {
-      "id": "586b799a-75f7-4260-aa6c-fd238913f9d3",
+      "id": "7666763a-c1cf-4791-be4d-ee5a73cdc991",
       "key": "subscription-id",
       "value": ""
     },
     {
-      "id": "0b5b0120-a5fc-44ad-ae2d-6d9f69f66e57",
+      "id": "580c51be-c7b5-47f8-9e0d-9813bafb6846",
       "key": "revision-id",
       "value": ""
     },
     {
-      "id": "b603481d-5cdb-4494-9553-f16979635903",
+      "id": "8e0dfaca-f16f-44c5-90de-eb57dfd088e4",
       "key": "view-id",
       "value": ""
     },
     {
-      "id": "36fe62bb-af56-4f7d-8049-78f238005e88",
+      "id": "43d2e291-cf96-4e47-80d1-cd484a7079dd",
       "key": "workbook-id",
       "value": ""
     },
     {
-      "id": "985bdbc2-5f1c-4d26-90d8-d3be4faee4cb",
+      "id": "7280e187-c638-4296-8005-8894e86e65ed",
       "key": "workbook-name",
       "value": ""
     },
     {
-      "id": "34df1ca9-7ac9-44f3-b0bc-007e7354fc74",
+      "id": "92f8f47b-1116-488e-bd4c-ad4ff3383c43",
       "key": "analytics-extensions-host",
       "value": ""
     },
     {
-      "id": "b519452d-739d-44ce-affe-0f3ce1919935",
+      "id": "ce221630-9f1f-4d32-ac6d-c018fcb896a9",
       "key": "analytics-extensions-port",
       "value": ""
     },
     {
-      "id": "540f4493-cbe5-473f-a172-f24780a62ca1",
+      "id": "cc1544e6-89dc-4b71-a589-c7111f9c05ea",
       "key": "analytics-extensions-is-auth-enabled",
       "value": ""
     },
     {
-      "id": "f3a6430c-cdfa-48da-b103-d58f390ca12b",
+      "id": "b9a82272-b224-4aae-a17c-b4578e799b09",
       "key": "analytics-extensions-connection-luid",
       "value": ""
     },
     {
-      "id": "33ec64d3-59d2-480f-bccb-f1ab70d4b101",
+      "id": "0de520dd-d9fd-4d70-bbf5-3c3210213044",
       "key": "datasource-name",
       "value": ""
     },
     {
-      "id": "0415024b-44a1-44c9-9d75-5fdf2f1d43d7",
+      "id": "59a22ea5-270d-4a82-80a6-874ac418f7bb",
       "key": "admin-username",
       "value": ""
     },
     {
-      "id": "efe1e0a9-7967-4173-a151-ce9ff3020d8b",
+      "id": "152bed42-be3b-44e6-8f19-578453c51c58",
       "key": "admin-password",
       "value": ""
     },
     {
-      "id": "69df8046-26d4-4c11-bbf6-4dece7ae021f",
+      "id": "965832e1-70a2-428c-b295-8d6cc29d3163",
       "key": "flow-id",
       "value": ""
     },
     {
-      "id": "b776d921-6d23-43db-b813-7f46ae625e61",
+      "id": "ace86990-b5dd-4f71-a3d6-32c7aa137e34",
       "key": "flow-name",
       "value": ""
     },
     {
-      "id": "b8f71e79-edc8-4ce9-bf55-a77703e49f9b",
+      "id": "4b25d45e-7b2e-4a4c-a879-9801aa3d753f",
       "key": "connection-id",
       "value": ""
     },
     {
-      "id": "1b11c8c3-ab3e-4d4f-90f3-f3c42dcd92be",
+      "id": "d3c16792-681b-46f8-ae83-27102e2c44d4",
       "key": "task-id",
       "value": ""
     },
     {
-      "id": "5f7db65e-0084-49da-a0db-0d4ee8567e97",
+      "id": "5f3fd365-7194-42a4-9bd4-4fa8d6eaf8e8",
       "key": "flow-run-id",
       "value": ""
     },
     {
-      "id": "357e7794-10d4-4957-b08f-4f7e16cf62eb",
+      "id": "c7e29a07-1694-4eb9-8bcb-ada2082f0001",
       "key": "capability-name",
       "value": ""
     },
     {
-      "id": "f51bb7d0-9691-4cdb-b4a8-fcdffda63583",
+      "id": "e27c067c-48de-4419-bdde-873f2f7fd39c",
       "key": "capability-mode",
       "value": ""
     },
     {
-      "id": "74483a97-1cb5-4f79-b9f1-fa1402c6b731",
+      "id": "e2a6ac13-5590-4cb9-bb97-5bb368ecb615",
       "key": "dataAcceleration-id",
       "value": "",
       "type": "string"
     },
     {
-      "id": "690cc1f2-c1ad-4125-bdf5-55488b3ecb82",
+      "id": "5486d2f0-2430-4f74-936b-667ff16b5a55",
       "key": "datasource-id",
       "value": "",
       "type": "string"
