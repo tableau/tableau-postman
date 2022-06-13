@@ -6,494 +6,6 @@
 	},
 	"item": [
 		{
-			"name": ".SAMPLE WORKFLOW: Add Project; Set Permissions; Move Workbook",
-			"item": [
-				{
-					"name": "Authenticate: Sign-in (As an Admin) copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if ( responseCode.code===200)",
-									"{",
-									"    postman.setEnvironmentVariable(\"token\", json.tsResponse.credentials.$.token);",
-									"    postman.setEnvironmentVariable(\"siteId\", json.tsResponse.credentials.site.$.id);",
-									"    postman.setEnvironmentVariable(\"userId\", json.tsResponse.credentials.user.$.id);",
-									"",
-									"",
-									"    tests[\"token env variable set = \" + postman.getEnvironmentVariable(\"token\")] = responseBody.has(\"token\");",
-									"    tests[\"siteId env variable set = \" + postman.getEnvironmentVariable(\"siteId\")] = true;",
-									"    tests[\"userId env variable set = \" + postman.getEnvironmentVariable(\"userId\")] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									""
-								],
-								"id": "4e87c850-70f3-4cbf-b5b3-c0ecb65b9bf5"
-							}
-						}
-					],
-					"id": "3f4b3b7b-47ac-46ea-a938-29f3f861ad08",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <credentials name=\"admin\" password=\"admin\">\n      <site contentUrl=\"\" />\n      </credentials>\n</tsRequest>"
-						},
-						"url": "http://{{server}}/api/{{api}}/auth/signin",
-						"description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
-					},
-					"response": []
-				},
-				{
-					"name": "Projects: Create Project copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code === 201) ",
-									"{",
-									"    postman.setEnvironmentVariable(\"projectId\", json.tsResponse.project.$.id);",
-									"    postman.setEnvironmentVariable(\"projectName\", json.tsResponse.project.$.name);",
-									"",
-									"    tests[\"Created: Project with Name: \" + postman.getEnvironmentVariable(\"projectName\") + \" and Id: \" + postman.getEnvironmentVariable(\"projectId\")] = true;",
-									"",
-									"    tests[\"projectId env variable set = \" + postman.getEnvironmentVariable(\"projectId\")] = true;",
-									"    tests[\"projectName env variable set = \" + postman.getEnvironmentVariable(\"projectName\")] = true;",
-									"    ",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "638b1e04-2fdb-45e2-b1a6-b2b2c0584f18"
-							}
-						}
-					],
-					"id": "dd756e83-f09e-473b-a9e9-1a34327e7af5",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest> \n  <project name=\"RestAPI Project\"  \n    description=\"A new project created with the REST API\" /> \n</tsRequest>\n"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects",
-						"description": "Create a new project in a specific site\n\n* project-name  The name to assign to the project.\n* project-description  (Optional) A description for the project.\n* content-permissions  (Optional) Specify LockedToProject to lock permissions so that users cannot overwrite the default permissions set for the project, or specify ManagedByOwner to allow users to manage permissions for content that they own. For more information, see Lock Content Permissions to the Project. The default is ManagedByOwner."
-					},
-					"response": []
-				},
-				{
-					"name": "Groups: Query Groups copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"groupId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"groupId\", \"notSet\");",
-									"}",
-									"if (postman.getEnvironmentVariable(\"groupName\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"groupName\", \"notSet\");",
-									"}",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    //These lines have been commented out because they would likely select the Default group and we don't want to accidentally delete that",
-									"    //postman.setEnvironmentVariable(\"groupId\", json.tsResponse.groups.group[0].$.id);",
-									"    //postman.setEnvironmentVariable(\"groupName\", json.tsResponse.groups.group[0].$.name);",
-									"",
-									"    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-									"    tests[\"groupId env variable set = \" + postman.getEnvironmentVariable(\"groupId\")] = !(postman.getEnvironmentVariable(\"groupId\")===\"notSet\");",
-									"    tests[\"groupName env variable set = \" + postman.getEnvironmentVariable(\"groupName\")] = !(postman.getEnvironmentVariable(\"groupId\")===\"notSet\");",
-									"    ",
-									"}",
-									""
-								],
-								"id": "a6cd8117-f44c-4c3b-b8ef-340e00b2c2e4"
-							}
-						}
-					],
-					"id": "708efe28-ffa0-4d10-acf9-4f23f7c76c4d",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/",
-						"description": "Returns the list of groups on the specific site, with optional parameters for paging large results"
-					},
-					"response": []
-				},
-				{
-					"name": "Project Management: Add Project Permissions copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code===200) {",
-									"    tests[\"Added: Project permissions\"] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "e748e4dd-caa5-4af3-ba6a-ea1d660ba4c4"
-							}
-						}
-					],
-					"id": "d4efe7ac-f4f7-4a4f-9e55-753f05a97646",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <permissions> \n    <project id=\"{{projectId}}\" />\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"read\" mode=\"allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>  "
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/permissions",
-						"description": "Adds permissions to the specified project for a Tableau Server user or group. You can specify multiple sets of permissions using one call.\n\nIf the request body includes a child datasource or <project> element, the request is invalid.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/permissions\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set permissions for.\n\n\nAttributes\n* user-id  The ID (not name) of the user to add permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign permissions to. In Tableau Server 10.0, the valid capabilities for a project are ProjectLeader, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
-					},
-					"response": []
-				},
-				{
-					"name": "Permissions: Add Default Workbook Permissions copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code===200) {",
-									"    tests[\"Added: Default permissions\"] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "c77d85a5-3f57-41d9-94be-28538740f73d"
-							}
-						}
-					],
-					"id": "c8f3aa96-07bc-427a-a0e0-87cfd67cfe94",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n        <capability name=\"Read\" mode=\"Allow\" />\n        <capability name=\"ExportImage\" mode=\"Allow\" />\n        <capability name=\"AddComment\" mode=\"Allow\" />\n        <capability name=\"WebAuthoring\" mode=\"Allow\" />    \n        <capability name=\"Filter\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/default-permissions/workbooks",
-						"description": "Adds permissions to the specified project that will be applied by default to new workbooks and data sources as they are added to the project. You make separate requests to set default permissions for workbooks and for data sources.\n\nContent owners can override default permissions for their content, but only if project permissions have not been locked. Project permissions can be locked for a new project when you call Create Project or for an existing project by calling Update Project. For more information, see Lock Content Permissions to the Project.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set default permissions for.\n\nAttributes\n* project-id  The <project> element is not required, but can be included. If the <project> element is included, the project-id value must match the project ID in the URI. Any other attributes in the <project> element are ignored.\nuser-id  The ID (not name) of the user to add default permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign. Valid capabilities for a workbook are\n* AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\n* Valid capabilities for a data source are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
-					},
-					"response": []
-				},
-				{
-					"name": "Permissions: Add Default Datasource Permissions copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code===200) {",
-									"    tests[\"Added: Default permissions\"] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "6aaa318c-b63f-41d4-b41f-44850221ddfd"
-							}
-						}
-					],
-					"id": "e59122d9-ec2c-4eee-b186-f89de1a90883",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <permissions>\n    <granteeCapabilities>\n      <group id=\"{{groupId}}\" />\n      <capabilities>\n        <capability name=\"Connect\" mode=\"Allow\" />\n        <capability name=\"Read\" mode=\"Allow\" />\n      </capabilities>\n    </granteeCapabilities>\n  </permissions>\n</tsRequest>\n"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/projects/{{projectId}}/default-permissions/datasources",
-						"description": "Adds permissions to the specified project that will be applied by default to new workbooks and data sources as they are added to the project. You make separate requests to set default permissions for workbooks and for data sources.\n\nContent owners can override default permissions for their content, but only if project permissions have not been locked. Project permissions can be locked for a new project when you call Create Project or for an existing project by calling Update Project. For more information, see Lock Content Permissions to the Project.\n\nURI\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/workbooks\n1. PUT /api/api-version/sites/site-id/projects/project-id/default-permissions/datasources\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the project.\n* project-id  The ID of the project to set default permissions for.\n\nAttributes\n* project-id  The <project> element is not required, but can be included. If the <project> element is included, the project-id value must match the project ID in the URI. Any other attributes in the <project> element are ignored.\nuser-id  The ID (not name) of the user to add default permissions for.\n* group-id  The ID (not name) of the group to add permissions for.\n* capability-name  The capability to assign. Valid capabilities for a workbook are\n* AddComment, ChangeHierarchy, ChangePermissions, Delete, ExportData, ExportImage, ExportXml, Filter, Read (view), ShareView, ViewComments, ViewUnderlyingData, WebAuthoring, and Write.\n* Valid capabilities for a data source are ChangePermissions, Connect, Delete, ExportXml, Read (view), and Write.\nFor more information, see Permissions.\n* capability-mode  Allow to allow the capability, or Deny to deny it. This value is case sensitive."
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Query Workbooks for Site copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"workbookId\")===undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"workbookId\", \"notSet\");",
-									"}",
-									"if (postman.getEnvironmentVariable(\"workbookName\")===undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"workbookName\", \"notSet\");",
-									"}",
-									"if (postman.getEnvironmentVariable(\"contentUrl\")===undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"contentUrl\", \"notSet\");",
-									"}",
-									"",
-									"",
-									"var error = (responseCode.code!==200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"",
-									"    tests[\"workbookId env variable set = \" + postman.getEnvironmentVariable(\"workbookId\")] = (postman.getEnvironmentVariable(\"workbookId\")!==\"notSet\");",
-									"    tests[\"workbookName env variable set = \" + postman.getEnvironmentVariable(\"workbookName\")] = (postman.getEnvironmentVariable(\"workbookName\")!==\"notSet\");",
-									"    tests[\"contentUrl env variable set = \" + postman.getEnvironmentVariable(\"contentUrl\")] = (postman.getEnvironmentVariable(\"contentUrl\")!==\"notSet\");",
-									"    ",
-									"}",
-									""
-								],
-								"id": "4099c096-f419-4491-a8b8-28d5451e8c38"
-							}
-						}
-					],
-					"id": "f35106b6-4957-41bd-b0b2-33203819592b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks",
-						"description": "Returns the workbooks on a site.\nIf the user is not an administrator, the method returns just the workbooks that the user has permissions to view.\n\nURI's\n1. GET /api/api-version/sites/site-id/workbooks\n1. GET /api/api-version/sites/site-id/workbooks?filter=filter-expression\n1. GET /api/api-version/sites/site-id/workbooks?sort=sort-expression\n1. GET /api/api-version/sites/site-id/workbooks?pageSize=page-size&pageNumber=page-number\n\nParameter Values\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbooks.\n* filter-expression  (Optional) An expression that lets you specify a subset of workbooks to return. You can filter on predefined fields such as name, tags, and createdAt. You can include multiple filter expressions. For more information, see Filtering and Sorting.\n* sort-expression  (Optional) An expression that lets you specify the order in which workbook information is returned. If you do not specify a sort expression, the sort order of the information that's returned is undefined. For more information, see Filtering and Sorting.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results.\n"
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Update Workbook copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if ( responseCode.code===200)",
-									"{",
-									"",
-									"    tests[\"Updated: Workbook\"] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									""
-								],
-								"id": "27cc9a2f-58b2-4206-bd01-ef095d0d5dc2"
-							}
-						}
-					],
-					"id": "155ca413-1961-4140-9f07-b7c37d5bccee",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest> \n  <workbook showTabs=\"true\" > \n     <project id=\"{{projectId}}\"/> \n </workbook> \n</tsRequest>"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
-						"description": "Modifies an existing workbook, allowing you to change the owner or project that the workbook belongs to and whether the workbook shows views in tabs.\n\nURI\n1. PUT /api/api-version/sites/site-id/workbooks/workbook-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to update.\n\n\nAttributes\n* show-tabs-flag  (Optional) Specify true to have the published workbook show views in tabs; otherwise, false. The default is false.\n* new-project-id  (Optional) The ID of a project to assign the workbook to.\n* new-owner-id  (Optional) The ID of a user to assign the workbook to as owner.\n \nAny combination of the elements inside the <workbook> element is valid. Only the attributes and child elements that are included result in updates to the data source. If no attributes or nested elements are included, no update is made.\n\nIf the <project> element is included, the id attribute must be included; other attributes of the <project> element are ignored.\n\nIf the <owner> element is included, the id attribute must be included; other attributes of the <owner> element are ignored."
-					},
-					"response": []
-				},
-				{
-					"name": "Authenticate: Sign Out copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"if (responseCode.code===204)",
-									"{",
-									"    tests[\"Successful signout.\"] = responseCode.code === 204;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Signout failed. Error: \" + responseBody] = responseCode.code === 204;",
-									"}"
-								],
-								"id": "f45aa74e-a49a-4da9-844f-31ec44bc0def"
-							}
-						}
-					],
-					"id": "ae45c10b-9218-4611-b24a-bad505570923",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "http://{{server}}/api/{{api}}/auth/signout",
-						"description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to Sign In.\n\nURI\n1. POST /api/api-version/auth/signout\n"
-					},
-					"response": []
-				}
-			],
-			"id": "1c259885-1ef0-48d0-82d3-5f27224561a7",
-			"description": "Sample workflow to demonstrate:\n\n1. Log in (as Admin)\n1. Add a Project\n1. Add Group to the Project\n1. Add Permissions to the Project\n1. Move a workbook to the new project*\n\n* - You can substitute download/publish instead of move if you want to make a copy.  Postman doesn't deal with multi-part forms, but it could be accomplished in any coding language easily."
-		},
-		{
 			"name": ".SAMPLE WORKFLOW: Create User, Add to Group",
 			"item": [
 				{
@@ -611,7 +123,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <user name=\"TESTUSER\"\n    siteRole=\"Viewer\" />\n</tsRequest>"
+							"raw": ""
 						},
 						"url": "rgoldin-vm10/api/{{api}}/sites/{{siteId}}/users",
 						"description": "Adds a user to Tableau Server and assigns the user to the specified site.\nIf Tableau Server is configured to use local authentication, the information you specify is used to create a new user in Tableau Server. To set a full name, password, and email address for the user, call Update User after creating the user.\nIf Tableau Server is configured to use Active Directory for authentication, the user you specify is imported from Active Directory into Tableau Server.\nIf you try to add a user using a specific site role but you have already reached the limit on the number of licenses for your users, the user is added as an unlicensed user. In that case, the response code is 201 (which indicates success), but the siteRole value in the response body is set to Unlicensed."
@@ -10625,233 +10137,233 @@
 	],
 	"variable": [
 		{
-			"id": "98be7bc3-8f36-4afa-9f82-6ace0bb16679",
+			"id": "3106b303-5d8b-4f92-8cb2-64cf5fbce6f4",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "4ada2f2e-6df8-496e-955f-13da3455e41b",
+			"id": "7a498676-4dc9-4b18-bbcd-26f2d6db3b8d",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "44cacf18-090c-465b-956e-7db0ecf8d0d5",
+			"id": "30415c4a-b5f7-41d9-93fc-c00780592676",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "92d262a6-921d-4b6c-ad24-a227836dced4",
+			"id": "85bbd094-80d8-4222-bf59-919f4e183b93",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "69674ad2-4014-4063-ba11-2391cd0cc127",
+			"id": "f5c20532-5578-4773-851d-056e7ef48f19",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "0860a5e0-bb3b-40ba-b96c-8972cd2b1d6d",
+			"id": "32b9cc14-ddc3-498a-9b31-cce3ac8e6193",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "9d231460-0dcd-46e5-9dc4-8ecd0754cb79",
+			"id": "b7da86a7-acec-4599-8d2d-ad57b68fa00f",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "bd13ebab-75c8-41dc-9035-931da6f469a6",
+			"id": "fc32b223-1cad-4d7d-b8f5-e9f101c9b6db",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "7eb66790-edff-42dc-85dd-abccbe17f37f",
+			"id": "1d59af87-c743-42ae-a96a-ca9525121554",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "de4dc174-e7fb-41f0-b584-349ddc531bae",
+			"id": "62c14eb7-7a34-4a06-9cd2-81ab761832ca",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "485a6bc1-44d0-4c43-b5bd-77e250932e3e",
+			"id": "631d0b14-03b7-41fc-b4fa-39ad459467ff",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "0cae599c-d6e9-4e15-9c83-348cc3ac01b4",
+			"id": "148de9dc-a152-48cd-afc3-2e66fe7b4ef6",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "917656ee-66c8-47d9-b6d0-f15a6ae1463d",
+			"id": "0886ca8f-77f4-47d2-a682-e7dbb9101c0c",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "1f3dc2bc-0e86-4522-9573-5b9695066e8f",
+			"id": "d4f4c658-7df0-4664-ae5b-3a063ffa7d58",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "29c7ea12-5589-4baa-a03b-22b12a31ff87",
+			"id": "60a01a20-7d28-441d-95bf-09ea2a18389b",
 			"key": "revision-id",
 			"value": ""
 		},
 		{
-			"id": "eba0f40e-907a-45c6-a36b-d45b5e78adc5",
+			"id": "d2c3f64b-d644-4134-8275-6dc2f72d41ec",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "3d3a7e70-0b11-4a9e-976e-85af2ad4dc56",
+			"id": "295a5c91-af47-49cc-ab0d-342643582f94",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "a959c9d1-81c0-4958-bda5-a70425b9372f",
+			"id": "88331bcf-0b1e-4f67-9fff-2ad5cbaf7d39",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "93539d88-ccb2-44cb-ada5-7f0fd0b433b9",
+			"id": "b0b5fc6e-714e-44c6-a5ca-5fd2942f12f6",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "07ce185c-caa9-42d8-b0b5-e2b7297de6c1",
+			"id": "22f2b426-54da-4954-a6d4-ba69187fb20b",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "075421de-2ea0-485a-a0cc-fd4fafbcf778",
+			"id": "d67c0ea1-e7c7-40b1-93bb-8d0b367f6804",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "3e523f52-3a8e-4273-b0d7-5d9c5e2d7592",
+			"id": "9bfce547-3565-4ab4-9714-320baabdbae9",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "321ac4b9-9f57-480e-99f9-36a33f6b6d32",
+			"id": "7e287d6f-de23-495e-b91c-7cfd06fa1bff",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "8fc9f26a-e59f-4202-a46e-2c34924d4196",
+			"id": "43a8cc29-3502-42f8-8d4a-25c2c9dbfe11",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "1a634779-ad82-4cac-9871-4e83ae4e06a4",
+			"id": "c8626263-aee6-4545-ba6d-6feede179153",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "bdee8e07-1d39-4097-87e5-1f4be5a4364d",
+			"id": "bbe2d4ff-bd70-47c3-a0c5-4adbbf6db6d9",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "242636e4-4f33-41d1-aa46-dff8b85824b4",
+			"id": "3d25e033-975e-46d7-a9f5-f0201b5a4270",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "45cc4d22-2f4e-4ddf-8348-e0ce840f6526",
+			"id": "cf68d5be-3110-47b5-a64c-488959b3da61",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "4d59f2c4-2d41-4e14-b33f-df0d6de6771d",
+			"id": "b5ed864f-a228-4da9-b528-2c87eaef6763",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "01c1b7cd-f93b-421a-9cb2-c064e0da0857",
+			"id": "ca5649ea-93b8-4134-99a3-090b411d383b",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "666feabd-a3a0-44c6-90c8-c42ed438a96a",
+			"id": "5759ca01-3883-4778-a7a1-211973d31e9a",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "8e0be390-49a5-4007-93c3-25346cb63de3",
+			"id": "8643251c-e2ac-484e-a970-9b00133b7045",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "15b7f13e-d090-49c8-9b07-33fd8dc69fc4",
+			"id": "f1fd19e4-0469-4c01-9831-4384b37a9262",
 			"key": "dataAcceleration-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d86e0517-bd34-49b7-8f3a-c1407f5a447e",
+			"id": "be9429a2-b067-44c8-bbbe-32a1d04eb00c",
 			"key": "datasource-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "7425c406-dc33-472a-aaea-df0c86e3d169",
+			"id": "a1558486-0c28-4c63-a636-f02d3c4209ef",
 			"key": "table-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "2b43a45c-8efd-4168-8525-6bb61141cfa8",
+			"id": "96afcb7a-6e36-46ea-801a-326da19545d7",
 			"key": "column-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "273b6777-46ae-46f1-a587-f3dec600358d",
+			"id": "8a8ceba4-9bab-4e88-b7e4-9a5f382c07d3",
 			"key": "database-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "9237405a-fde8-4953-a348-cdf336072dc0",
+			"id": "6a972199-3258-4191-8a85-c4b777ab744a",
 			"key": "dataqualitywarning-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "b271d99e-8892-44d8-b027-957d21d14bb0",
+			"id": "1ff84021-0746-42b2-b438-d3d3e033d674",
 			"key": "content-type",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "2f1da28b-3e26-40a1-ab75-345962e9fd4a",
+			"id": "ab66f924-599a-4b45-8d48-03b7e09f23fa",
 			"key": "content-luid",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "ff0aa4fa-019f-451a-ac4d-d75d1b49a6d7",
+			"id": "d3bb4e3e-2443-4136-86a3-4232e0156341",
 			"key": "indicator-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c1bf454a-5715-417a-85b0-5637070580ee",
+			"id": "8349b29b-7e39-4a90-a1fd-e117505d5e34",
 			"key": "content-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "3ab7ca49-6269-4140-b04f-4edaf0e91808",
+			"id": "c808cdc4-a98a-4fe4-8746-c3876880c031",
 			"key": "trigger-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "9e69d35e-78d4-4b8b-b6e8-0f65d018b26e",
+			"id": "8cdb31b4-a9a3-4906-8f67-03827e459786",
 			"key": "metric-id",
 			"value": "",
 			"type": "string"
