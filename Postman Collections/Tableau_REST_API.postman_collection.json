@@ -6,329 +6,6 @@
 	},
 	"item": [
 		{
-			"name": ".SAMPLE WORKFLOW: Create User, Add to Group",
-			"item": [
-				{
-					"name": "Authenticate: Sign-in (As an Admin) copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if ( responseCode.code===200)",
-									"{",
-									"    postman.setEnvironmentVariable(\"token\", json.tsResponse.credentials.$.token);",
-									"    postman.setEnvironmentVariable(\"siteId\", json.tsResponse.credentials.site.$.id);",
-									"    postman.setEnvironmentVariable(\"userId\", json.tsResponse.credentials.user.$.id);",
-									"",
-									"",
-									"    tests[\"token env variable set = \" + postman.getEnvironmentVariable(\"token\")] = responseBody.has(\"token\");",
-									"    tests[\"siteId env variable set = \" + postman.getEnvironmentVariable(\"siteId\")] = true;",
-									"    tests[\"userId env variable set = \" + postman.getEnvironmentVariable(\"userId\")] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									""
-								],
-								"id": "250d31bb-8965-4a4b-a79b-2458f46e72cd"
-							}
-						}
-					],
-					"id": "35af6c1d-a524-472a-b34e-ce9311b3cd19",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <credentials name=\"admin\" password=\"admin\">\n      <site contentUrl=\"\" />\n      </credentials>\n</tsRequest>"
-						},
-						"url": "http://{{server}}/api/{{api}}/auth/signin",
-						"description": "Signs you in as a user on the specified site on Tableau Server. This call returns an authentication token that you use in subsequent calls to the server.\nBy default, the authentication token is good for 240 minutes. You can change this timeout by using the tabadmin set command and setting the wgserver.session.idle_limit option.\n\n**Note:** The token is valid only for REST API calls. You cannot use the token as authentication for other operations with Tableau Server. In addition, the token is good only for operations in the site that you're signed in to. You cannot sign in to one site and then use the token you get back to send requests to a different site. If you do, the server returns an HTTP 403 (Forbidden) error.\n\nYou can sign in and impersonate a specific user. You might do this if you want manage sign in using a centralized delegation strategy.\n\n**Note:** When you use the REST API, you cannot use SAML single sign-on (SSO), even if the server is configured to use SAML. To sign in, you must pass the user name and password of a user who has been created on the server. You will have the permissions of the Tableau Server user that you're signed in as.\n\nURI\n1. POST /api/api-version/auth/signin\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions."
-					},
-					"response": []
-				},
-				{
-					"name": "User Management: Add user to site copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"userId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"userId\", \"notSet\");",
-									"}",
-									"if (postman.getEnvironmentVariable(\"userName\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"userName\", \"notSet\");",
-									"}",
-									"",
-									"if (responseCode.code === 201) ",
-									"{",
-									"    postman.setEnvironmentVariable(\"userId\", json.tsResponse.user.$.id);",
-									"    postman.setEnvironmentVariable(\"userName\", json.tsResponse.user.$.name);",
-									"",
-									"    tests[\"Added: user with Name: \" + postman.getEnvironmentVariable(\"userName\") + \" and Id: \" + postman.getEnvironmentVariable(\"userId\")] = true;",
-									"",
-									"    tests[\"userId env variable set = \" + postman.getEnvironmentVariable(\"userId\")] = true;",
-									"    tests[\"userName env variable set = \" + postman.getEnvironmentVariable(\"userName\")] = true;",
-									"    ",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "a8f6ba9f-059c-4537-838e-a675126a0347"
-							}
-						}
-					],
-					"id": "f698b69e-f570-4c45-8b70-c76a6157544a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-tableau-auth",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "rgoldin-vm10/api/{{api}}/sites/{{siteId}}/users",
-						"description": "Adds a user to Tableau Server and assigns the user to the specified site.\nIf Tableau Server is configured to use local authentication, the information you specify is used to create a new user in Tableau Server. To set a full name, password, and email address for the user, call Update User after creating the user.\nIf Tableau Server is configured to use Active Directory for authentication, the user you specify is imported from Active Directory into Tableau Server.\nIf you try to add a user using a specific site role but you have already reached the limit on the number of licenses for your users, the user is added as an unlicensed user. In that case, the response code is 201 (which indicates success), but the siteRole value in the response body is set to Unlicensed."
-					},
-					"response": []
-				},
-				{
-					"name": "Groups: Query Groups copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"groupId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"groupId\", \"notSet\");",
-									"}",
-									"if (postman.getEnvironmentVariable(\"groupName\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"groupName\", \"notSet\");",
-									"}",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    //These lines have been commented out because they would likely select the Default group and we don't want to accidentally delete that",
-									"    //postman.setEnvironmentVariable(\"groupId\", json.tsResponse.groups.group[0].$.id);",
-									"    //postman.setEnvironmentVariable(\"groupName\", json.tsResponse.groups.group[0].$.name);",
-									"",
-									"    tests[\"Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-									"    tests[\"groupId env variable set = \" + postman.getEnvironmentVariable(\"groupId\")] = !(postman.getEnvironmentVariable(\"groupId\")===\"notSet\");",
-									"    tests[\"groupName env variable set = \" + postman.getEnvironmentVariable(\"groupName\")] = !(postman.getEnvironmentVariable(\"groupId\")===\"notSet\");",
-									"    ",
-									"}",
-									""
-								],
-								"id": "8f6aad45-accb-41a8-98d6-161b38298bca"
-							}
-						}
-					],
-					"id": "8eeec64f-50a0-4fb4-af2a-d7d09cb5bcfb",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/",
-						"description": "Returns the list of groups on the specific site, with optional parameters for paging large results"
-					},
-					"response": []
-				},
-				{
-					"name": "User Management: Get Users in Group copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Users in group retrieved.\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
-									""
-								],
-								"id": "77036782-5f87-4dd4-a00a-8e11c9590c38"
-							}
-						}
-					],
-					"id": "dd18fd7c-6ab8-4fa7-b8c3-4de573b97217",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users/",
-						"description": "List all the users is a specific group\n\nURIs\n1. GET /api/api-version/sites/site-id/groups/group-id/users\n1. GET /api/api-version/sites/site-id/groups/group-id/users?pageSize=page-size&pageNumber=page-number\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to get the users for.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results."
-					},
-					"response": []
-				},
-				{
-					"name": "User Management: Add User to Group copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 200) ",
-									"{",
-									"    tests[\"Updated: Added users to group : \" + postman.getEnvironmentVariable(\"groupName\") + \" and Id: \" + postman.getEnvironmentVariable(\"groupId\")] = true;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "b118286f-fafc-4b95-98ea-70f08062a838"
-							}
-						}
-					],
-					"id": "a10a576a-63cb-4765-8ca6-18e132049b08",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <user id=\"{{userId}}\" />\n</tsRequest>"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users",
-						"description": "Adds a user to the specified group.\n\n**NOTE: ** \nNote: After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nURI\n1. POST /api/api-version/sites/site-id/groups/group-id/users\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to add the user to."
-					},
-					"response": []
-				},
-				{
-					"name": "Authenticate: Sign Out copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"if (responseCode.code===204)",
-									"{",
-									"    tests[\"Successful signout.\"] = responseCode.code === 204;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Signout failed. Error: \" + responseBody] = responseCode.code === 204;",
-									"}"
-								],
-								"id": "e5680e4c-d230-4d90-b8ff-fb01009f63c8"
-							}
-						}
-					],
-					"id": "0c9b64c9-6f72-4fde-a5a4-0df1a50b9079",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "http://{{server}}/api/{{api}}/auth/signout",
-						"description": "Signs you out of the current session. This call invalidates the authentication token that is created by a call to Sign In.\n\nURI\n1. POST /api/api-version/auth/signout\n"
-					},
-					"response": []
-				}
-			],
-			"id": "83a245ed-56ef-4ab2-a3e2-d54821caae74"
-		},
-		{
 			"name": "Authenticate",
 			"item": [
 				{
@@ -10137,233 +9814,233 @@
 	],
 	"variable": [
 		{
-			"id": "3106b303-5d8b-4f92-8cb2-64cf5fbce6f4",
+			"id": "9a74492f-8950-41e0-9322-492e55b12bde",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "7a498676-4dc9-4b18-bbcd-26f2d6db3b8d",
+			"id": "61aff981-2a54-42b9-a73f-2c4331ae53a6",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "30415c4a-b5f7-41d9-93fc-c00780592676",
+			"id": "00d11b08-7e4e-4299-8ffd-315038920128",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "85bbd094-80d8-4222-bf59-919f4e183b93",
+			"id": "9e6b8a47-d796-4f46-b293-dc7fdf70e631",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "f5c20532-5578-4773-851d-056e7ef48f19",
+			"id": "cc54b53b-4566-4098-ab96-f93998e63b78",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "32b9cc14-ddc3-498a-9b31-cce3ac8e6193",
+			"id": "d3b2b05a-4bf7-4c74-8515-7ecea314874e",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "b7da86a7-acec-4599-8d2d-ad57b68fa00f",
+			"id": "1dcfe2a1-96e0-46e1-9b63-f5e9ced74fc4",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "fc32b223-1cad-4d7d-b8f5-e9f101c9b6db",
+			"id": "ba7fe152-badb-482f-b6f0-e592c790122b",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "1d59af87-c743-42ae-a96a-ca9525121554",
+			"id": "8077b708-b5e7-4531-9d9b-28ffdb82f1d3",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "62c14eb7-7a34-4a06-9cd2-81ab761832ca",
+			"id": "4c8c4dbb-eef6-45cc-8584-647eba41dbe7",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "631d0b14-03b7-41fc-b4fa-39ad459467ff",
+			"id": "12d2aa83-b563-4c58-b292-bb1d27dae7a3",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "148de9dc-a152-48cd-afc3-2e66fe7b4ef6",
+			"id": "d6546940-67d6-405e-ae12-1702b8c75029",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "0886ca8f-77f4-47d2-a682-e7dbb9101c0c",
+			"id": "466a7a78-0ca4-4bf6-98f1-3ad1b279a4a0",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "d4f4c658-7df0-4664-ae5b-3a063ffa7d58",
+			"id": "77bc1dbb-f01e-4ea9-b31d-41e1d1a41600",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "60a01a20-7d28-441d-95bf-09ea2a18389b",
+			"id": "957b16ae-a982-4244-9bb9-3d288445502f",
 			"key": "revision-id",
 			"value": ""
 		},
 		{
-			"id": "d2c3f64b-d644-4134-8275-6dc2f72d41ec",
+			"id": "b814fa40-f876-4fc8-a894-6dfcd814f68c",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "295a5c91-af47-49cc-ab0d-342643582f94",
+			"id": "c80ddaed-1054-4e9a-b32b-4a25f764ce91",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "88331bcf-0b1e-4f67-9fff-2ad5cbaf7d39",
+			"id": "91ff9a99-00d3-4b52-927d-cc386c05f8fb",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "b0b5fc6e-714e-44c6-a5ca-5fd2942f12f6",
+			"id": "161c6c2f-a780-4c14-9331-6306bd01d30d",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "22f2b426-54da-4954-a6d4-ba69187fb20b",
+			"id": "1dc639aa-23b6-46b4-843c-a2688482bdfa",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "d67c0ea1-e7c7-40b1-93bb-8d0b367f6804",
+			"id": "3f882755-9e8d-4f47-82e3-49c5cb340b37",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "9bfce547-3565-4ab4-9714-320baabdbae9",
+			"id": "3f5e2b52-8414-483a-bd18-9101f3afb5ff",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "7e287d6f-de23-495e-b91c-7cfd06fa1bff",
+			"id": "2774a2b5-43b1-40f3-ab82-2717ce80e456",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "43a8cc29-3502-42f8-8d4a-25c2c9dbfe11",
+			"id": "c0d4d5e1-359b-4419-bc8c-1c2d0771818b",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "c8626263-aee6-4545-ba6d-6feede179153",
+			"id": "5314962a-f230-4885-94e6-d34ff955e224",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "bbe2d4ff-bd70-47c3-a0c5-4adbbf6db6d9",
+			"id": "d181604d-6f46-4895-a0d9-bff852d1308f",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "3d25e033-975e-46d7-a9f5-f0201b5a4270",
+			"id": "f6914c78-d02b-456f-8377-851116968e96",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "cf68d5be-3110-47b5-a64c-488959b3da61",
+			"id": "637d890a-4127-4f83-b2e1-4f5dd28fddb8",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "b5ed864f-a228-4da9-b528-2c87eaef6763",
+			"id": "a5b8ce30-38a6-4f69-b43b-8e90dc1c5e49",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "ca5649ea-93b8-4134-99a3-090b411d383b",
+			"id": "b1265153-ee1a-4570-a40d-9d5773119762",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "5759ca01-3883-4778-a7a1-211973d31e9a",
+			"id": "7fa3b107-60a1-49f4-a153-a825444370d2",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "8643251c-e2ac-484e-a970-9b00133b7045",
+			"id": "e7e22902-393d-4cc3-8d6b-03c02ef47d19",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "f1fd19e4-0469-4c01-9831-4384b37a9262",
+			"id": "0016cd91-7c8c-4f2e-b568-011e1fa44c79",
 			"key": "dataAcceleration-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "be9429a2-b067-44c8-bbbe-32a1d04eb00c",
+			"id": "7039aa2d-67ec-4a9e-a45e-4149565d940e",
 			"key": "datasource-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "a1558486-0c28-4c63-a636-f02d3c4209ef",
+			"id": "c9ceee18-4310-4ae5-83f6-f8e097a5ded8",
 			"key": "table-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "96afcb7a-6e36-46ea-801a-326da19545d7",
+			"id": "7e44f0ad-9b21-4e5d-b761-790059bdb586",
 			"key": "column-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "8a8ceba4-9bab-4e88-b7e4-9a5f382c07d3",
+			"id": "ea563b26-5aa0-480b-a0ba-222670f5d0a5",
 			"key": "database-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "6a972199-3258-4191-8a85-c4b777ab744a",
+			"id": "620b360b-f886-4752-b91a-ee7eea5ec0d1",
 			"key": "dataqualitywarning-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "1ff84021-0746-42b2-b438-d3d3e033d674",
+			"id": "7dfd4410-b8dd-40ae-8666-f27695ccee97",
 			"key": "content-type",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "ab66f924-599a-4b45-8d48-03b7e09f23fa",
+			"id": "646b0a82-4d1d-4f32-96ec-8280dc47e1cd",
 			"key": "content-luid",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d3bb4e3e-2443-4136-86a3-4232e0156341",
+			"id": "0c3aeb97-32ba-4bf1-bf59-d8a6f26315e2",
 			"key": "indicator-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "8349b29b-7e39-4a90-a1fd-e117505d5e34",
+			"id": "04158984-c8f0-4624-b0c7-71b397c4223a",
 			"key": "content-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c808cdc4-a98a-4fe4-8746-c3876880c031",
+			"id": "ba3e359a-4068-4c99-acdd-33a4d9f75691",
 			"key": "trigger-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "8cdb31b4-a9a3-4906-8f67-03827e459786",
+			"id": "33f1b459-cf50-4566-9eb5-679d37d75859",
 			"key": "metric-id",
 			"value": "",
 			"type": "string"
