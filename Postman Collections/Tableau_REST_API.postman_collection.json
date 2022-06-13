@@ -59,6 +59,78 @@
 					"response": []
 				},
 				{
+					"name": "User Management: Add user to site copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var json = xml2Json(responseBody);",
+									"",
+									"//Initialize the environment variables if they don't exist",
+									"if (postman.getEnvironmentVariable(\"userId\")==undefined)",
+									"{",
+									"    postman.setEnvironmentVariable(\"userId\", \"notSet\");",
+									"}",
+									"if (postman.getEnvironmentVariable(\"userName\")==undefined)",
+									"{",
+									"    postman.setEnvironmentVariable(\"userName\", \"notSet\");",
+									"}",
+									"",
+									"if (responseCode.code === 201) ",
+									"{",
+									"    postman.setEnvironmentVariable(\"userId\", json.tsResponse.user.$.id);",
+									"    postman.setEnvironmentVariable(\"userName\", json.tsResponse.user.$.name);",
+									"",
+									"    tests[\"Added: user with Name: \" + postman.getEnvironmentVariable(\"userName\") + \" and Id: \" + postman.getEnvironmentVariable(\"userId\")] = true;",
+									"",
+									"    tests[\"userId env variable set = \" + postman.getEnvironmentVariable(\"userId\")] = true;",
+									"    tests[\"userName env variable set = \" + postman.getEnvironmentVariable(\"userName\")] = true;",
+									"    ",
+									"",
+									"}",
+									"else",
+									"{",
+									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
+									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
+									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
+									"    tests[\"full body: \" + responseBody] = false;",
+									"}",
+									"",
+									"",
+									""
+								],
+								"id": "a8f6ba9f-059c-4537-838e-a675126a0347"
+							}
+						}
+					],
+					"id": "f698b69e-f570-4c45-8b70-c76a6157544a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-tableau-auth",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "rgoldin-vm10/api/{{api}}/sites/{{siteId}}/users",
+						"description": "Adds a user to Tableau Server and assigns the user to the specified site.\nIf Tableau Server is configured to use local authentication, the information you specify is used to create a new user in Tableau Server. To set a full name, password, and email address for the user, call Update User after creating the user.\nIf Tableau Server is configured to use Active Directory for authentication, the user you specify is imported from Active Directory into Tableau Server.\nIf you try to add a user using a specific site role but you have already reached the limit on the number of licenses for your users, the user is added as an unlicensed user. In that case, the response code is 201 (which indicates success), but the siteRole value in the response body is set to Unlicensed."
+					},
+					"response": []
+				},
+				{
 					"name": "Groups: Query Groups copy",
 					"event": [
 						{
@@ -203,7 +275,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "<tsRequest>\n  <user id=\"{{userId}}\" />\n</tsRequest>"
 						},
 						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users",
 						"description": "Adds a user to the specified group.\n\n**NOTE: ** \nNote: After you create a resource, the server updates its search index. If you make a query immediately to see a new resource, the query results might not be up to date.\n\nURI\n1. POST /api/api-version/sites/site-id/groups/group-id/users\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to add the user to."
@@ -10065,233 +10137,233 @@
 	],
 	"variable": [
 		{
-			"id": "f51f622b-d309-40e9-bf24-47621b2a5ec4",
+			"id": "b7182c7f-1296-4277-9d64-5c65289256ad",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "ac6459ee-c117-466c-a070-1f656095819d",
+			"id": "bc13c5f7-98fd-47b9-a215-98da3e8bc4d5",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "b2196582-350f-4c93-891f-e97f935dc4c3",
+			"id": "9246953b-88b3-46e5-8a76-dd62fc11da8e",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "21b507e0-4920-47ee-ba53-5eabd99b1aa3",
+			"id": "c6a67114-5cf5-46aa-83a9-3051b07700e1",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "d123c783-1f5d-4ba8-92de-777095b7b035",
+			"id": "402fb6f0-8776-46b5-a642-3af6dbd436d4",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "1762811d-bb4b-47af-9264-3a19150104cc",
+			"id": "331e11b8-0290-4e3f-befa-6529695530ca",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "73277391-dc46-483a-b900-7342f09e381c",
+			"id": "9298af14-8bb1-4a86-8a3c-a7b1c418f379",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "5f33e7d0-d529-4236-8ae1-bed9534445b8",
+			"id": "df9e45b5-a296-442f-8089-eec3763d2330",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "276f12d1-25ad-49d4-87ca-a786be753e91",
+			"id": "b04f0958-58a5-4d72-83af-50f2b002c4a4",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "fdd839b7-2267-478d-93f6-8fa83545abe1",
+			"id": "0c861856-8c3a-4867-b92e-3b3e2c4f0177",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "648bed9c-ec44-4c9b-b792-427c91f28b39",
+			"id": "3b32aaec-d2c4-4eb9-9371-1ace3be28f4b",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "e9a57811-923b-498a-9574-cfcec69208c3",
+			"id": "abb6c5fd-ddf8-434a-8f5e-54858ca9f565",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "ee0a9574-de6a-4e70-9244-eed67f299879",
+			"id": "b05c8a8f-1e81-4978-ae41-9c870ed8f2e8",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "2834909b-d83d-4fad-9d2d-0b6787142fb6",
+			"id": "129a4647-b34c-454f-ba53-24357d399b53",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "58b84a2e-2bf3-4cea-95aa-a74d6ae03997",
+			"id": "d1b71079-4b52-4765-949a-037c6c0d3551",
 			"key": "revision-id",
 			"value": ""
 		},
 		{
-			"id": "b492ef6b-56ea-41dd-a7eb-63d80c378521",
+			"id": "94d9cfbf-8c3a-4bab-9d3c-3fd52be6a68c",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "b30535ad-f40f-4bb3-9f2c-79cfba9c5feb",
+			"id": "1ef67e6d-fb3d-4329-8491-e91e6d4b1abc",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "5f4e570d-8e8a-4ea4-aa89-c5a3f82484f6",
+			"id": "1b335e25-2cb6-42da-a7c0-68c3b5d2d872",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "a7e7261c-1be1-44dd-8399-c53f832e95fc",
+			"id": "99381841-b177-40bf-8151-ccbf6ba09833",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "0606422d-6f64-4946-a12f-2053fc06a5ff",
+			"id": "d38bb2ea-bc8f-4334-a1f9-e02d28629a9c",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "05c9da67-6ae5-477d-a0a5-0b92a1f10096",
+			"id": "d9fa0338-2750-4822-8474-5f3b7d3aac52",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "c26b027c-f7b8-4092-b096-04eab696e86e",
+			"id": "b96d4db9-c2d8-4775-a699-1d92685348e3",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "b4c1123e-2432-47ab-9600-0d365c3ef1ef",
+			"id": "1fb1fe7d-ab25-415b-85ff-ad0d2a640031",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "4048dabf-8b7d-4d33-9475-e7baafeafd71",
+			"id": "4fee3996-46ce-4a0e-90eb-1eedb1ecade5",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "b27c6983-aa6e-41d4-a726-e89095155044",
+			"id": "34a1e85d-9a81-4071-a46f-2f1bd83b17c0",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "af0b43b9-7e50-43d5-91e9-da48d743842f",
+			"id": "ab7fb8ff-7aba-403a-9a21-ef67df76d1e8",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "b422215f-59c3-4b99-a3e3-2de5df765e93",
+			"id": "d32d7f41-3e69-4616-ba0b-6871cd2b78f2",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "8f84b205-510e-417a-885d-246c7806861d",
+			"id": "6bda285f-5847-472b-b25d-dc5f3496e9a8",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "5b626759-fa55-4c60-98df-6cab48a55eaa",
+			"id": "339a93bf-a5ee-4e6d-9f1e-1e5b7a77cca1",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "30462361-f16e-4b7e-a10b-72f228396a87",
+			"id": "7aa17dd8-f3eb-4b80-b119-1a50e1d79471",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "72c0bbb7-b464-438b-810b-8a1ae53c7637",
+			"id": "2b90c3aa-c59a-47b0-a216-fb092a86bf01",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "438c82c4-c620-4b70-b304-70610cb658ab",
+			"id": "99ec64cc-4a80-4dbd-b5da-79b2525f52d0",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "d589bbc9-ca8c-4b12-b0cf-a7d3a8850f26",
+			"id": "ed07c690-748c-4f55-9d27-def61bcc17c9",
 			"key": "dataAcceleration-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "6c81e216-e6f3-4e86-89c3-fe9d1cc2965e",
+			"id": "e0acdfc6-80d7-482f-bf28-1912d27888ab",
 			"key": "datasource-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "ad5474c5-3dc0-4c8f-8ffc-1a5383c3b3d5",
+			"id": "63f42fc5-1d6f-473e-8fb3-a4572d9dca9e",
 			"key": "table-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "a2ed14b0-47e3-4597-be19-09abb4be6567",
+			"id": "e697a3ec-2a79-4578-a537-aae2f1c400a5",
 			"key": "column-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "8f332b70-47ba-4bf3-81cd-4c5f3aa706f0",
+			"id": "f996e46f-e125-4859-a18b-1682e0564640",
 			"key": "database-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "0a9b5952-d856-4f82-9467-5b2071f79414",
+			"id": "a03b5f9c-a2c3-4a1e-8c2f-73ad70648732",
 			"key": "dataqualitywarning-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fb0cb9e4-cce4-42ee-835b-18191fa224d4",
+			"id": "43066141-db30-438a-9a82-79c700a02fa4",
 			"key": "content-type",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fcb2ab77-1ae8-41a8-a4b4-f105de496fc7",
+			"id": "fee13b08-f973-4488-94d5-e8eea937ad1e",
 			"key": "content-luid",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "47574aee-3364-40fa-87ad-25242de1f6c0",
+			"id": "1fb597f4-ab61-4ed9-92de-cc2d4eb59192",
 			"key": "indicator-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "494a7acc-da46-42a2-b856-845e15bb7388",
+			"id": "2a44c35d-9161-49b9-9eb1-eb1b789d3e2a",
 			"key": "content-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d2cb3f6e-5e34-417a-abdc-cc34a4d0a52d",
+			"id": "947d281b-e0e4-49f4-ac67-2c619e75b15a",
 			"key": "trigger-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "2e38b00b-8e1f-4eeb-a0fd-e28d6606266e",
+			"id": "88ff1898-a897-4d19-b689-d49f7e4bba8a",
 			"key": "metric-id",
 			"value": "",
 			"type": "string"
