@@ -4290,6 +4290,350 @@
 			]
 		},
 		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Add User to Data-Driven Alert",
+					"id": "5b9081d6-7942-45b5-be4a-2bc06e1cb454",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <user id=\"{{user-id}}\"/>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/dataAlerts/{{data-alert-id}}/users",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#add_user_to_data-driven_alert](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#add_user_to_data-driven_alert)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Webhook",
+					"id": "f623bbae-5e83-405e-94ea-b437db384cb0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\r\n  <webhook\r\n    name=\"{{webhook-name}}\"\r\n    isEnabled=\"{{webhook-enabled-flag}}\"\r\n    event=\"{{api-event-name}}\">\r\n      <webhook-destination>\r\n        <webhook-destination-http method=\"POST\" url=\"{{webhook-destination-url}}\"/>\r\n     </webhook-destination>\r\n  </webhook>\r\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}//sites/{{site-id}}/webhooks",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#create_webhook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#create_webhook)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Data-Driven Alert",
+					"id": "5ced06c6-744a-49b2-aa91-99ebb93b2ee4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/site-id/dataAlerts/{{data-alert-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#delete_data-driven_alert](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#delete_data-driven_alert)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User from Data-Driven Alert",
+					"id": "d3e2c360-032a-444c-af2b-6b87b65f885f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/site-id/dataAlerts/{{data-alert-id}}/users/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#delete_user_from_data-driven_alert](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#delete_user_from_data-driven_alert)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Webhook",
+					"id": "b2dce2c8-9fb3-403c-919d-647ea6645570",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/webhooks/{{webhook-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#delete_webhook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#delete_webhook)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Notification Preferences",
+					"id": "6816ae35-fc90-4482-a828-a4aac364e538",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/settings/notifications",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"settings",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "",
+									"description": "(Optional) An expression that lets you specify a subset of notification preferences to return. You can filter on the following fields and corresponding options:\n\nchannel: email, in_app, and slack\nnotificationType: comments, webhooks, prepflow, share, dataalerts,and extractrefresh\nYou can include multiple filter expressions.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#get_user_notification_preferences](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#get_user_notification_preferences)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Webhook",
+					"id": "84719096-8c7e-4187-9c7d-1d0808d55989",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/webhooks/{{webhook-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#get_webhook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#get_webhook)"
+					},
+					"response": []
+				},
+				{
+					"name": "List Webhooks",
+					"id": "ce7b59a7-f6ec-4479-97c0-e3373443bcd5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/webhooks",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#list_webhooks_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_notifications.htm#list_webhooks_for_site)"
+					},
+					"response": []
+				},
+				{
+					"name": "Query Data-Driven Alerts",
+					"id": "fe4d0c08-9254-4f8f-9d70-098ffde70389",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/sites/site-id/dataAlerts"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook (2020.2+)",
+					"id": "b971b5fd-8e5f-4148-aecb-9b161c717e5a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-source\": {\r\n         \"{{webhook-event}}\": {}\r\n      },\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"name\": \"{{webhook-name}}\",\r\n      \"isEnabled\": \"{{webhook-isenabled}}\",\r\n      \"statusChangeReason\": \"{{webhook-statuschangereason}}\"\r\n   }\r\n}"
+						},
+						"url": "{{server}}/api/3.8/sites/{{site-id}}/webhooks/{{webhook-id}}",
+						"description": "Update an existing webhook's name, url, or event. You can also enable or disable (can also provide comment for disable) an existing webhook. This is for Tableau version 2020.2+ (api v3.8+)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook (2020.3+)",
+					"id": "babfd5a5-be0e-4ee8-89a5-5153e5c1c2e1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"event\": \"{{webhook-event}}\",\r\n      \"name\": \"{{webhook-name}}\",\r\n      \"isEnabled\": \"{{webhook-isenabled}}\",\r\n      \"statusChangeReason\": \"{{webhook-statuschangereason}}\"\r\n   }\r\n}"
+						},
+						"url": "{{server}}/api/3.9/sites/{{site-id}}/webhooks/{{webhook-id}}",
+						"description": "Update an existing webhook's name, url, or event. You can also enable or disable (can also provide comment for disable) an existing webhook. This is for Tableau version 2020.3+ (api v3.9+)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a webhook",
+					"id": "a5fe1944-d3eb-45fd-b36b-3db3f4252db6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{server}}/api/3.6/sites/{{site-id}}/webhooks/{{webhook-id}}",
+						"description": "Delete a single webhook by its ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Test a webhook",
+					"id": "2772f742-db68-4d1b-9c49-09d685997184",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": "{{server}}/api/3.6/sites/{{site-id}}/webhooks/{{webhook-id}}/test",
+						"description": "Test a single webhook."
+					},
+					"response": []
+				}
+			],
+			"id": "a6bf8b4c-9426-4045-92fe-2cc8d3970900",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b2e7b79d-2578-4d68-a3b3-5a723b9a9fdc",
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+							"    - Every request in this collection will run this script.",
+							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
+							"*/",
+							"",
+							"// xml body used to authenticate and obtain an API Key",
+							"const authBody = `",
+							"<tsRequest>",
+							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+							"    </credentials>",
+							"</tsRequest>`;",
+							"",
+							"// authenticate and obtain token value to be set as 'api-key' environment variable",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/xml',",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: authBody,",
+							"    }",
+							"}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        pm.environment.unset(\"api-key\");",
+							"        pm.environment.unset(\"site-id\");",
+							"        // convert the XML response body to JSON",
+							"        const jsonObject = xml2Json(res.text());",
+							"",
+							"        // obtain the API Key from the response body",
+							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+							"",
+							"        // set the variables to the returned value",
+							"        pm.environment.set(\"api-key\", apiKey);",
+							"        pm.environment.set(\"site-id\", siteId);",
+							"    };",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "37044b7c-2491-4ebb-abf9-fc7424db0545",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
 			"name": "Permissions",
 			"item": [
 				{
@@ -7481,61 +7825,92 @@
 					"response": []
 				},
 				{
-					"name": "Groups: Update Group",
+					"name": "Delete Users from Site with CSV",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3584bc87-a4e4-4b7b-8a54-3f3e9aa00d9f",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 200) ",
-									"{",
-									"    postman.setEnvironmentVariable(\"groupName\", json.tsResponse.group.$.name);",
-									"",
-									"    tests[\"Updated: group with Name: \" + postman.getEnvironmentVariable(\"groupName\") + \" and Id: \" + postman.getEnvironmentVariable(\"groupId\")] = true;",
-									"",
-									"    tests[\"groupId env variable set = \" + postman.getEnvironmentVariable(\"groupId\")] = true;",
-									"    tests[\"groupName env variable set = \" + postman.getEnvironmentVariable(\"groupName\")] = true;",
-									"    ",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
 									""
 								],
-								"id": "0208acfc-9b63-4541-a078-ab647b14fc11"
+								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "79a34968-06ea-43b8-a388-1e4e0a8a3b4a",
+					"id": "7c852f74-ea36-479d-a73f-22058b896b7e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n  <group name=\"updatedGroupName\" />\n</tsRequest>"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tableau_user_delete",
+									"type": "file",
+									"src": "/Users/jmayo/Desktop/user_delete.csv"
+								}
+							]
 						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}",
-						"description": "Updates a group in Tableau Server.\n\nIf the server is configured to use local authentication, the method lets you update the group name. If the server is configured to use Active Directory authentication, the method synchronizes the Tableau Server group with Active Directory.\n\nDuring synchronization, the method updates the group in Tableau Server and modifies the set of users in the group to be the same as those in Active Directory. Users in Active Directory that are not in the group on Tableau Server are added to the group, and users in Tableau Server that are not in the Active Directory group are removed from the Tableau Server group. Users that are no longer in Active Directory at all are unlicensed.\n\nIf the update synchronizes with Active Directory, Tableau Server can perform the update either immediately (synchronously) or by using a background job (asynchronously). If Active Directory contains a large number of users, you should perform the synchronization process as a background job so that the process doesn't time out. By default, synchronizing with Active Directory is performed as a background job (asynchronously).\n\nURI\n1. PUT /api/api-version/sites/site-id/groups/group-id\n1. PUT /api/api-version/sites/site-id/groups/group-id?asJob=background-task\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to update.\n* background-task  true to synchronize with Active Directory as a background task, or false to synchronize immediately (synchronously). The default is true.  **Note: This parameter has no effect if the server is configured to use local authentication.**"
+						"url": "{{base-path}}/sites/{{site-id}}/users/delete",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#delete_users_from_site_with_csv](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#delete_users_from_site_with_csv)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Groups for a User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d46616c-9a1d-45dc-8aa3-38a6779db8e8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "7f3990c3-6958-45e3-b2e7-9a5c8bc0c00a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}/groups",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"users",
+								"{{user-id}}",
+								"groups"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#get_groups_for_a_user](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#get_groups_for_a_user)"
 					},
 					"response": []
 				},
@@ -7565,8 +7940,36 @@
 								"value": "{{token}}"
 							}
 						],
-						"url": "{{base-path}}/sites/{{site-id}}/groups/{{group-id}}/users",
-						"description": "List all the users is a specific group\n\nURIs\n1. GET /api/api-version/sites/site-id/groups/group-id/users\n1. GET /api/api-version/sites/site-id/groups/group-id/users?pageSize=page-size&pageNumber=page-number\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the group.\n* group-id  The ID of the group to get the users for.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results."
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/groups/{{group-id}}/users",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"groups",
+								"{{group-id}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": null,
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": null,
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#get_users_in_group](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#get_users_in_group)"
 					},
 					"response": []
 				},
@@ -7649,6 +8052,47 @@
 					"response": []
 				},
 				{
+					"name": "Import Users to Site from CSV",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3584bc87-a4e4-4b7b-8a54-3f3e9aa00d9f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "ad703ad3-efd9-43da-8ad4-fa6cb5d091d5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tableau_user_import",
+									"type": "file",
+									"src": "/Users/jmayo/Desktop/user_import.csv"
+								},
+								{
+									"key": "request_payload",
+									"value": "<tsRequest><user /></tsRequest>",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/users/import",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#import_users_to_site_from_csv](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#import_users_to_site_from_csv)"
+					},
+					"response": []
+				},
+				{
 					"name": "Query Groups",
 					"event": [
 						{
@@ -7721,23 +8165,16 @@
 					"response": []
 				},
 				{
-					"name": "User Management: Query User on Site",
+					"name": "Query User on Site",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "d70aa07c-4cb7-4bba-ab9d-6d6468996827",
 								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"User retrieved.\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
 									""
 								],
-								"id": "d70aa07c-4cb7-4bba-ab9d-6d6468996827"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7754,38 +8191,21 @@
 							}
 						],
 						"url": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}",
-						"description": "Returns info about the specified user"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#query_user_on_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#query_user_on_site)"
 					},
 					"response": []
 				},
 				{
-					"name": "User Management: Remove User from Site",
+					"name": "Remove User from Site",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "277ef0a2-514b-40b8-893a-ec76858b8df6",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code == 204) {",
-									"    tests[\"Deleted: user with name: \" + postman.getEnvironmentVariable(\"userName\") + \" and Id: \" + postman.getEnvironmentVariable(\"userId\") ] = true;",
-									"    postman.setEnvironmentVariable(\"userId\", \"notSet\");",
-									"    postman.setEnvironmentVariable(\"userName\", \"notSet\");  ",
-									"    tests[\"UsuserId env variable set = \" + postman.getEnvironmentVariable(\"userId\")] = (postman.getEnvironmentVariable(\"userId\")===\"notSet\");",
-									"    tests[\"userName env variable set = \" + postman.getEnvironmentVariable(\"userName\")] = (postman.getEnvironmentVariable(\"userName\")===\"notSet\");",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
 									""
 								],
-								"id": "277ef0a2-514b-40b8-893a-ec76858b8df6"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7805,51 +8225,108 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/users/{{userId}}",
-						"description": "Removes a user from the specified site. If a user still owns content (assets) on Tableau Server, the user cannot be deleted unless the ownership is reassigned first.\nIf a user is removed from all sites that the user is a member of, the user is deleted.\n\nURI\n1.  DELETE /api/api-version/sites/site-id/users/user-id\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the user.\n* user-id  The ID of the user to remove."
+						"url": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#remove_user_from_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#remove_user_from_site)"
 					},
 					"response": []
 				},
 				{
-					"name": "User Management: Query Workbooks for a User",
+					"name": "Remove User from Group",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3f4c553e-d325-4e99-8b42-027bb4a1c961",
 								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Workbooks for the user retrieved.\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
 									""
 								],
-								"id": "121aebf1-bcd6-4630-8d8a-e08dffda9100"
+								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "b6c7641b-eb33-4c0c-82cb-5c641c1754d7",
+					"id": "e75cf1af-5721-4a93-8c8b-90e2f4a89be5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [
 							{
 								"key": "X-Tableau-Auth",
 								"value": "{{token}}"
 							}
 						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/users/{{userId}}/workbooks",
-						"description": "Get a list of workbooks owned by a specific user"
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/groups/{{group-id}}/users/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#remove_user_to_group](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#remove_user_to_group)"
 					},
 					"response": []
 				},
 				{
-					"name": "User Management: Update User",
+					"name": "Update Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0208acfc-9b63-4541-a078-ab647b14fc11",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "79a34968-06ea-43b8-a388-1e4e0a8a3b4a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <group name=\"updatedGroupName\" />\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/groups/{{group-id}}",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"groups",
+								"{{group-id}}"
+							],
+							"query": [
+								{
+									"key": "asJob",
+									"value": null,
+									"description": "A Boolean value that is used if you are importing from Active Directory. Set this value to true to synchronize with Active Directory as a background task, or set this value to false to synchronize immediately (synchronously). The default is false.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#update_group](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#update_group)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
 					"event": [
 						{
 							"listen": "test",
@@ -7884,57 +8361,7 @@
 							}
 						},
 						"url": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}",
-						"description": "Modifies information about the specified user.\n\nIf Tableau Server is configured to use local authentication, you can update the user's name, email address, password, or site role.\n\nIf Tableau Server is configured to use Active Directory for authentication, you can change the user's display name (full name), email address, and site role. However, if you synchronize the user with Active Directory, the display name and email address will be overwritten with the information that's in Active Directory.\n\nFor Tableau Online, you can update the site role for a user, but you cannot update or change a user's password, user name (email address), or full name.\n\n#### URI\n\nPUT /api/*api-version*/sites/*site-id*/users/*user-id*\n\n#### Parameter Values\n\n| *api-version* | The version of the API to use, such as `3.14`. For more information, see [REST API and Resource Versions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm). |\n| *site-id* | The ID of the site that contains the user. |\n| *user-id* | The ID of the user to update. |"
-					},
-					"response": []
-				},
-				{
-					"name": "User Management: Remove User from Group",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code == 204) {",
-									"    tests[\"Removed: user with name: \" + postman.getEnvironmentVariable(\"userName\") + \" and Id: \" + postman.getEnvironmentVariable(\"userId\") + \"from group: \" + postman.getEnvironmentVariable(\"groupId\")] = true;",
-									"    tests[\"UsuserId env variable set = \" + postman.getEnvironmentVariable(\"userId\")] = (postman.getEnvironmentVariable(\"userId\")!==\"notSet\");",
-									"    tests[\"userName env variable set = \" + postman.getEnvironmentVariable(\"userName\")] = (postman.getEnvironmentVariable(\"userName\")!==\"notSet\");",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									""
-								],
-								"id": "3f4c553e-d325-4e99-8b42-027bb4a1c961"
-							}
-						}
-					],
-					"id": "e75cf1af-5721-4a93-8c8b-90e2f4a89be5",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/groups/{{groupId}}/users/{{userId}}",
-						"description": "Remove a specific user from a group"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#update_user](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#update_user)"
 					},
 					"response": []
 				}
@@ -8006,406 +8433,7 @@
 			]
 		},
 		{
-			"name": "Views",
-			"item": [
-				{
-					"name": "Query Views for a Workbook",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ce7d932b-d413-4ceb-b10d-76719273d8ab",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "72528c8f-06c1-4648-8f18-abd0c65b3d12",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views/",
-							"host": [
-								"{{base-path}}"
-							],
-							"path": [
-								"sites",
-								"{{site-id}}",
-								"workbooks",
-								"{{workbook-id}}",
-								"views",
-								""
-							],
-							"query": [
-								{
-									"key": "includeUsageStatistics",
-									"value": "true",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Get a list of views in a Workbook\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/views\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/views?includeUsageStatistics=get-usage-information\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to get the views for.\n* (Optional) get-usage-information  true to return usage statistics. The default is false."
-					},
-					"response": []
-				},
-				{
-					"name": "Query View Preview Image",
-					"id": "daa77dd0-1c0c-48a3-89a2-96f3cc154748",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views/{{view-id}}/previewImage"
-					},
-					"response": []
-				},
-				{
-					"name": "Query Column in a Table",
-					"id": "604cebac-7e10-4d2f-a915-12ea1d955402",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/image"
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Query View with Preview Image",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"View with preview image retrieved.\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
-									""
-								],
-								"id": "649d3b64-2053-4236-91af-b725be0df0ff"
-							}
-						}
-					],
-					"id": "a277fad3-9fec-4cf9-8e86-95e2fff1f03f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/views/{{viewId}}/previewImage",
-						"description": "Get a preview image of a workbook's view"
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Query Views for a Workbook",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"viewId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"viewId\", \"notSet\");",
-									"}",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"",
-									"    tests[\"Views retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-									"    tests[\"viewId env variable set = \" + postman.getEnvironmentVariable(\"viewId\")] = !(postman.getEnvironmentVariable(\"viewId\")===\"notSet\");",
-									"",
-									"}",
-									""
-								],
-								"id": "3dcdcd32-6e9f-4873-b8bc-f3f883f25b85"
-							}
-						}
-					],
-					"id": "7f56a433-6e5c-4153-a5b0-407d474206fb",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": {
-							"raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbookId}}/views/",
-							"protocol": "http",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"api",
-								"{{api-version}}",
-								"sites",
-								"{{site-id}}",
-								"workbooks",
-								"{{workbookId}}",
-								"views",
-								""
-							],
-							"query": [
-								{
-									"key": "includeUsageStatistics",
-									"value": "true",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Get a list of views in a Workbook\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/views\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/views?includeUsageStatistics=get-usage-information\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to get the views for.\n* (Optional) get-usage-information  true to return usage statistics. The default is false."
-					},
-					"response": []
-				},
-				{
-					"name": "Query View PDF",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "df920096-0d3a-4671-a13a-cde7cfdf5315",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "079d6434-5ea5-4c0c-9232-c1a67fe6530b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/pdf?orientation=Landscape",
-							"host": [
-								"{{base-path}}"
-							],
-							"path": [
-								"sites",
-								"{{site-id}}",
-								"views",
-								"{{view-id}}",
-								"pdf"
-							],
-							"query": [
-								{
-									"key": "filter-value",
-									"value": null,
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "max-age-minutes",
-									"value": null,
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "orientation",
-									"value": "Landscape"
-								},
-								{
-									"key": "page-type",
-									"value": null,
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_view_pdf](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_view_pdf)\n\nReturns a specified view rendered as a .pdf file.\n\nIf you make multiple requests for a PDF, subsequent calls return a cached version of the file. This means that the returned PDF might not include the latest changes to the view. To decrease the amount of time that an PDF is cached, use the *maxAge* parameter.\n\nThis method includes the ability to filter a view using fields in the underlying workbook data. To learn more about filtering query views, see [Filtering and Sorting in the REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_filtering_and_sorting.htm#Filter-query-views)."
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Query Views for a Workbook with Usage Statistics",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"viewId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"viewId\", \"notSet\");",
-									"}",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"",
-									"    tests[\"Views with usage statistics retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-									"    tests[\"viewId env variable set = \" + postman.getEnvironmentVariable(\"viewId\")] = !(postman.getEnvironmentVariable(\"viewId\")===\"notSet\");",
-									"",
-									"}",
-									""
-								],
-								"id": "e2f7ea76-7755-49e2-a4bf-c347e7ab5d2a"
-							}
-						}
-					],
-					"id": "a00fc908-ed47-4920-bcaa-e33b31801b95",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": {
-							"raw": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/views?includeUsageStatistics=true",
-							"protocol": "http",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"api",
-								"{{api}}",
-								"sites",
-								"{{siteId}}",
-								"workbooks",
-								"{{workbookId}}",
-								"views"
-							],
-							"query": [
-								{
-									"key": "includeUsageStatistics",
-									"value": "true"
-								}
-							]
-						},
-						"description": "Get a list of views in a Workbook, including view counts"
-					},
-					"response": []
-				}
-			],
-			"id": "54f1dd71-43fd-4b7c-a5fb-6f6d4859e5fd",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "2efa4c76-e6fd-4954-946f-6f10bed4e6c9",
-						"type": "text/javascript",
-						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "826d8e05-2d53-4fd2-9b0e-b5fde7fb6c34",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Workbooks",
+			"name": "Workbooks and Views",
 			"item": [
 				{
 					"name": "Add Tags to a View",
@@ -8493,33 +8521,6 @@
 							"script": {
 								"id": "75795fe3-f94b-4811-8f97-3d709769380f",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"tag\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"tag\", \"notSet\");",
-									"}",
-									"",
-									"var error = !(responseCode.code===204)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    //These lines have been commented out because they would likely select the Default project and we don't want to accidentally delete that",
-									"    //postman.setEnvironmentVariable(\"projectId\", json.tsResponse.projects.project[0].$.id);",
-									"    //postman.setEnvironmentVariable(\"projectName\", json.tsResponse.projects.project[0].$.name);",
-									"    ",
-									"    tests[\"Deleted: Tag \" + postman.getEnvironmentVariable(\"tag\")] = responseCode.code===204 ",
-									"    postman.setEnvironmentVariable(\"tag\", \"notSet\");",
-									"    tests[\"tag env variable set = \" + postman.getEnvironmentVariable(\"tag\")] = !(postman.getEnvironmentVariable(\"tag\")===\"notSet\");",
-									"      ",
-									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -8542,8 +8543,8 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/tags/{{tag}}",
-						"description": "Delete a tag from the specified workbook\n\nURI\n1. DELETE /api/api-version/sites/site-id/workbooks/workbook-id/tags/tag-name\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to remove the tag from.\n* tag-name  The name of the tag to remove from the workbook.\n"
+						"url": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/tags/{{tag-name}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_tag_from_view](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_tag_from_view)"
 					},
 					"response": []
 				},
@@ -8553,38 +8554,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "18f7f337-ffea-46c1-a56a-fe8dd465b960",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"tag\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"tag\", \"notSet\");",
-									"}",
-									"",
-									"var error = !(responseCode.code===204)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    //These lines have been commented out because they would likely select the Default project and we don't want to accidentally delete that",
-									"    //postman.setEnvironmentVariable(\"projectId\", json.tsResponse.projects.project[0].$.id);",
-									"    //postman.setEnvironmentVariable(\"projectName\", json.tsResponse.projects.project[0].$.name);",
-									"    ",
-									"    tests[\"Deleted: Tag \" + postman.getEnvironmentVariable(\"tag\")] = responseCode.code===204 ",
-									"    postman.setEnvironmentVariable(\"tag\", \"notSet\");",
-									"    tests[\"tag env variable set = \" + postman.getEnvironmentVariable(\"tag\")] = !(postman.getEnvironmentVariable(\"tag\")===\"notSet\");",
-									"      ",
-									"}",
 									""
 								],
-								"id": "18f7f337-ffea-46c1-a56a-fe8dd465b960"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -8604,8 +8578,8 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/tags/{{tag}}",
-						"description": "Delete a tag from the specified workbook\n\nURI\n1. DELETE /api/api-version/sites/site-id/workbooks/workbook-id/tags/tag-name\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to remove the tag from.\n* tag-name  The name of the tag to remove from the workbook.\n"
+						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/tags/{{tag-name}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_tag_from_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_tag_from_workbook)"
 					},
 					"response": []
 				},
@@ -8615,34 +8589,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "39a44b7b-2d6a-4933-9c91-cfbc80505b42",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===204)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Deleted: Workbook with name: \" + postman.getEnvironmentVariable(\"workbookName\") + \" and Id: \" + postman.getEnvironmentVariable(\"workbookId\")] = responseCode.code === 204;",
-									"    postman.setEnvironmentVariable(\"workbookId\", \"notSet\");",
-									"    postman.setEnvironmentVariable(\"workbookName\", \"notSet\");",
-									"    postman.setEnvironmentVariable(\"contentUrl\", \"notSet\");",
-									"",
-									"",
-									"    tests[\"workbookId env variable set = \" + postman.getEnvironmentVariable(\"workbookId\")] = (postman.getEnvironmentVariable(\"workbookId\")!==\"notSet\");",
-									"    tests[\"workbookName env variable set = \" + postman.getEnvironmentVariable(\"workbookName\")] = (postman.getEnvironmentVariable(\"workbookName\")!==\"notSet\");",
-									"    tests[\"contentUrl env variable set = \" + postman.getEnvironmentVariable(\"contentUrl\")] = (postman.getEnvironmentVariable(\"contentUrl\")!==\"notSet\");",
-									"    ",
-									"}",
 									""
 								],
-								"id": "39a44b7b-2d6a-4933-9c91-cfbc80505b42"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -8662,7 +8613,8 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}"
+						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_workbook)"
 					},
 					"response": []
 				},
@@ -8674,20 +8626,6 @@
 							"script": {
 								"id": "cfc5a860-3d7a-4d5e-8882-193b63d71ac0",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Workbook downloaded.\"] = true;",
-									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -8707,40 +8645,29 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbookId}}/pdf?page-orientation=Landscape",
-							"protocol": "http",
+							"raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/crosstab/excel",
 							"host": [
-								"{{server}}"
+								"{{base-path}}"
 							],
 							"path": [
-								"api",
-								"{{api-version}}",
 								"sites",
 								"{{site-id}}",
-								"workbooks",
-								"{{workbookId}}",
-								"pdf"
+								"views",
+								"{{view-id}}",
+								"crosstab",
+								"excel"
 							],
 							"query": [
 								{
-									"key": "max-age-minutes",
-									"value": null,
+									"key": "maxAge",
+									"value": "max-age-minutes",
 									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "page-orientation",
-									"value": "Landscape"
-								},
-								{
-									"key": "page-type",
-									"value": null,
-									"type": "text",
+									"description": "(Optional) The maximum number of minutes an .xlsx file will be cached on the server before being refreshed. To prevent multiple .xlsx requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
 									"disabled": true
 								}
 							]
 						},
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download."
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_view_excel](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_view_excel)"
 					},
 					"response": []
 				},
@@ -8750,25 +8677,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "d9bc4d7c-ca62-4220-ba36-a58a7b56ea9f",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Workbook downloaded.\"] = true;",
-									"}",
 									""
 								],
-								"id": "d9bc4d7c-ca62-4220-ba36-a58a7b56ea9f"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -8784,86 +8697,29 @@
 								"value": "{{token}}"
 							}
 						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/revisions/{{revisionId}}/content",
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download."
-					},
-					"response": []
-				},
-				{
-					"name": "Download Workbook Excel",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d2fe3260-a7f8-43aa-a8cc-693231d3e14e",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Workbook downloaded.\"] = true;",
-									"}",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "70ae74f5-20c4-4849-b2f3-8b0b7fbd1922",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
 						"url": {
-							"raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbookId}}/pdf?page-orientation=Landscape",
-							"protocol": "http",
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/content",
 							"host": [
-								"{{server}}"
+								"{{base-path}}"
 							],
 							"path": [
-								"api",
-								"{{api-version}}",
 								"sites",
 								"{{site-id}}",
 								"workbooks",
-								"{{workbookId}}",
-								"pdf"
+								"{{workbook-id}}",
+								"content"
 							],
 							"query": [
 								{
-									"key": "max-age-minutes",
-									"value": null,
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "page-orientation",
-									"value": "Landscape"
-								},
-								{
-									"key": "page-type",
-									"value": null,
+									"key": "includeExtract",
+									"value": "extract-value",
+									"description": "(Optional) The extract-value is a Boolean value (False or True). When the workbook specified for download has an extract, if you add the parameter ?includeExtract=False, the extract is not included when you download the workbook. You can use this option to improve performance if you are downloading workbooks or data sources that have large extracts.",
 									"type": "text",
 									"disabled": true
 								}
 							]
 						},
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download."
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook)"
 					},
 					"response": []
 				},
@@ -8873,25 +8729,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "82c504f9-b7f6-48fa-913c-01161e155f78",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Workbook downloaded.\"] = true;",
-									"}",
 									""
 								],
-								"id": "82c504f9-b7f6-48fa-913c-01161e155f78"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -8908,40 +8750,40 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbookId}}/pdf?page-orientation=Landscape",
-							"protocol": "http",
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/pdf",
 							"host": [
-								"{{server}}"
+								"{{base-path}}"
 							],
 							"path": [
-								"api",
-								"{{api-version}}",
 								"sites",
 								"{{site-id}}",
 								"workbooks",
-								"{{workbookId}}",
+								"{{workbook-id}}",
 								"pdf"
 							],
 							"query": [
 								{
-									"key": "max-age-minutes",
-									"value": null,
+									"key": "maxAge",
+									"value": "max-age-minutes",
+									"description": "(Optional) The maximum number of minutes a workbook PDF will be cached before being refreshed. To prevent multiple PDF requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
 									"type": "text",
 									"disabled": true
 								},
 								{
-									"key": "page-orientation",
-									"value": "Landscape"
+									"key": "orientation",
+									"value": "page-orientation",
+									"description": "(Optional) The orientation of the pages in the .pdf file produced. The value can be Portrait or Landscape. If this parameter is not present the page orientation will default to Portrait.",
+									"disabled": true
 								},
 								{
-									"key": "page-type",
-									"value": null,
-									"type": "text",
+									"key": "type",
+									"value": "page-type",
+									"description": "(Optional) The type of page, which determines the page dimensions of the .pdf file returned. The value can be: A3, A4, A5, B5, Executive, Folio, Ledger, Legal, Letter, Note, Quarto, or Tabloid. If this parameter is not present the page type will default to Legal.",
 									"disabled": true
 								}
 							]
 						},
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download."
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_pdf](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_pdf)"
 					},
 					"response": []
 				},
@@ -8953,20 +8795,6 @@
 							"script": {
 								"id": "4132acc3-dab7-43bc-a375-515801ad1d26",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Workbook downloaded.\"] = true;",
-									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -8986,40 +8814,28 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbookId}}/pdf?page-orientation=Landscape",
-							"protocol": "http",
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/powerpoint",
 							"host": [
-								"{{server}}"
+								"{{base-path}}"
 							],
 							"path": [
-								"api",
-								"{{api-version}}",
 								"sites",
 								"{{site-id}}",
 								"workbooks",
-								"{{workbookId}}",
-								"pdf"
+								"{{workbook-id}}",
+								"powerpoint"
 							],
 							"query": [
 								{
-									"key": "max-age-minutes",
-									"value": null,
+									"key": "maxAge",
+									"value": "max-age-minutes",
 									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "page-orientation",
-									"value": "Landscape"
-								},
-								{
-									"key": "page-type",
-									"value": null,
-									"type": "text",
+									"description": "(Optional) The maximum number of minutes a workbook .pptx will be cached before being refreshed. To prevent multiple .pptx requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
 									"disabled": true
 								}
 							]
 						},
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download."
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_powerpoint](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_powerpoint)"
 					},
 					"response": []
 				},
@@ -9031,20 +8847,6 @@
 							"script": {
 								"id": "fe20e3ad-07c6-4ff1-a9a1-76e5ce05a1ec",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    tests[\"Workbook downloaded.\"] = true;",
-									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -9064,78 +8866,30 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbookId}}/pdf?page-orientation=Landscape",
-							"protocol": "http",
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions/{{revision-number}}/content",
 							"host": [
-								"{{server}}"
+								"{{base-path}}"
 							],
 							"path": [
-								"api",
-								"{{api-version}}",
 								"sites",
 								"{{site-id}}",
 								"workbooks",
-								"{{workbookId}}",
-								"pdf"
+								"{{workbook-id}}",
+								"revisions",
+								"{{revision-number}}",
+								"content"
 							],
 							"query": [
 								{
-									"key": "max-age-minutes",
-									"value": null,
+									"key": "includeExtract",
+									"value": "extract-value",
 									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "page-orientation",
-									"value": "Landscape"
-								},
-								{
-									"key": "page-type",
-									"value": null,
-									"type": "text",
+									"description": "(Optional) The extract-value is a Boolean value (False or True). When the workbook specified for download has an extract, if you add the parameter ?includeExtract=False, the extract is not included when you download the workbook. You can use this option to improve performance if you are downloading workbooks or data sources that have large extracts.",
 									"disabled": true
 								}
 							]
 						},
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Recommendations for Views",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Workbook information received\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
-									""
-								],
-								"id": "bdad93d6-57b0-4734-957a-335efd2a3f34"
-							}
-						}
-					],
-					"id": "b8f66054-9141-4f83-9051-9d65edce6f9b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
-						"description": "Get the details of a specific workbok"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_revision](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_revision)"
 					},
 					"response": []
 				},
@@ -9219,23 +8973,64 @@
 					"response": []
 				},
 				{
+					"name": "Get Recommendations for Views",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bdad93d6-57b0-4734-957a-335efd2a3f34",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b8f66054-9141-4f83-9051-9d65edce6f9b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/recommendations/?type=view",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"recommendations",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "view"
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_view_recommendations](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_view_recommendations)"
+					},
+					"response": []
+				},
+				{
 					"name": "Get Workbook Downgrade Info",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "68f4db5b-d204-4d44-8c6f-0a630bcf18fe",
 								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Workbook information received\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
 									""
 								],
-								"id": "68f4db5b-d204-4d44-8c6f-0a630bcf18fe"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9251,8 +9046,27 @@
 								"value": "{{token}}"
 							}
 						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
-						"description": "Get the details of a specific workbok"
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/downGradeInfo?productVersion=downgrade-target-version",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"workbooks",
+								"{{workbook-id}}",
+								"downGradeInfo"
+							],
+							"query": [
+								{
+									"key": "productVersion",
+									"value": "downgrade-target-version",
+									"description": "The Tableau release version number the workbook is being downgraded to."
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_workbook_downgrade_info](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_workbook_downgrade_info)"
 					},
 					"response": []
 				},
@@ -9262,18 +9076,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "025f1607-595f-4a60-b481-fc9ef609cef5",
 								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Workbook information received\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
 									""
 								],
-								"id": "025f1607-595f-4a60-b481-fc9ef609cef5"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9289,8 +9096,36 @@
 								"value": "{{token}}"
 							}
 						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
-						"description": "Get the details of a specific workbok"
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"workbooks",
+								"{{workbook-id}}",
+								"revisions"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "page-size",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "page-number",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_workbook_revisions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_workbook_revisions)"
 					},
 					"response": []
 				},
@@ -9300,18 +9135,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "06a493df-ef17-424e-a979-4edf6084357a",
 								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Workbook information received\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
 									""
 								],
-								"id": "06a493df-ef17-424e-a979-4edf6084357a"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9320,15 +9148,24 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "X-Tableau-Auth",
 								"value": "{{token}}"
 							}
 						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
-						"description": "Get the details of a specific workbok"
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n    <recommendationDismissal>\n        <view id=\"{{view-id}}\" />\n    </recommendationDismissal>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/recommendations/dismissals",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#hide_view_recommendation](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#hide_view_recommendation)"
 					},
 					"response": []
 				},
@@ -10370,277 +10207,315 @@
 	],
 	"variable": [
 		{
-			"id": "652f997d-64b3-4b33-b538-ebbca7e736a0",
+			"id": "78b0ad9b-3a89-4189-95aa-f2b179aaaf5d",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "abc09243-e928-4ead-93fd-1e99a0f835d4",
-			"key": "user-id",
-			"value": "2ee27415-e7f6-497f-8e0b-510f38cd6966"
-		},
-		{
-			"id": "84af5a37-d13d-4bf1-91b7-d1c3d0c7b5f5",
+			"id": "63919423-62d5-45b3-8f3e-fa23b1852cbf",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "6d14bb8a-8f20-47ed-84e1-5fa09b889308",
-			"key": "group-id",
-			"value": ""
+			"id": "5d536918-7924-450c-909b-8be07f782341",
+			"key": "user-id",
+			"value": "",
+			"type": "string"
 		},
 		{
-			"id": "1d0688a7-c009-49b4-a25a-b5fe861147a4",
+			"id": "bf8b0245-6546-4013-bc83-e7ea7c71fc41",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "163c46ec-2b60-4cb6-897b-478178ab0848",
+			"id": "57d9438e-34ba-42dc-8090-34971f27cbe3",
+			"key": "group-id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "dc7b9e7b-72cf-436b-bcb1-9fc5319c70d8",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "e5defdba-e231-4033-bef3-7ae1245c1157",
+			"id": "97c7f625-3450-465a-9ea1-ebf99060a929",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "f29d6b99-ca8c-4db3-9b10-b7f9aa105993",
+			"id": "26809bc2-dce9-4156-99bb-8248ae48105d",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "679f4a1e-2bfc-4671-8d9d-586fb281bab8",
+			"id": "8edd3af9-a159-4d78-81f2-e3649633e150",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "720aa6da-a3cf-47ac-b828-5658c9c52d5a",
+			"id": "d497e896-7f8b-401f-a344-8d96df21615f",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "1f91a4f0-49c8-479f-a6c0-a15850809970",
+			"id": "417ba562-c473-4333-ab39-78e9a970f72a",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "0180b71f-f146-485e-a43e-e2d03e569030",
+			"id": "0c08e71c-b8f5-4ae9-ae3b-6779c6ee9b5b",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "3918f722-069c-4538-9bf0-49868fee21f0",
+			"id": "3202b9a7-03c4-4a10-85fc-6fff54e30076",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "84cfe5b0-4bba-4e37-8e38-25a859021e88",
+			"id": "f4a8a517-da29-49e7-82b9-3633c3b9aa43",
 			"key": "revision-number",
-			"value": ""
+			"value": "1"
 		},
 		{
-			"id": "7c959a4d-7f90-4b0c-8134-ca7725232cd5",
+			"id": "d4556da3-082c-454e-96ae-9e23732d18a6",
 			"key": "view-id",
 			"value": "add38114-3a16-4b1c-8b39-61523eab32ac"
 		},
 		{
-			"id": "5f384e8e-0fb2-440c-89ef-4847fcb27719",
+			"id": "e5d7fc09-e416-4fe6-8ab5-de89898b794c",
 			"key": "workbook-id",
 			"value": "3e8c3999-b237-4c6c-9b4b-c5c9e64af126"
 		},
 		{
-			"id": "227e1a85-5248-41bb-8d66-6c13e3a606f7",
+			"id": "a7192647-962e-4c80-8bc3-5e6011290422",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "6f7db970-07ce-4d14-a2cb-ddae743b1f84",
+			"id": "ec816de7-848d-45b9-a2c5-ad28a69ffcf3",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "20fa8d23-b9fb-4852-ad19-abb953b27e6e",
+			"id": "8b710480-e82d-4e80-bfab-e7a427c06206",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "408b78e6-8e45-41b8-adb2-0ef524ca2503",
+			"id": "1c640f15-f94c-4105-84ff-75ca8794f641",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "c9b16d78-4eb9-4e7f-a8e2-ad98b78533c7",
+			"id": "b0ea28f9-a889-4dbb-a04c-7f7441d4da6c",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "c4fa8295-0276-4807-b0ba-c334c9d247eb",
+			"id": "41d0fee6-c140-40df-a5df-ba2f0b7347ef",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "1b597777-13f6-42ce-a620-3a1c978de813",
+			"id": "af82bb8b-b8cc-4593-bdde-759b75dce9ad",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "5f192da2-b876-41b5-b801-a91479f22022",
+			"id": "05b339a8-aae1-4af2-8cbc-ff37f84e4888",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "c485347f-a062-474b-b460-d95867341732",
+			"id": "13514b20-861e-4501-bfbb-b57a7b00a417",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "e9a539ad-2372-45d1-9af2-0c3a8402db30",
+			"id": "936a5484-d6a9-4a7e-abee-176e3f1b39bf",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "4db8930f-36f1-4335-a080-899da3381816",
+			"id": "16bd60f7-48a1-4c79-b2e3-8cad0a5f3290",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "83516954-8aed-495d-9ff6-ec04face6de3",
+			"id": "59913ff7-b326-48e5-99ca-34f6d97b0f55",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "b91de2a9-ef19-4902-95c3-1a1542fe15bd",
+			"id": "ac1eb76c-a46a-4ba2-8afb-6934a0f883c0",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "28195c60-46e1-46f1-b317-e2c7cb6cda11",
+			"id": "9b028db3-89e8-460f-8ec4-76002666484e",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "e948b9c3-cf3c-46f9-b4f2-6d02d6101f17",
+			"id": "d0d84c8f-6d6f-49d7-8d06-c1713adc8365",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "b08daa73-2b48-4b96-8e37-e4132ec1cc75",
+			"id": "5fc3cc69-6374-4e07-b32d-0595e9ec0256",
 			"key": "data-acceleration-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "eb0f036f-5cf4-4c7a-9166-723faa3aa3a7",
+			"id": "75259917-932d-4760-be45-e94a611598cb",
 			"key": "datasource-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "4212b010-6ccf-4118-8bd8-a677708bf813",
+			"id": "c5642a13-15d9-4630-93b2-eb02aaecac90",
 			"key": "table-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "80d75c6a-0c0b-44d5-a038-0ea7f041b2e2",
+			"id": "efb8a28c-f4c6-4471-941d-5fcaa15a8375",
 			"key": "column-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "f3bced87-3f6f-4201-8cde-6eb3071595a1",
+			"id": "cde55064-2ee0-4747-abb8-855a2822b96e",
 			"key": "database-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "7e5e7ad0-e687-42c6-9804-c58f0ba41711",
+			"id": "1a34d0a0-1e22-41a1-920e-84af8558f337",
 			"key": "data-quality-warning-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "136bbd47-6876-4490-b8d1-8d0cd4334c9d",
+			"id": "9102f683-05b0-48cd-8897-6082d4e39b81",
 			"key": "content-type",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fa1d364d-1595-43f6-a98e-5fabbb8888b6",
+			"id": "bde22dff-69e5-4d61-a60e-0847a91c0bfe",
 			"key": "content-luid",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "50d14b34-6b17-415c-a04b-1571b72e7b8c",
+			"id": "37622b62-cf85-408c-b20b-1b7a755e57a7",
 			"key": "indicator-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "33de5a8d-a6ed-4642-84de-2dbe697407ad",
+			"id": "90714672-3c4c-41da-9db6-b935c1f872a6",
 			"key": "content-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "27d11e73-04ee-4025-bbda-a14baf9d3fd0",
+			"id": "6b6e5818-4d4c-406d-8b16-9ef9768dc31f",
 			"key": "trigger-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "0efdc142-1d8f-45dc-91d4-cba29a3110f6",
+			"id": "224dfc17-8bfe-43a9-9223-fb40cb03b2c1",
 			"key": "metric-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "99ab7698-09ff-4b0e-a4f1-bc1eacd102f1",
+			"id": "acdb0447-c2f3-4e46-9374-99d8d778aea9",
 			"key": "tag-name",
-			"value": "",
+			"value": "tag",
 			"type": "string"
 		},
 		{
-			"id": "dd62549f-e2d9-46fc-bf33-a53ed7033462",
+			"id": "1693220a-0d92-4085-9e51-964b731b5775",
 			"key": "connected-app-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "462136d4-2c1f-413b-b949-6e3c7a2a7b77",
+			"id": "54559e7d-dd61-4d4f-b996-202724288503",
 			"key": "connected-app-name",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "af78b56b-46cf-4f3f-a7f9-560812aa0f41",
+			"id": "440ff880-9501-471a-8e35-576af4ccc564",
 			"key": "connected-app-enabled",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "f53ad992-9d1d-40cf-98da-54acd4cec15d",
+			"id": "5c28abfa-984e-49eb-bb78-e946b0f3f435",
 			"key": "unrestricted-embedding",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fb45dc61-6471-42e7-bae0-fc436b1a1a20",
+			"id": "4a2a7fff-ac86-48a9-97d0-a300949094cc",
 			"key": "domain-safelist",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "a9f20873-55f4-485a-87e4-de549adb1edb",
+			"id": "3eb210de-df3a-4438-a0df-0743bcfbccf3",
 			"key": "connected-app-secret-id",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "466960d5-4815-45d3-ab90-6fff92faf2df",
+			"id": "a8b7c96c-ce1c-4d21-a940-5a48a2e2faa2",
 			"key": "connected-app-secret-value",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "ff8d3e3c-3a7d-4e61-b715-dd3f4ebec3aa",
+			"key": "data-alert-id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "c9a53ba4-90a5-431f-948f-4b021d13b467",
+			"key": "webhook-name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "3b4aff99-f188-4362-87d5-3683bdebbd65",
+			"key": "webhook-enabled-flag",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "39ed72c7-bd37-4983-8bdf-d7618e996512",
+			"key": "api-event-name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "d846dc41-cf3e-450d-a6f9-64977f54c3ec",
+			"key": "webhook-destination-url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "a7e80cac-f0b4-451c-ad7b-f6591df5ed17",
+			"key": "webhook-id",
 			"value": "",
 			"type": "string"
 		}
