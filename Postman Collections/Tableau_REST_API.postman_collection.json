@@ -9329,12 +9329,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/views",
 							"host": [
@@ -10451,307 +10446,307 @@
 	],
 	"variable": [
 		{
-			"id": "1c699569-d478-4396-83c3-61755aeaedd8",
+			"id": "975ad373-d7fe-4719-887a-cc96d3474fdf",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "f444e283-d5db-431f-a827-d75781cd38fe",
+			"id": "dbeabc8d-2dc7-4bca-9983-f763d279448a",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "c9b2de72-8691-4486-8552-24191a717429",
+			"id": "a05b275b-ef2d-4d55-80b5-304786074b5e",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "c7cea256-ce55-4f2d-8268-6dac9eee37b7",
+			"id": "5577e6aa-651e-40e1-8762-b10ca5001464",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "026be236-2f09-43ff-b83e-dd3c40a5c5c5",
+			"id": "8f46b06a-03b8-4af9-9c9e-9da779ec3d60",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "eefc8e4c-afe3-4882-a1ae-e740df2565e0",
+			"id": "59b51204-1c95-4ac9-a545-a8890e46f036",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "89f36be3-63ad-4233-8582-a265d9de2b2c",
+			"id": "8bfab137-a174-433d-a330-ee5f9c292e59",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "7a8b18e8-c78d-4a8e-96ab-ee1489db5183",
+			"id": "720defda-00e8-48ed-a2b0-e01dc6222552",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "5f274708-5e15-4bf2-9147-fa18eba1feb0",
+			"id": "122c92dd-6832-4418-b6e9-0f554979a381",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "35784f49-6b4e-4a69-b42b-d1204a069ecb",
+			"id": "dd2aecf6-a853-46ef-a097-a18ac272a432",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "da53cc52-558b-42e5-a32c-bb58b112b18a",
+			"id": "e61a86a0-ce1e-444a-b1b7-ca5aba377625",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "5271298f-9afa-45f3-ac7d-ec00584ddc54",
+			"id": "95c3bb67-75dc-43c4-a70d-d422c7cda0ab",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "890bf122-360a-413b-b85f-e208058c544f",
+			"id": "477dc0cf-ce3f-4c0d-aed7-1209fa135ded",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "acc1a014-1c90-4fa4-aaf2-c2087c4388c3",
+			"id": "d76d9124-beb7-4575-b902-6be1cdce3b19",
 			"key": "revision-number",
 			"value": "1"
 		},
 		{
-			"id": "264185c2-448b-4ad8-8e74-01a9600e6a54",
+			"id": "11df15ee-9616-46fc-9a03-255a98443786",
 			"key": "view-id",
 			"value": "add38114-3a16-4b1c-8b39-61523eab32ac"
 		},
 		{
-			"id": "06aedcac-256d-49c1-a2f0-b3576a5aa97b",
+			"id": "78cdd6ca-23c7-4a41-894f-d6abd89b0197",
 			"key": "workbook-id",
 			"value": "e17c7e44-3e74-4278-a457-b00dd18f66fa"
 		},
 		{
-			"id": "f946bb67-af2e-4add-a64f-652c32eeb44a",
+			"id": "d5cf5ff9-6441-48bb-8f87-ac499fa86385",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "ea7e0fbe-3899-4200-8236-6cab2fb8dd57",
+			"id": "ab3c71a9-1ed6-43f3-806d-4681872a052a",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "2bbf0653-75d6-4abd-a024-073c9ace96d3",
+			"id": "5591441a-8677-4956-9266-fc7905cad4c1",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "c4504b65-578a-47a4-b530-a0397b94dd0c",
+			"id": "089c9e7c-396a-41b6-8659-ca6067f3e51c",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "056d569d-c2bc-4176-9e1c-b3b215b1719f",
+			"id": "044819d4-fe0b-4e5c-993e-126322e115a3",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "a6b1ad9a-80fb-4b77-a246-17072efa3fd1",
+			"id": "df89b9d6-1d7a-4af2-98f3-82f2823af925",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "f807a97f-25e2-4fec-b02f-bcbfb30ab6a7",
+			"id": "959371ca-72df-4113-87b6-181215a53c21",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "5214dafd-fc35-40a5-b28f-62a91a750023",
+			"id": "d5b6431d-4728-440e-bf47-f0b3c845f7ba",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "5f2ef109-b62e-4065-8bb5-08fd741b71c9",
+			"id": "ca15ce03-304e-4233-8ee6-d89b1e641892",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "21d70fbb-5378-4b78-b05e-a7730faf204c",
+			"id": "6fe140a3-3a24-48ab-98b8-9d0045a0d52d",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "13a95577-2e28-41e8-9825-8849a082821f",
+			"id": "560ad9e7-e3da-4c9d-92c2-d2b5ebcbe9d5",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "8d08ff94-c3ba-460b-b8ca-8cfff3e23a7b",
+			"id": "aeaabcba-3de2-443e-8791-916e9ba544be",
 			"key": "connection-id",
 			"value": "4bc36b85-e4ca-4085-8b03-907d6ba90fc2"
 		},
 		{
-			"id": "59e15a11-b909-444c-b808-e2bddcbca525",
+			"id": "06526bd3-df8a-4850-b3a4-2973d8f098ce",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "6eb64c74-aad8-4a01-9b13-aace6c09b923",
+			"id": "f49f3b40-57d7-451f-99c6-2bbf7fab0b41",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "35e684dd-37ae-4d4f-8902-276bc6f7c4b9",
+			"id": "f74cbf46-c67e-4be5-8e32-ebadfc9d026e",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "c735cfef-e030-46f5-a77a-71cc7c84f421",
+			"id": "24530280-26a9-42a5-add7-90cbc836ba58",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "e8c21a28-ebe6-45d8-a2ce-c974a42f9e83",
+			"id": "4f6631da-c0bc-4d87-aacb-843fd920a55f",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "ff971cdc-2801-49cf-8627-9450b703a870",
+			"id": "349cfa51-ee8a-4908-8c0c-f93c920b9b33",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "5bdc3c63-bb96-4eda-927a-9572d03dfc12",
+			"id": "fef1c4a6-7449-4768-aa74-ed9487fefcc3",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "88cf0c03-17f0-4489-abb1-29669a712411",
+			"id": "fd5ae8a7-3236-48ab-abd7-78531635e797",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "52a037de-08dc-45f9-b859-0946d9587ed4",
+			"id": "eca2838c-0cbf-4c10-a15b-c33630a930bc",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "14736518-d7f0-4f5c-8b40-5b28d90fd0a7",
+			"id": "9a169f31-1ee8-415c-b960-416df558407c",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "4d5c9a66-e3f9-4c03-8e64-f12b3636ad9e",
+			"id": "46359d76-7e02-45e5-8b8c-9b5d57cc14dd",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "55355f0a-bc39-4ba5-b4de-159bead6a24f",
+			"id": "7cb7f730-9f1c-4f96-9840-a1b02a362722",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "e711d7de-4336-4bbf-9675-528e647acf28",
+			"id": "65188aef-2088-4b04-bdd5-0259f38e1ca7",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "f034136c-053c-4476-bc66-c95754b8f48a",
+			"id": "a63c015f-e438-473c-8dc9-3d1c5c8bde5e",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "cacb1133-3f41-42cb-a0ff-9654e72aad16",
+			"id": "bfc9c9a6-765b-42c1-b6b8-26e60203efd8",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "9b55ec7b-4887-4af5-b4f0-84b66fed30ae",
+			"id": "84e1f734-24f6-43a6-9326-eb908a7c7f14",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "86bea059-50a2-4ac9-bb5e-1d12d16b2504",
+			"id": "d32b74fc-d95a-4618-81b8-8363c4d38563",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "6bb2ae7e-e025-4ce0-927f-b62568a87eaa",
+			"id": "0e9bfe7d-8bf1-4f55-819d-9dbae8ce1718",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "e5f08cea-1c10-4b96-9145-a20910306f89",
+			"id": "d6908a82-c8c2-453a-bf93-a15b58a2298a",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "4115d68a-9ecb-4d1c-a3e6-2ac606beeb5e",
+			"id": "7d8a1b86-f507-43d4-a6fe-5e87804e8e60",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "e0b220fc-b7f1-42f1-a219-28a02eaedc7b",
+			"id": "e75f98ad-ca44-40c8-aae7-5efbfd0ab0a3",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "8b91993a-b87d-4d9e-bf28-535c097aaa5f",
+			"id": "e6c98b38-0ac9-4cb9-978d-5d7f30952ee3",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "fd653139-9318-499b-8285-00ee9ab947d2",
+			"id": "4fc54be8-d983-4a12-87b4-f06e310b6fa2",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "612796cf-ab98-4531-919a-da5d525233c1",
+			"id": "ef425221-a3db-48f7-90bd-52f1ec076bae",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "e9cd51c7-4781-4f8f-917b-cfe21c76adbd",
+			"id": "1f24ed3a-a66a-4270-9d89-41e4ea828a60",
 			"key": "webhook-name",
 			"value": ""
 		},
 		{
-			"id": "81ecbfdc-4730-4148-892f-e2763de9ef84",
+			"id": "2482470b-a34c-45a6-b77b-ae6dd976372e",
 			"key": "webhook-enabled-flag",
 			"value": ""
 		},
 		{
-			"id": "2e2080f2-7b21-4dc1-8f40-202aac3085c6",
+			"id": "a06032d8-2597-4764-838b-d638badf01a0",
 			"key": "api-event-name",
 			"value": ""
 		},
 		{
-			"id": "c5aa8d75-d114-4c23-a766-2a468c180ec0",
+			"id": "a863cca6-1918-457e-af08-b153bc3d535b",
 			"key": "webhook-destination-url",
 			"value": ""
 		},
 		{
-			"id": "8800acc2-1b31-4ed6-8dbb-49ea9e220d86",
+			"id": "8ba6cf9c-abb1-4baf-9f1a-9ffbece6bf2e",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "448bb09a-6262-4235-8316-e2a0a9e5bb5d",
+			"id": "ff648dff-2c56-469d-b428-a0714cb2995a",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "b4a2d1f2-0c04-4b1c-9bc0-2a5e0e4d29e1",
+			"id": "a42a5f72-eb2e-4d80-a43f-7e67aa0ba7e4",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "499b1781-ebb8-48cf-8efe-0714c545a0f6",
+			"id": "c18a966d-3428-4a65-adb2-7ab9b900cd1d",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "f5779b00-e0df-4899-bd98-2af8c772e732",
+			"id": "4567e1cb-4489-4951-9d83-d0ad95d04b5d",
 			"key": "new-project-id",
 			"value": ""
 		}
