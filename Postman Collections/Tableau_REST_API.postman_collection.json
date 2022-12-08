@@ -6863,7 +6863,71 @@
 					"response": []
 				}
 			],
-			"id": "78aabe2d-1ff6-45b7-ac6e-dce2b0ffbd7c"
+			"id": "78aabe2d-1ff6-45b7-ac6e-dce2b0ffbd7c",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f25d3397-8125-4559-8a85-6fbe302de1f0",
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+							"    - Every request in this collection will run this script.",
+							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
+							"*/",
+							"",
+							"// xml body used to authenticate and obtain an API Key",
+							"const authBody = `",
+							"<tsRequest>",
+							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+							"    </credentials>",
+							"</tsRequest>`;",
+							"",
+							"// authenticate and obtain token value to be set as 'api-key' environment variable",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/xml',",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: authBody,",
+							"    }",
+							"}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        pm.environment.unset(\"api-key\");",
+							"        pm.environment.unset(\"site-id\");",
+							"        // convert the XML response body to JSON",
+							"        const jsonObject = xml2Json(res.text());",
+							"",
+							"        // obtain the API Key from the response body",
+							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+							"",
+							"        // set the variables to the returned value",
+							"        pm.environment.set(\"api-key\", apiKey);",
+							"        pm.environment.set(\"site-id\", siteId);",
+							"    };",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "208c9805-ce60-4f9b-9b64-b3bdd811d37f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "Sites",
@@ -6896,7 +6960,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <site name=\"New Site Name\"\n    contentUrl=\"newSiteName\"\n    adminMode=\"ContentAndUsers\"\n    userQuota=\"10\"\n    storageQuota=\"40\"\n  disableSubscriptions=\"false\"/>\n</tsRequest>",
+							"raw": "<tsRequest>\n  <site\n\tname=\"site-name\"\n\tcontentUrl=\"content-url\"\n\tadminMode=\"admin-mode\"\n\tstorageQuota=\"limit-in-megabytes\"\n\tdisableSubscriptions=\"disable-subscriptions\"\n    editingFlowsEnabled=\"editing-flows-enabled-flag\"\n    schedulingFlowsEnabled=\"scheduling-flows-enabled-flag\"\n\tallowSubscriptionAttachments=\"allow-subcription-attachments-flag\"\n\tguestAccessEnabled=\"guest-access-enabled-flag\"\n\tcacheWarmupEnabled=\"cache-warmup-enabled-flag\"\n\tcommentingEnabled=\"commenting-enabled-flag\"\n\trevisionHistoryEnabled=\"enable-revision-history-flag\"\n\trevisionLimit=\"num-revision-limit\"\n\tsubscribeOthersEnabled=\"subscribe-others-enabled-flag\"\n\textractEncryptionMode=\"extractEncryptionMode\"\n\trequestAccessEnabled=\"request-access-enabled-flag\"\n\trunNowEnabled=\"run-now-enabled-flag\"\n\tuserQuota=\"all-license-limit-total\"\n\ttierCreatorCapacity=\"creator-license-limit\"\n\ttierExplorerCapacity=\"explorer-license-limit\"\n\ttierViewerCapacity=\"viewer-license-limit\"\n\tdataAlertsEnabled=\"data-alerts-enabled-flag\"\n\tcommentingMentionsEnabled=\"commenting-mentions-enabled-flag\"\n\tcatalogObfuscationEnabled=\"catalog-obfuscation-enabled-flag\"\n\tflowAutoSaveEnabled=\"flow-auto-save-enabled-flag\"\n\twebExtractionEnabled=\"web-extraction-enabled-flag\"\n\trunNowEnabled=\"run-now-enabled-flag\"\n\tmetricsContentTypeEnabled=\"metrics-content-type-enabled-flag\"\n\tnotifySiteAdminsOnThrottle=\"notify-site-admins-on-throttle-flag\"\n\tauthoringEnabled=\"authoring-enabled-flag\"\n\tcustomSubscriptionEmailEnabled=\"custom-subscription-email-enabled-flag\"\n\tcustomSubscriptionEmail=\"custom-subscription-email\"\n\tcustomSubscriptionFooterEnabled=\"custom-subscription-footer-enabled-flag\"\n\tcustomSubscriptionFooter=\"custom-subscription-footer\"\n\taskDataMode=\"ask-data-mode\"\n\tnamedSharingEnabled=\"named-sharing-enabled-flag\"\n\tcatalogingEnabled=\"cataloging-enabled-flag\"\n\tderivedPermissionsEnabled=\"derived-permissions-enabled-flag\"\n\tuserVisibilityMode=\"user-visibility-mode\"\n\tuseDefaultTimeZone=\"default-time-zone-flag\"\n \ttimeZone=\"time-zone\"\n    autoSuspendRefreshEnabled=\"auto-suspend-refresh-enabled-flag\"\n    autoSuspendRefreshInactivityWindow=\"auto-suspend-refresh-inactivity-window\"\n\texplainDataEnabled=\"explainDataEnabled\" />\n</tsRequest>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -6904,7 +6968,7 @@
 							}
 						},
 						"url": "{{base-path}}/sites",
-						"description": "Create a new site\n\n* site-name  The name of the site.\n* content-url  The site URL. This value can contain only characters that are valid in a URL.\n* admin-mode  (Optional) Specify ContentAndUsers to allow site administrators to use the server interface and tabcmd commands to add and remove users. (Specifying this option does not give site administrators permissions to manage users using the REST API.) Specify ContentOnly to prevent site administrators from adding or removing users. (Server administrators can always add or remove users.) **Note: You cannot set adminMode to ContentOnly and also set userQuota.**\n* num-users  (Optional) The maximum number of users for the site. If you do not specify this value, the limit depends on the type of licensing configured for the server. For user-based license, the maximum number of users is set by the license. For core-based licensing, there is no limit to the number of users. If you specify a maximum value, only licensed users are counted and server administrators are excluded.\n* storage-quota  (Optional) The maximum amount of space for the new site, in megabytes. If you set a quota and the site exceeds it, publishers will be prevented from uploading new content until the site is under the limit again.\n* disable-subscriptions  (Optional) Specify true to prevent users from being able to subscribe to workbooks on the specified site. The default is false."
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#create_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#create_site)"
 					},
 					"response": []
 				},
@@ -6935,7 +6999,7 @@
 							}
 						],
 						"url": "{{base-path}}/sites/{{site-id}}",
-						"description": "Deletes the specified site.\nYou can specify the site to delete by using the site ID, the site name, or the content URL. You use the key query string parameter to indicate how you are specifying the site, as shown in the URIs.\n\n1. DELETE /api/api-version/sites/site-id\n1. DELETE /api/api-version/sites/site-name?key=name\n1. DELETE /api/api-version/sites/content-url?key=contentUrl\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to delete.\n* site-name  The name of the site to delete. If you specify a site name, you must also include the parameter key=name.\n* content-url  The URL of the site to delete. If you specify a content URL, you must also include the parameter key=contentUrl. \n"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#delete_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#delete_site)"
 					},
 					"response": []
 				},
@@ -6977,7 +7041,7 @@
 								}
 							]
 						},
-						"description": "Deletes the specified site.\nYou can specify the site to delete by using the site ID, the site name, or the content URL. You use the key query string parameter to indicate how you are specifying the site, as shown in the URIs.\n\n1. DELETE /api/api-version/sites/site-id\n1. DELETE /api/api-version/sites/site-name?key=name\n1. DELETE /api/api-version/sites/content-url?key=contentUrl\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to delete.\n* site-name  The name of the site to delete. If you specify a site name, you must also include the parameter key=name.\n* content-url  The URL of the site to delete. If you specify a content URL, you must also include the parameter key=contentUrl. \n"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#delete_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#delete_site)"
 					},
 					"response": []
 				},
@@ -7018,7 +7082,7 @@
 								}
 							]
 						},
-						"description": "Deletes the specified site.\nYou can specify the site to delete by using the site ID, the site name, or the content URL. You use the key query string parameter to indicate how you are specifying the site, as shown in the URIs.\n\n1. DELETE /api/api-version/sites/site-id\n1. DELETE /api/api-version/sites/site-name?key=name\n1. DELETE /api/api-version/sites/content-url?key=contentUrl\n\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to delete.\n* site-name  The name of the site to delete. If you specify a site name, you must also include the parameter key=name.\n* content-url  The URL of the site to delete. If you specify a content URL, you must also include the parameter key=contentUrl. \n"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#delete_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_site.htm#delete_site)"
 					},
 					"response": []
 				},
@@ -7887,7 +7951,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <group name=\"myNewGroup\" />\n</tsRequest>",
+							"raw": "<tsRequest>\n  <group name=\"newGroupName\" />\n</tsRequest>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -8095,12 +8159,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/users",
 							"host": [
@@ -8322,10 +8381,6 @@
 								"value": "{{token}}"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#remove_user_from_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#remove_user_from_site)"
 					},
@@ -8454,7 +8509,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<!-- For Tableau Server.. any combination of attributes will work. For more details: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_users_and_groups.htm#update_user -->\n<tsRequest>\n    <user \n        fullName=\"AmyK\" \n        email=\"AmyK@Amy.com\"\n        password=\"AmyK\"\n        siteRole=\"Publisher\" \n    />\n<!-- For Tableau Online, only the siteRole can be changed.. -->\n    <!-- <user siteRole=\"Unlicensed\" /> -->\n</tsRequest>\n\n",
+							"raw": "<tsRequest>\n    <user \n        fullName=\"new-full-name\"\n        email=\"new-email\"\n        password=\"new-password\"\n        siteRole=\"new-site-role\"\n        authSetting=\"new-auth-setting\" />\n    />\n</tsRequest>\n<!-- Tableau Cloud only allows for updating siteRole and authSetting -->\n",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -10449,307 +10504,307 @@
 	],
 	"variable": [
 		{
-			"id": "73fe01ca-2111-4ffd-8584-8355c15371a6",
+			"id": "235259d6-9e0e-425e-9c9f-e59a0ae24ea5",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "ed9c8d61-c810-409a-9d11-b97b00b90560",
+			"id": "6e91bdca-8ae8-47ca-b557-20f02f546f71",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "a9e3beb8-1cc2-492c-ae13-a9ffd2003d8c",
+			"id": "92bdf640-14ed-435d-8eb4-a574413ac95b",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "93995e20-8606-4630-89b3-2f9d9e3a453b",
+			"id": "6a651c63-45f2-4f73-88e6-50caddfcdd56",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "f2765be2-34e4-46fd-bf01-38c2df652f45",
+			"id": "464049af-89a4-41c8-9bf0-e351b9890ce6",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "5481e399-cd65-406c-9a8b-0089ada799a3",
+			"id": "27dddfe3-a2d4-4942-84a9-f871d6399f2a",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "07a74e9d-513d-4be4-a18b-60f614295747",
+			"id": "629585d4-4e72-487d-a2bb-5d3e95413ea3",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "ee5d7a4a-b6f8-4421-b8fc-27302e1a918f",
+			"id": "31a86f18-e951-4bb8-9ec1-41539b491b11",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "d9789abc-a18e-4f0a-938a-1bc0e42c88d7",
+			"id": "e28ed105-5697-42ab-b2c0-f9e585cdc79b",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "e17887b1-7319-4200-a4d1-916ff01e964d",
+			"id": "008c3bd8-1d5b-45f8-94f9-9a61893f2cfe",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "e45bfe2f-a19e-4daa-af61-e0868dd0ef44",
+			"id": "09266124-66df-4cd5-91b8-834f86f7890f",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "f49cc35a-6cee-4857-a9fb-f063a16c5f8f",
+			"id": "7f9fe6e2-a7a1-4c9a-9c0e-1747fc7805a4",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "b29f0eb8-ef1b-46a0-8b36-c39369b5b4b4",
+			"id": "89cb0929-4b70-479e-a82f-72776a13373f",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "98a5fd44-6816-4377-bf9f-5b0677eb41b3",
+			"id": "e35eebb8-ba9b-468a-8a78-84e471e87c1b",
 			"key": "revision-number",
 			"value": "1"
 		},
 		{
-			"id": "65a0a0ec-cedc-409f-a6a7-2d4932e879f6",
+			"id": "f735fdc0-6e10-4cda-8378-4c0606517be3",
 			"key": "view-id",
 			"value": "add38114-3a16-4b1c-8b39-61523eab32ac"
 		},
 		{
-			"id": "8bce354b-59af-47f8-b482-e57c1b767263",
+			"id": "598cedfc-ecf7-4b73-88fa-18ed6653ac97",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "466d9450-1160-4298-a170-98391849b2e2",
+			"id": "d10e513a-5d99-475d-a47d-3c4c415e5739",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "e3d57c54-f37b-421a-ade7-95060398a226",
+			"id": "1a313271-9905-4ab8-ae5e-eb42ccd55517",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "75840a2b-b766-4575-a399-a29a7f980981",
+			"id": "5cdfc467-1e82-4b92-b50e-ded316712cc9",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "8434ab10-e147-40c7-9e91-e738a2adbabf",
+			"id": "6ecbdbc8-0890-4404-ae31-a1e34ae0f85b",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "33e11e8a-a9a0-48c1-a2c6-1233c7be6867",
+			"id": "1a725405-0c5c-4e15-9b59-d5ca6cb4d86a",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "51224017-cc5f-4e48-beed-038eeca57caf",
+			"id": "30365f84-17f1-4393-b702-cf94e84eb2b8",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "fddd9cb3-a30f-4cc3-9305-0507b08e70a2",
+			"id": "e5649d4f-cd82-45ee-a2f5-ac2107d43c03",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "6a530948-acab-47ce-a409-448c2b7e900d",
+			"id": "c61fcc78-3d21-40ee-bc8c-7e3cfac8b92f",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "b0aac2f3-b131-4359-ae1d-266b0e934f0d",
+			"id": "c3fa06ad-90ea-4b57-a45a-614ae31ae09b",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "228672b4-9173-4d55-8c04-176dccdd60f4",
+			"id": "7528073f-a1df-4480-ad08-f3e0e9202be0",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "8f64bd25-fc87-4208-b0fa-7293f77b5e82",
+			"id": "29f81a08-ab9c-4bfc-8891-d22ceddb2b44",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "415ceca4-a5a7-4a0e-bbd2-1e67d22add55",
+			"id": "b1d89538-220c-4e8a-9fa5-18463770c974",
 			"key": "connection-id",
 			"value": "4bc36b85-e4ca-4085-8b03-907d6ba90fc2"
 		},
 		{
-			"id": "8f2306e2-0a76-468d-b60f-791ea64df5a2",
+			"id": "1e6ce487-d12b-44e6-983c-fb2ae5343112",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "e5337160-1b9b-43e9-bbf1-36945b32b5ff",
+			"id": "74fd3a82-aa46-4a1f-a3c5-124f11fbb54d",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "5e5f5187-fa68-42fe-ae77-3b69b85ad6ea",
+			"id": "628ff614-05f1-4a36-b45d-79cefabc24ad",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "34edf761-19de-479b-b6cb-6ad32f990948",
+			"id": "32540e14-6b3d-4dac-91d9-8025ab30725c",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "fa9eac7a-5d99-46ae-91a4-cf2b6fe5bdc3",
+			"id": "f406b347-270a-4d74-98b9-e5bb4e849f3d",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "e6391072-9720-4357-b42d-4f3d479c11ef",
+			"id": "a934bc69-e0e9-4b65-bba8-97ce15e53217",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "edf7bdfc-43b3-4920-a113-ff9c09edffd6",
+			"id": "caa35c92-2b84-497b-a338-48adab04c85c",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "798dc03b-45c3-42a2-b701-4be854a1d023",
+			"id": "a82a0cac-c8f9-4372-9a23-593faf4f716f",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "a0d565f3-24c4-4e7a-aab6-a775b0c91d5a",
+			"id": "8ff42b3a-11aa-4461-902c-41a1e65809f4",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "647fa10d-9cc4-48d0-916e-b449a6ca129d",
+			"id": "768a1ff9-bff3-43fc-a40f-abd2d601c5a1",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "27483cb4-0d8f-452a-89a1-ed4f4eac4acc",
+			"id": "fad5826e-e6cf-4c68-9745-9dd214ad7449",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "7ff542da-b937-45ab-ba3e-2c2564ab6a26",
+			"id": "3c70a4bd-dad7-4b89-95b3-7849311b344a",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "28a93445-03ed-4909-b228-4466aae72796",
+			"id": "9585d9a5-3a2f-4f2f-a1dc-2db5e921b7b1",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "30555120-d8e9-4e73-bf47-b93b88ab42fc",
+			"id": "34092280-2c26-40f1-a836-67a0e6c163b4",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "0b23e7be-58da-4826-aa6c-1d5805bc3b0a",
+			"id": "41ae2603-92db-4642-a946-429c79ec4375",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "afcc9b4f-bfb3-43ef-8537-15865390d9d8",
+			"id": "4cb13905-2785-4fe9-b719-8d244a96959d",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "444a19a6-0f0f-4420-8ee0-2e9eaef111b4",
+			"id": "5bb4ceb5-048c-454a-9e6b-ebb41f0de8a0",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "00fa89f4-7e51-4ec1-abba-8d7d30641613",
+			"id": "68ad806f-2d3a-4ce6-a915-78ecd8e1e3a4",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "1ceba6ec-f36f-4c33-8406-811d70dbd6d0",
+			"id": "c52987d2-4d64-44a7-8dbf-7a2a4997347e",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "b774a291-e10e-46e3-b7eb-fab401ecad54",
+			"id": "035829fd-c7e1-4242-8b80-6e391a5ce958",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "fd0e92fe-eede-4764-acee-5ccf3a3146e3",
+			"id": "9ef1dd1b-8a62-4ec6-9209-19c1bd7c9c74",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "e17ecb00-c718-418a-977d-8d09235ec934",
+			"id": "ee254346-167a-4d8a-a82c-139aee292c00",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "0925822d-972b-4bd8-8f3c-6e6531062e0a",
+			"id": "e70a9130-1a97-4ce2-afed-8d52b8244678",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "cb954241-b4e4-41f0-a707-012dff1c2990",
+			"id": "13921dc7-d7d7-4649-9519-215d47a3a0e2",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "e84ba10f-6605-47e6-9367-625cabc6c1db",
+			"id": "627707df-91b1-4367-b525-be826943509a",
 			"key": "webhook-name",
 			"value": ""
 		},
 		{
-			"id": "66566663-f99e-4562-a3af-41bd2dd22663",
+			"id": "783b67ec-5fdc-4a31-8183-93cae23a0e37",
 			"key": "webhook-enabled-flag",
 			"value": ""
 		},
 		{
-			"id": "4ef7e06e-82ff-40ee-8807-9470e6d7b0d2",
+			"id": "ce81a088-99ce-4db2-b818-6d04ca90cfc3",
 			"key": "api-event-name",
 			"value": ""
 		},
 		{
-			"id": "12b23f51-9ae4-4b96-8fa8-7badb07336e6",
+			"id": "3faea321-ad7d-49d7-9263-f380652ae1e2",
 			"key": "webhook-destination-url",
 			"value": ""
 		},
 		{
-			"id": "bd0fccd1-c56d-4bed-940b-5865b46b8fa6",
+			"id": "4358937e-ced2-4ad8-988f-98a42ca01335",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "ea1f050b-6c20-4dae-aa1b-b01de145e461",
+			"id": "5a689b65-1df2-4241-b061-b5d8f871e978",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "506b210e-ebce-43e0-842c-9afb7e242b2b",
+			"id": "b30bf0b5-c4a1-4692-bef0-8a881bae5193",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "ce596bfb-91be-4532-838a-07049b56e5c2",
+			"id": "f0f52b83-c903-41c4-bd1e-170d972c6998",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "74a44abb-0735-4a8f-87c4-0e77346929f6",
+			"id": "2c5ee2b3-a99e-45c0-9b0c-e385bdafa4a6",
 			"key": "new-project-id",
 			"value": ""
 		}
