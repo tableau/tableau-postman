@@ -1430,32 +1430,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 200) ",
-									"{",
-									"",
-									"",
-									"    tests[\"Added: Datasource favorite \"] = true;",
-									"",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
 									""
 								],
-								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1477,10 +1456,190 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest> \n  <favorite label=\"Favorite datasource added by REST API\"> \n    <datasource id=\"{{datasourceId}}\" /> \n  </favorite> \n</tsRequest>"
+							"raw": "<tsRequest> \n  <favorite label=\"Favorite datasource added by REST API\"> \n    <datasource id=\"{{datasource-id}}\" /> \n  </favorite> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
 						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}",
-						"description": "Adds the specified data source to the user's favorites.\n\nIf the user already has the data source listed as a favorite with the same label, the operation has no effect. If the label differs, the original favorite is overwritten.\n\n\nURI\n1. PUT /api/api-version/sites/site-id/favorites/user-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* user-id  The ID of the user to add the favorite for.\n\nAttributes\n* \nfavorite-label  A label to assign to the favorite. This value is displayed when you search for favorites on the server.\n* datasource-id  The ID of the data source to add as a favorite."
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_data_source_to_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_data_source_to_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Flow to Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d10491ac-4877-4e62-9cec-2b5281e9f529",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest> \n  <favorite label=\"Favorite flow added by REST API\"> \n    <flow id=\"{{flow-id}}\" /> \n  </favorite> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_flow_to_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_flow_to_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Metric to Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2152fe35-8924-449c-a35b-06b17b4005df",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest> \n  <favorite label=\"Favorite metric added by REST API\"> \n    <metric id=\"{{metric-id}}\" /> \n  </favorite> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_metric_to_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_metric_to_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Project to Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6f238668-9604-4f86-866f-d192f7b07594",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest> \n  <favorite label=\"Favorite project added by REST API\"> \n    <project id=\"{{project-id}}\" /> \n  </favorite> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_project_to_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_project_to_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add View to Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "bb8c7c8f-bfa0-48b6-9795-0891d0e05c50",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest> \n  <favorite label=\"Favorite view added by REST API\"> \n    <view id=\"{{view-id}}\" /> \n  </favorite> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_view_to_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_view_to_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Workbook to Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "34bec122-ff35-4ee3-a2da-162ce578d306",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest> \n  <favorite label=\"Favorite view added by REST API\"> \n    <workbook id=\"{{workbook-id}}\" /> \n  </favorite> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_workbook_to_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#add_workbook_to_favorites)"
 					},
 					"response": []
 				},
@@ -1515,102 +1674,73 @@
 							}
 						],
 						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}/datasources/{{datasource-id}}",
-						"description": "Deletes the specified data source from the user's favorites. If the specified data source is not a favorite, the operation has no effect.\n\n\nURI\n1. DELETE /api/api-version/sites/site-id/favorites/user-id/datasources/datasource-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* user-id  The ID of the user to add the favorite for.\n* datasource-id  The ID of the data source to remove from the user's favorites.\n"
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_data_source_from_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_data_source_from_favorites)"
 					},
 					"response": []
 				},
 				{
-					"name": "Favorites: Add View to Favorites",
+					"name": "Delete Flow from Favorites",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dc691355-853d-4c01-b2a3-90f306f285a3",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 200) ",
-									"{",
-									"",
-									"",
-									"    tests[\"Added: View to favorite \"] = true;",
-									"",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
 									""
 								],
-								"id": "4f223573-82ac-4cf1-94e9-042b5a94dc26"
+								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "5caba008-ba95-4e80-9e70-28fe9f99e49a",
+					"id": "73fb3340-cede-467e-845d-cdf7565ad6d9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest> \n  <favorite label=\"Favorite VIEW added by REST API\"> \n    <view id=\"{{datasourceId}}\" /> \n  </favorite> \n</tsRequest>"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}",
-						"description": "Adds the specified view to a user's favorites.\n\nIf the user already has the view listed as a favorite with the same label, the operation has no effect. If the label differs, the original favorite is overwritten.\n\n\nURI\n1. PUT /api/api-version/sites/site-id/favorites/user-id\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site to create the subscription in.\n* user-id  The ID of the user to add the favorite for.\n\nAttributes\n* \nfavorite-label  A label to assign to the favorite. This value is displayed when you search for favorites on the server.\n* view-id  The ID (not name) of the view to add as a favorite."
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}/flows/{{flow-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_data_source_from_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_data_source_from_favorites)"
 					},
 					"response": []
 				},
 				{
-					"name": "Favorites: Delete View from Favorites",
+					"name": "Delete Project from Favorites",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dc691355-853d-4c01-b2a3-90f306f285a3",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 204) ",
-									"{",
-									"",
-									"",
-									"    tests[\"Deleted: View favorite \"] = true;",
-									"",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
 									""
 								],
-								"id": "ec440e51-cad8-4625-9063-9a3d33d757ce"
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "83a143ef-a88e-4a4d-bbef-3f356118d0c8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}/projects/{{project-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_data_source_from_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_data_source_from_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete View from Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec440e51-cad8-4625-9063-9a3d33d757ce",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1626,103 +1756,22 @@
 								"value": "{{token}}"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "\n\n"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}/views/{{viewId}}",
-						"description": "Deletes a view from the user's favorites list."
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}/views/{{view-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_view_from_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_view_from_favorites)"
 					},
 					"response": []
 				},
 				{
-					"name": "Favorites: Add Workbook to Favorites",
+					"name": "Delete Workbook from Favorites",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "7c3e6e5a-2343-417b-bde4-304d8646393d",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 200) ",
-									"{",
-									"",
-									"",
-									"    tests[\"Added: Workbook favorite \"] = true;",
-									"",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
 									""
 								],
-								"id": "cd41f143-6fdf-4321-b6ad-071c1b9734c9"
-							}
-						}
-					],
-					"id": "16dbaf12-26bc-4f15-bce3-ed4c14e1f31a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest> \n  <favorite label=\"I was Favorited by REST\"> \n    <workbook id=\"{{workbookId}}\" /> \n  </favorite> \n</tsRequest>\n\n"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}",
-						"description": "Add a workbook to the favorites list of a user"
-					},
-					"response": []
-				},
-				{
-					"name": "Favorites: Delete Workbook from Favorites",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"",
-									"",
-									"if (responseCode.code === 204) ",
-									"{",
-									"",
-									"",
-									"    tests[\"Deleted: Workbook favorite \"] = true;",
-									"",
-									"",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
-									"",
-									""
-								],
-								"id": "7c3e6e5a-2343-417b-bde4-304d8646393d"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1738,12 +1787,33 @@
 								"value": "{{token}}"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "\n\n"
-						},
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/favorites/{{userId}}/workbooks/{{workbookId}}",
-						"description": "Delete a workbook to the favorites list of a user"
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}/workbooks/{{workbook-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_workbook_from_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#delete_workbook_from_favorites)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Metric from Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c3e6e5a-2343-417b-bde4-304d8646393d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "bdcd81d6-9157-46df-8234-2e237cd60a80",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/favorites/{{user-id}}/metrics/{{metric-id}}"
 					},
 					"response": []
 				},
@@ -1797,6 +1867,41 @@
 							]
 						},
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#get_favorites_for_user](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#get_favorites_for_user)"
+					},
+					"response": []
+				},
+				{
+					"name": "Organize Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c113cf49-6843-4d9f-9428-c4b09b9879f3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "3075b94a-3672-4936-92c7-3df10b47b2bc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n   <favoriteOrderings>\n\t<favoriteOrdering \n        favoriteId=\"{{metric-id}}\" \n        favoriteType=\"metric\" \n        favoriteIdMoveAfter=\"{{workbook-id}}\" \n        favoriteTypeMoveAfter=\"workbook\" />\n   </favoriteOrderings>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/orderFavorites/{{user-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#update_favorites](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_favorites.htm#update_favorites)"
 					},
 					"response": []
 				}
@@ -7590,7 +7695,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38b45dc3-7cdc-424a-8b0d-85c4bbf2f645",
+								"id": "af3f8634-7ba3-43af-af74-28be87a289a6",
 								"exec": [
 									""
 								],
@@ -7598,25 +7703,16 @@
 							}
 						}
 					],
-					"id": "92da68ff-7738-4c9c-baf5-0d3942b785e4",
+					"id": "e2f028e1-3527-4db0-8fff-73bf946646e3",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <subscription subject=\"CustomViewTest2\">\n    <content type=\"View\" id=\"{{view-id}}\" customizedViewId=\"24\" />\n    <schedule id=\"{{schedule-id}}\" />\n    <user id=\"{{user-id}}\" />\n  </subscription>\n</tsRequest>",
+							"raw": "<tsRequest>\n    <subscription\n        subject=\"subscription-subject\"\n        attachImage=\"attach-image-flag\"\n        attachPdf=\"attach-pdf-flag\"\n        pageOrientation=\"page-orientation\"\n        pageSizeOption=\"page-size-option\"\n        message=\"message\">\n        <content id=\"{{content-id}}\"\n            type=\"content-type\"\n            sendIfViewEmpty=\"send-view-if-empty-flag\"/>\n        <schedule id=\"{{schedule-id}}\" />\n        <user id=\"{{user-id}}\" />\n    </subscription>\n</tsRequest>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -7720,7 +7816,33 @@
 								"value": "text/xml"
 							}
 						],
-						"url": "{{base-path}}/sites/{{site-id}}/subscriptions",
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/subscriptions",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": null,
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": null,
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_subscriptions.htm#query_subscriptions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_subscriptions.htm#query_subscriptions)"
 					},
 					"response": []
@@ -10504,307 +10626,307 @@
 	],
 	"variable": [
 		{
-			"id": "bfe1360b-2921-4ba5-8cd8-cb5c800cfdc5",
+			"id": "cf6012db-9d1b-4f67-994c-437bb21d6bdf",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "d02b7e48-cbe3-4195-a2d6-f5beb164ac4e",
+			"id": "88b765af-6f0e-44ef-b395-6d60130ec7fd",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "73b71d0f-6c97-46fa-b6eb-c2e4a4dafdb9",
+			"id": "2c479a5d-fe5e-400a-9f71-2c04eb5b2d19",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "8d8da89a-25ae-4793-92fa-9a08f542ddf6",
+			"id": "beceb5f0-e5e4-4aaf-9802-a77e819786ed",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "437df4d2-3a51-4b17-b9fa-8f3ca99f0051",
+			"id": "e1710332-e17b-4c17-ba7e-9c20818de4a3",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "8b1087c4-c5c6-44e1-966d-20afbb67e504",
+			"id": "0702782f-d49b-40bb-977e-2743775e86b1",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "1021f598-47fa-4d9b-ac87-dc21d7578471",
+			"id": "110c04b7-c06f-43f8-95f9-1c5674b2327a",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "9c4c6043-f70e-4074-8d11-8f8c1ae6fc8b",
+			"id": "3150d4a3-5dc4-48a9-90e6-e1d93b43ac69",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "911242db-e2ed-447f-89aa-a5e4dbe86d04",
+			"id": "0999f2a2-37f7-48d5-a56a-50646ae2c925",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "04ccc00e-28de-42b8-a4c6-7a6f9be09f8d",
+			"id": "1512ab2f-0206-4c7d-9787-0d419f7e9408",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "4db32baa-78f5-4c5a-8dad-df1a8f0554f8",
+			"id": "e78e715b-bd17-455b-8f3a-e057bca5266f",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "944f4e6d-ec78-4c68-90a2-b4d33a805aa6",
+			"id": "f1ddbdfa-22e5-4dfa-b910-19a70fb99098",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "bd2dcdcb-411b-45be-9599-527296e796e3",
+			"id": "4c480184-0b14-4fb2-8434-c30b07be3ea3",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "a59bb62d-7d80-4e2c-8fb7-8dd08fb0a020",
+			"id": "77cb76df-7c53-41d0-aa2a-3e0d9b2343c5",
 			"key": "revision-number",
 			"value": "1"
 		},
 		{
-			"id": "615827e1-5630-47d5-9924-e4e756b51a7b",
+			"id": "95879103-d2c6-4c04-832d-f43f579c65e2",
 			"key": "view-id",
-			"value": "add38114-3a16-4b1c-8b39-61523eab32ac"
+			"value": ""
 		},
 		{
-			"id": "e323b28d-8d9d-47c1-a1aa-11530881a8b2",
+			"id": "6d91bf3a-e13e-4dcc-bea6-b40e266debce",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "41e7aa7a-e4ee-460d-8e5f-8db712be1401",
+			"id": "5e51be4d-6b62-4457-ba74-ab7e934e0b1d",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "c53c8a0a-e404-4701-bad7-935978896ef5",
+			"id": "667c39d3-26d4-4bac-8bab-6b3b17db9735",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "45fbe208-4d0b-4344-b38b-8bd60161993c",
+			"id": "c050d390-5955-4f26-b35a-4a464aa271ef",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "1563f933-bd2f-46dc-8dd4-b54ee759100f",
+			"id": "7e297789-b390-4873-94b1-9bd68a009867",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "0144061f-d61c-405f-9576-5b376bda8b36",
+			"id": "da53583b-5995-4886-bfcf-11610c60c1c0",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "5bcf08ad-34a8-4f3d-9080-8335ceaee395",
+			"id": "824480a5-820c-4af5-ae31-18de2c81ff22",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "2a2001a8-85ce-431c-b2ff-1f8b9b0f1b3d",
+			"id": "21025df5-e2e1-469b-8033-1b6a07365e71",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "77ac9843-66cf-4989-b24d-cbed57f65d69",
+			"id": "8bc7aef8-a68a-43d0-a120-ea4f48de68e8",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "2eac99db-3011-4cdc-bd3d-3e78b2c7641e",
+			"id": "75a3faee-77fc-4268-ba73-e9a8a3cf73bb",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "3086795b-245f-4402-839e-53ca2b8af9d4",
+			"id": "995b128e-5b19-4447-9cc9-7101a29b725d",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "3d0c5095-98c4-4e3c-8876-b35fae5c54a3",
+			"id": "e264808e-b8ee-4454-9b17-d39d0e264553",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "c7b1b9fe-3a09-466c-b516-3186a680ac2b",
+			"id": "4e1edbb2-2a21-4a9d-8c88-b7c7b920afcc",
 			"key": "connection-id",
 			"value": "4bc36b85-e4ca-4085-8b03-907d6ba90fc2"
 		},
 		{
-			"id": "e3ce7c06-6909-4f8b-b38b-9f0ce866d0ea",
+			"id": "097756eb-f3a3-4b25-8ed1-7e26b112ada2",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "e44dfbd7-5b35-4bd8-b584-96894e0f8c5e",
+			"id": "dabdd1e0-3413-4891-b034-3311028fa4c9",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "ea639716-68b0-4a39-bed9-1e276d58b62f",
+			"id": "8bbb121c-7125-46db-ad51-3ccc3f517d47",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "0573db37-028a-400c-ba0f-cf2e009a7a1e",
+			"id": "00aad1fa-41aa-486a-9e62-dc73d58bbd63",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "ce0e0ffb-c888-4654-b89b-2dfd5afabbc1",
+			"id": "ce3a04b7-16b0-4ce1-bf16-d40f8b2b6016",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "5b120024-428a-49fe-919f-9afb14401d73",
+			"id": "eb557e97-43dd-4953-9b34-64f18b7ba56c",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "6edf2b25-2e30-4d81-9d4c-ad2b51c5c8db",
+			"id": "52046a5a-fec9-4fc2-9cb3-c0f66df380a7",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "5dccab7b-7433-4fe9-a123-cca09c1a3970",
+			"id": "bf1f66d8-ab87-46e6-a8da-50ecf066fbee",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "65d8b6f8-4335-4554-969d-a44cf0333c94",
+			"id": "ff6fc47b-5008-45a9-85d6-08d2a269ba59",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "f8c13cdd-eeed-4eda-9bcc-bb351bb7da5f",
+			"id": "2386a8b0-cf4b-46b5-853a-eb7c20711145",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "1c089e8c-11bb-416c-9f06-201066c879c4",
+			"id": "16634f2c-ee8a-4b80-a952-7ed824ad8d9c",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "b5af8c5f-476a-4bc7-84e3-2d177b905dfa",
+			"id": "b1bde857-95a9-4683-a2b7-c99920254352",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "3537f129-c91c-4fea-a6cf-4a03d2f0a9f3",
+			"id": "a35f220b-adf8-41ee-a57e-813426e2c56e",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "50cfca18-3ba2-4a49-b0a9-557d582928ab",
+			"id": "f932b3f7-5c30-4971-aea7-2071cafadf8f",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "c9007c47-a046-44c6-9207-f34c620da141",
+			"id": "f82637d6-d642-4118-8c4e-542e9f6ca71c",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "af09df94-e3f2-4a2e-a25b-340cb0325e30",
+			"id": "e6a06a91-e4af-4f9d-beaf-a4882b120e5c",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "cb3fa622-e43e-41e8-95f1-0f29f470a4c2",
+			"id": "d973e979-c1c7-4242-8b10-3954b95c0453",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "08712c48-3299-47e3-a481-3216e19b0780",
+			"id": "940f046a-3f34-483d-bf9c-7089242fad27",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "abca3f03-43af-4fe9-9573-01b9fadf5741",
+			"id": "e86e636d-56ef-4df1-aa30-1e078cd0aedc",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "832f3222-bf0f-4ca8-b0b7-d0e18eb3ce16",
+			"id": "0448ea74-9dec-47dc-a692-76411490cd1d",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "1594d023-37e5-4976-a2c0-3b8fcfa2253d",
+			"id": "0d5349a3-47f6-4233-b5f1-52e5e7a6dd71",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "7c37b798-4b31-44a9-8cfa-8bd4bb03469e",
+			"id": "a0152a6b-3a05-44e7-b897-8aa50234e2ca",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "e66b3627-7dab-4cac-9321-dbc402854381",
+			"id": "e3969583-f6e1-4842-90c3-1f9722a48c53",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "a43f1bf0-5686-4760-80e4-c1ab188320b7",
+			"id": "e3d40b46-9f51-4113-8d9c-7c8e724b4a2b",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "99e047d1-f4a7-4af1-8a5c-9bd07212a880",
+			"id": "2033a4bb-520b-4da3-a3ec-c940951f5dbb",
 			"key": "webhook-name",
 			"value": ""
 		},
 		{
-			"id": "a7b62a23-9348-48d7-ad8a-a1a52f18da0e",
+			"id": "c31871a6-595c-4137-863d-3c0b7b317806",
 			"key": "webhook-enabled-flag",
 			"value": ""
 		},
 		{
-			"id": "13c213e3-27e6-49a9-8fe3-2551fd49f737",
+			"id": "31c82387-104d-455e-9147-c71d21781675",
 			"key": "api-event-name",
 			"value": ""
 		},
 		{
-			"id": "fe851d1a-ed09-42a9-a8fd-21edb224aa1a",
+			"id": "033282b2-1a65-45dd-a51a-dad28625c205",
 			"key": "webhook-destination-url",
 			"value": ""
 		},
 		{
-			"id": "39e0022c-2151-469d-be19-3293deb5862f",
+			"id": "6d289a1b-0c18-487f-8463-203fcfc51494",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "a9ecaaf0-4f90-4564-8925-fe5482351eb8",
+			"id": "bc3ad012-325d-4f47-ad6b-e86b94675be1",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "ad8ea2d4-fd49-4e13-ae1d-18dfe5a61a77",
+			"id": "4bccd7cf-ac14-4222-8b66-6f2b71099d9a",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "7afb513b-a915-4cc9-9c78-b496134864cf",
+			"id": "35d60c74-32ce-4b9d-a6f8-21a4a51854dd",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "b27ac8b7-6587-479d-bb51-ffb97eb32aea",
+			"id": "eaa8e5ec-a2d1-410c-acb9-bfa21eb3cb50",
 			"key": "new-project-id",
 			"value": ""
 		}
