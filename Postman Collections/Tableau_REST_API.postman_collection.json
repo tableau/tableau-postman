@@ -6,6 +6,171 @@
 	},
 	"item": [
 		{
+			"name": "Ask Data Lens",
+			"item": [
+				{
+					"name": "List ask data lenses in site",
+					"id": "dae0ada7-2ca0-469b-9708-184160ac30d9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.nlp.lens.publicrest.v1.ListLensesResponse+json",
+								"type": "text"
+							}
+						],
+						"url": "{{new-path}}/api/-/askdata/lenses",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/listLenses](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/listLenses)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create ask data lens",
+					"id": "81620539-bcc9-41c9-93dd-eba21ae7d6d6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.nlp.lens.publicrest.v1.CreateLensRequest+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Create lens test\",\n  \"datasource_id\": \"{{datasource-id}}\",\n  \"project_id\": \"{{project-id}}\",\n  \"description\": \"Test lens\",\n  \"is_feedback_enabled\": false,\n  \"fields\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protocol}}://{{server}}/api/-/askdata/lenses",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/LensService_createLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/LensService_createLens)"
+					},
+					"response": []
+				},
+				{
+					"name": "Import ask data lens",
+					"id": "67175e9d-81f1-4ef9-b748-12217b1160be",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.nlp.lens.publicrest.v1.ImportLensRequest+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lens\": {\n        \"id\": \"<Lens_LUID_in_source_site>\",\n        \"name\": \"Datasource Name\",\n        \"site_id\": \"<source_site_LUID>\",\n        \"datasource_id\": \"<data_source_LUID_in_source_site>\",\n        \"project_id\": \"<project_LUID_in_source_site>\",\n        \"owner_id\": \"<lens_owner_LUID_in_source_site>\",\n        \"description\": \"\",\n        \"repository_url\": \"\"\n        },\n    \"lens_transformations\": {\n        \"datasource_id\": \"<data_source_LUID_in_new_site>\",\n        \"project_id\": \"<project_LUID_in_new_site>\",\n        \"owner_id\": \"<lens_owner_LUID_in_new_site>\"\n        \"name\": \"<new name of the lens>\",\n        \"description\": \"<new description of the lens>\"\n    }\n}"
+						},
+						"url": "{{new-path}}/api/-/askdata/lenses/import",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/importLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/importLens)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get ask data lens",
+					"id": "3944cb59-1754-4b08-b9ce-17d3125e9e16",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{new-path}}/api/-/askdata/lenses/{{lens-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/getLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/getLens)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ask data lens",
+					"id": "729dc246-e389-4865-8afb-2f064860ba5c",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{new-path}}/api/-/askdata/lenses/{{lens-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/deleteLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/deleteLens)"
+					},
+					"response": []
+				}
+			],
+			"id": "315d6f26-97d3-4243-8e78-67d9960605c9",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "47587e87-c621-4bc7-abbb-036c1486d75e",
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+							"    - Every request in this collection will run this script.",
+							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
+							"*/",
+							"",
+							"// xml body used to authenticate and obtain an API Key",
+							"const authBody = `",
+							"<tsRequest>",
+							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+							"    </credentials>",
+							"</tsRequest>`;",
+							"",
+							"// authenticate and obtain token value to be set as 'api-key' environment variable",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/xml',",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: authBody,",
+							"    }",
+							"}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        pm.environment.unset(\"api-key\");",
+							"        pm.environment.unset(\"site-id\");",
+							"        // convert the XML response body to JSON",
+							"        const jsonObject = xml2Json(res.text());",
+							"",
+							"        // obtain the API Key from the response body",
+							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+							"",
+							"        // set the variables to the returned value",
+							"        pm.environment.set(\"api-key\", apiKey);",
+							"        pm.environment.set(\"site-id\", siteId);",
+							"    };",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "20264732-88e3-4b60-962f-41f913c3b19e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
 			"name": "Authenticate",
 			"item": [
 				{
@@ -1413,6 +1578,244 @@
 					"listen": "test",
 					"script": {
 						"id": "46e48789-4a97-424b-b4c8-0c775a276bf6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Extract and Encryption Methods",
+			"item": [
+				{
+					"name": "Create Extracts for Embedded Data Sources in a Workbook",
+					"id": "36d55353-2ab6-4210-84e1-dd775b32251d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <datasources includeAll=\"false\">\n\t<datasource id=\"{{datasource-id}}\" />\n  </datasources>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/createExtract?encrypt=true",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"workbooks",
+								"{{workbook-id}}",
+								"createExtract"
+							],
+							"query": [
+								{
+									"key": "encrypt",
+									"value": "true",
+									"description": "If true, then Tableau will attempt to encrypt the created extracts. If false, or no encrypt parameter is appended to the URI, then the extract won't be encrypted, unless encryption is enforced by site or workbook configuration. An error will be returned when encrypt equals true and encryption is disabled in the site or workbook."
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#create_extracts_for_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#create_extracts_for_workbook)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Extract for a Data Source",
+					"id": "a9e083be-f459-44d4-b9a3-21473ff5c64b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/createExtract?encrypt=true",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"datasources",
+								"{{datasource-id}}",
+								"createExtract"
+							],
+							"query": [
+								{
+									"key": "encrypt",
+									"value": "true",
+									"description": "If true, then Tableau will attempt to encrypt the created extracts. If false, or no encrypt parameter is appended to the URI, then the extract won't be encrypted, unless encryption is enforced by site or workbook configuration. An error will be returned when encrypt equals true and encryption is disabled in the site or workbook."
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#create_extract_for_datasource](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#create_extract_for_datasource)"
+					},
+					"response": []
+				},
+				{
+					"name": "Decrypt Extracts in a Site",
+					"id": "00a0a78c-d72a-4bef-8a13-174cf411c634",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/decrypt-extracts",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#decrypt_extracts](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#decrypt_extracts)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Extracts of Embedded Data Sources from a Workbook",
+					"id": "aa8cd648-b6f4-4f74-8bc8-7ea42af3eead",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <datasources includeAll=\"true\"/>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/deleteExtract",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#delete_extracts_from_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#delete_extracts_from_workbook)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the Extract from a Data Source",
+					"id": "78065ee5-00ee-4121-b39a-28300508dc9e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/deleteExtract",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#delete_extract_from_datasource](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#delete_extract_from_datasource)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Extract Refresh Task",
+					"id": "f966bec8-df00-4653-9c6b-a26e86733704",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/tasks/extractRefreshes/{{task-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#delete_extract_refresh_task](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#delete_extract_refresh_task)"
+					},
+					"response": []
+				},
+				{
+					"name": "Encrypt Extracts in a Site",
+					"id": "00328329-ddb4-4b17-b439-c76f89ad2434",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/encrypt-extracts",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#encrypt_extracts](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#encrypt_extracts)"
+					},
+					"response": []
+				},
+				{
+					"name": "Reencrypt Extracts in a Site",
+					"id": "5e2f4fbe-2218-498f-8aa7-43e307670fad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/reencrypt-extracts",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#reencrypt_extracts](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_extract_and_encryption.htm#reencrypt_extracts)"
+					},
+					"response": []
+				}
+			],
+			"id": "41d0d924-642b-4364-bbaf-a2cb8616d6b2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d12c9700-a493-41f3-8b57-4018a3b73f92",
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+							"    - Every request in this collection will run this script.",
+							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
+							"*/",
+							"",
+							"// xml body used to authenticate and obtain an API Key",
+							"const authBody = `",
+							"<tsRequest>",
+							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
+							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
+							"    </credentials>",
+							"</tsRequest>`;",
+							"",
+							"// authenticate and obtain token value to be set as 'api-key' environment variable",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/xml',",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: authBody,",
+							"    }",
+							"}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        pm.environment.unset(\"api-key\");",
+							"        pm.environment.unset(\"site-id\");",
+							"        // convert the XML response body to JSON",
+							"        const jsonObject = xml2Json(res.text());",
+							"",
+							"        // obtain the API Key from the response body",
+							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
+							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
+							"",
+							"        // set the variables to the returned value",
+							"        pm.environment.set(\"api-key\", apiKey);",
+							"        pm.environment.set(\"site-id\", siteId);",
+							"    };",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f558e99-2f13-4f8e-bfc2-72b1bb8d2c4e",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -10402,166 +10805,6 @@
 					}
 				}
 			]
-		},
-		{
-			"name": "Ask Data Lens",
-			"item": [
-				{
-					"name": "List ask data lenses in site",
-					"id": "dae0ada7-2ca0-469b-9708-184160ac30d9",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.tableau.nlp.lens.publicrest.v1.ListLensesResponse+json",
-								"type": "text"
-							}
-						],
-						"url": "{{protocol}}://{{server}}/api/-/askdata/lenses",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/listLenses](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/listLenses)"
-					},
-					"response": []
-				},
-				{
-					"name": "Create ask data lens",
-					"id": "81620539-bcc9-41c9-93dd-eba21ae7d6d6",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.tableau.nlp.lens.publicrest.v1.CreateLensRequest+json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Create lens test\",\n  \"datasource_id\": \"{{datasource-id}}\",\n  \"project_id\": \"{{project-id}}\",\n  \"description\": \"Test lens\",\n  \"is_feedback_enabled\": false,\n  \"fields\": []\n}"
-						},
-						"url": "{{protocol}}://{{server}}/api/-/askdata/lenses",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/listLenses](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/listLenses)"
-					},
-					"response": []
-				},
-				{
-					"name": "Import ask data lens",
-					"id": "67175e9d-81f1-4ef9-b748-12217b1160be",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.tableau.nlp.lens.publicrest.v1.ImportLensRequest+json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"lens\": {\n        \"id\": \"bb29d8c3-e2b0-4ed7-b44c-6e0943d36375\",\n        \"name\": \"Create lens test\",\n        \"site_id\": \"14d41e12-74ea-4b7d-83bd-ed254673e929\",\n        \"datasource_id\": \"5328ac3a-3c81-41b2-bb2d-d2bab781eda7\",\n        \"project_id\": \"5c416a45-5bb7-4248-9e58-5ec3d163ab3c\",\n        \"owner_id\": \"fcad230d-c866-4ef8-bf10-b8b698e6b615\",\n        \"description\": \"Test lens\",\n        \"repository_url\": \"Create+lens+test\",\n        \"is_feedback_enabled\": false,\n        \"fields\": [\n            {\n                \"graph_id\": \"Sales\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Profit\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Category\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Order Date\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Region\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"State\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Sub-Category\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Country/Region\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Calculation_1368249927221915648\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Quantity\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Customer Name\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Segment\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"City\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Discount\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Order ID\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Ship Mode\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Product Name\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Ship Date\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Product Name (group)\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Profit (bin)\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Postal Code\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Returned\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"Person\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"__Hierarchy__.Location\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"__tableau_internal_object_id__.Orders_ECFCA1FB690A41FE803BC071773BA862\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"__tableau_internal_object_id__.People_D73023733B004CC1B3CB1ACF62F4A965\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"__Hierarchy__.Product\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            },\n            {\n                \"graph_id\": \"__tableau_internal_object_id__.Returns_2AA0FE4D737A4F63970131D0E7480A03\",\n                \"field_synonyms\": [],\n                \"inherited_field_synonyms\": [],\n                \"value_synonyms\": [],\n                \"inherited_value_synonyms\": []\n            }\n        ],\n        \"recommended_visualization_groups\": []\n    },\n    \"lens_transformations\": {\n        \"project_id\": \"{{new-project-id}}\"\n    }\n}"
-						},
-						"url": "{{protocol}}://{{server}}/api/-/askdata/lenses/import",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/importLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/importLens)"
-					},
-					"response": []
-				},
-				{
-					"name": "Get ask data lens",
-					"id": "3944cb59-1754-4b08-b9ce-17d3125e9e16",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{protocol}}://{{server}}/api/-/askdata/lenses/{{lens-id}}",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/getLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/getLens)"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete ask data lens",
-					"id": "729dc246-e389-4865-8afb-2f064860ba5c",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": "{{protocol}}://{{server}}/api/-/askdata/lenses/{{lens-id}}",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/deleteLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/deleteLens)"
-					},
-					"response": []
-				}
-			],
-			"id": "315d6f26-97d3-4243-8e78-67d9960605c9",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "47587e87-c621-4bc7-abbb-036c1486d75e",
-						"type": "text/javascript",
-						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "20264732-88e3-4b60-962f-41f913c3b19e",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
 		}
 	],
 	"auth": {
@@ -10626,307 +10869,307 @@
 	],
 	"variable": [
 		{
-			"id": "4b74e174-76ce-47f3-a290-46d750a2e1ea",
+			"id": "704d4f46-e894-46bc-af82-772aa759ba2e",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "3cd1195e-50ed-4801-ad9e-e95b1d0df74d",
+			"id": "39df02d8-4db2-4d1e-bc08-61c5f957337a",
 			"key": "user-password",
 			"value": ""
 		},
 		{
-			"id": "4265e979-2763-4124-9cd1-42cb260fa4e5",
+			"id": "9d13cad8-2d49-44b0-b41d-87ba8a545fce",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "efc532f5-38a3-45c4-a4e5-be4e06358a7b",
+			"id": "4c9f7214-b08a-4085-9ea3-aa94835a3341",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "d1c2f723-0c2c-4d8d-9324-ea3fb6ca6188",
+			"id": "3b6e8496-4b8e-4d61-9cdb-c1206b415780",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "372e71ef-0b18-4563-8e14-0deff2a51924",
+			"id": "ce8a6086-013e-4a76-92e4-6808b60ad313",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "ec955249-f0d5-4cb2-8679-1f21e80a1245",
+			"id": "c38ac0fc-d58c-43ae-9af2-465d66eb1c77",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "4a000169-be07-40e6-a9d6-21363283f303",
+			"id": "2ca103c4-1c40-42d7-bf7c-3aba5d2fe659",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "7b00643d-3ac9-4fe1-9ea2-f24f1a495c29",
+			"id": "e016a0d2-dffb-4559-8297-ec573c9fe056",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "17e16c85-2d5d-4d8a-b7c8-383eff058984",
+			"id": "110fd1ce-f09c-42d0-9199-2d7797efda70",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "3bf4fe38-fe07-4f2c-afc3-997fe1587574",
+			"id": "782e50f2-e077-4364-83f3-508e77134eb7",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "18fc50aa-bbf8-4952-ab39-556c5f1087e8",
+			"id": "54259f48-db72-4afc-9e1c-7c554a4c0ba4",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "60070ab8-c350-4e1d-8df5-d5bd9b76e572",
+			"id": "75ab718e-e9de-4314-bc71-e682b6251739",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "1da4dfb3-5737-45a8-8161-f78d509fae26",
+			"id": "bab686af-246d-4dc5-bd2b-31aea66c99e9",
 			"key": "revision-number",
 			"value": "1"
 		},
 		{
-			"id": "20b0f400-eba4-4fec-81fd-8f74f28aec2d",
+			"id": "1945648e-0e1a-41a5-ba10-9ec3c25c0609",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "a2aaed67-3e18-4ca8-8ce5-37a1bd196ab8",
+			"id": "dee5d20c-6ea9-4c5c-bc8f-4757e8515945",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "3548b91e-f363-4eb0-b906-ca888fcd3b5d",
+			"id": "c4eeac5d-dbc2-4e15-8364-1d4492602053",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "ae7ad63b-f2a6-4887-b544-a026a25dea6b",
+			"id": "b5be0376-7011-42fe-a60b-6ef0aafa232e",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "1ec6679a-9983-4cfb-a0af-99e39bf67fdf",
+			"id": "44f68871-9a1e-420a-8855-a4f0c3933683",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "3466ff88-7268-4f4b-90b7-f3922dc33f04",
+			"id": "ac184430-ad3b-4bad-b38b-8cb52f178d5f",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "3abefb42-5613-4c59-bf9a-98b83b5ab4e9",
+			"id": "d32d5176-b61c-4c72-9d30-eeb8545911a7",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "541f4932-9443-45ca-8d96-1c0977e961bd",
+			"id": "138388c1-7eb9-4eea-9ff2-ebf876717c30",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "6ac7200d-0ad5-4934-9ce9-cb3789dac049",
+			"id": "12041bfe-3a0a-415d-85f4-f09bbe8607e6",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "9c89c0c2-aff1-48f6-bccc-1156decbe2d4",
+			"id": "0dcc01b6-a2d6-4638-8950-8e696caadf43",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "9371f77d-80af-4b92-9e76-73087f63b8ed",
+			"id": "1f229c22-662c-4ac2-9a14-a608424f812b",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "c4b4c7c5-7260-4494-9476-474bd780802e",
+			"id": "fb539353-1590-41a7-8f98-9b02d839d6fb",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "f258420a-8b27-4111-96bf-ab092f090a5b",
+			"id": "de5e71a0-f1d7-40b2-9b0f-bd68be2576c7",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "3106bf8c-80b5-494f-8990-865e73e8d3c5",
+			"id": "6fb46a16-2d9e-4a1c-a69f-5636b8aad90a",
 			"key": "connection-id",
-			"value": "4bc36b85-e4ca-4085-8b03-907d6ba90fc2"
+			"value": ""
 		},
 		{
-			"id": "82b865d6-c87a-47ee-89d7-11702f58b98c",
+			"id": "2b6d8b99-ddc7-4cb9-8578-02acb12f0cca",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "6eab6d80-9662-467c-843f-64115d15d29b",
+			"id": "919a6e72-033c-4cc2-8531-6ad7c613d285",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "a6f52f21-59c8-497d-aa60-b71e35e150c0",
+			"id": "f1a848d0-91fd-40f7-a332-4001686bb72b",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "928bbf68-8951-4238-8df5-f0f6124ea5a7",
+			"id": "72a1ed10-edd6-435c-8e85-8fd1868546af",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "27157398-c92a-4deb-b3d5-e23ae5127c5c",
+			"id": "39fc2e1b-84e6-4c00-a80f-9ef14fd2f2ff",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "e6ae0da9-8d21-49e0-a524-87f202ac9b17",
+			"id": "d4daa266-8c76-4f86-935a-6488f6a27ae6",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "ca6994ce-00f0-453d-a385-90a3d42f3689",
+			"id": "1dceec19-7d1d-4c52-a1d3-d2cbb684f687",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "9f56e670-500d-4c29-8dc4-fec9fad8ebd1",
+			"id": "a1af6060-da47-40bc-9bba-b33fe98e1a18",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "dc172691-60f5-4e5e-b6c0-9f2846f81529",
+			"id": "b778c7f4-0fc6-48e2-adaa-c540edde5286",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "91c32153-b83f-4f13-8f54-0a4d3e408f48",
+			"id": "e23e9ce1-fa9f-4192-8674-5d4620c6d207",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "d8bc5d50-7b72-4094-b3df-868acf7eba86",
+			"id": "fb85322b-819c-4d98-973e-c2d39b799c66",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "5092668b-9178-48a6-b76e-1fecc6a2dd20",
+			"id": "54533427-90fb-4dbd-95df-82f28a459f1c",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "5d51fbb9-6703-4f9c-9f37-bb9b8ed5ae7b",
+			"id": "8fec85c3-4396-41e2-b6af-fa83a970cac4",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "7230030c-1aa9-47eb-b3ab-fff0dddf5fd2",
+			"id": "76809a12-5f59-446b-8007-8f4aa57ab1ae",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "bdfcd301-e8c4-43db-a2c7-60da755595c9",
+			"id": "f8e172d8-0ea9-47b5-87a5-57df30521a6f",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "550e995c-387a-413e-90ee-9384e98befeb",
+			"id": "a9e659a5-228b-4844-af14-c7b9f412c555",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "ab255e7d-5cec-43e4-97d0-01314fbd83c0",
+			"id": "041316e7-d276-4771-998b-6e8855018502",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "fc4ba59c-bd58-4e22-a109-be75a8cef35d",
+			"id": "e2e6f148-0416-43ec-a57f-11261189fac1",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "593e4134-4400-4036-b195-f6d2fd7f6232",
+			"id": "4b675cd1-1ebc-42f2-88e8-632f16ea6460",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "70b7e230-a670-458b-a026-17d64a2ce633",
+			"id": "33cce8f2-64d3-4b72-addd-b4956f11aebe",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "c7cdbd20-4ba2-487d-bdc9-e2e9e6212fdc",
+			"id": "49e9e856-5975-411b-80c1-3649bb3836fe",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "33e55d69-0c49-4fe4-a4e1-ac6c4efada92",
+			"id": "33988861-ae7e-45f0-a2ba-f673a84bcead",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "5628fcd8-35ad-4c3f-b46f-410f9de9db7c",
+			"id": "6d35e703-7210-4544-9c38-e98efd6d7b46",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "86a5b745-c22b-44a5-8d29-7beda9251c24",
+			"id": "86238a93-eb94-4998-9df4-7b7f76128688",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "73a47f6e-7917-4387-8c1d-7b8cfa458f69",
+			"id": "bfd6baff-226b-4f1c-b691-a3317319b82e",
 			"key": "webhook-name",
 			"value": ""
 		},
 		{
-			"id": "7f656021-200e-4f55-9c1a-9d98427e5dc9",
+			"id": "f0ed8fb6-f21f-4980-9649-d77a8cc8c871",
 			"key": "webhook-enabled-flag",
 			"value": ""
 		},
 		{
-			"id": "45dfbf05-f46b-47f8-bfe5-374fa53107fc",
+			"id": "b19f1a24-bba4-41b1-8e8c-c8dd47e6ac5c",
 			"key": "api-event-name",
 			"value": ""
 		},
 		{
-			"id": "1cba9fa6-e0ab-44fe-9b59-f0066c32738e",
+			"id": "ef1264eb-3169-4015-94fb-fbd78c525840",
 			"key": "webhook-destination-url",
 			"value": ""
 		},
 		{
-			"id": "17df7768-d97e-43b5-9bf5-8064279b3ce5",
+			"id": "d827c6c7-f340-4562-aedd-d7ebe43eaa63",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "69e063dc-5656-42fd-a6c1-0df9bdf0efa0",
+			"id": "db72de05-e59a-4b89-ac1d-c79aaff8ce99",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "9344ba2a-d5bf-4f2a-be04-134f159c4e38",
+			"id": "f57c8424-ecdb-4796-8140-9cb5c1f17ccb",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "52dfe346-bbb7-44bd-b7b4-a5ba738cf84d",
+			"id": "0885254d-df47-41dd-92d6-8f65d3b89191",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "bcc1af2c-834c-4578-948b-d0784945a367",
+			"id": "34f6e80f-30b5-44fe-afa6-2edf8e76efcc",
 			"key": "new-project-id",
 			"value": ""
 		}
