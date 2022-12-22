@@ -1165,6 +1165,147 @@
 			"description": "Enable and configure security for [dashboard extensions](https://help.tableau.com/current/server/en-us/config_r_tabpy.htm) on sites and, for on premise installations, on servers. With these extensions you can add custom features to a dashboard using JavaScript.\n\nUsing the extension methods of the Tableau Server REST API you can: <ul> <li>List the settings for extensions of a server or site</li> <li>Enable or disable extensions or sandboxed extensions for a server or site</li> <li>List, get, create, and delete entries in server blocked extensions list</li> <li>List, get, create, update, and delete entries in server allowed (safe) extensions list</li> </ul>\n\nThis functionality relates to the UI elements and concepts described at [Manage Dashboard Settings](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm)."
 		},
 		{
+			"name": "Content Exploration",
+			"item": [
+				{
+					"name": "Get content search results",
+					"id": "0e188446-a30e-47a7-8543-6d738223c43a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.search-results.v2+json"
+							}
+						],
+						"url": {
+							"raw": "{{new-path}}/api/-/search?terms=<string>&page=<long>&limit=<integer>&order_by=<string>&filter=<string>",
+							"host": [
+								"{{new-path}}"
+							],
+							"path": [
+								"api",
+								"-",
+								"search"
+							],
+							"query": [
+								{
+									"key": "terms",
+									"value": "<string>",
+									"description": "*(Optional)* One or more terms the search uses as the basis for which items are relevant to return. The items may be of any supported content type. The relevance may be assessed based on any element of a given item. If no terms are supplied, then results will be based filtering and page size limits."
+								},
+								{
+									"key": "page",
+									"value": "<long>",
+									"description": "*(Optional)* The number of the page in the list response pages to return. Maximum number of items returned is 10,000"
+								},
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "*(Optional)* The number of items to return on each response page. The default is 10."
+								},
+								{
+									"key": "order_by",
+									"value": "<string>",
+									"description": "<br />*(Optional)* The sorting method for items returned, based on the popularity of the item. You can sort based on:\n - `hitsTotal` - The number of times a content item has been viewed since it was created.\n - `hitsSmallSpanTotal` The number of times viewed in the last month.\n - `hitsMediumSpanTotal` The number of times viewed in the last three months.\n - `hitsLargeSpanTotal` The number of times viewed in the last twelve months.\n - `downstreamWorkbookCount` The number workbooks in a given project. This value is only returned when the request `filter` expression is `=type:eq:table` or `=type:eq:database`.\n\n Append  `:asc` or `:desc` to determine sort direction. The default is  `asc`.\n\n Your search expression can have more than one comma seperated `order_by` element. If there is a tie between two items for the first `order_by` expression, then sort order between the two items will be determined by the second `order_by` expression. The following expression sorts items from the fewest views since creation and, in case of a tie, by the one that has the most recent views.\n\n `?order_by=hitsTotal:asc,hitsSmallSpanTotal:desc`"
+								},
+								{
+									"key": "filter",
+									"value": "<string>",
+									"description": "*(Optional)* An expression to filter the response using one ofthe following parameters, or\n a combination of expressions separated by a comma.\n\n\n- `type`\n\n    The content type, using the `eq` or `in` operator in expressions like:\n\n    `?filter=type:eq:workbook`\n\n    `?filter=type:in:[workbook,datasource]`\n\n    > *Note: The `in` operator is available in API 3.17 (Tableau Cloud October 2022 / Server 2022.3) and later.*\nor:\n- `ownerId`\n\n  Resource owner ID or last modified time, using `eq`, `lte`, `gte`, `gt`, or `in` operator in an expression like:\n\n  `filter=modifiedTime:gte:2022-01-11T08:00:00.000Z`\n\nor:\n- `modifiedTime`\n\n    Resource owner ID or last modified time, using `eq`, `lte`, `gte`, `gt`, or `in` operator in an expression like:\n\n    `filter=ownerId:in:[akhil,fred,alice]`\n\nFor more information about filter expressions, see [Filtering and Sorting in the Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_filtering_and_sorting.htm).\n\n\n\n </li></ul>\n"
+								}
+							]
+						},
+						"description": "Searches across all supported content types for objects relevant to the search expression specified in the querystring of the request URI.\n\n > **Version:** Available in API 3.16 ( Tableau Cloud June 2022 / Server 2022.3) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Search results will be limited to those objects that the user has permissions to access.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*\n\n\n For example, `MY_SERVER/api/-/search?terms=productID` could return the Sales workbook that contains a data field named `productID` as well as Superstore database containing a table with a column named `productID`.\n\n Query parameters can be combined to refine your search. For instance, the request for a search on the term \"sales\", for workbooks created in 2021 or later, sorted by the number of times the content has been viewed since its creation, with smallest number of views first,  would look like:\n\n `/search?terms=sales&filter=type:eq:workbook&tmodifiedTime:gte:2021&sort=hitsTotal:asc`\n\n\n Content types returned can include:\n <table style=\"100%\"><tr>\n <td><ul>\n <li>`lens`</li><li>`datasource`</li><li>`virtualconnection`</li><li>`collection`</li><li>`project`</li><li>`flow`</li><li>`datarole`</li></ul></td>\n <td><ul><li>`table`</li><li>`database`</li><li>`metric`</li><li>`view`</li><li>`workbook`</li><li>`simulation`</li></ul></td></tr></table>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get usage statistics for content item",
+					"id": "ffdc5359-c5fc-4bd6-afa2-c90e1a11f2f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.usagestats.v1.UsageStats+json"
+							}
+						],
+						"url": {
+							"raw": "{{new-path}}/api/-/content/usage-stats/:type/:luid",
+							"host": [
+								"{{new-path}}"
+							],
+							"path": [
+								"api",
+								"-",
+								"content",
+								"usage-stats",
+								":type",
+								":luid"
+							],
+							"variable": [
+								{
+									"id": "7f604c60-baa0-45af-803d-387362165d3c",
+									"key": "type",
+									"value": "workbooks",
+									"description": "(Required) "
+								},
+								{
+									"id": "c5803ce0-9a91-41c8-94ea-4928a4108e80",
+									"key": "luid",
+									"value": "82de7a79-caa2-47c2-a080-7c284f267e39",
+									"description": "(Required) "
+								}
+							]
+						},
+						"description": "Gets the usage statistics for a Tableau content item, specified by LUID and content type, such as workbook, datasource, or flow.\n\n > **Version:** Available in API 3.17 ( Tableau Cloud December 2022) and later. Not available for Tableau Server.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Tableau administrators can get statistics for all content they administer. Other users can get\n   statistics for any content they own or have at least *Read* permissions for.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get batch content usage statistics",
+					"id": "64e3178b-f461-4362-922a-1bc49f287ecd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.usagestats.v1.BatchGetUsageRequest+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.usagestats.v1.ContentItemUsageStatsList+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content_items\": [\n    {\n      \"luid\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"luid\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/content/usage-stats",
+						"description": "Gets usage statistics for multiple content items. The batch of can include multiple content types.\n\n > **Version:** Available in API 3.17 ( Tableau Cloud December 2022) and later. Not available for Tableau Server.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Tableau administrators can get statistics for all content they administer. Other users can get\n   statistics for any content they own or have at least *Read* permissions for.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				}
+			],
+			"id": "acb787c5-e3cb-4f70-bf6e-bde6bbb3420a",
+			"description": "Content exploration methods enable you to view:\n\n**Search Results:** Explore your Tableau content based on relevance to a provided term and filter expression.\n\n**Usage Statistics** Get the count of the number of times a user has directly or indirectly accessed a specified content item, or a batch of content items. Satistics are available for workbooks, views, data sources, flows and other Tableau resources. The response contains counts for a variety of time periods, ranging from two weeks up to the resource's lifetime."
+		},
+		{
 			"name": "Data Sources",
 			"item": [
 				{
@@ -10412,287 +10553,292 @@
 	],
 	"variable": [
 		{
-			"id": "079bb9ab-247a-4f6b-b054-9a35543a773c",
+			"id": "0fa381e2-21ee-402f-ad6d-c12b49c21c8e",
+			"key": "auto-auth",
+			"value": "true"
+		},
+		{
+			"id": "f058a563-4169-4c0c-9695-e2020435773f",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "e81fbf5a-b39c-4f72-a49c-04feb92db0ec",
+			"id": "84edf863-a6cb-45a8-ab2f-0690afcc70e9",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "86cf38a3-5b84-4c8a-bc3b-4499ae337f65",
+			"id": "68b481ff-22fb-44be-b0e9-967e3bf7080b",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "0313e82a-91f0-48c8-9f06-b530ebb50b25",
+			"id": "c3141922-9669-4dce-ac9a-78d3d3d3b921",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "60f8c954-d0af-4908-8107-2a81d17ec214",
+			"id": "a0072b7a-b9d8-459c-bfaf-41dc0d6be0be",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "aee025a9-05c3-4aed-a466-0b3833241e3a",
+			"id": "cefebfd5-3ecd-4c35-a8bc-83431b655391",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "bdf84448-9ad9-444b-9b82-d163798b7c7d",
+			"id": "e523e057-830e-4547-8fde-6f0b1c0fbea6",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "88e1e169-d595-4c91-9030-1135a9f64a24",
+			"id": "2657ed84-7a4b-4faa-9c7d-760fc1d5da2a",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "79086434-144b-4cfd-b50d-c0718ba92b43",
+			"id": "59f724e4-1a94-4053-b0e9-cd30b457b617",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "3e704f42-22ab-493b-97d8-7bab72d60512",
+			"id": "15fcd36d-cc3b-407f-a48f-5abbdc2f6920",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "8f78c34b-4036-484b-94bd-9a121808fb94",
+			"id": "1c526afe-ff0a-46b8-99e3-30b9e9ce1134",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "ee9f1186-79ec-4969-9085-c63ced391cd8",
+			"id": "cd7950c8-ba65-4c95-8509-b52d3a87f848",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "dfd8a297-f2ac-4098-ad9b-6915880c66a6",
+			"id": "d0ed812c-a163-4eac-8c4a-427c76fab4eb",
 			"key": "revision-number",
 			"value": ""
 		},
 		{
-			"id": "4ff9ade9-b647-4f46-9bc5-98d20bfeaf4f",
+			"id": "599a3896-38a2-4a47-a255-75fdd3866ccd",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "7c4d70b6-3d25-4905-82ca-7c9e03a65ebf",
+			"id": "447c2ddb-4443-4877-8ca1-a34baffb6fcf",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "8fd1050f-3a33-433b-9d40-3f4b9acdb95b",
+			"id": "0a582623-9954-4d16-bebe-48ddef315eeb",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "dbcd910f-034c-443c-a1b0-ca65cc38c6cd",
+			"id": "92269bfe-d05e-4d2f-bc5d-6206ec28eaa4",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "0d5c163b-1a3c-43b7-8668-a48fb26f771a",
+			"id": "b72f214a-c0b3-449e-9c4e-c43b800c27ad",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "5315bdd4-01ff-4b8e-bbab-28e3e7ba0bc2",
+			"id": "bfb8170b-4754-4b7f-851a-a46a10c0fd91",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "ae9c2391-4920-4a4b-8106-ecde78da6da9",
+			"id": "15f1244c-e1a6-4abd-941e-e1f14ca5b266",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "0123b21e-45d3-43ff-844c-99b08f32a928",
+			"id": "a7c36afc-c324-494e-99e9-cea183056902",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "0389111a-6d02-459b-ad37-0cfd26f72b1f",
+			"id": "b3b25d08-01b0-4292-a644-61e03ab1c3a8",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "0aef7c63-8bc2-4803-a8fa-2c92d66c6400",
+			"id": "cb53d6c9-bc14-4656-9985-5f15e06a4f93",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "a5ef6ca4-d585-4618-9f1a-542471278580",
+			"id": "12ce8640-c2cd-40a3-b5cb-d76670d3a964",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "c4d64348-e746-4974-9cb8-ab60d80de6c0",
+			"id": "c56f2e52-5d03-4666-be6a-6b3bac95acb7",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "8d30b132-7569-4869-a1b8-362166d5e6b4",
+			"id": "4f57af7a-d2f4-48b0-8769-6f4bf3d1871d",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "be924692-9786-4fac-8a40-68603dbfd96c",
+			"id": "5ccf9268-74dc-42b6-ab1c-a11d13595695",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "c5071e7a-4d1b-4603-8b8a-2d14ec4d122a",
+			"id": "edf3138b-87ad-4fe2-8ce0-9c9f051f14d7",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "669a1069-e70b-45e5-9f2b-de932c4e58ff",
+			"id": "7be57de5-5ede-4ca3-ad9f-a658ab895026",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "a03d9677-b435-4718-83c1-90452511a546",
+			"id": "aacf8de1-ddbf-45d6-90c5-4ee43f0babee",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "c99ff56d-c659-40fd-98ae-f346f6dedbcf",
+			"id": "3e335d70-9777-4def-ad56-6827edf9f6df",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "ddbf6b47-0842-423b-bd8f-030bed1e5fa6",
+			"id": "8562950a-ac31-40f5-b997-5bac8773aef0",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "7ad635f9-f300-4c05-9fa3-6a3cdd1ced46",
+			"id": "b75fd12b-7b74-4de9-82ad-9cc57d7809d6",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "9abc82a0-cc9e-4f2d-8dff-a759ecf59ca6",
+			"id": "9f8c1bc5-a0da-4beb-992c-0e639edd9c64",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "b958fb8a-8e55-4d7f-a3d2-82527758a877",
+			"id": "c5ce9b0d-c8c9-4213-b63b-6835c6bbb2f9",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "6d0bcbd7-e79f-4224-8289-fdac0e1a96d5",
+			"id": "216386dc-307b-459d-ac03-c2fbf5f7e871",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "5f2ecb9d-fff0-4e74-b18a-cf6ddbddfca1",
+			"id": "c316ddea-2ce9-4bf3-9cb0-64d3906ac388",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "ab699b84-ece6-479b-86c4-29dd0e297bf5",
+			"id": "1659d145-b8b6-41da-b36c-3d6e2f51ef15",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "31a12e5e-0b49-424f-92c7-1423c69fbb77",
+			"id": "57d45b5e-2cba-4728-bde8-729d3a4d2f45",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "2dc40b80-edc2-4e1a-8127-f74e31596602",
+			"id": "09f39640-1fdc-4939-bd7d-2d4bdc3cfb40",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "d92ca98f-7f07-43c8-8694-7382af8501bc",
+			"id": "8fc9827f-06ba-4a6d-9312-14176fd06337",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "bd9ae3b2-b4c8-4ab7-80dc-66e521c22377",
+			"id": "6b2af839-adf6-4b4f-a342-10bf46f760a4",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "b39d68da-82b9-4a3b-9d15-190a9827616e",
+			"id": "7217e2c9-7a6f-4862-b153-26f24a4ff211",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "0355ae66-c9e0-4a9e-a1d7-12a123380351",
+			"id": "cef57a58-d508-4414-9540-50bd2ac510d3",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "f854464e-803a-474f-9097-512705ad9d30",
+			"id": "51c68384-bb5c-4e41-93d3-91b50f4cdeb4",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "0ed79c2c-e3ca-4ae5-96d6-4c72cca6cbd4",
+			"id": "90f84194-e6bf-4564-b283-0f88341ea5a6",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "ba0c7b46-0644-4503-895e-d8a27f164e4a",
+			"id": "315cca15-34fc-4586-9d6c-4884523d1c21",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "1668b8f7-8d6e-4230-833d-c11551a5801c",
+			"id": "10c48c50-94cb-4b1c-a300-9a599fb53b15",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "1ace0d06-cb28-4f31-a5cb-38532cae6736",
+			"id": "0b0b6a90-fe44-4543-94fd-1f5d4359b1c1",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "ca425a38-778c-4b54-b63d-7f2a90ceb944",
+			"id": "e06999fc-5e73-4218-912b-2290b3199d7b",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "a2b88620-59d9-46fe-846c-a6856a2986f1",
+			"id": "f2fa228f-01f2-4471-87f0-086821a5b39a",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "c32e95c7-6280-4115-8633-d1650c831f0a",
+			"id": "896e3bfd-4ecf-4a9a-ae8f-cfa010cfaf37",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "0880e488-89b0-48e6-af9c-f66fb509fcd1",
+			"id": "86350f57-4e8d-4e0f-b188-d48868258eb6",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "ae566073-8984-4ba1-ba4a-b5d6a70778ba",
+			"id": "b0567925-4e10-445a-b5f5-0011503bbef8",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "56e9fa3f-b8ac-4a8b-b2f9-a6c898272108",
+			"id": "76059ffc-c17e-49ef-af3b-78435c8b8e6c",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "744b7d7c-38e5-4a20-992b-7a626c2d0877",
+			"id": "f0d7e8ff-cd06-4c20-8a87-4b32cc633e8e",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "9f82fc92-a969-46d8-9083-8410c81bb2f0",
+			"id": "2f6a015d-4ebd-42ad-95be-b3f5d266bc9a",
 			"key": "lens-id",
 			"value": ""
 		},
