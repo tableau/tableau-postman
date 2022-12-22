@@ -74,7 +74,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"lens\": {\n        \"id\": \"<Lens_LUID_in_source_site>\",\n        \"name\": \"Datasource Name\",\n        \"site_id\": \"<source_site_LUID>\",\n        \"datasource_id\": \"<data_source_LUID_in_source_site>\",\n        \"project_id\": \"<project_LUID_in_source_site>\",\n        \"owner_id\": \"<lens_owner_LUID_in_source_site>\",\n        \"description\": \"\",\n        \"repository_url\": \"\"\n        },\n    \"lens_transformations\": {\n        \"datasource_id\": \"<data_source_LUID_in_new_site>\",\n        \"project_id\": \"<project_LUID_in_new_site>\",\n        \"owner_id\": \"<lens_owner_LUID_in_new_site>\"\n        \"name\": \"<new name of the lens>\",\n        \"description\": \"<new description of the lens>\"\n    }\n}"
+							"raw": "{\n    \"lens\": {\n        \"id\": \"<Lens_LUID_in_source_site>\",\n        \"name\": \"Datasource Name\",\n        \"site_id\": \"<source_site_LUID>\",\n        \"datasource_id\": \"<data_source_LUID_in_source_site>\",\n        \"project_id\": \"<project_LUID_in_source_site>\",\n        \"owner_id\": \"<lens_owner_LUID_in_source_site>\",\n        \"description\": \"\",\n        \"repository_url\": \"\"\n        },\n    \"lens_transformations\": {\n        \"datasource_id\": \"<data_source_LUID_in_new_site>\",\n        \"project_id\": \"<project_LUID_in_new_site>\",\n        \"owner_id\": \"<lens_owner_LUID_in_new_site>\",\n        \"name\": \"<new name of the lens>\",\n        \"description\": \"<new description of the lens>\"\n    }\n}"
 						},
 						"url": "{{new-path}}/api/-/askdata/lenses/import",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/importLens](https://help.tableau.com/current/api/rest_api/en-us/REST/TAG/index.html#operation/importLens)"
@@ -846,6 +846,147 @@
 			]
 		},
 		{
+			"name": "Content Exploration",
+			"item": [
+				{
+					"name": "Get content search results",
+					"id": "0e188446-a30e-47a7-8543-6d738223c43a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.search-results.v2+json"
+							}
+						],
+						"url": {
+							"raw": "{{new-path}}/api/-/search?terms=<string>&page=<long>&limit=<integer>&order_by=<string>&filter=<string>",
+							"host": [
+								"{{new-path}}"
+							],
+							"path": [
+								"api",
+								"-",
+								"search"
+							],
+							"query": [
+								{
+									"key": "terms",
+									"value": "<string>",
+									"description": "*(Optional)* One or more terms the search uses as the basis for which items are relevant to return. The items may be of any supported content type. The relevance may be assessed based on any element of a given item. If no terms are supplied, then results will be based filtering and page size limits."
+								},
+								{
+									"key": "page",
+									"value": "<long>",
+									"description": "*(Optional)* The number of the page in the list response pages to return. Maximum number of items returned is 10,000"
+								},
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "*(Optional)* The number of items to return on each response page. The default is 10."
+								},
+								{
+									"key": "order_by",
+									"value": "<string>",
+									"description": "<br />*(Optional)* The sorting method for items returned, based on the popularity of the item. You can sort based on:\n - `hitsTotal` - The number of times a content item has been viewed since it was created.\n - `hitsSmallSpanTotal` The number of times viewed in the last month.\n - `hitsMediumSpanTotal` The number of times viewed in the last three months.\n - `hitsLargeSpanTotal` The number of times viewed in the last twelve months.\n - `downstreamWorkbookCount` The number workbooks in a given project. This value is only returned when the request `filter` expression is `=type:eq:table` or `=type:eq:database`.\n\n Append  `:asc` or `:desc` to determine sort direction. The default is  `asc`.\n\n Your search expression can have more than one comma seperated `order_by` element. If there is a tie between two items for the first `order_by` expression, then sort order between the two items will be determined by the second `order_by` expression. The following expression sorts items from the fewest views since creation and, in case of a tie, by the one that has the most recent views.\n\n `?order_by=hitsTotal:asc,hitsSmallSpanTotal:desc`"
+								},
+								{
+									"key": "filter",
+									"value": "<string>",
+									"description": "*(Optional)* An expression to filter the response using one ofthe following parameters, or\n a combination of expressions separated by a comma.\n\n\n- `type`\n\n    The content type, using the `eq` or `in` operator in expressions like:\n\n    `?filter=type:eq:workbook`\n\n    `?filter=type:in:[workbook,datasource]`\n\n    > *Note: The `in` operator is available in API 3.17 (Tableau Cloud October 2022 / Server 2022.3) and later.*\nor:\n- `ownerId`\n\n  Resource owner ID or last modified time, using `eq`, `lte`, `gte`, `gt`, or `in` operator in an expression like:\n\n  `filter=modifiedTime:gte:2022-01-11T08:00:00.000Z`\n\nor:\n- `modifiedTime`\n\n    Resource owner ID or last modified time, using `eq`, `lte`, `gte`, `gt`, or `in` operator in an expression like:\n\n    `filter=ownerId:in:[akhil,fred,alice]`\n\nFor more information about filter expressions, see [Filtering and Sorting in the Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_filtering_and_sorting.htm).\n\n\n\n </li></ul>\n"
+								}
+							]
+						},
+						"description": "Searches across all supported content types for objects relevant to the search expression specified in the querystring of the request URI.\n\n > **Version:** Available in API 3.16 ( Tableau Cloud June 2022 / Server 2022.3) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Search results will be limited to those objects that the user has permissions to access.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*\n\n\n For example, `MY_SERVER/api/-/search?terms=productID` could return the Sales workbook that contains a data field named `productID` as well as Superstore database containing a table with a column named `productID`.\n\n Query parameters can be combined to refine your search. For instance, the request for a search on the term \"sales\", for workbooks created in 2021 or later, sorted by the number of times the content has been viewed since its creation, with smallest number of views first,  would look like:\n\n `/search?terms=sales&filter=type:eq:workbook&tmodifiedTime:gte:2021&sort=hitsTotal:asc`\n\n\n Content types returned can include:\n <table style=\"100%\"><tr>\n <td><ul>\n <li>`lens`</li><li>`datasource`</li><li>`virtualconnection`</li><li>`collection`</li><li>`project`</li><li>`flow`</li><li>`datarole`</li></ul></td>\n <td><ul><li>`table`</li><li>`database`</li><li>`metric`</li><li>`view`</li><li>`workbook`</li><li>`simulation`</li></ul></td></tr></table>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get usage statistics for content item",
+					"id": "ffdc5359-c5fc-4bd6-afa2-c90e1a11f2f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.usagestats.v1.UsageStats+json"
+							}
+						],
+						"url": {
+							"raw": "{{new-path}}/api/-/content/usage-stats/:type/:luid",
+							"host": [
+								"{{new-path}}"
+							],
+							"path": [
+								"api",
+								"-",
+								"content",
+								"usage-stats",
+								":type",
+								":luid"
+							],
+							"variable": [
+								{
+									"id": "7f604c60-baa0-45af-803d-387362165d3c",
+									"key": "type",
+									"value": "workbooks",
+									"description": "(Required) "
+								},
+								{
+									"id": "c5803ce0-9a91-41c8-94ea-4928a4108e80",
+									"key": "luid",
+									"value": "82de7a79-caa2-47c2-a080-7c284f267e39",
+									"description": "(Required) "
+								}
+							]
+						},
+						"description": "Gets the usage statistics for a Tableau content item, specified by LUID and content type, such as workbook, datasource, or flow.\n\n > **Version:** Available in API 3.17 ( Tableau Cloud December 2022) and later. Not available for Tableau Server.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Tableau administrators can get statistics for all content they administer. Other users can get\n   statistics for any content they own or have at least *Read* permissions for.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get batch content usage statistics",
+					"id": "64e3178b-f461-4362-922a-1bc49f287ecd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.usagestats.v1.BatchGetUsageRequest+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.usagestats.v1.ContentItemUsageStatsList+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content_items\": [\n    {\n      \"luid\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"luid\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/content/usage-stats",
+						"description": "Gets usage statistics for multiple content items. The batch of can include multiple content types.\n\n > **Version:** Available in API 3.17 ( Tableau Cloud December 2022) and later. Not available for Tableau Server.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Tableau administrators can get statistics for all content they administer. Other users can get\n   statistics for any content they own or have at least *Read* permissions for.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				}
+			],
+			"id": "acb787c5-e3cb-4f70-bf6e-bde6bbb3420a",
+			"description": "Content exploration methods enable you to view:\n\n**Search Results:** Explore your Tableau content based on relevance to a provided term and filter expression.\n\n**Usage Statistics** Get the count of the number of times a user has directly or indirectly accessed a specified content item, or a batch of content items. Satistics are available for workbooks, views, data sources, flows and other Tableau resources. The response contains counts for a variety of time periods, ranging from two weeks up to the resource's lifetime."
+		},
+		{
 			"name": "Dashboard Extensions Settings",
 			"item": [
 				{
@@ -1163,147 +1304,6 @@
 			],
 			"id": "31bf2a85-6cb2-415f-8fa9-cf44d2f8a0d1",
 			"description": "Enable and configure security for [dashboard extensions](https://help.tableau.com/current/server/en-us/config_r_tabpy.htm) on sites and, for on premise installations, on servers. With these extensions you can add custom features to a dashboard using JavaScript.\n\nUsing the extension methods of the Tableau Server REST API you can: <ul> <li>List the settings for extensions of a server or site</li> <li>Enable or disable extensions or sandboxed extensions for a server or site</li> <li>List, get, create, and delete entries in server blocked extensions list</li> <li>List, get, create, update, and delete entries in server allowed (safe) extensions list</li> </ul>\n\nThis functionality relates to the UI elements and concepts described at [Manage Dashboard Settings](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm)."
-		},
-		{
-			"name": "Content Exploration",
-			"item": [
-				{
-					"name": "Get content search results",
-					"id": "0e188446-a30e-47a7-8543-6d738223c43a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/vnd.tableau.search-results.v2+json"
-							}
-						],
-						"url": {
-							"raw": "{{new-path}}/api/-/search?terms=<string>&page=<long>&limit=<integer>&order_by=<string>&filter=<string>",
-							"host": [
-								"{{new-path}}"
-							],
-							"path": [
-								"api",
-								"-",
-								"search"
-							],
-							"query": [
-								{
-									"key": "terms",
-									"value": "<string>",
-									"description": "*(Optional)* One or more terms the search uses as the basis for which items are relevant to return. The items may be of any supported content type. The relevance may be assessed based on any element of a given item. If no terms are supplied, then results will be based filtering and page size limits."
-								},
-								{
-									"key": "page",
-									"value": "<long>",
-									"description": "*(Optional)* The number of the page in the list response pages to return. Maximum number of items returned is 10,000"
-								},
-								{
-									"key": "limit",
-									"value": "<integer>",
-									"description": "*(Optional)* The number of items to return on each response page. The default is 10."
-								},
-								{
-									"key": "order_by",
-									"value": "<string>",
-									"description": "<br />*(Optional)* The sorting method for items returned, based on the popularity of the item. You can sort based on:\n - `hitsTotal` - The number of times a content item has been viewed since it was created.\n - `hitsSmallSpanTotal` The number of times viewed in the last month.\n - `hitsMediumSpanTotal` The number of times viewed in the last three months.\n - `hitsLargeSpanTotal` The number of times viewed in the last twelve months.\n - `downstreamWorkbookCount` The number workbooks in a given project. This value is only returned when the request `filter` expression is `=type:eq:table` or `=type:eq:database`.\n\n Append  `:asc` or `:desc` to determine sort direction. The default is  `asc`.\n\n Your search expression can have more than one comma seperated `order_by` element. If there is a tie between two items for the first `order_by` expression, then sort order between the two items will be determined by the second `order_by` expression. The following expression sorts items from the fewest views since creation and, in case of a tie, by the one that has the most recent views.\n\n `?order_by=hitsTotal:asc,hitsSmallSpanTotal:desc`"
-								},
-								{
-									"key": "filter",
-									"value": "<string>",
-									"description": "*(Optional)* An expression to filter the response using one ofthe following parameters, or\n a combination of expressions separated by a comma.\n\n\n- `type`\n\n    The content type, using the `eq` or `in` operator in expressions like:\n\n    `?filter=type:eq:workbook`\n\n    `?filter=type:in:[workbook,datasource]`\n\n    > *Note: The `in` operator is available in API 3.17 (Tableau Cloud October 2022 / Server 2022.3) and later.*\nor:\n- `ownerId`\n\n  Resource owner ID or last modified time, using `eq`, `lte`, `gte`, `gt`, or `in` operator in an expression like:\n\n  `filter=modifiedTime:gte:2022-01-11T08:00:00.000Z`\n\nor:\n- `modifiedTime`\n\n    Resource owner ID or last modified time, using `eq`, `lte`, `gte`, `gt`, or `in` operator in an expression like:\n\n    `filter=ownerId:in:[akhil,fred,alice]`\n\nFor more information about filter expressions, see [Filtering and Sorting in the Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_filtering_and_sorting.htm).\n\n\n\n </li></ul>\n"
-								}
-							]
-						},
-						"description": "Searches across all supported content types for objects relevant to the search expression specified in the querystring of the request URI.\n\n > **Version:** Available in API 3.16 ( Tableau Cloud June 2022 / Server 2022.3) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Search results will be limited to those objects that the user has permissions to access.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*\n\n\n For example, `MY_SERVER/api/-/search?terms=productID` could return the Sales workbook that contains a data field named `productID` as well as Superstore database containing a table with a column named `productID`.\n\n Query parameters can be combined to refine your search. For instance, the request for a search on the term \"sales\", for workbooks created in 2021 or later, sorted by the number of times the content has been viewed since its creation, with smallest number of views first,  would look like:\n\n `/search?terms=sales&filter=type:eq:workbook&tmodifiedTime:gte:2021&sort=hitsTotal:asc`\n\n\n Content types returned can include:\n <table style=\"100%\"><tr>\n <td><ul>\n <li>`lens`</li><li>`datasource`</li><li>`virtualconnection`</li><li>`collection`</li><li>`project`</li><li>`flow`</li><li>`datarole`</li></ul></td>\n <td><ul><li>`table`</li><li>`database`</li><li>`metric`</li><li>`view`</li><li>`workbook`</li><li>`simulation`</li></ul></td></tr></table>"
-					},
-					"response": []
-				},
-				{
-					"name": "Get usage statistics for content item",
-					"id": "ffdc5359-c5fc-4bd6-afa2-c90e1a11f2f9",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/vnd.tableau.usagestats.v1.UsageStats+json"
-							}
-						],
-						"url": {
-							"raw": "{{new-path}}/api/-/content/usage-stats/:type/:luid",
-							"host": [
-								"{{new-path}}"
-							],
-							"path": [
-								"api",
-								"-",
-								"content",
-								"usage-stats",
-								":type",
-								":luid"
-							],
-							"variable": [
-								{
-									"id": "7f604c60-baa0-45af-803d-387362165d3c",
-									"key": "type",
-									"value": "workbooks",
-									"description": "(Required) "
-								},
-								{
-									"id": "c5803ce0-9a91-41c8-94ea-4928a4108e80",
-									"key": "luid",
-									"value": "82de7a79-caa2-47c2-a080-7c284f267e39",
-									"description": "(Required) "
-								}
-							]
-						},
-						"description": "Gets the usage statistics for a Tableau content item, specified by LUID and content type, such as workbook, datasource, or flow.\n\n > **Version:** Available in API 3.17 ( Tableau Cloud December 2022) and later. Not available for Tableau Server.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Tableau administrators can get statistics for all content they administer. Other users can get\n   statistics for any content they own or have at least *Read* permissions for.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
-					},
-					"response": []
-				},
-				{
-					"name": "Get batch content usage statistics",
-					"id": "64e3178b-f461-4362-922a-1bc49f287ecd",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.tableau.usagestats.v1.BatchGetUsageRequest+json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/vnd.tableau.usagestats.v1.ContentItemUsageStatsList+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"content_items\": [\n    {\n      \"luid\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"luid\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{new-path}}/api/-/content/usage-stats",
-						"description": "Gets usage statistics for multiple content items. The batch of can include multiple content types.\n\n > **Version:** Available in API 3.17 ( Tableau Cloud December 2022) and later. Not available for Tableau Server.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Tableau administrators can get statistics for all content they administer. Other users can get\n   statistics for any content they own or have at least *Read* permissions for.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
-					},
-					"response": []
-				}
-			],
-			"id": "acb787c5-e3cb-4f70-bf6e-bde6bbb3420a",
-			"description": "Content exploration methods enable you to view:\n\n**Search Results:** Explore your Tableau content based on relevance to a provided term and filter expression.\n\n**Usage Statistics** Get the count of the number of times a user has directly or indirectly accessed a specified content item, or a batch of content items. Satistics are available for workbooks, views, data sources, flows and other Tableau resources. The response contains counts for a variety of time periods, ranging from two weeks up to the resource's lifetime."
 		},
 		{
 			"name": "Data Sources",
@@ -10390,6 +10390,182 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Mobile Settings",
+			"item": [
+				{
+					"name": "Get Mobile Security Settings for Server",
+					"id": "97a3d4e5-8f2b-46f1-a971-365740dd337c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/settings/mobilesecuritysettings",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_server](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_server)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mobile Security Settings for Site",
+					"id": "1725b9e4-fd8e-4c8e-8997-63052b4772ae",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/settings/mobilesecuritysettings",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_site)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Mobile Security Settings for Site",
+					"id": "bcc821cc-2912-4455-ad35-745dcb866ed2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileSecuritySettingsList\": {\n        \"mobileSecuritySettings\": [\n            {\n                \"name\": \"mobile.security.jailbroken_device\",\n                \"enabled\": true,\n                \"iosConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                },\n                \"iosConfig\": {\n                    \"valueList\": [\n                        \"false\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"critical\"\n                }\n            },\n            {\n                \"name\": \"mobile.security.malware_detection\",\n                \"enabled\": true,\n                \"androidConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                }\n            },\n            {\n                \"name\": \"mobile.security.screenshot\",\n                \"enabled\": true,\n                \"androidConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                }\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/settings/mobilesecuritysettings",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#Update_mobile_security_settings_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#Update_mobile_security_settings_for_site)"
+					},
+					"response": []
+				}
+			],
+			"id": "c1122041-2625-4131-b845-105facd912be"
+		},
+		{
+			"name": "Virtual Connections",
+			"item": [
+				{
+					"name": "List Virtual Connections",
+					"id": "9b5e2607-bede-4c56-ad9c-610c93ab9e4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/virtualconnections",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"virtualconnections"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "filter",
+									"value": "",
+									"description": "(Optional) An expression that lets you specify a subset of virtual connections to return. You can filter on predefined fields such as name, tags, and createdAt. You can include multiple filter expressions. For more information, see Filtering and Sorting.",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "(Optional) An expression that lets you specify the order in which virtual connection information is returned. If you do not specify a sort expression, the sort order of the information that's returned is undefined. For more information, see Filtering and Sorting.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connections)"
+					},
+					"response": []
+				},
+				{
+					"name": "List Virtual Connection Database Connections",
+					"id": "42b6144c-1dfa-4c30-ac94-a9749052d162",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/virtualconnections/{{virtual-connection-id}}/connections",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"virtualconnections",
+								"{{virtual-connection-id}}",
+								"connections"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Virtual Connection Database Connections",
+					"id": "e7090817-c501-4be9-8c0d-fa5fd780a034",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n <connection\n   serverAddress=\"server-address\"\n   serverPort=\"port-number\"\n   userName=\"test\"\n   password=\"password\" />\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/virtualconnections/{{virtual-connection-id}}/connections/{{connection-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections)"
+					},
+					"response": []
+				}
+			],
+			"id": "5d3ccdce-14b6-4ef6-a6bd-4c8721395ee1"
 		}
 	],
 	"auth": {
@@ -10558,287 +10734,282 @@
 			"value": "true"
 		},
 		{
-			"id": "f058a563-4169-4c0c-9695-e2020435773f",
+			"id": "dffdee6e-9d83-4768-b680-2428e7480ce2",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "84edf863-a6cb-45a8-ab2f-0690afcc70e9",
+			"id": "067f1d43-55f1-4a92-bc73-bc7d01687bde",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "68b481ff-22fb-44be-b0e9-967e3bf7080b",
+			"id": "7e3d6770-95ed-4b5b-9a5f-8ad96fe1e5e2",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "c3141922-9669-4dce-ac9a-78d3d3d3b921",
+			"id": "a2577a3a-8142-4a3b-b3ca-5439657d7c9b",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "a0072b7a-b9d8-459c-bfaf-41dc0d6be0be",
+			"id": "d3791684-1dcd-4aac-9c97-5c05bc3d5c64",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "cefebfd5-3ecd-4c35-a8bc-83431b655391",
+			"id": "23cd678b-2913-4d55-aeb4-2d8ec4321dde",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "e523e057-830e-4547-8fde-6f0b1c0fbea6",
+			"id": "8cbb6242-dd92-4cb5-b2a7-7044370b2050",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "2657ed84-7a4b-4faa-9c7d-760fc1d5da2a",
+			"id": "3105f334-dfc5-46a7-bfaa-1abf9b2cb84d",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "59f724e4-1a94-4053-b0e9-cd30b457b617",
+			"id": "6f6b5b7c-3b69-4a9f-8236-633fbec683ff",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "15fcd36d-cc3b-407f-a48f-5abbdc2f6920",
+			"id": "e555ccbd-2d96-4779-b4b2-c5b7d0f129d7",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "1c526afe-ff0a-46b8-99e3-30b9e9ce1134",
+			"id": "cb2d1d24-de83-4e92-8cf8-9007491365c2",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "cd7950c8-ba65-4c95-8509-b52d3a87f848",
+			"id": "f86cf698-fd95-46fb-9b73-ddf39d9c011c",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "d0ed812c-a163-4eac-8c4a-427c76fab4eb",
+			"id": "389101aa-297f-4347-a03c-ca240b421050",
 			"key": "revision-number",
 			"value": ""
 		},
 		{
-			"id": "599a3896-38a2-4a47-a255-75fdd3866ccd",
+			"id": "90ae0551-d09f-4e0f-b634-e91f670a2de0",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "447c2ddb-4443-4877-8ca1-a34baffb6fcf",
+			"id": "22f1a5dc-f530-4968-9be0-0f07057b8c0f",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "0a582623-9954-4d16-bebe-48ddef315eeb",
+			"id": "8a888680-9869-45e3-88d6-57e831a120e5",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "92269bfe-d05e-4d2f-bc5d-6206ec28eaa4",
+			"id": "c077953b-2de2-4cf5-811f-d85b4ac04096",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "b72f214a-c0b3-449e-9c4e-c43b800c27ad",
+			"id": "48797f39-fc8b-4d13-bb1f-2a9b741c3a14",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "bfb8170b-4754-4b7f-851a-a46a10c0fd91",
+			"id": "9c8dccbb-e022-425b-b586-a6fe8cb302b9",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "15f1244c-e1a6-4abd-941e-e1f14ca5b266",
+			"id": "7906be5d-4377-421e-867a-12eb12796633",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "a7c36afc-c324-494e-99e9-cea183056902",
+			"id": "eadd6a8a-c7b7-4d78-a870-7686e042cdf4",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "b3b25d08-01b0-4292-a644-61e03ab1c3a8",
+			"id": "0ff2a994-dab6-45d8-bc22-7ca248289cf2",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "cb53d6c9-bc14-4656-9985-5f15e06a4f93",
+			"id": "316837a2-1f22-4d84-ad0d-992e83f14a64",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "12ce8640-c2cd-40a3-b5cb-d76670d3a964",
+			"id": "a72b6f59-91cc-4477-9397-df6283e966a8",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "c56f2e52-5d03-4666-be6a-6b3bac95acb7",
+			"id": "d88927fc-3f0e-45c4-8f2a-9f7a0247b3bd",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "4f57af7a-d2f4-48b0-8769-6f4bf3d1871d",
+			"id": "399c32af-fdc4-4392-96e3-945c59a90455",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "5ccf9268-74dc-42b6-ab1c-a11d13595695",
-			"key": "connection-id",
-			"value": ""
-		},
-		{
-			"id": "edf3138b-87ad-4fe2-8ce0-9c9f051f14d7",
+			"id": "fee69c18-f2d3-4e82-a3eb-b1a6b6624f9d",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "7be57de5-5ede-4ca3-ad9f-a658ab895026",
+			"id": "1b2d6b0f-8c99-425d-b6cb-4ca280b383a3",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "aacf8de1-ddbf-45d6-90c5-4ee43f0babee",
+			"id": "f0cb303a-c103-4945-9ebb-d1c6c301a4f2",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "3e335d70-9777-4def-ad56-6827edf9f6df",
+			"id": "17ef104d-41a2-410a-9b0b-0f25c8cab54d",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "8562950a-ac31-40f5-b997-5bac8773aef0",
+			"id": "bde50ba7-90b4-4281-b199-8fe0638c0fa9",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "b75fd12b-7b74-4de9-82ad-9cc57d7809d6",
+			"id": "340d0a80-1837-4469-b6ed-0019667d9f56",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "9f8c1bc5-a0da-4beb-992c-0e639edd9c64",
+			"id": "39893b9b-7205-46a9-897a-4cdcbf95b88d",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "c5ce9b0d-c8c9-4213-b63b-6835c6bbb2f9",
+			"id": "e16061b3-9a41-490f-b333-cd936c2ff27e",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "216386dc-307b-459d-ac03-c2fbf5f7e871",
+			"id": "56b3ddae-0501-4829-afab-2af1d3a5f9a0",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "c316ddea-2ce9-4bf3-9cb0-64d3906ac388",
+			"id": "f592971e-7836-4a63-8ce0-e04f974a11ea",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "1659d145-b8b6-41da-b36c-3d6e2f51ef15",
+			"id": "4c9bced7-4bca-4a61-9f54-2892d5a737de",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "57d45b5e-2cba-4728-bde8-729d3a4d2f45",
+			"id": "ed5736eb-ab2b-4607-9dc9-1fa2a17e6093",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "09f39640-1fdc-4939-bd7d-2d4bdc3cfb40",
+			"id": "f94ba09f-3cc1-46cf-83c4-732975af4465",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "8fc9827f-06ba-4a6d-9312-14176fd06337",
+			"id": "482ce3ae-2fb3-41b6-a994-0d4b4d75adbc",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "6b2af839-adf6-4b4f-a342-10bf46f760a4",
+			"id": "b37c1ce2-0b78-4d1e-9569-2725bd4b7fb9",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "7217e2c9-7a6f-4862-b153-26f24a4ff211",
+			"id": "2bfc6b2b-67af-4eaf-b1c5-c52265f79fb6",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "cef57a58-d508-4414-9540-50bd2ac510d3",
+			"id": "781932e8-1944-4ef5-8bfe-84955a1af13e",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "51c68384-bb5c-4e41-93d3-91b50f4cdeb4",
+			"id": "1e36e63f-3ca0-4ffc-a1c8-fad1ee8beccc",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "90f84194-e6bf-4564-b283-0f88341ea5a6",
+			"id": "c771a98f-57e5-49c8-83b8-55f2063b7696",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "315cca15-34fc-4586-9d6c-4884523d1c21",
+			"id": "5ba69dfc-aef8-4ea8-b755-8a16b7bdecab",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "10c48c50-94cb-4b1c-a300-9a599fb53b15",
+			"id": "965f8b89-596e-4d08-8286-eea61feaad5e",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "0b0b6a90-fe44-4543-94fd-1f5d4359b1c1",
+			"id": "0ab0891c-e542-492e-9a6a-c2195ecb9835",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "e06999fc-5e73-4218-912b-2290b3199d7b",
+			"id": "2470e1d9-37b0-4044-89bb-7493514e8457",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "f2fa228f-01f2-4471-87f0-086821a5b39a",
+			"id": "9b3d4261-73e4-42f5-9a0e-cc2141589284",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "896e3bfd-4ecf-4a9a-ae8f-cfa010cfaf37",
+			"id": "17b0baf6-a128-4935-8c3d-855712c200a4",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "86350f57-4e8d-4e0f-b188-d48868258eb6",
+			"id": "3361c8d2-7c1d-4e30-839d-d9ed6e0aa820",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "b0567925-4e10-445a-b5f5-0011503bbef8",
+			"id": "a6230d86-6b7a-4d57-893e-e6d42a5f592c",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "76059ffc-c17e-49ef-af3b-78435c8b8e6c",
+			"id": "25d5df7b-82c8-4bc6-a231-068b3c2cc9c6",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "f0d7e8ff-cd06-4c20-8a87-4b32cc633e8e",
+			"id": "6993b494-90b1-4ec8-85c6-a2cd2a8ea9d9",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "2f6a015d-4ebd-42ad-95be-b3f5d266bc9a",
+			"id": "02dfb3c7-cd5d-4864-9034-9cd99d87ab9f",
 			"key": "lens-id",
 			"value": ""
 		},
