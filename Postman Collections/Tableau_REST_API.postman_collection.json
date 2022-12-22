@@ -846,6 +846,325 @@
 			]
 		},
 		{
+			"name": "Dashboard Extensions Settings",
+			"item": [
+				{
+					"name": "Block dashboard extension on server",
+					"id": "7870b2b0-5e11-4549-9f35-35d8b11349dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.BlockListItem+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.BlockListItem+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"url\": \"{{dashboard-extension-url}}\",\n  \"block_list_item_luid\": \"{{block-list-item-luid}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/settings/server/extensions/dashboard/blockListItems",
+						"description": "Adds a dashboard extension to the block list of a server.\n\n > **Version:** Available in API 3.11 ( Tableau Server 2021.1) and later. Not available for Tableau Cloud.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Allow dashboard extension on site",
+					"id": "2c47133e-035c-4900-a2ae-8619259332c3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SafeListItem+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SafeListItem+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"safe_list_item_luid\": \"{{block-list-item-luid}}\",\n  \"url\": \"{{dashboard-extension-url}}\",\n  \"allow_full_data\": \"<boolean>\",\n  \"prompt_needed\": \"<boolean>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard/safeListItems",
+						"description": "Adds a dashboard extension to the safe list of the site you are  signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server or site administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Unblock dashboard extension on server",
+					"id": "6db3f1f8-4e4b-478c-b9a7-bb7bc610c1c2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/server/extensions/dashboard/blockListItems/{{block-list-item-luid}}",
+						"description": "Deletes a specific extension from the block list of a server.\n\n > **Version:** Available in API 3.11 ( Tableau Server 2021.1) and later. Not available for Tableau Cloud.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get blocked dashboard extension on server",
+					"id": "98e88650-8aa9-482b-abce-775ef7b8d4d2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.BlockListItem+json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/server/extensions/dashboard/blockListItems/{{block-list-item-luid}}",
+						"description": "Gets the details of a specific dashboard extension on the blocked list of a server.\n\n > **Version:** Available in API 3.11 ( Tableau Server 2021.1) and later. Not available for Tableau Cloud.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "List blocked dashboard extensions on server",
+					"id": "c7c13a18-1b0f-4ef6-a276-93328d56c9a7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.BlockListItems+json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/server/extensions/dashboard/blockListItems",
+						"description": "Lists the dashboard extensions on the blocked list of a server.\n\n > **Version:** Available in API 3.11 ( Tableau Server 2021.1) and later. Not available for Tableau Cloud.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "List allowed dashboard extensions on site",
+					"id": "d1961fb0-e35d-4354-b722-7e1837045534",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SafeListItems+json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard/safeListItems",
+						"description": "Lists the dashboard extensions on the safe list of the site you are signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server or site administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "List settings for dashboard extensions on server",
+					"id": "cbaf1b66-2d56-4454-b2dd-eb14d7b0ce0e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.ServerSettings+json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/server/extensions/dashboard",
+						"description": "Lists the dashboard extension settings of a server.\n\n > **Version:** Available in API 3.11 ( Tableau Server 2021.1) and later. Not available for Tableau Cloud.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Update dashboard extensions settings of server",
+					"id": "32a20b8c-64d1-40d6-b019-fa70adcc8dbe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.ServerSettings+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.ServerSettings+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"block_list_items\": [\n    {\n      \"url\": \"{{dashboard-extension-url}}\",\n      \"block_list_item_luid\": \"{{block-list-item-luid}}\"\n    }\n  ],\n  \"extensions_enabled\": \"<boolean>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/settings/server/extensions/dashboard",
+						"description": "Updates the settings for dashboard extensions of a server\n\n > **Version:** Available in API 3.11 ( Tableau Server 2021.1) and later. Not available for Tableau Cloud.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Disallow dashboard extension on site",
+					"id": "4adb2d8b-28da-461c-9867-8a343f9186f4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard/safeListItems/{{safe-list-item-luid}}",
+						"description": "Deletes a specific dashboard extension from the safe list of the site you are signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Can only be called by users with site or server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get allowed dashboard extension on site",
+					"id": "46c328c4-3488-4cbb-aef2-6332a6652170",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SafeListItem+json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard/safeListItems/{{safe-list-item-luid}}",
+						"description": "Gets the details of a specific dashboard extension on the safe list of the site you are signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Can only be called by users with site or server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "List dashboard extension settings of site",
+					"id": "e4eb6afb-db67-49ac-bfe3-366e59fd6e41",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SiteSettings+json"
+							}
+						],
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard",
+						"description": "Lists the dashboard extension settings of the site you are signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server or site administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Update settings for allowed dashboard extension on site",
+					"id": "8f62149c-af92-43c1-866a-43d8880b39a4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SafeListItem+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SafeListItem+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"safe_list_item_luid\": \"{{safe-list-item-luid}}\",\n  \"url\": \"{{dashboard-extension-url}}\",\n  \"allow_full_data\": \"false\",\n  \"prompt_needed\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard/safeListItems/{{safe-list-item-luid}}",
+						"description": "Updates the settings of a specific dashboard extension in the safe list of the site you are signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** Can only be called by users with site or server administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				},
+				{
+					"name": "Update dashboard extension settings of site",
+					"id": "1f8c4ae7-eef8-4139-be6f-9ed4148ffc7b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SiteSettings+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.tableau.extensions.dashboard.v1.SiteSettings+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"extensions_enabled\": \"<boolean>\",\n  \"allow_sandboxed\": \"<boolean>\",\n  \"safe_list_items\": [\n    {\n      \"safe_list_item_luid\": \"{{safe-list-item-luid}}\",\n      \"url\": \"{{dashboard-extension-url}}\",\n      \"allow_full_data\": \"<boolean>\",\n      \"prompt_needed\": \"<boolean>\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{new-path}}/api/-/settings/site/extensions/dashboard",
+						"description": "Updates the settings for dashboard extensions for the site you are signed into.\n\n > **Version:** Available in API 3.11 (Tableau Online March 2021 / Server 2021.1) and later.\n   *[Versioning Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm)*\n\n > **Permissions:** This method can only be called by users with server or site administrator permissions.\n   *[Permissions Overview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_permissions.htm)*\n\n > **License:** No additional license required.\n\n > **Access Scope:** Not available.\n    <br/>*Access Scopes Overview: [Cloud](\"https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm) |\n    [Server-Windows](https://help.tableau.com/current/server/en-us/connected_apps_scopes.htm) |\n    [Server-Linux](https://help.tableau.com/current/server-linux/en-us/connected_apps_scopes.htm)*"
+					},
+					"response": []
+				}
+			],
+			"id": "31bf2a85-6cb2-415f-8fa9-cf44d2f8a0d1",
+			"description": "Enable and configure security for [dashboard extensions](https://help.tableau.com/current/server/en-us/config_r_tabpy.htm) on sites and, for on premise installations, on servers. With these extensions you can add custom features to a dashboard using JavaScript.\n\nUsing the extension methods of the Tableau Server REST API you can: <ul> <li>List the settings for extensions of a server or site</li> <li>Enable or disable extensions or sandboxed extensions for a server or site</li> <li>List, get, create, and delete entries in server blocked extensions list</li> <li>List, get, create, update, and delete entries in server allowed (safe) extensions list</li> </ul>\n\nThis functionality relates to the UI elements and concepts described at [Manage Dashboard Settings](https://help.tableau.com/current/server/en-us/dashboard_extensions_server.htm)."
+		},
+		{
 			"name": "Data Sources",
 			"item": [
 				{
@@ -1444,7 +1763,7 @@
 			]
 		},
 		{
-			"name": "Extract and Encryption Methods",
+			"name": "Extract and Encryption",
 			"item": [
 				{
 					"name": "Create Extracts for Embedded Data Sources in a Workbook",
@@ -10093,293 +10412,303 @@
 	],
 	"variable": [
 		{
-			"id": "5ebf496e-5d1c-4b4c-9452-a77c86b7e49a",
+			"id": "079bb9ab-247a-4f6b-b054-9a35543a773c",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "b5870397-84c7-47f5-a1ac-2fc30195cd74",
+			"id": "e81fbf5a-b39c-4f72-a49c-04feb92db0ec",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "76b8dda2-e42b-443f-b358-d4b9acc82727",
+			"id": "86cf38a3-5b84-4c8a-bc3b-4499ae337f65",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "ffd6ab38-1320-4dc5-80f4-6e10ab6f131c",
+			"id": "0313e82a-91f0-48c8-9f06-b530ebb50b25",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "eaa01f5c-3c67-462e-9a16-d27e041baaa0",
+			"id": "60f8c954-d0af-4908-8107-2a81d17ec214",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "63fff2dc-58ee-4ff5-bfc1-9d84ac0dd75f",
+			"id": "aee025a9-05c3-4aed-a466-0b3833241e3a",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "f66c551a-5905-45e9-bfc1-cda6a0ab4a55",
+			"id": "bdf84448-9ad9-444b-9b82-d163798b7c7d",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "b86d4227-978a-4c8c-829b-42fe894827cb",
+			"id": "88e1e169-d595-4c91-9030-1135a9f64a24",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "c5056dcc-78f4-4b7e-8055-ef1ee3d8e5d7",
+			"id": "79086434-144b-4cfd-b50d-c0718ba92b43",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "e18e2938-a226-46a2-af1b-5f8bdb74bcb9",
+			"id": "3e704f42-22ab-493b-97d8-7bab72d60512",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "ab729aa8-0564-4395-b70c-8223ff5b652d",
+			"id": "8f78c34b-4036-484b-94bd-9a121808fb94",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "4be51559-90af-4575-b759-9248058b2258",
+			"id": "ee9f1186-79ec-4969-9085-c63ced391cd8",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "389101aa-297f-4347-a03c-ca240b421050",
+			"id": "dfd8a297-f2ac-4098-ad9b-6915880c66a6",
 			"key": "revision-number",
 			"value": ""
 		},
 		{
-			"id": "1c31ff91-6b17-4884-906d-7d4c07c72d6a",
+			"id": "4ff9ade9-b647-4f46-9bc5-98d20bfeaf4f",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "87b64d66-c014-4595-9ea6-e90d13bf041c",
+			"id": "7c4d70b6-3d25-4905-82ca-7c9e03a65ebf",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "7e719ecd-8aaa-4ca5-bacd-ff92caf73b07",
+			"id": "8fd1050f-3a33-433b-9d40-3f4b9acdb95b",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "8b00e9d0-7d81-4b0f-bd82-efcb7d4c0b6e",
+			"id": "dbcd910f-034c-443c-a1b0-ca65cc38c6cd",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "e2ed9ffd-453c-4b07-9ccf-ba598625a87f",
+			"id": "0d5c163b-1a3c-43b7-8668-a48fb26f771a",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "38f1ca83-7e55-48a6-97ec-6f5e8be03cb9",
+			"id": "5315bdd4-01ff-4b8e-bbab-28e3e7ba0bc2",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "c8b76438-102c-46b3-9be0-6cbd91fe8c34",
+			"id": "ae9c2391-4920-4a4b-8106-ecde78da6da9",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "7f26c241-ac5f-4858-acf1-0e7693ca784a",
+			"id": "0123b21e-45d3-43ff-844c-99b08f32a928",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "7df8a117-2228-4780-a05a-d43cf6815b3d",
+			"id": "0389111a-6d02-459b-ad37-0cfd26f72b1f",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "72a62b5f-ab5b-45a9-87c6-a5d4d217a038",
+			"id": "0aef7c63-8bc2-4803-a8fa-2c92d66c6400",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "85bd85ac-b0c3-49fe-a36b-6a95270587d5",
+			"id": "a5ef6ca4-d585-4618-9f1a-542471278580",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "605ba8c9-0665-4585-9b4c-ad137beff3b1",
+			"id": "c4d64348-e746-4974-9cb8-ab60d80de6c0",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "a774c591-941f-4822-bf1d-a48ba8df2699",
+			"id": "8d30b132-7569-4869-a1b8-362166d5e6b4",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "06e36468-1fb8-474e-a3ed-fdae1894856b",
+			"id": "be924692-9786-4fac-8a40-68603dbfd96c",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "b33238a6-f7d9-40f8-b1cc-26c74b9c0c62",
+			"id": "c5071e7a-4d1b-4603-8b8a-2d14ec4d122a",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "185d7fdf-ad4e-47e0-9589-cd1c8d0ce4fd",
+			"id": "669a1069-e70b-45e5-9f2b-de932c4e58ff",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "be6a0c17-6611-4dc2-a726-f173769637b1",
+			"id": "a03d9677-b435-4718-83c1-90452511a546",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "f1df9a1e-3120-4819-a2e1-4afaedce6a37",
+			"id": "c99ff56d-c659-40fd-98ae-f346f6dedbcf",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "913c020b-9be3-4c38-a047-9f02321494ec",
+			"id": "ddbf6b47-0842-423b-bd8f-030bed1e5fa6",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "146f6697-0a5f-4c1a-b8f6-28aedbce9673",
+			"id": "7ad635f9-f300-4c05-9fa3-6a3cdd1ced46",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "aa2a5c09-aceb-403f-898c-bb7b85e94b8f",
+			"id": "9abc82a0-cc9e-4f2d-8dff-a759ecf59ca6",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "bb049ef0-dc5a-4077-9923-4de305da6b84",
+			"id": "b958fb8a-8e55-4d7f-a3d2-82527758a877",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "b9c455ba-e028-4346-b5a5-79fec82a841f",
+			"id": "6d0bcbd7-e79f-4224-8289-fdac0e1a96d5",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "b3232584-43a2-4bf9-8595-ea536f11fcca",
+			"id": "5f2ecb9d-fff0-4e74-b18a-cf6ddbddfca1",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "5396667e-c8ed-4a08-87f5-9ef040e1d5d5",
+			"id": "ab699b84-ece6-479b-86c4-29dd0e297bf5",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "6e58c098-8101-4875-992b-ce7ee9b81508",
+			"id": "31a12e5e-0b49-424f-92c7-1423c69fbb77",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "7611d049-155b-440a-9c32-6dcba833ce50",
+			"id": "2dc40b80-edc2-4e1a-8127-f74e31596602",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "d696f78a-e80a-4b85-baf8-9db1d0546037",
+			"id": "d92ca98f-7f07-43c8-8694-7382af8501bc",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "f7da3aeb-e5eb-4208-82f9-d6fead17f765",
+			"id": "bd9ae3b2-b4c8-4ab7-80dc-66e521c22377",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "1fbaecb0-bd23-4514-9197-c3e57e7cd7d7",
+			"id": "b39d68da-82b9-4a3b-9d15-190a9827616e",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "353e5e5e-ab5e-426c-b484-279acac606a5",
+			"id": "0355ae66-c9e0-4a9e-a1d7-12a123380351",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "ec048437-bfe8-42e3-87d0-c25936f29af9",
+			"id": "f854464e-803a-474f-9097-512705ad9d30",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "4d29ef4b-00cb-4a16-a21d-2a67362d66dd",
+			"id": "0ed79c2c-e3ca-4ae5-96d6-4c72cca6cbd4",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "438cdda3-a8d5-4d37-b74b-69a6df976405",
+			"id": "ba0c7b46-0644-4503-895e-d8a27f164e4a",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "20674047-d9f4-4f9a-aca4-7dbcd733bfc3",
+			"id": "1668b8f7-8d6e-4230-833d-c11551a5801c",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "406412dc-0392-4bef-8bcf-c4d51f0bd92f",
+			"id": "1ace0d06-cb28-4f31-a5cb-38532cae6736",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "868a471e-240f-4b91-8070-37ec90eb7aba",
+			"id": "ca425a38-778c-4b54-b63d-7f2a90ceb944",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "5b28fd75-e9df-41ec-b642-66cb91b4aba4",
+			"id": "a2b88620-59d9-46fe-846c-a6856a2986f1",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "17b0baf6-a128-4935-8c3d-855712c200a4",
+			"id": "c32e95c7-6280-4115-8633-d1650c831f0a",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "3361c8d2-7c1d-4e30-839d-d9ed6e0aa820",
+			"id": "0880e488-89b0-48e6-af9c-f66fb509fcd1",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "1545f04f-c0be-4179-96fa-1ff2da690128",
+			"id": "ae566073-8984-4ba1-ba4a-b5d6a70778ba",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "b6bbb354-51ad-4a5b-8fe4-ce2a5e540832",
+			"id": "56e9fa3f-b8ac-4a8b-b2f9-a6c898272108",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "f8872599-35b2-4c4e-8cc4-582e4c12b8e6",
+			"id": "744b7d7c-38e5-4a20-992b-7a626c2d0877",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "06ea86ee-e757-49ec-a7eb-37fb7b8a2c05",
+			"id": "9f82fc92-a969-46d8-9083-8410c81bb2f0",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "c0ba85a1-f270-477b-96d5-d21f83d075c4",
-			"key": "new-project-id",
+			"id": "58df80ee-8589-49e1-905d-a9f4af01f1ca",
+			"key": "block-list-item-luid",
+			"value": ""
+		},
+		{
+			"id": "b514b682-6033-46ef-94b9-c09191c6ba7f",
+			"key": "safe-list-item-luid",
+			"value": ""
+		},
+		{
+			"id": "e284e747-978b-4894-8d4c-8ff3cd291185",
+			"key": "dashboard-extension-url",
 			"value": ""
 		}
 	]
