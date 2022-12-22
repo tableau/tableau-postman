@@ -109,59 +109,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "47587e87-c621-4bc7-abbb-036c1486d75e",
+						"id": "f6473ff0-4d94-4f32-b3a0-ee3c59fd8d64",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "20264732-88e3-4b60-962f-41f913c3b19e",
+						"id": "011facd5-0112-486e-a72a-29fb64473e65",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -868,59 +826,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "afc309b9-2b41-43c8-8190-2562a67c51b5",
+						"id": "4399781d-edae-4ae7-b802-7b6723244043",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "0e72b18d-6612-4621-9ae3-dcc117da7cc8",
+						"id": "9f89f12e-b0fe-4c62-912b-570c6745fd53",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1508,59 +1424,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "3e719010-e3c2-474e-bd3a-43ef746926d1",
+						"id": "e20927be-b264-42bd-8561-61499e9fedfe",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "46e48789-4a97-424b-b4c8-0c775a276bf6",
+						"id": "5992612a-dcb2-402e-bc99-e35bca669ccb",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1746,59 +1620,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d12c9700-a493-41f3-8b57-4018a3b73f92",
+						"id": "10bda564-9627-46ef-b723-5ad00f7ad5b6",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "2f558e99-2f13-4f8e-bfc2-72b1bb8d2c4e",
+						"id": "8e2fea09-1e72-4817-be7f-9d20e4617c8c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2297,59 +2129,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f0e2e6c4-e6d2-4b21-937f-4d9724d5f901",
+						"id": "d68f5c05-90f0-4efc-89e5-9ecd34376ca5",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "6c819fc1-a2e1-4bff-8a9f-095d0014fa21",
+						"id": "e531b527-d8e1-4be2-8955-856b98f62e23",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3488,59 +3278,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "001fb29a-c6ad-4382-80cc-0c92983c15f8",
+						"id": "4d570b8d-015e-4a45-afd5-51cddf5e66fe",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "2fe64969-3b9c-4c70-b44c-ee2590539d5f",
+						"id": "101bf8dc-3f0a-418a-a7c1-f92fbdc7500a",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4488,59 +4236,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "4f3bba24-dcdc-41dc-a5bc-1919961659ff",
+						"id": "f889910d-0f8f-4b78-bc43-14c1e8d89e02",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "73133fcd-2e38-4bce-97e3-c2b78739855c",
+						"id": "20f37719-ccda-40f2-b815-e85620598a3b",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4743,59 +4449,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1c09fde3-795b-4e39-b839-263a481432c6",
+						"id": "f153b548-781b-4336-8e41-a0f10bd977c0",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "5e329d76-3c5d-4d8f-8c8d-0ee5f3c0bc80",
+						"id": "1ff580bb-37a5-45ea-89ee-6e366c58a843",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5100,59 +4764,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b2e7b79d-2578-4d68-a3b3-5a723b9a9fdc",
+						"id": "86d4a442-a1b1-4dfd-81e3-f38e3fae3e57",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "37044b7c-2491-4ebb-abf9-fc7424db0545",
+						"id": "3ca97fbf-dbd5-4e3e-9cce-2e0dc394af65",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -6396,59 +6018,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "8257f2e7-ae17-4936-96a4-ab9585e398d3",
+						"id": "4973ec11-dd71-4138-bea0-099e1259039e",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "ff9ed579-aebd-4d47-9af2-22a272a3d90c",
+						"id": "8728afbc-a1f0-47ef-ba07-13546ede277c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -6645,59 +6225,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "016ae6cf-1f67-4964-869f-29b81784d157",
+						"id": "65d18179-f096-4ad2-af44-9e03d3ba45a3",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "eed6a69a-a83c-4e69-9ea2-4ed3372a8e87",
+						"id": "d83c5b7c-a8ab-4bf9-bf47-f24c3f7b9ebb",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -6881,59 +6419,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "807e6fcb-f04d-4212-8db2-85ea57b826de",
+						"id": "7cc4bb87-7b10-4ba5-8234-5090804643a9",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "23e68c1e-296e-46dc-a98f-98fce5c9ee7f",
+						"id": "4d29851d-e686-41f0-8133-90b27e700f08",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -7223,59 +6719,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b3b9ec36-9ae3-4eca-a75b-3e3793a31b86",
+						"id": "d2d960e9-c68f-43c7-bb45-f1be3ce2f902",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "e1e2b4e9-51f1-486a-9ba0-9016d5cb3270",
+						"id": "96da3bdb-a965-4dd4-a737-98ea74c0918f",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -7372,59 +6826,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f25d3397-8125-4559-8a85-6fbe302de1f0",
+						"id": "08b4fab0-1e23-4dbd-baab-b54a30ddb9be",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "208c9805-ce60-4f9b-9b64-b3bdd811d37f",
+						"id": "731b52e6-fc26-41a9-8641-b67c8d126b76",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -8024,59 +7436,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "6d685aa8-4398-4819-a0ed-c59787308a23",
+						"id": "8cb6ef9a-f02a-4b3f-bb15-5a2c6ee7b5bd",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "7eeb46b5-3f90-48ab-832c-19f0a8f33a1f",
+						"id": "7f8eb151-0a8e-4e37-bbc3-c4a552354578",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -8294,59 +7664,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "fead2bad-4302-4a1e-8275-855940d4b578",
+						"id": "2527ffb2-b470-4f00-be64-17ac1495b40b",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "b237cec5-7e26-45ec-9a42-2620562ee430",
+						"id": "1831e83f-306c-4074-90ff-180815bd2a76",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -9046,59 +8374,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "8b3569d1-5293-4f19-b225-5557af32f3dc",
+						"id": "9aa8cd1d-34dd-48b1-8aab-850976d94695",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "ee56dd44-6410-4d72-a853-2ab0c87fd2b5",
+						"id": "358e8540-cd32-4214-a51f-511ed36329f8",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -10626,59 +9912,17 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "30094f5b-3193-4db1-9ac2-2c2e33e525a9",
+						"id": "30d32ce5-766d-4b5d-8b04-3e5b46273410",
 						"type": "text/javascript",
 						"exec": [
-							"/*",
-							"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
-							"    - Every request in this collection will run this script.",
-							"    - To authenticate with different users, create separate environments with username, password and content-url variables",
-							"*/",
-							"",
-							"// xml body used to authenticate and obtain an API Key",
-							"const authBody = `",
-							"<tsRequest>",
-							"    <credentials name=\"${pm.environment.get(\"admin-username\")}\" password=\"${pm.environment.get(\"admin-password\")}\">",
-							"        <site contentUrl=\"${pm.environment.get(\"content-url\")}\"/>",
-							"    </credentials>",
-							"</tsRequest>`;",
-							"",
-							"// authenticate and obtain token value to be set as 'api-key' environment variable",
-							"pm.sendRequest({",
-							"    url: pm.environment.get(\"protocol\") + \"://\" + pm.environment.get(\"server\") + '/api/' + pm.environment.get(\"api-version\") + '/auth/signin',",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/xml',",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: authBody,",
-							"    }",
-							"}, function (err, res) {",
-							"    if (err) {",
-							"        console.log(err);",
-							"    } else {",
-							"        pm.environment.unset(\"api-key\");",
-							"        pm.environment.unset(\"site-id\");",
-							"        // convert the XML response body to JSON",
-							"        const jsonObject = xml2Json(res.text());",
-							"",
-							"        // obtain the API Key from the response body",
-							"        const apiKey = jsonObject.tsResponse.credentials.$.token;",
-							"        const siteId = jsonObject.tsResponse.credentials.site.$.id;",
-							"",
-							"        // set the variables to the returned value",
-							"        pm.environment.set(\"api-key\", apiKey);",
-							"        pm.environment.set(\"site-id\", siteId);",
-							"    };",
-							"});"
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "5bd37e35-4c0a-4aa9-9538-6013fcf40ea9",
+						"id": "5136d6f5-5898-48ee-aee6-e2b846d8c63d",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -10699,9 +9943,108 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "060eca2d-3c44-4ab6-8e15-a6d8b4871870",
+				"id": "2b7d0044-bbda-4896-9f2d-d360d1f59010",
 				"type": "text/javascript",
 				"exec": [
+					"/*",
+					"    - This script will automatically generate a new API Key, avoiding the need to manually sign-in.",
+					"    - Every request in this collection will run this script as long as the auto-auth environment variable is \"true\"",
+					"    - Impersonation is supported via the user-id collection variable and impersonation environment variable set to \"true\"",
+					"*/",
+					"const autoAuth = pm.environment.get(\"auto-auth\");",
+					"const impersonation = pm.environment.get(\"impersonation\");",
+					"const adminPATname = pm.environment.get(\"admin-PAT-name\");",
+					"const adminPATsecret = pm.environment.get(\"admin-PAT-secret\");",
+					"const JWT = pm.environment.get(\"jwt\");",
+					"const adminUsername = pm.environment.get(\"admin-username\");",
+					"const adminPassword = pm.environment.get(\"admin-password\");",
+					"const contentUrl = pm.environment.get(\"content-url\");",
+					"const userID = pm.collectionVariables.get(\"user-id\");",
+					"const path = `${pm.environment.get(\"protocol\")}://${pm.environment.get(\"server\")}/api/${pm.environment.get(\"api-version\")}`;",
+					"let method = null;",
+					"",
+					"// authenticate and obtain token value to be set as 'api-key' environment variable",
+					"authenticate = () => {",
+					"    // baseline authentication request body",
+					"    let authBody = {",
+					"        \"credentials\": {",
+					"            \"site\": {",
+					"                \"contentUrl\": contentUrl",
+					"            }",
+					"        }",
+					"    };",
+					"",
+					"    // checks environment file and chooses an authentication method prioritizing PAT, JWT, credentials",
+					"    if (adminPATname && adminPATsecret) {",
+					"        method = 'PAT';",
+					"        authBody.credentials.personalAccessTokenName = adminPATname;",
+					"        authBody.credentials.personalAccessTokenSecret = adminPATsecret;",
+					"    } else if (JWT) {",
+					"        method = 'JWT';",
+					"        authBody.credentials.jwt = JWT;",
+					"    } else if (adminUsername && adminPassword) {",
+					"        method = 'credentials';",
+					"        authBody.credentials.name = adminUsername;",
+					"        authBody.credentials.password = adminPassword;",
+					"    }",
+					"    else {",
+					"        method = null;",
+					"        throw new Error('AUTHENTICATION ERROR: Set valid authentication variables (environment)');",
+					"    }",
+					"    if (impersonation === 'true') {",
+					"        method += '_impersonate';",
+					"        authBody.credentials.site.id = userID;",
+					"    }",
+					"    // always log method to indicate that the first request is always for auth",
+					"    console.log('Automatic Authentication Method: ', method);",
+					"",
+					"    try {",
+					"        pm.sendRequest({",
+					"            url: path + '/auth/signin',",
+					"            method: 'POST',",
+					"            header: {",
+					"                'content-type': 'application/json',",
+					"                'accept': 'application/json'",
+					"            },",
+					"            body: {",
+					"                mode: 'raw',",
+					"                raw: authBody,",
+					"            }",
+					"        }, function (err, res) {",
+					"            if (err) {",
+					"                throw new Error(err);",
+					"            } else {",
+					"                // parse the response body to JSON",
+					"                const jsonRes = JSON.parse(res.text());",
+					"                if ('error' in jsonRes) {",
+					"                    // handles errors found in Tableau responses",
+					"                    throw new Error(`${jsonRes.error.summary}: ${jsonRes.error.detail}`, );",
+					"                } else {",
+					"                    pm.environment.unset(\"api-key\");",
+					"                    pm.environment.unset(\"site-id\");",
+					"                    // obtain the API Key from the response body",
+					"                    const apiKey = jsonRes.credentials.token;",
+					"                    const siteId = jsonRes.credentials.site.id;",
+					"                    // set the variables to the returned value",
+					"                    pm.environment.set(\"api-key\", apiKey);",
+					"                    pm.environment.set(\"site-id\", siteId);",
+					"                };           ",
+					"            };",
+					"        });",
+					"    }",
+					"    catch (err) {",
+					"        throw new Error('AUTHENTICATION ERROR: ', err);",
+					"    };",
+					"}",
+					"",
+					"// Only runs this script if auto-auth is set to true",
+					"if (autoAuth === 'true') {",
+					"    authenticate();",
+					"} else {",
+					"    if (pm.environment.get(\"api-key\")) {",
+					"        console.log('auto-auth set to false, manual authentication required!');",
+					"    } else throw new Error('AUTHENTICATION ERROR: manual authentication required (auto-auth = false)');",
+					"};",
 					""
 				]
 			}
@@ -10709,7 +10052,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7ea7307c-5d75-4e6f-bc3d-6a5122fae7c3",
+				"id": "0e294deb-7ada-42c2-af4e-72db04d57157",
 				"type": "text/javascript",
 				"exec": [
 					"// convert XML body to JSON",
@@ -10750,303 +10093,292 @@
 	],
 	"variable": [
 		{
-			"id": "250e0750-26ee-4b69-944e-7ec122e8ee07",
-			"key": "auto-auth",
-			"value": "true",
-			"type": "string"
-		},
-		{
-			"id": "d700df65-5467-497f-a590-c176cd5c6f49",
+			"id": "5ebf496e-5d1c-4b4c-9452-a77c86b7e49a",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "8a957de1-b438-4209-9359-df31efbb7113",
-			"key": "user-password",
-			"value": ""
-		},
-		{
-			"id": "85f39c9b-5e2c-44a9-b077-6133cf5ccb10",
+			"id": "b5870397-84c7-47f5-a1ac-2fc30195cd74",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "12475c07-32da-4262-89df-16caae90fc30",
+			"id": "76b8dda2-e42b-443f-b358-d4b9acc82727",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "6cd22b9f-5a16-4363-b7d4-12e9aecb3dbe",
+			"id": "ffd6ab38-1320-4dc5-80f4-6e10ab6f131c",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "ea843eba-c3a5-46f5-ae3f-bf387306b1e6",
+			"id": "eaa01f5c-3c67-462e-9a16-d27e041baaa0",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "549b6047-8623-49a3-bc21-d6bb26ba958a",
+			"id": "63fff2dc-58ee-4ff5-bfc1-9d84ac0dd75f",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "389a567b-4681-4b60-8a7c-9119547f76b4",
+			"id": "f66c551a-5905-45e9-bfc1-cda6a0ab4a55",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "998c87ba-a355-4d2a-9aec-c6991462fd95",
+			"id": "b86d4227-978a-4c8c-829b-42fe894827cb",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "c9b79cb1-35ac-414c-b9a8-f9416d335c71",
+			"id": "c5056dcc-78f4-4b7e-8055-ef1ee3d8e5d7",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "eeca6163-7bbb-497b-811f-5484fe6edb2d",
+			"id": "e18e2938-a226-46a2-af1b-5f8bdb74bcb9",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "f5235ba5-a64b-4d49-807c-afc2af970796",
+			"id": "ab729aa8-0564-4395-b70c-8223ff5b652d",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "9c3293d5-308f-4421-9d5a-e6754e3406ef",
+			"id": "4be51559-90af-4575-b759-9248058b2258",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "24073798-4923-446a-9821-5ee09ef81e22",
+			"id": "389101aa-297f-4347-a03c-ca240b421050",
 			"key": "revision-number",
 			"value": ""
 		},
 		{
-			"id": "c7f9b859-9057-4b27-83f0-d2e8ca02bc7c",
+			"id": "1c31ff91-6b17-4884-906d-7d4c07c72d6a",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "2e16aa68-2c9f-4149-acd9-fe29daf4f78b",
+			"id": "87b64d66-c014-4595-9ea6-e90d13bf041c",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "d254f574-993d-400a-b063-98e40c989739",
+			"id": "7e719ecd-8aaa-4ca5-bacd-ff92caf73b07",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "776e6941-a53b-42b5-9228-0b970ab6e658",
+			"id": "8b00e9d0-7d81-4b0f-bd82-efcb7d4c0b6e",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "5159c041-afef-459f-915e-9e2932d11a96",
+			"id": "e2ed9ffd-453c-4b07-9ccf-ba598625a87f",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "6a49fce0-a8a6-4857-a2bc-d851df8c5ba5",
+			"id": "38f1ca83-7e55-48a6-97ec-6f5e8be03cb9",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "78ad2e4f-7d8e-40aa-ac0b-fde4f1c2a3b2",
+			"id": "c8b76438-102c-46b3-9be0-6cbd91fe8c34",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "94bdeaae-a9d6-4caa-a862-90f47242a063",
+			"id": "7f26c241-ac5f-4858-acf1-0e7693ca784a",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "5c3c472b-1c49-483e-b18c-0f05742b201b",
+			"id": "7df8a117-2228-4780-a05a-d43cf6815b3d",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "b8e4f563-6bf4-48dc-b6c7-a1af80175aa4",
+			"id": "72a62b5f-ab5b-45a9-87c6-a5d4d217a038",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "0d57da3d-9090-46f1-805a-c7f4a0d49132",
+			"id": "85bd85ac-b0c3-49fe-a36b-6a95270587d5",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "b22ca08e-a904-4f14-b373-632dba8b3c89",
+			"id": "605ba8c9-0665-4585-9b4c-ad137beff3b1",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "e81cbd3a-732f-44fe-a8d3-11b664d8510d",
+			"id": "a774c591-941f-4822-bf1d-a48ba8df2699",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "68831baf-a9f7-45dd-947e-292f24578fc6",
+			"id": "06e36468-1fb8-474e-a3ed-fdae1894856b",
 			"key": "connection-id",
 			"value": ""
 		},
 		{
-			"id": "0e7c1039-096f-409d-8c69-7ab7ccf22b87",
+			"id": "b33238a6-f7d9-40f8-b1cc-26c74b9c0c62",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "1f11c772-30cd-4689-a68d-b6db974a0f17",
+			"id": "185d7fdf-ad4e-47e0-9589-cd1c8d0ce4fd",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "91f5e5ab-6969-4a95-88a8-1a083cfe6d77",
+			"id": "be6a0c17-6611-4dc2-a726-f173769637b1",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "3d6e6ac2-8fd5-44a5-9fcb-c414f8e4120d",
+			"id": "f1df9a1e-3120-4819-a2e1-4afaedce6a37",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "1f518ea0-6db8-4b99-b1c2-ac13e8624e06",
+			"id": "913c020b-9be3-4c38-a047-9f02321494ec",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "7aee736b-749c-4de6-a3a6-468e73e750e8",
+			"id": "146f6697-0a5f-4c1a-b8f6-28aedbce9673",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "911b858b-8733-450c-b3b4-7fe534f5c725",
+			"id": "aa2a5c09-aceb-403f-898c-bb7b85e94b8f",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "f28d4aae-7692-4577-9608-0522f7396e92",
+			"id": "bb049ef0-dc5a-4077-9923-4de305da6b84",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "c000df59-2b77-4b8c-ba43-ae82a12303ab",
+			"id": "b9c455ba-e028-4346-b5a5-79fec82a841f",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "97e6e90c-b0ed-4551-9479-5c43abfab5d6",
+			"id": "b3232584-43a2-4bf9-8595-ea536f11fcca",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "00a090dc-78b7-4302-aad9-05c86fc5155a",
+			"id": "5396667e-c8ed-4a08-87f5-9ef040e1d5d5",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "8e0cf2d6-3e28-44d3-a7ad-c8fd40695134",
+			"id": "6e58c098-8101-4875-992b-ce7ee9b81508",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "18d3bc96-28d8-427f-b406-06675ac5839b",
+			"id": "7611d049-155b-440a-9c32-6dcba833ce50",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "b8a45814-9e57-4a72-9acd-45bd143054e5",
+			"id": "d696f78a-e80a-4b85-baf8-9db1d0546037",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "6e2a3944-6243-4277-b6b5-8170f27c52cb",
+			"id": "f7da3aeb-e5eb-4208-82f9-d6fead17f765",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "c2043ae9-3982-4991-99ba-5be75a3fca32",
+			"id": "1fbaecb0-bd23-4514-9197-c3e57e7cd7d7",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "37520ba3-201e-497f-83ca-eff60ce9f0d3",
+			"id": "353e5e5e-ab5e-426c-b484-279acac606a5",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "4e72ad50-7fbd-44b1-bc1d-10ecd1424c63",
+			"id": "ec048437-bfe8-42e3-87d0-c25936f29af9",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "a73f0af4-1cd4-4b01-99b3-2b85a6985893",
+			"id": "4d29ef4b-00cb-4a16-a21d-2a67362d66dd",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "e63f8891-da70-44a2-a5e7-f38ebdfe1866",
+			"id": "438cdda3-a8d5-4d37-b74b-69a6df976405",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "1fe2474b-d60b-41e1-84e3-7265aa843ad8",
+			"id": "20674047-d9f4-4f9a-aca4-7dbcd733bfc3",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "6df0284c-b5f3-428c-bdcf-5857edee8e9a",
+			"id": "406412dc-0392-4bef-8bcf-c4d51f0bd92f",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "60f62041-b0cc-48b3-9ab9-ec9069cd06e9",
+			"id": "868a471e-240f-4b91-8070-37ec90eb7aba",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "65fb8a88-8318-4f20-85f1-02f917520dea",
+			"id": "5b28fd75-e9df-41ec-b642-66cb91b4aba4",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "e9b02609-b387-43be-8d01-c8baf52c2974",
+			"id": "17b0baf6-a128-4935-8c3d-855712c200a4",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "45a5767a-a800-4f34-a35c-0326a03a94a3",
+			"id": "3361c8d2-7c1d-4e30-839d-d9ed6e0aa820",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "f22dda60-a5c4-45f8-967b-e4098c3e611d",
+			"id": "1545f04f-c0be-4179-96fa-1ff2da690128",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "e78b7783-787f-4dfa-81cb-fb5a9cd03e7d",
+			"id": "b6bbb354-51ad-4a5b-8fe4-ce2a5e540832",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "42f8502a-8eab-4724-a055-21d3be7a103b",
+			"id": "f8872599-35b2-4c4e-8cc4-582e4c12b8e6",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "ec9c83dd-656d-4c80-8fbc-a1574f792f9c",
+			"id": "06ea86ee-e757-49ec-a7eb-37fb7b8a2c05",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "e9e0249d-a679-4eed-9536-151ed5f01882",
+			"id": "c0ba85a1-f270-477b-96d5-d21f83d075c4",
 			"key": "new-project-id",
 			"value": ""
 		}
