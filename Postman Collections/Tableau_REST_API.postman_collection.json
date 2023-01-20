@@ -442,6 +442,58 @@
 					"response": []
 				},
 				{
+					"name": "Sign in (JWT)",
+					"id": "eed13ace-8941-4632-82b9-f46266d78e36",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n    <credentials jwt=\"{{jwt}}\">\n        <site contentUrl=\"{{content-url}}\" />\n    </credentials>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/auth/signin",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in)"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in (Impersonate via JWT)",
+					"id": "5dc6c14c-bc0f-410f-9e7c-f9cb28278804",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n    <credentials jwt=\"{{jwt}}\">\n        <site contentUrl=\"{{content-url}}\" />\n        <user id=\"{{user-id}}\" />\n    </credentials>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/auth/signin",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in)"
+					},
+					"response": []
+				},
+				{
 					"name": "Sign Out",
 					"event": [
 						{
@@ -5244,6 +5296,63 @@
 			]
 		},
 		{
+			"name": "Mobile Settings",
+			"item": [
+				{
+					"name": "Get Mobile Security Settings for Server",
+					"id": "97a3d4e5-8f2b-46f1-a971-365740dd337c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/settings/mobilesecuritysettings",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_server](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_server)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mobile Security Settings for Site",
+					"id": "1725b9e4-fd8e-4c8e-8997-63052b4772ae",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/settings/mobilesecuritysettings",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_site)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Mobile Security Settings for Site",
+					"id": "bcc821cc-2912-4455-ad35-745dcb866ed2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileSecuritySettingsList\": {\n        \"mobileSecuritySettings\": [\n            {\n                \"name\": \"mobile.security.jailbroken_device\",\n                \"enabled\": true,\n                \"iosConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                },\n                \"iosConfig\": {\n                    \"valueList\": [\n                        \"false\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"critical\"\n                }\n            },\n            {\n                \"name\": \"mobile.security.malware_detection\",\n                \"enabled\": true,\n                \"androidConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                }\n            },\n            {\n                \"name\": \"mobile.security.screenshot\",\n                \"enabled\": true,\n                \"androidConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                }\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/settings/mobilesecuritysettings",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#Update_mobile_security_settings_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#Update_mobile_security_settings_for_site)"
+					},
+					"response": []
+				}
+			],
+			"id": "c1122041-2625-4131-b845-105facd912be"
+		},
+		{
 			"name": "Permissions",
 			"item": [
 				{
@@ -6902,109 +7011,146 @@
 			"name": "Revisions",
 			"item": [
 				{
-					"name": "Datasources: Get Datasource Revisions",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"revisionId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"revisionId\", \"notSet\");",
-									"}",
-									"",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    //These lines have been commented out because they would likely select the Default revision and we don't want to accidentally delete that",
-									"    //postman.setEnvironmentVariable(\"revisionId\", json.tsResponse.revisions.revision[0].$.id);",
-									"    //postman.setEnvironmentVariable(\"revisionName\", json.tsResponse.revisions.revision[0].$.name);",
-									"",
-									"    tests[\"revisions retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-									"    tests[\"revisionId env variable set = \" + postman.getEnvironmentVariable(\"revisionId\")] = !(postman.getEnvironmentVariable(\"revisionId\")===\"notSet\");",
-									"    ",
-									"}",
-									""
-								],
-								"id": "8315c4e0-82ee-42c4-9e5b-a3c4d78e075d"
-							}
-						}
-					],
-					"id": "2c7382ae-d23c-4982-b2ac-40c60f32a8f8",
+					"name": "Download Data Source Revision",
+					"id": "000a4a16-9f87-4b31-ba3b-9f9260f40247",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}/revisions",
-						"description": "Returns a list of revision information (history) for the specified data source.\n\nURI\n1. GET /api/api-version/sites/site-id/datasources/datasource-id/revisions\n1. GET /api/api-version/sites/site-id/datasources/datasource-id/revisions?pageSize=page-size&pageNumber=page-number\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the data source to get revisions for.\n* datasource-id  The ID of the data source to get revisions for.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results."
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/revisions/{{revision-number}}/content",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#download_data_source_revision](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#download_data_source_revision)"
 					},
 					"response": []
 				},
 				{
-					"name": "Datasources: Download Datasource Revision",
-					"id": "f765cc35-88ef-4281-ab3e-b1ee2db81e6e",
+					"name": "Download Workbook Revision",
+					"id": "7ef9b2ab-e5f4-4698-86fa-8d640977db3d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}//revisions/{{revisionId}}/content",
-						"description": "Downloads a specific version of a data source in .tdsx format.  WARNING: Don't try to download a tdsx with Postman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nURI\n1. GET /api/api-version/sites/site-id/datasources/datasource-id/revisions/revision-number/content\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the data source.\n* datasource-id  The ID of the data source to download.\n* revision-number  The revision number of the data source to download. To determine what versions are available, call Get Datasource Revisions."
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions/{{revision-number}}/content",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"workbooks",
+								"{{workbook-id}}",
+								"revisions",
+								"{{revision-number}}",
+								"content"
+							],
+							"query": [
+								{
+									"key": "includeExtract",
+									"value": "extract-value",
+									"description": "(Optional) The extract-value is a Boolean value (False or True). When the workbook specified for download has an extract, if you add the parameter ?includeExtract=False, the extract is not included when you download the workbook. You can use this option to improve performance if you are downloading workbooks or data sources that have large extracts.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#download_workbook_revision](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#download_workbook_revision)"
 					},
 					"response": []
 				},
 				{
-					"name": "Datasources: Delete Datasource Revision",
+					"name": "Get Data Source Revisions",
+					"id": "f97f8d3e-7eb9-4e01-80e6-38963b7b53e6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/revisions",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"datasources",
+								"{{datasource-id}}",
+								"revisions"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "100",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"description": "(Optional) The offset for paging. The default is 1.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#get_data_source_revisions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#get_data_source_revisions)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Workbook Revisions",
+					"id": "f5107299-69f7-4bf1-9e15-df78b1d02e84",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"workbooks",
+								"{{workbook-id}}",
+								"revisions"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "page-size",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "page-number",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#get_workbook_revisions](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#get_workbook_revisions)"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Data Source Revision",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5f749818-4ce7-4c61-8990-fe0445796260",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code == 204) {",
-									"    tests[\"Deleted: datasource revision \" + postman.getEnvironmentVariable(\"revisionId\") + \"with name: \" + postman.getEnvironmentVariable(\"datasourceName\") + \" and Id: \" + postman.getEnvironmentVariable(\"datasourceId\") ] = true;",
-									"    postman.setEnvironmentVariable(\"revisionId\", \"notSet\");",
-									"    tests[\"revisionId env variable set = \" + postman.getEnvironmentVariable(\"revisionId\")] = !(postman.getEnvironmentVariable(\"revisionId\")!==\"notSet\");",
-									"        ",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"",
 									""
 								],
-								"id": "5f749818-4ce7-4c61-8990-fe0445796260"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7014,145 +7160,23 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/datasources/{{datasourceId}}//revisions/{{revisionId}}",
-						"description": "Removes a specific version of a data source from the specified site.\nThe content is removed, and the specified revision can no longer be downloaded using Download Datasource Revision. If you call Get Datasource Revisions, the revision that's been removed is listed with the attribute IsDeleted=\"true\".\n\nURI\n1. DELETE /api/api-version/sites/site-id/datasources/datasource-id/revisions/revision-number\n\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the data source.\n* datasource-id  The ID of the data source to download.\n* revision-number  The revision number of the data source to download. To determine what versions are available, call Get Datasource Revisions."
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/datasources/{{datasource-id}}/revisions/{{revision-number}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#remove_data_source_revision](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#remove_data_source_revision)"
 					},
 					"response": []
 				},
 				{
-					"name": "Workbook Management: Get Workbook Revisions",
+					"name": "Remove Workbook Revision",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "d8a072c5-f67d-478f-a766-90b9c21a1d6c",
 								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"//Initialize the environment variables if they don't exist",
-									"if (postman.getEnvironmentVariable(\"revisionId\")==undefined)",
-									"{",
-									"    postman.setEnvironmentVariable(\"revisionId\", \"notSet\");",
-									"}",
-									"",
-									"",
-									"var error = !(responseCode.code===200)",
-									"if (error){",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									"else",
-									"{",
-									"    //These lines have been commented out because they would likely select the Default revision and we don't want to accidentally delete that",
-									"    //postman.setEnvironmentVariable(\"revisionId\", json.tsResponse.revisions.revision[0].$.id);",
-									"    //postman.setEnvironmentVariable(\"revisionName\", json.tsResponse.revisions.revision[0].$.name);",
-									"",
-									"    tests[\"revisions retrieved.  Please set the following values MANUALLY to use in subsequent API calls\"] = true",
-									"    tests[\"revisionId env variable set = \" + postman.getEnvironmentVariable(\"revisionId\")] = !(postman.getEnvironmentVariable(\"revisionId\")===\"notSet\");",
-									"    ",
-									"}",
 									""
 								],
-								"id": "ec582e7b-6b31-42b8-961b-96dc78ba21c8"
-							}
-						}
-					],
-					"id": "7ed3c086-42c9-494b-a69a-0ac408989177",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": {
-							"raw": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/revisions?pageSize=100&pageNumber=1",
-							"protocol": "http",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"api",
-								"{{api}}",
-								"sites",
-								"{{siteId}}",
-								"workbooks",
-								"{{workbookId}}",
-								"revisions"
-							],
-							"query": [
-								{
-									"key": "pageSize",
-									"value": "100"
-								},
-								{
-									"key": "pageNumber",
-									"value": "1"
-								}
-							]
-						},
-						"description": "Returns a list of revision information (history) for the specified workbook.\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/revisions\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/revisions?pageSize=page-size&pageNumber=page-number\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook to get revisions for.\n* workbook-id  The ID of the workbook to get revisions for.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* page-number  (Optional) The offset for paging. The default is 1. For more information, see Paginating Results."
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Download Workbook Revision",
-					"id": "e6ca5191-57d4-45fb-8bda-a35bcc2087d8",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/revisions/{{revisionId}}/content",
-						"description": "Downloads the specified Workbook. WARNING: Don't try to download a twbx with POSTman. It will crash. Try downloading a tds that doesn't have a local file attached with it.\n\nResponse\n* One of the following, depending on the format of the workbook:\nThe workbook's content in .twb format (Content-Type: application/xml)\nThe workbook's content in .twbx format (Content-Type: application/octet-stream)\n\nURI\n1. GET /api/api-version/sites/site-id/workbooks/workbook-id/revisions/revision-number/content\n \n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook.\n* workbook-id  The ID of the workbook to download.\n* revision-number  The revision number of the workbook to download. To determine what versions are available, call Get Workbook Revisions."
-					},
-					"response": []
-				},
-				{
-					"name": "Workbook Management: Remove Workbook Revision",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var json = xml2Json(responseBody);",
-									"",
-									"if (responseCode.code == 204) {",
-									"    tests[\"Deleted: workbook revision \" + postman.getEnvironmentVariable(\"revisionId\") + \"of workbook: \" + postman.getEnvironmentVariable(\"workbookName\") + \" and Id: \" + postman.getEnvironmentVariable(\"workbookId\") ] = true;",
-									"    postman.setEnvironmentVariable(\"revisionId\", \"notSet\");",
-									"    tests[\"revisionId env variable set = \" + postman.getEnvironmentVariable(\"revisionId\")] = (postman.getEnvironmentVariable(\"revisionId\")!==\"notSet\");",
-									"        ",
-									"}",
-									"else",
-									"{",
-									"    tests[\"error: \" + json.tsResponse.error.summary] = false; ",
-									"    tests[\"detail: \"  + json.tsResponse.error.detail] = false;",
-									"    tests[\"code: \" + json.tsResponse.error.$.code] = false;",
-									"    tests[\"full body: \" + responseBody] = false;",
-									"}",
-									""
-								],
-								"id": "d8a072c5-f67d-478f-a766-90b9c21a1d6c"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7162,14 +7186,9 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}/revisions/{{revisionId}}",
-						"description": "Removes a specific version of a workbook from the specified site.\n\nThe content is removed, and the specified revision can no longer be downloaded using Download Workbook Revision. If you call Get Workbook Revisions, the revision that's been removed is listed with the attribute IsDeleted=\"true\".\n\n**Note:** Calling this method permanently removes the specified workbook revision.\n\nURI\n1. DELETE /api/api-version/sites/site-id/workbooks/workbook-id/revisions/revision-number\n\nParameters\n* api-version  The version of the API to use, such as 2.3. For more information, see REST API Versions.\n* site-id  The ID of the site that contains the workbook to get revisions for.\n* workbook-id  The ID of the workbook to get revisions for.\n* page-size  (Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.\n* revision-number  The revision number of the workbook to remove. To determine what versions are available, call Get Workbook Revisions.\n"
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions/{{revision-number}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#remove_workbook_revision](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_revisions.htm#remove_workbook_revision)"
 					},
 					"response": []
 				}
@@ -8816,7 +8835,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n    <user \n        fullName=\"new-full-name\"\n        email=\"new-email\"\n        password=\"new-password\"\n        siteRole=\"new-site-role\"\n        authSetting=\"new-auth-setting\" />\n    />\n</tsRequest>\n<!-- Tableau Cloud only allows for updating siteRole and authSetting -->\n",
+							"raw": "<tsRequest>\n    <user\n        fullName=\"new-full-name\"\n        email=\"new-email\"\n        password=\"new-password\"\n        siteRole=\"new-site-role\"\n        authSetting=\"new-auth-setting\"\n    />\n</tsRequest>\n<!-- Tableau Cloud only allows for updating siteRole and authSetting -->\n",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -8852,6 +8871,125 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Virtual Connections",
+			"item": [
+				{
+					"name": "List Virtual Connections",
+					"id": "9b5e2607-bede-4c56-ad9c-610c93ab9e4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/virtualconnections",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"virtualconnections"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "filter",
+									"value": "",
+									"description": "(Optional) An expression that lets you specify a subset of virtual connections to return. You can filter on predefined fields such as name, tags, and createdAt. You can include multiple filter expressions. For more information, see Filtering and Sorting.",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "(Optional) An expression that lets you specify the order in which virtual connection information is returned. If you do not specify a sort expression, the sort order of the information that's returned is undefined. For more information, see Filtering and Sorting.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connections)"
+					},
+					"response": []
+				},
+				{
+					"name": "List Virtual Connection Database Connections",
+					"id": "42b6144c-1dfa-4c30-ac94-a9749052d162",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/virtualconnections/{{virtual-connection-id}}/connections",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"virtualconnections",
+								"{{virtual-connection-id}}",
+								"connections"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Virtual Connection Database Connections",
+					"id": "e7090817-c501-4be9-8c0d-fa5fd780a034",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n <connection\n   serverAddress=\"server-address\"\n   serverPort=\"port-number\"\n   userName=\"test\"\n   password=\"password\" />\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/virtualconnections/{{virtual-connection-id}}/connections/{{connection-id}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections)"
+					},
+					"response": []
+				}
+			],
+			"id": "5d3ccdce-14b6-4ef6-a6bd-4c8721395ee1"
 		},
 		{
 			"name": "Workbooks and Views",
@@ -10390,182 +10528,6 @@
 					}
 				}
 			]
-		},
-		{
-			"name": "Mobile Settings",
-			"item": [
-				{
-					"name": "Get Mobile Security Settings for Server",
-					"id": "97a3d4e5-8f2b-46f1-a971-365740dd337c",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{base-path}}/settings/mobilesecuritysettings",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_server](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_server)"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Mobile Security Settings for Site",
-					"id": "1725b9e4-fd8e-4c8e-8997-63052b4772ae",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{base-path}}/sites/{{site-id}}/settings/mobilesecuritysettings",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#get_mobile_security_settings_for_site)"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Mobile Security Settings for Site",
-					"id": "bcc821cc-2912-4455-ad35-745dcb866ed2",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"mobileSecuritySettingsList\": {\n        \"mobileSecuritySettings\": [\n            {\n                \"name\": \"mobile.security.jailbroken_device\",\n                \"enabled\": true,\n                \"iosConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                },\n                \"iosConfig\": {\n                    \"valueList\": [\n                        \"false\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"critical\"\n                }\n            },\n            {\n                \"name\": \"mobile.security.malware_detection\",\n                \"enabled\": true,\n                \"androidConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                }\n            },\n            {\n                \"name\": \"mobile.security.screenshot\",\n                \"enabled\": true,\n                \"androidConfig\": {\n                    \"valueList\": [\n                        \"true\"\n                    ],\n                    \"enabled\": true,\n                    \"severity\": \"warn\"\n                }\n            }\n        ]\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{base-path}}/sites/{{site-id}}/settings/mobilesecuritysettings",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#Update_mobile_security_settings_for_site](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_mobile_settings.htm#Update_mobile_security_settings_for_site)"
-					},
-					"response": []
-				}
-			],
-			"id": "c1122041-2625-4131-b845-105facd912be"
-		},
-		{
-			"name": "Virtual Connections",
-			"item": [
-				{
-					"name": "List Virtual Connections",
-					"id": "9b5e2607-bede-4c56-ad9c-610c93ab9e4b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/virtualconnections",
-							"host": [
-								"{{base-path}}"
-							],
-							"path": [
-								"sites",
-								"{{site-id}}",
-								"virtualconnections"
-							],
-							"query": [
-								{
-									"key": "pageSize",
-									"value": "",
-									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
-									"disabled": true
-								},
-								{
-									"key": "pageNumber",
-									"value": "",
-									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
-									"disabled": true
-								},
-								{
-									"key": "filter",
-									"value": "",
-									"description": "(Optional) An expression that lets you specify a subset of virtual connections to return. You can filter on predefined fields such as name, tags, and createdAt. You can include multiple filter expressions. For more information, see Filtering and Sorting.",
-									"disabled": true
-								},
-								{
-									"key": "sort",
-									"value": "",
-									"description": "(Optional) An expression that lets you specify the order in which virtual connection information is returned. If you do not specify a sort expression, the sort order of the information that's returned is undefined. For more information, see Filtering and Sorting.",
-									"disabled": true
-								}
-							]
-						},
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connections)"
-					},
-					"response": []
-				},
-				{
-					"name": "List Virtual Connection Database Connections",
-					"id": "42b6144c-1dfa-4c30-ac94-a9749052d162",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/virtualconnections/{{virtual-connection-id}}/connections",
-							"host": [
-								"{{base-path}}"
-							],
-							"path": [
-								"sites",
-								"{{site-id}}",
-								"virtualconnections",
-								"{{virtual-connection-id}}",
-								"connections"
-							],
-							"query": [
-								{
-									"key": "pageSize",
-									"value": "",
-									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
-									"disabled": true
-								},
-								{
-									"key": "pageNumber",
-									"value": "",
-									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
-									"disabled": true
-								}
-							]
-						},
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections)"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Virtual Connection Database Connections",
-					"id": "e7090817-c501-4be9-8c0d-fa5fd780a034",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "<tsRequest>\n <connection\n   serverAddress=\"server-address\"\n   serverPort=\"port-number\"\n   userName=\"test\"\n   password=\"password\" />\n</tsRequest>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": "{{base-path}}/sites/{{site-id}}/virtualconnections/{{virtual-connection-id}}/connections/{{connection-id}}",
-						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_virtual_connections.htm#ref_list_virtual_connection_database_connections)"
-					},
-					"response": []
-				}
-			],
-			"id": "5d3ccdce-14b6-4ef6-a6bd-4c8721395ee1"
 		}
 	],
 	"auth": {
@@ -10579,7 +10541,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "2b7d0044-bbda-4896-9f2d-d360d1f59010",
+				"id": "a57babd0-fe71-4e80-b5f7-87da286cdd0f",
 				"type": "text/javascript",
 				"exec": [
 					"/*",
@@ -10679,7 +10641,7 @@
 					"} else {",
 					"    if (pm.environment.get(\"api-key\")) {",
 					"        console.log('auto-auth set to false, manual authentication required!');",
-					"    } else throw new Error('AUTHENTICATION ERROR: manual authentication required (auto-auth = false)');",
+					"    }",
 					"};",
 					""
 				]
@@ -10688,7 +10650,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0e294deb-7ada-42c2-af4e-72db04d57157",
+				"id": "dd3e4c02-9fad-4a3e-9108-d5b2497ea9bb",
 				"type": "text/javascript",
 				"exec": [
 					"// convert XML body to JSON",
@@ -10729,302 +10691,297 @@
 	],
 	"variable": [
 		{
-			"id": "0fa381e2-21ee-402f-ad6d-c12b49c21c8e",
-			"key": "auto-auth",
-			"value": "true"
-		},
-		{
-			"id": "dffdee6e-9d83-4768-b680-2428e7480ce2",
+			"id": "dee1f2ad-2bf6-4182-a700-272208051779",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "067f1d43-55f1-4a92-bc73-bc7d01687bde",
+			"id": "9b4f45c9-9bfa-4e40-bbd3-ae70b06ad255",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "7e3d6770-95ed-4b5b-9a5f-8ad96fe1e5e2",
+			"id": "cc4d4f7b-2177-4133-ab2d-16b01f26161a",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "a2577a3a-8142-4a3b-b3ca-5439657d7c9b",
+			"id": "e4b7985f-5a97-4f10-9bbc-3bdb61276b14",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "d3791684-1dcd-4aac-9c97-5c05bc3d5c64",
+			"id": "6fb93aa2-d317-45c4-b313-428f9a172898",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "23cd678b-2913-4d55-aeb4-2d8ec4321dde",
+			"id": "4dc906ef-9049-4c5f-b91f-4eee6a6ece4d",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "8cbb6242-dd92-4cb5-b2a7-7044370b2050",
+			"id": "be5d0e43-8d6a-4d61-8493-c7dd331ab141",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "3105f334-dfc5-46a7-bfaa-1abf9b2cb84d",
+			"id": "681cd7a3-7df1-46b6-93af-5cda4bd500a3",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "6f6b5b7c-3b69-4a9f-8236-633fbec683ff",
+			"id": "b253ff00-d0aa-42d9-b23b-d4584938ea41",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "e555ccbd-2d96-4779-b4b2-c5b7d0f129d7",
+			"id": "825a0c0f-9e99-494f-be6e-528a50565c73",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "cb2d1d24-de83-4e92-8cf8-9007491365c2",
+			"id": "539452ab-395b-4624-9624-7123a41c4c13",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "f86cf698-fd95-46fb-9b73-ddf39d9c011c",
+			"id": "23c03a0c-f9c1-4c14-bb59-d75e3b25cae4",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "389101aa-297f-4347-a03c-ca240b421050",
+			"id": "8373c07f-d121-4d03-9311-e392633861bf",
 			"key": "revision-number",
 			"value": ""
 		},
 		{
-			"id": "90ae0551-d09f-4e0f-b634-e91f670a2de0",
+			"id": "7d983097-4eb3-4839-9777-544f3504bc83",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "22f1a5dc-f530-4968-9be0-0f07057b8c0f",
+			"id": "b005e4d1-5138-46e6-927c-65894e1f6f5b",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "8a888680-9869-45e3-88d6-57e831a120e5",
+			"id": "9cd76e2c-33b7-40e8-a283-985c0a8a8277",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "c077953b-2de2-4cf5-811f-d85b4ac04096",
+			"id": "409f70b2-9260-4cb6-ac37-9a1303ae97fd",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "48797f39-fc8b-4d13-bb1f-2a9b741c3a14",
+			"id": "6e6b545f-85e1-495d-842c-a5bfb313ca8d",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "9c8dccbb-e022-425b-b586-a6fe8cb302b9",
+			"id": "6108cc50-7e0d-4a84-b458-dbc298a3bfe6",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "7906be5d-4377-421e-867a-12eb12796633",
+			"id": "6b459b0c-1f5d-467d-b93d-3e0cae5b53dc",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "eadd6a8a-c7b7-4d78-a870-7686e042cdf4",
+			"id": "e1d9de95-fcd0-4c66-a11b-637567c9ccfe",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "0ff2a994-dab6-45d8-bc22-7ca248289cf2",
+			"id": "0052b0e6-2584-4283-9134-b4196c0eddc5",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "316837a2-1f22-4d84-ad0d-992e83f14a64",
+			"id": "24b9d33b-9302-4b7a-9920-450f2084570b",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "a72b6f59-91cc-4477-9397-df6283e966a8",
+			"id": "a29419e8-3db1-43cd-af50-85b87ada028c",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "d88927fc-3f0e-45c4-8f2a-9f7a0247b3bd",
+			"id": "ac40379c-8f13-4eb6-a7a7-aa3b146db706",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "399c32af-fdc4-4392-96e3-945c59a90455",
+			"id": "58fe46f7-5bc1-4828-b114-c1a7e7576f79",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "fee69c18-f2d3-4e82-a3eb-b1a6b6624f9d",
+			"id": "8306fd62-e9aa-4201-9861-5ff968fa8b83",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "1b2d6b0f-8c99-425d-b6cb-4ca280b383a3",
+			"id": "99ac0588-0c51-4ca2-9135-eb045aba447e",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "f0cb303a-c103-4945-9ebb-d1c6c301a4f2",
+			"id": "d8342e99-d0e3-4785-8d4e-a902de7b54b0",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "17ef104d-41a2-410a-9b0b-0f25c8cab54d",
+			"id": "0b8f563d-c138-4a9a-a02a-753964b750e1",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "bde50ba7-90b4-4281-b199-8fe0638c0fa9",
+			"id": "a5f5b538-2a3d-4d66-930e-5e127a81b603",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "340d0a80-1837-4469-b6ed-0019667d9f56",
+			"id": "fd6375dc-bd4e-49d8-9708-cf5d269c7c05",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "39893b9b-7205-46a9-897a-4cdcbf95b88d",
+			"id": "8b66702d-3f55-4658-a8b4-6cbb87a5cc40",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "e16061b3-9a41-490f-b333-cd936c2ff27e",
+			"id": "259866c4-1262-422f-8d6f-bcf35a7a97f4",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "56b3ddae-0501-4829-afab-2af1d3a5f9a0",
+			"id": "6277b7fb-3638-4bbe-b9d1-ff60b03e2b0e",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "f592971e-7836-4a63-8ce0-e04f974a11ea",
+			"id": "86ce9de0-877d-470e-9975-908a9b9e10b1",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "4c9bced7-4bca-4a61-9f54-2892d5a737de",
+			"id": "ab33c330-595f-4099-b398-c2cce06f5e65",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "ed5736eb-ab2b-4607-9dc9-1fa2a17e6093",
+			"id": "d1df4c08-db89-48c5-9b25-3e035ae49a28",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "f94ba09f-3cc1-46cf-83c4-732975af4465",
+			"id": "573a2cb0-1461-471d-ada7-67943ff189b0",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "482ce3ae-2fb3-41b6-a994-0d4b4d75adbc",
+			"id": "3bb0e597-629f-4db3-bb64-3a4583451a68",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "b37c1ce2-0b78-4d1e-9569-2725bd4b7fb9",
+			"id": "c443cec2-9d77-4237-986f-8cc0cb5c11bd",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "2bfc6b2b-67af-4eaf-b1c5-c52265f79fb6",
+			"id": "527971a1-63f5-47ea-8832-02f4450883f0",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "781932e8-1944-4ef5-8bfe-84955a1af13e",
+			"id": "89dc815d-972c-4ede-9e3e-5e0b68dda88f",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "1e36e63f-3ca0-4ffc-a1c8-fad1ee8beccc",
+			"id": "f7f61a8b-0974-4789-9919-25dbc02e7433",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "c771a98f-57e5-49c8-83b8-55f2063b7696",
+			"id": "2bb6b907-cee6-4923-ae3e-f7d5d832f2b0",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "5ba69dfc-aef8-4ea8-b755-8a16b7bdecab",
+			"id": "95a66d54-a7d1-44cf-8ad8-2c35d7ab1878",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "965f8b89-596e-4d08-8286-eea61feaad5e",
+			"id": "e6596f13-c795-4cd8-95de-8b3da2381173",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "0ab0891c-e542-492e-9a6a-c2195ecb9835",
+			"id": "7c1419ad-0636-457f-b0ef-5d6d51ea4012",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "2470e1d9-37b0-4044-89bb-7493514e8457",
+			"id": "f99995ae-b4d9-48c3-8e89-ba30bf131247",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "9b3d4261-73e4-42f5-9a0e-cc2141589284",
+			"id": "6f14b516-be2e-4121-837e-844dd97e8822",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "17b0baf6-a128-4935-8c3d-855712c200a4",
+			"id": "6c2ef6bf-4883-44e1-bf33-eace31c8c5fa",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "3361c8d2-7c1d-4e30-839d-d9ed6e0aa820",
+			"id": "eac21214-c7b6-457c-a6bd-d61f35d8ec6d",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "a6230d86-6b7a-4d57-893e-e6d42a5f592c",
+			"id": "f83a9fc5-b426-4063-ad77-9542eeb3f942",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "25d5df7b-82c8-4bc6-a231-068b3c2cc9c6",
+			"id": "907179f0-06d9-4aca-9331-9d7439196c3d",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "6993b494-90b1-4ec8-85c6-a2cd2a8ea9d9",
+			"id": "b529e629-6e22-4b0f-9b88-d352b29d037f",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "02dfb3c7-cd5d-4864-9034-9cd99d87ab9f",
+			"id": "39a8d7da-97b3-42f3-9a99-774cbd596005",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "58df80ee-8589-49e1-905d-a9f4af01f1ca",
+			"id": "65f41f2d-4c1b-4ee5-aae7-7972cffb71b2",
 			"key": "block-list-item-luid",
 			"value": ""
 		},
 		{
-			"id": "b514b682-6033-46ef-94b9-c09191c6ba7f",
+			"id": "c7dedd22-4264-4059-b74c-d7ac52007607",
 			"key": "safe-list-item-luid",
 			"value": ""
 		},
 		{
-			"id": "e284e747-978b-4894-8d4c-8ff3cd291185",
+			"id": "3cbacc2b-421e-488e-bbf0-feed86008a0f",
 			"key": "dashboard-extension-url",
 			"value": ""
 		}
