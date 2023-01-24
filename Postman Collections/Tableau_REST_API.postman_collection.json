@@ -10541,7 +10541,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "869e3b89-e475-4415-8ac6-aa4f61a1f8fb",
+				"id": "f07032e5-bd4b-41a2-8752-292169aa0f2e",
 				"type": "text/javascript",
 				"exec": [
 					"/*",
@@ -10572,65 +10572,75 @@
 					"        }",
 					"    };",
 					"",
-					"    // checks environment file and chooses an authentication method prioritizing PAT, JWT, credentials",
-					"    if (adminUsername && adminPassword) {",
-					"        method = 'username & password';",
-					"        authBody.credentials.name = adminUsername;",
-					"        authBody.credentials.password = adminPassword;",
-					"    } else if (adminPATname && adminPATsecret) {",
-					"        method = 'PAT';",
-					"        authBody.credentials.personalAccessTokenName = adminPATname;",
-					"        authBody.credentials.personalAccessTokenSecret = adminPATsecret;",
-					"    } ",
-					"    else if (JWT) {",
-					"        method = 'JWT';",
-					"        authBody.credentials.jwt = JWT;",
-					"    } ",
-					"    else {",
-					"        method = null;",
-					"        throw new Error('AUTHENTICATION ERROR: Set valid authentication variables (environment)');",
-					"    }",
-					"    if (impersonation === 'true') {",
-					"        authBody.credentials.site.id = userID;",
+					"    const runAuth = () => {",
+					"        try {",
+					"            pm.sendRequest({",
+					"                url: path + '/auth/signin',",
+					"                method: 'POST',",
+					"                header: {",
+					"                    'content-type': 'application/json',",
+					"                    'accept': 'application/json'",
+					"                },",
+					"                body: {",
+					"                    mode: 'raw',",
+					"                    raw: authBody,",
+					"                }",
+					"            }, function (err, res) {",
+					"                if (err) {",
+					"                    throw new Error(err);",
+					"                } else {",
+					"                    // parse the response body to JSON",
+					"                    const jsonRes = JSON.parse(res.text());",
+					"                    if ('error' in jsonRes) {",
+					"                        // handles errors found in Tableau responses",
+					"                        throw new Error(`${jsonRes.error.summary}: ${jsonRes.error.detail}`, );",
+					"                    } else {",
+					"                        pm.environment.unset(\"api-key\");",
+					"                        pm.environment.unset(\"site-id\");",
+					"                        // obtain the API Key from the response body",
+					"                        const apiKey = jsonRes.credentials.token;",
+					"                        const siteId = jsonRes.credentials.site.id;",
+					"                        // set the variables to the returned value",
+					"                        pm.environment.set(\"api-key\", apiKey);",
+					"                        pm.environment.set(\"site-id\", siteId);",
+					"                    };           ",
+					"                };",
+					"            });",
+					"        }",
+					"        catch (err) {",
+					"            throw new Error('AUTHENTICATION ERROR: ', err);",
+					"        };",
 					"    }",
 					"",
-					"    try {",
-					"        pm.sendRequest({",
-					"            url: path + '/auth/signin',",
-					"            method: 'POST',",
-					"            header: {",
-					"                'content-type': 'application/json',",
-					"                'accept': 'application/json'",
-					"            },",
-					"            body: {",
-					"                mode: 'raw',",
-					"                raw: authBody,",
+					"    const authVars = () => {",
+					"        try {",
+					"            // checks environment file and chooses an authentication method prioritizing PAT, JWT, credentials",
+					"            if (adminUsername && adminPassword) {",
+					"                method = 'username & password';",
+					"                authBody.credentials.name = adminUsername;",
+					"                authBody.credentials.password = adminPassword;",
+					"            } else if (adminPATname && adminPATsecret) {",
+					"                method = 'PAT';",
+					"                authBody.credentials.personalAccessTokenName = adminPATname;",
+					"                authBody.credentials.personalAccessTokenSecret = adminPATsecret;",
+					"            } ",
+					"            else if (JWT) {",
+					"                method = 'JWT';",
+					"                authBody.credentials.jwt = JWT;",
+					"            } ",
+					"            else {",
+					"                method = null;",
+					"                throw new Error('VARIABLE ERROR: Set valid authentication variables (environment)');",
 					"            }",
-					"        }, function (err, res) {",
-					"            if (err) {",
-					"                throw new Error(err);",
-					"            } else {",
-					"                // parse the response body to JSON",
-					"                const jsonRes = JSON.parse(res.text());",
-					"                if ('error' in jsonRes) {",
-					"                    // handles errors found in Tableau responses",
-					"                    throw new Error(`${jsonRes.error.summary}: ${jsonRes.error.detail}`, );",
-					"                } else {",
-					"                    pm.environment.unset(\"api-key\");",
-					"                    pm.environment.unset(\"site-id\");",
-					"                    // obtain the API Key from the response body",
-					"                    const apiKey = jsonRes.credentials.token;",
-					"                    const siteId = jsonRes.credentials.site.id;",
-					"                    // set the variables to the returned value",
-					"                    pm.environment.set(\"api-key\", apiKey);",
-					"                    pm.environment.set(\"site-id\", siteId);",
-					"                };           ",
-					"            };",
-					"        });",
+					"            if (impersonation === 'true') {",
+					"                authBody.credentials.site.id = userID;",
+					"            }",
+					"",
+					"        }",
+					"        catch (err) {",
+					"            console.error(err);",
+					"        }",
 					"    }",
-					"    catch (err) {",
-					"        throw new Error('AUTHENTICATION ERROR: ', err);",
-					"    };",
 					"}",
 					"",
 					"// Only runs this script if auto-auth is set to true",
@@ -10649,7 +10659,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "48874f0c-3cb3-462b-a474-636d0dd75576",
+				"id": "56af7ab9-3124-4e30-93ee-c9a7e4a09354",
 				"type": "text/javascript",
 				"exec": [
 					"// convert XML body to JSON",
@@ -10690,297 +10700,297 @@
 	],
 	"variable": [
 		{
-			"id": "5514decb-f0e4-4f76-9054-350b624f393d",
+			"id": "f9e8dc66-e7d7-48d5-9d35-8902e52bb979",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "9172fe3b-bb9a-4d15-a16a-73dbdd9e935f",
+			"id": "86cd3bbe-67d8-492d-98ce-6ca2391cf1f9",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "a85c9ff2-2045-4601-8c8f-5dd107927738",
+			"id": "080182dc-1eb2-4835-ba93-edb584b1f208",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "2488e74f-66e9-40ad-8727-d08f88fe8d1e",
+			"id": "54177feb-51d8-4c9f-ad0c-20ed53381181",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "82c3358e-2076-4fe1-9d5d-b9f2db7b72f7",
+			"id": "6dfd6f26-b905-41fb-a696-4589d92cb0e2",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "a192ad4a-41a3-4d1c-9563-3a47a6a9deee",
+			"id": "631a0731-06c7-4789-9319-0da42b012122",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "87449f88-8769-4444-bf27-a64362e33bc5",
+			"id": "fcf5f918-c4ab-4405-a6c6-12fb704a0261",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "68e5427b-97c7-448e-83e0-6f337d387256",
+			"id": "c448df37-d812-428d-8d5f-4106da7daca9",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "b2134f54-246d-4531-aa02-f39e2b6559d2",
+			"id": "d2ca75b4-f3eb-4391-b097-6748027aa6ab",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "fe06317e-c299-4761-b33e-229a92113228",
+			"id": "c4535b32-24a3-4c3a-a7f4-6276c3fd7efb",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "21503719-69ca-43cf-b63e-12795442a80e",
+			"id": "edd7031d-14bf-4933-8ff3-c704c5515942",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "ec5e003a-8ed5-4115-807d-6651b123a41b",
+			"id": "ddc316b2-905b-4f33-9e0d-1b8ab8fe4a7f",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "fb221649-61e6-4c3e-af9c-985e1a8dfeae",
+			"id": "a16ceb1f-b836-4c59-b1b6-cd1ca46803f8",
 			"key": "revision-number",
 			"value": ""
 		},
 		{
-			"id": "aa50b95a-54fe-4e71-93ad-197076923714",
+			"id": "13fbcd04-b012-4098-a32e-a699384e2ec7",
 			"key": "view-id",
 			"value": ""
 		},
 		{
-			"id": "f4e1a115-5140-478b-97eb-09de0195adb0",
+			"id": "f769c920-e963-456b-934c-b06256db6162",
 			"key": "workbook-id",
 			"value": ""
 		},
 		{
-			"id": "18be3eee-2d84-4532-9fbe-252c7cae47ad",
+			"id": "9786d6d5-cd9d-4911-bb24-a2e277c14b4f",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "3cec9c45-d1a2-4a0a-90d1-c3d408117cf6",
+			"id": "8e76942d-5438-4ecc-a4c6-4776fa9d48ef",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "fddc3931-d62a-4abe-8b01-c52949b3bca5",
+			"id": "bedd9cce-c532-43b0-88ce-5cff11793ef6",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "5b00678e-fad5-4e51-a2ab-56451ae993b6",
+			"id": "c9045f9f-beeb-4cbe-bdec-d87657541161",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "69f5a7de-d490-43ac-b960-a91f9c2b17ab",
+			"id": "bcb66cac-c58b-4755-a6cb-74fa059cbfec",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "d173fb83-d319-4f3e-92b6-1862579b3d80",
+			"id": "bb50782d-84a4-4315-824d-d82d42c9222c",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "9ee504a0-0421-4381-8087-b4934a0f405b",
+			"id": "b9ea9faf-7e68-4a5d-b2d3-c1789fec4b10",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "46bdfabf-4b54-4281-8b89-c9e0c5f1f01a",
+			"id": "7ae45014-01de-4068-b8b1-e38006b61db3",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "ad834fbe-7e95-4a30-89f3-b718e63b810d",
+			"id": "fb8b4c9f-e44c-4533-b483-d9ba8eb79442",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "5a6fbfff-0277-493d-90b8-8562cad6c706",
+			"id": "14eec29e-888d-4d81-b1fd-9b5ec6c05a9b",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "88f3a5ca-211a-4d6a-8210-361cf971eff3",
+			"id": "19d2f774-a2b4-4ed7-a892-b297dd9fffd5",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "5fb6c1f2-ade1-47f1-855d-07c5c8be5e19",
+			"id": "7dc7f308-da51-4338-94da-ed0650aa202a",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "d0aafe01-eb05-43c6-9d27-217669a96ac5",
+			"id": "628d85f9-27c9-4536-99d3-00a7cc064584",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "453c96bc-f38b-482f-b6f7-c28eed7aa046",
+			"id": "6c9a5861-e9d5-4e7f-9994-141aa6a12451",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "5ef0a1d4-d32e-4db8-9dfb-d8320d577689",
+			"id": "d997e808-52e0-4e06-995e-a58acd31cc12",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "4b13aefb-b3f5-4ed5-8c34-cb196b08f67b",
+			"id": "409b1680-c505-4b4a-9a99-aaf6fd38a21e",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "d16aaa82-c501-4623-b11b-f26a8cda4454",
+			"id": "08c7220b-a68f-4e6a-8378-dfc4bb147770",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "d5dcabc4-7373-401a-bdf1-fe7e251f94f6",
+			"id": "7e6e663b-0f5e-4ae3-9352-5e5201e7e7c0",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "36d35fbe-e5b5-4094-8626-925d52aea875",
+			"id": "c222bdbf-771c-4c27-888d-497b18b38702",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "64359fc3-f617-4a86-8454-74566e714499",
+			"id": "5f9582cc-26f7-4466-8b6e-beac732b1eb9",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "58001e40-2383-4018-a08a-40febb1a2adc",
+			"id": "e7d36fe5-8c4b-4d73-809a-4ffbe7afd32a",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "d0268bbf-367c-43a4-96f2-f050677edc77",
+			"id": "5d300ab0-1701-4f3f-aa71-16c557ce49f3",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "4e5cfe7f-4ae1-4c60-a7f2-226defe9632e",
+			"id": "29d4f0ce-62a3-4b21-b477-d62e975951c6",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "e39c9c27-404c-4ad5-9d53-e721ee3474fe",
+			"id": "32a6ab64-6e4f-4109-b066-bb7bb48afb25",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "9d3e9498-af44-4112-b84e-9b4268a61c3a",
+			"id": "6c58a684-e447-4ea5-a0c5-8ba532510139",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "cdb6df7d-7625-4cf6-8196-2d51091c5e26",
+			"id": "40be980b-c2e6-4d90-b28f-8e1d684a4f2b",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "398d1cee-d0c7-44ff-9bb1-3a2f9ad232f2",
+			"id": "e2bfef3c-5f7e-406e-b597-1e538086576a",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "ffd04ac3-f925-473a-86e0-3b784773ffb1",
+			"id": "24c418c3-c644-44e1-912e-8ba6e4888abf",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "350833e9-01c6-4ab1-b5d3-96b54b25da8c",
+			"id": "09e77f03-0c5f-4dd8-be78-bf001dca6f37",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "f1d1a678-1305-48f2-9790-018451439b6c",
+			"id": "27745803-387f-4df5-a601-7c59f24119bf",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "e6f6ce65-1f8a-4e7a-b28b-641a8300babf",
+			"id": "359994dd-27a1-49f8-b878-825f997c5045",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "f8c27820-1762-49d2-acfa-cbf38b846ed3",
+			"id": "d1b76b3a-9f3e-42ef-91bc-588b76ca516c",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "1b9d0706-dc4c-41d6-aa7b-dcf16834b736",
+			"id": "3dd730a2-2903-4c21-987e-afa9b863abca",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "23d4461b-8c8d-4a02-9eb6-d4b5deef6e3c",
+			"id": "e9ca5e69-c265-476a-8961-13cc066b460b",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "441b4a2a-7d35-49f3-a57f-b09b9847e907",
+			"id": "83d2fb86-90f2-4e24-98dd-522e5d1939b0",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "106c8d84-500d-40f4-8637-b6325ab14a80",
+			"id": "05b2f4a7-f379-4deb-8e3e-9139f3420fb2",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "b6a5b387-6ef5-4e77-ab05-daac8f3fa1dd",
+			"id": "ea734493-5609-4922-9d21-34e4fcc939d1",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "bde14368-479a-4e55-bbeb-817dd6ab0859",
+			"id": "22b6fed3-8337-4f18-adc1-b7640a9a9ecd",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "e8954860-ecc7-4a86-acf6-ba2480d5214d",
+			"id": "d4ecde21-8cbf-4174-9944-8bc7c3080276",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "28fe3b3a-c243-4dd9-846e-f13190b31732",
+			"id": "29076776-dcb8-49ad-b97d-35643efb13d3",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "e75a181c-cefc-4e78-ac5f-e9232cee2838",
+			"id": "e3b10090-5244-42e6-b195-8cc816208d70",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "dc9bef19-c51a-4b41-aa36-4da84ed45d2f",
+			"id": "462ebfb6-9726-4df9-9add-ab61f73c72fa",
 			"key": "block-list-item-luid",
 			"value": ""
 		},
 		{
-			"id": "4d129b12-4bca-497c-8b18-3ee4931b8665",
+			"id": "170efe86-cc57-4060-bf06-e93704881707",
 			"key": "safe-list-item-luid",
 			"value": ""
 		},
 		{
-			"id": "3d7b000a-9771-4e74-b467-7a84b29a5f93",
+			"id": "10971881-1732-4975-8216-ac447c9bc9d5",
 			"key": "dashboard-extension-url",
 			"value": ""
 		}
