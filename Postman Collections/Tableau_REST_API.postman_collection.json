@@ -7629,7 +7629,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base-path}}/sites/{{site-name}}?includeUsage=true&key=name",
+							"raw": "{{base-path}}/sites/{{site-name}}",
 							"host": [
 								"{{base-path}}"
 							],
@@ -7641,12 +7641,14 @@
 								{
 									"key": "includeUsage",
 									"value": "true",
-									"description": "The boolean flag to include site usage metrics in the response body. If true, then the site element of the response will contain a usage node with the attributes numUsers (number of users) and storage (storage in megabytes).\nTo set the flag to include usage in the response, append includeUsage=true as a querystring element any valid query site URI."
+									"description": "The boolean flag to include site usage metrics in the response body. If true, then the site element of the response will contain a usage node with the attributes numUsers (number of users) and storage (storage in megabytes).\nTo set the flag to include usage in the response, append includeUsage=true as a querystring element any valid query site URI.",
+									"disabled": true
 								},
 								{
 									"key": "key",
 									"value": "name",
-									"description": "The name of the site to get information for. If you specify a site name, you must also include the parameter key=name."
+									"description": "The name of the site to get information for. If you specify a site name, you must also include the parameter key=name.",
+									"disabled": true
 								}
 							]
 						},
@@ -9014,19 +9016,15 @@
 					},
 					"request": {
 						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							},
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest> \n    <tags> \n      <tag label=\"tag\" />\n      ... additional tags ...\n    </tags> \n</tsRequest>\n"
+							"raw": "<tsRequest>\n  <tags>\n    <tag label=\"tag\" />\n    ... additional tags ...\n  </tags>\n</tsRequest>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
 						},
 						"url": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/tags",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#add_tags_to_view](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#add_tags_to_view)"
@@ -9053,22 +9051,33 @@
 					},
 					"request": {
 						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							},
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest> \n    <tags> \n      <tag label=\"tag\" /> \n      ... additional tags ...\n    </tags> \n</tsRequest>\n"
+							"raw": "<tsRequest>\n  <tags>\n    <tag label=\"tag\" />\n    ... additional tags ...\n  </tags>\n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
 						},
 						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/tags",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#add_tags_to_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#add_tags_to_workbook)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Custom View",
+					"id": "afef2d04-7329-451d-a4fb-48a7eae2549a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/customviews/{{custom-view-luid}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_custom_view](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#delete_custom_view)"
 					},
 					"response": []
 				},
@@ -9092,12 +9101,7 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -9127,12 +9131,7 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -9162,12 +9161,7 @@
 					},
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -9197,12 +9191,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/crosstab/excel",
 							"host": [
@@ -9220,7 +9209,6 @@
 								{
 									"key": "maxAge",
 									"value": "max-age-minutes",
-									"type": "text",
 									"description": "(Optional) The maximum number of minutes an .xlsx file will be cached on the server before being refreshed. To prevent multiple .xlsx requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
 									"disabled": true
 								}
@@ -9250,12 +9238,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/content",
 							"host": [
@@ -9273,7 +9256,6 @@
 									"key": "includeExtract",
 									"value": "extract-value",
 									"description": "(Optional) The extract-value is a Boolean value (False or True). When the workbook specified for download has an extract, if you add the parameter ?includeExtract=False, the extract is not included when you download the workbook. You can use this option to improve performance if you are downloading workbooks or data sources that have large extracts.",
-									"type": "text",
 									"disabled": true
 								}
 							]
@@ -9302,12 +9284,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/pdf",
 							"host": [
@@ -9325,7 +9302,6 @@
 									"key": "maxAge",
 									"value": "max-age-minutes",
 									"description": "(Optional) The maximum number of minutes a workbook PDF will be cached before being refreshed. To prevent multiple PDF requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
-									"type": "text",
 									"disabled": true
 								},
 								{
@@ -9366,12 +9342,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/powerpoint",
 							"host": [
@@ -9388,7 +9359,6 @@
 								{
 									"key": "maxAge",
 									"value": "max-age-minutes",
-									"type": "text",
 									"description": "(Optional) The maximum number of minutes a workbook .pptx will be cached before being refreshed. To prevent multiple .pptx requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
 									"disabled": true
 								}
@@ -9418,12 +9388,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions/{{revision-number}}/content",
 							"host": [
@@ -9442,13 +9407,74 @@
 								{
 									"key": "includeExtract",
 									"value": "extract-value",
-									"type": "text",
 									"description": "(Optional) The extract-value is a Boolean value (False or True). When the workbook specified for download has an extract, if you add the parameter ?includeExtract=False, the extract is not included when you download the workbook. You can use this option to improve performance if you are downloading workbooks or data sources that have large extracts.",
 									"disabled": true
 								}
 							]
 						},
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_revision](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#download_workbook_revision)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Custom View",
+					"id": "9b9f7074-0a5b-4445-97de-141e1983be2d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base-path}}/sites/{{site-id}}/customviews/{{custom-view-luid}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_custom_view](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_custom_view)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Custom View Image",
+					"id": "55b8c023-daae-47d0-b581-058ad0694ce6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/customviews/{{custom-view-luid}}/image",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"customviews",
+								"{{custom-view-luid}}",
+								"image"
+							],
+							"query": [
+								{
+									"key": "resolution",
+									"value": "",
+									"description": "(Optional) The resolution of the image. Image width and actual pixel density are determined by the display context of the image. Aspect ratio is always preserved. Set the value to high to ensure maximum pixel density.",
+									"disabled": true
+								},
+								{
+									"key": "maxAge",
+									"value": "",
+									"description": "(Optional) The maximum number of minutes a view image will be cached before being refreshed. To prevent multiple image requests from overloading the server, the shortest interval you can set is one minute. There is no maximum value, but the server job enacting the caching action may expire before a long cache period is reached.",
+									"disabled": true
+								},
+								{
+									"key": "vf_<fieldname>",
+									"value": "",
+									"description": "The value of the field that you want to use to filter the workbook view. For example, a workbook with the filter /data?vf_year=2017 would only display data from the year 2017. To learn more, see View filter queries.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_custom_view_image](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_custom_view_image)"
 					},
 					"response": []
 				},
@@ -9472,12 +9498,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_view](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#get_view)"
 					},
@@ -9503,14 +9524,9 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/views?filter=viewUrlName:eq:<view-name>",
+							"raw": "{{base-path}}/sites/{{site-id}}/views?filter=viewUrlName:eq:{{view-name}}",
 							"host": [
 								"{{base-path}}"
 							],
@@ -9522,7 +9538,7 @@
 							"query": [
 								{
 									"key": "filter",
-									"value": "viewUrlName:eq:<view-name>",
+									"value": "viewUrlName:eq:{{view-name}}",
 									"description": "The name of the view as it appears in the URL to the view. For https://MY_SERVER/#/MY_SITE/views/workbook-name/Sheet1?:iid=1, the name would be Sheet1."
 								}
 							]
@@ -9551,12 +9567,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/recommendations/?type=view",
 							"host": [
@@ -9599,14 +9610,9 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/downGradeInfo?productVersion=downgrade-target-version",
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/downGradeInfo?productVersion={{downgrade-target-version}}",
 							"host": [
 								"{{base-path}}"
 							],
@@ -9620,7 +9626,7 @@
 							"query": [
 								{
 									"key": "productVersion",
-									"value": "downgrade-target-version",
+									"value": "{{downgrade-target-version}}",
 									"description": "The Tableau release version number the workbook is being downgraded to."
 								}
 							]
@@ -9649,12 +9655,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/revisions",
 							"host": [
@@ -9672,14 +9673,12 @@
 									"key": "pageSize",
 									"value": "page-size",
 									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
-									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "pageNumber",
 									"value": "page-number",
 									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
-									"type": "text",
 									"disabled": true
 								}
 							]
@@ -9708,12 +9707,7 @@
 					},
 					"request": {
 						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "<tsRequest>\n    <recommendationDismissal>\n        <view id=\"{{view-id}}\" />\n    </recommendationDismissal>\n</tsRequest>",
@@ -9729,6 +9723,69 @@
 					"response": []
 				},
 				{
+					"name": "List Custom Views",
+					"id": "420d0446-5ffb-45e5-9068-af8c2db02f5a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/customviews",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"customviews"
+							],
+							"query": [
+								{
+									"key": "includeUsageStatistics",
+									"value": "get-usage-information",
+									"description": "(Optional) true to return usage statistics. The default is false.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "page-size",
+									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "page-number",
+									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
+									"disabled": true
+								},
+								{
+									"key": "field",
+									"value": "_all_",
+									"description": "(Optional) An expression that lets you specify the set of available fields to return. When a request has a valid field expression, describing the attributes of a Tableau resource like a workbook or datasource, only the attributes specified in the expression will be present in the response. For example, a field expression that results in a response containing only the resources LUIDs of the resources being requested would look like:\n\n?field=id\n\nYou can qualify the expression to return values based upon predefined keywords such as _default_, which returns only default values, and _all_, which returns default and non-default values. You can include multiple field expressions in a request, and mix field, sort, and filter expressions in the same request.\n\nThe supported fields for custom views are its attributes: id, name, createdAt, updatedAt, and shared.\n\nFor more information, see Using Fields in the REST API.",
+									"disabled": true
+								},
+								{
+									"key": "filter",
+									"value": "_all_",
+									"description": "(Optional) An expression that lets you filter which Tableau resources are present in the response. A filter expression has a resource, an operator, and a value. For example, a filter that returns only resources created after a specified date would look like:\n\n?filter=createdAt:gt:2016-08-26T18:00:33Z (where gt is the greater-than operator)\n\nYou can include multiple filter expressions in a request, and mix field, sort, and filter expressions in the same request.\n\nThe supported filters for custom views use the eq (equals) operator, with the resources: viewId, ownerId, and workbookId.\n\nFor more information, see Filtering and Sorting in the Tableau REST APII.",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "_all_",
+									"description": "(Optional) An expression that lets you sort the Tableau resources present in the response. A sort expression contains an attribute name and a direction (asc or desc). For example, a sort expression that sorts the requested resource by creation date with the latest date first would look like:\n\n?sort=createdAt:desc\n\nYou can include multiple sort expressions in a request, and mix field, sort, and filter expressions in the same request.\n\nThe supported filters for custom views use the eq (equals) operator, with the resources: viewId, ownerId, and workbookId.\n\nFor more information, see Filtering and Sorting in the Tableau REST API.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#list_custom_views](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#list_custom_views)"
+					},
+					"response": []
+				},
+				{
 					"name": "Publish Workbook",
 					"event": [
 						{
@@ -9736,13 +9793,6 @@
 							"script": {
 								"id": "41376ac4-00c6-4718-bcfb-a94749eb1ab6",
 								"exec": [
-									"if (responseCode.code===200) {",
-									"    tests[\"Workbook information received\"] = true;",
-									"}",
-									"else if (responseCode.code===401) ",
-									"{",
-									"    tests[\"Please sign in.\"] = false;",
-									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -9751,17 +9801,77 @@
 					],
 					"id": "482a8cb0-1a3a-4b87-b247-a961bc70137c",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
 					},
 					"request": {
 						"method": "POST",
 						"header": [
 							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
+								"key": "Content-Type",
+								"value": "multipart/mixed; boundary=--------------------------808837830458042221641451"
 							}
 						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "request_payload",
+									"value": "<tsRequest>\n  <workbook name=\"workbook-name\" showTabs=\"show-tabs-flag\" thumbnailsUserId=\"user-luid\">\n    <connections>\n    <connection serverAddress=\"server-address\" serverPort=\"port-number\">\n    <connectionCredentials name=\"connection-username\" password=\"connection-password\"\n          embed=\"embed-flag\" />\n    </connection>\n    </connections>\n    <project id=\"project-id\"/>\n  </workbook>\n</tsRequest>",
+									"type": "text"
+								},
+								{
+									"key": "tableau_workbook",
+									"type": "file",
+									"src": "Quarterly Cashflow.twbx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}?workbookType=twbx",
+							"host": [
+								"{{base-path}}"
+							],
+							"path": [
+								"sites",
+								"{{site-id}}",
+								"workbooks",
+								"{{workbook-id}}"
+							],
+							"query": [
+								{
+									"key": "overwrite",
+									"value": "",
+									"description": "(Optional) true to overwrite a workbook that has the same name, or false to fail if the specified workbook already exists. The default is false. If overwrite-flag is set to true but the workbook doesn't already exist, the operation succeeds.",
+									"disabled": true
+								},
+								{
+									"key": "skipConnectionCheck",
+									"value": "",
+									"description": "(Optional, boolean) If true, then the Tableau server will not check if a non-published connection of a workbook is reachable. Publishing will succeed but unchecked connection issues may result in a non-functioning workbook. If you encounter this issue, follow Keep Data Fresh guidelines(Link opens in a new window). Default value is false.",
+									"disabled": true
+								},
+								{
+									"key": "workbookType",
+									"value": "twbx",
+									"description": "twb or twbx to indicate whether you have uploaded a workbook file (twb) or a packaged workbook file (twbx). This value is required if you are calling Publish Workbook in order to commit a file that was previously uploaded using Append to File Upload. The value is not used if you upload a file in the body of the request."
+								},
+								{
+									"key": "uploadSessionId",
+									"value": "{{upload-session-id}}",
+									"description": "If you are calling this method to commit a file that was uploaded in parts, this value contains the upload session ID that was generated by a call to Initiate File Upload. If this value is not included, the server assumes that the body of the request contains the file to be published.",
+									"disabled": true
+								},
+								{
+									"key": "asJob",
+									"value": "",
+									"description": "(Optional, boolean) If false, the workbook publishing process runs as a synchronous process. If a workbook is very large, the process might time out before it finishes. If you set this value to true, the process runs asynchronously, and a job will start to perform the publishing process and return the job ID. You can check the status of the import job by calling Query Job. Default value is false.",
+									"disabled": true
+								}
+							]
+						},
 						"description": "Get the details of a specific workbok"
 					},
 					"response": []
@@ -9787,14 +9897,9 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "{{base-path}}/sites/{{site-id}}/views?fields=_all_",
+							"raw": "{{base-path}}/sites/{{site-id}}/views",
 							"host": [
 								"{{base-path}}"
 							],
@@ -9808,27 +9913,25 @@
 									"key": "includeUsageStatistics",
 									"value": "get-usage-information",
 									"description": "(Optional) true to return usage statistics. The default is false.",
-									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "pageSize",
 									"value": "page-size",
 									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
-									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "pageNumber",
 									"value": "page-number",
 									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
-									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "fields",
 									"value": "_all_",
-									"description": "(Optional) An expression that lets you specify the set of available fields to return. You can qualify the return values based upon predefined keywords such as _all_ or _default_, and you can specify individual fields for the workbooks or other supported resources. You can include multiple field expressions in a request. For more information, see Using Fields in the REST API."
+									"description": "(Optional) An expression that lets you specify the set of available fields to return. You can qualify the return values based upon predefined keywords such as _all_ or _default_, and you can specify individual fields for the workbooks or other supported resources. You can include multiple field expressions in a request. For more information, see Using Fields in the REST API.",
+									"disabled": true
 								}
 							]
 						},
@@ -9856,12 +9959,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views",
 							"host": [
@@ -9907,12 +10005,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/data",
 							"host": [
@@ -9964,12 +10057,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/image",
 							"host": [
@@ -10027,12 +10115,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/views/{{view-id}}/pdf",
 							"host": [
@@ -10096,19 +10179,14 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/views/{{view-id}}/previewImage",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_view_with_preview](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_view_with_preview)"
 					},
 					"response": []
 				},
 				{
-					"name": "Query Workbook",
+					"name": "Get Workbook",
 					"event": [
 						{
 							"listen": "test",
@@ -10127,17 +10205,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"disabled": true
-							},
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_workbook](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_workbook)"
 					},
@@ -10163,17 +10231,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"disabled": true
-							},
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/workbooks",
 							"host": [
@@ -10241,17 +10299,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"disabled": true
-							},
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{base-path}}/sites/{{site-id}}/users/{{user-id}}/workbooks",
 							"host": [
@@ -10269,21 +10317,18 @@
 									"key": "ownedBy",
 									"value": "isOwner",
 									"description": "(Optional) true to return only workbooks that the specified user owns, or false to return all workbooks that the specified user has at least read access to. The default is false.",
-									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "pageSize",
 									"value": "page-size",
 									"description": "(Optional) The number of items to return in one response. The minimum is 1. The maximum is 1000. The default is 100. For more information, see Paginating Results.",
-									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "pageNumber",
 									"value": "page-number",
 									"description": "(Optional) The offset for paging. The default is 1. For more information, see Paginating Results.",
-									"type": "text",
 									"disabled": true
 								}
 							]
@@ -10348,12 +10393,7 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/previewImage",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_workbook_preview_image](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_workbook_preview_image)"
 					},
@@ -10386,14 +10426,33 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
-						"url": "http://{{server}}/api/{{api}}/sites/{{siteId}}/workbooks/{{workbookId}}",
+						"header": [],
+						"url": "http://{{server}}/api/{{api-version}}/sites/{{site-id}}/workbooks/{{workbook-id}}",
 						"description": "Get the details of a specific workbok"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Custom View",
+					"id": "5630f84a-c649-4f71-bf1f-ff02835e6f84",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest> \n    <customView name=\"new-name\">\n        <owner id=\"new-owner\" />\n    </customView> \n</tsRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{base-path}}/sites/{{site-id}}/customviews/{{custom-view-luid}}",
+						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#update_custom_view](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#update_custom_view)"
 					},
 					"response": []
 				},
@@ -10417,15 +10476,10 @@
 					},
 					"request": {
 						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest> \n    <workbook \n        name=\"new-name\"\n        showTabs=\"false\"\n        recentlyViewed=\"false\"\n        encryptExtracts=\"false\" >\n    </workbook> \n</tsRequest>",
+							"raw": "<tsRequest> \n    <workbook \n        name=\"updated-workbook-name\"\n        showTabs=\"show-tabs-flag\"\n        recentlyViewed=\"recently-viewed-flag\"\n        encryptExtracts=\"encrypt-extracts-flag\" >\n            <project id=\"new-project-id\" />\n            <owner id=\"new-owner-id\" />\n            <dataAccelerationConfig accelerationEnabled=\"false\" accelerateNow=\"false\" />\n    </workbook> \n</tsRequest>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -10445,19 +10499,15 @@
 					},
 					"request": {
 						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "text/xml"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <connection \n    serverAddress=\"\" \n    userName=\"\"\n    password=\"\"\n    embedPassword=\"\" />\n</tsRequest>"
+							"raw": "<tsRequest>\n  <connection\n    serverAddress=\"server-address\" serverPort=\"port\"\n    userName=\"connection-username\" password=\"connection-password\"\n    embedPassword=\"embed-password\"\n\tqueryTaggingEnabled=\"query-tagging-enabled\" />\n</tsRequest>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
 						},
 						"url": "{{base-path}}/sites/{{site-id}}/workbooks/{{workbook-id}}/connections/{{connection-id}}",
 						"description": "[https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#update_workbook_connection](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#update_workbook_connection)"
@@ -10484,12 +10534,7 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "X-Tableau-Auth",
-								"value": "{{token}}"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "<tsRequest>\n</tsRequest>",
@@ -10541,7 +10586,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a57babd0-fe71-4e80-b5f7-87da286cdd0f",
+				"id": "47787965-462b-4846-b147-9f2916260165",
 				"type": "text/javascript",
 				"exec": [
 					"/*",
@@ -10650,7 +10695,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "dd3e4c02-9fad-4a3e-9108-d5b2497ea9bb",
+				"id": "d0b0bb55-5cad-434e-955d-5aca0c017043",
 				"type": "text/javascript",
 				"exec": [
 					"// convert XML body to JSON",
@@ -10691,298 +10736,318 @@
 	],
 	"variable": [
 		{
-			"id": "dee1f2ad-2bf6-4182-a700-272208051779",
+			"id": "ed2de505-d993-48dd-a192-c85461275162",
 			"key": "username",
 			"value": ""
 		},
 		{
-			"id": "9b4f45c9-9bfa-4e40-bbd3-ae70b06ad255",
+			"id": "c1375c97-b530-438f-8d89-49283b53934b",
 			"key": "user-id",
 			"value": ""
 		},
 		{
-			"id": "cc4d4f7b-2177-4133-ab2d-16b01f26161a",
+			"id": "6c6ba6f5-f051-4082-a31b-6683ae101f9b",
 			"key": "group-name",
 			"value": ""
 		},
 		{
-			"id": "e4b7985f-5a97-4f10-9bbc-3bdb61276b14",
+			"id": "5f996d9f-894c-4ac1-8405-a232137e93ab",
 			"key": "group-id",
 			"value": ""
 		},
 		{
-			"id": "6fb93aa2-d317-45c4-b313-428f9a172898",
+			"id": "c891e744-4dfc-42dd-9076-0371ccb3833f",
 			"key": "job-id",
 			"value": ""
 		},
 		{
-			"id": "4dc906ef-9049-4c5f-b91f-4eee6a6ece4d",
+			"id": "aa4a077b-9be2-4ae5-807c-df3ba5b00761",
 			"key": "job-name",
 			"value": ""
 		},
 		{
-			"id": "be5d0e43-8d6a-4d61-8493-c7dd331ab141",
+			"id": "129821f6-199b-432d-865f-47df8343bab4",
 			"key": "project-id",
 			"value": ""
 		},
 		{
-			"id": "681cd7a3-7df1-46b6-93af-5cda4bd500a3",
+			"id": "c669d2dd-d93a-4ac5-8fd6-987438eb71e0",
 			"key": "project-name",
 			"value": ""
 		},
 		{
-			"id": "b253ff00-d0aa-42d9-b23b-d4584938ea41",
+			"id": "8f47f215-e2fb-4683-bb1c-0bf4f0e51720",
 			"key": "upload-session-id",
 			"value": ""
 		},
 		{
-			"id": "825a0c0f-9e99-494f-be6e-528a50565c73",
+			"id": "5388483a-565f-4d13-b55e-259545ab3e6d",
 			"key": "schedule-id",
 			"value": ""
 		},
 		{
-			"id": "539452ab-395b-4624-9624-7123a41c4c13",
+			"id": "9bc7f3ac-21fc-42ff-8931-e59b9b2519dd",
 			"key": "schedule-name",
 			"value": ""
 		},
 		{
-			"id": "23c03a0c-f9c1-4c14-bb59-d75e3b25cae4",
+			"id": "5b171a25-b44e-4b7a-81ea-2158aa57f27d",
 			"key": "subscription-id",
 			"value": ""
 		},
 		{
-			"id": "8373c07f-d121-4d03-9311-e392633861bf",
+			"id": "e589f888-f28d-4941-99a9-541dea1f76ad",
 			"key": "revision-number",
-			"value": ""
+			"value": "1"
 		},
 		{
-			"id": "7d983097-4eb3-4839-9777-544f3504bc83",
+			"id": "c41bff56-d043-4a9f-9bae-298e53a15820",
 			"key": "view-id",
-			"value": ""
+			"value": "d751d2a2-6428-456c-b8fa-7a44bf483346"
 		},
 		{
-			"id": "b005e4d1-5138-46e6-927c-65894e1f6f5b",
+			"id": "e8d61ef2-315a-47c1-abfb-59cb8d57d993",
 			"key": "workbook-id",
-			"value": ""
+			"value": "5a121b9f-d3fd-4b7f-8f58-57bf32092931"
 		},
 		{
-			"id": "9cd76e2c-33b7-40e8-a283-985c0a8a8277",
+			"id": "11f83319-13b5-4736-b6b3-6f85d7be87ad",
 			"key": "workbook-name",
 			"value": ""
 		},
 		{
-			"id": "409f70b2-9260-4cb6-ac37-9a1303ae97fd",
+			"id": "84759cc8-c256-41ca-8ce7-e41dacebba00",
 			"key": "analytics-extensions-host",
 			"value": ""
 		},
 		{
-			"id": "6e6b545f-85e1-495d-842c-a5bfb313ca8d",
+			"id": "1c1335be-f5dc-44d3-bece-0ee27151493a",
 			"key": "analytics-extensions-port",
 			"value": ""
 		},
 		{
-			"id": "6108cc50-7e0d-4a84-b458-dbc298a3bfe6",
+			"id": "3d3a3d86-e946-4191-ba47-1b61277422f9",
 			"key": "analytics-extensions-is-auth-enabled",
 			"value": ""
 		},
 		{
-			"id": "6b459b0c-1f5d-467d-b93d-3e0cae5b53dc",
+			"id": "976644eb-740a-4725-9fc0-f1ac9a5a130f",
 			"key": "analytics-extensions-connection-luid",
 			"value": ""
 		},
 		{
-			"id": "e1d9de95-fcd0-4c66-a11b-637567c9ccfe",
+			"id": "4da3ad35-3ac0-4e7d-ad4b-bd2d9f218d35",
 			"key": "datasource-name",
 			"value": ""
 		},
 		{
-			"id": "0052b0e6-2584-4283-9134-b4196c0eddc5",
+			"id": "4903fc12-6081-4e89-b998-3d13b1da095e",
 			"key": "datasource-id",
 			"value": ""
 		},
 		{
-			"id": "24b9d33b-9302-4b7a-9920-450f2084570b",
+			"id": "be592ebc-76cb-42bf-a825-960e13f2f099",
 			"key": "admin-username",
 			"value": ""
 		},
 		{
-			"id": "a29419e8-3db1-43cd-af50-85b87ada028c",
+			"id": "2c31db66-d130-4ecd-9d20-d763d7c9df07",
 			"key": "admin-password",
 			"value": ""
 		},
 		{
-			"id": "ac40379c-8f13-4eb6-a7a7-aa3b146db706",
+			"id": "89c1a3dd-fb12-44d7-a0b0-a44db286a81b",
 			"key": "flow-id",
 			"value": ""
 		},
 		{
-			"id": "58fe46f7-5bc1-4828-b114-c1a7e7576f79",
+			"id": "7b693700-5973-47f2-8a89-4b77c799c7cd",
 			"key": "flow-name",
 			"value": ""
 		},
 		{
-			"id": "8306fd62-e9aa-4201-9861-5ff968fa8b83",
+			"id": "bf525d65-4026-442b-a0a2-bf57fbe1b95f",
 			"key": "task-id",
 			"value": ""
 		},
 		{
-			"id": "99ac0588-0c51-4ca2-9135-eb045aba447e",
+			"id": "b89fdcb2-dfe6-4d01-9cf8-13a4894207a3",
 			"key": "flow-run-id",
 			"value": ""
 		},
 		{
-			"id": "d8342e99-d0e3-4785-8d4e-a902de7b54b0",
+			"id": "de52787e-ebee-4d65-988e-1bcf04eb506b",
 			"key": "capability-name",
 			"value": ""
 		},
 		{
-			"id": "0b8f563d-c138-4a9a-a02a-753964b750e1",
+			"id": "d9316a65-0b2e-4bed-af0a-476a72f89eb3",
 			"key": "capability-mode",
 			"value": ""
 		},
 		{
-			"id": "a5f5b538-2a3d-4d66-930e-5e127a81b603",
+			"id": "231737fa-9658-46b4-981a-96e6ce1bef93",
 			"key": "data-acceleration-id",
 			"value": ""
 		},
 		{
-			"id": "fd6375dc-bd4e-49d8-9708-cf5d269c7c05",
+			"id": "a9d944e1-45b4-4293-825a-55b97506789f",
 			"key": "table-id",
 			"value": ""
 		},
 		{
-			"id": "8b66702d-3f55-4658-a8b4-6cbb87a5cc40",
+			"id": "fc284b10-f537-40c8-b157-3e63e5a4017c",
 			"key": "column-id",
 			"value": ""
 		},
 		{
-			"id": "259866c4-1262-422f-8d6f-bcf35a7a97f4",
+			"id": "80435e29-ae4a-4080-ba7b-3c14999c4e15",
 			"key": "database-id",
 			"value": ""
 		},
 		{
-			"id": "6277b7fb-3638-4bbe-b9d1-ff60b03e2b0e",
+			"id": "ba1d06ea-053d-459c-81d7-a7d4c68e9c60",
 			"key": "data-quality-warning-id",
 			"value": ""
 		},
 		{
-			"id": "86ce9de0-877d-470e-9975-908a9b9e10b1",
+			"id": "76ee73d1-5563-4820-82bf-c0d92c376cba",
 			"key": "content-type",
 			"value": ""
 		},
 		{
-			"id": "ab33c330-595f-4099-b398-c2cce06f5e65",
+			"id": "6b073836-bfe9-479f-9bdc-f8576103673c",
 			"key": "content-luid",
 			"value": ""
 		},
 		{
-			"id": "d1df4c08-db89-48c5-9b25-3e035ae49a28",
+			"id": "2ac0bb1b-1edf-4dd8-af26-9c0db7989c37",
 			"key": "indicator-id",
 			"value": ""
 		},
 		{
-			"id": "573a2cb0-1461-471d-ada7-67943ff189b0",
+			"id": "92360e69-f47a-4452-9f7d-d07eaa6d6361",
 			"key": "content-id",
 			"value": ""
 		},
 		{
-			"id": "3bb0e597-629f-4db3-bb64-3a4583451a68",
+			"id": "5fee57b1-b7d9-4e78-ae58-2fdcedf8af13",
 			"key": "trigger-id",
 			"value": ""
 		},
 		{
-			"id": "c443cec2-9d77-4237-986f-8cc0cb5c11bd",
+			"id": "f5655834-aa93-4d0c-a9fb-e193fcf58a41",
 			"key": "metric-id",
 			"value": ""
 		},
 		{
-			"id": "527971a1-63f5-47ea-8832-02f4450883f0",
+			"id": "735ec5c4-9935-4231-80e6-484069e70de8",
 			"key": "tag-name",
 			"value": ""
 		},
 		{
-			"id": "89dc815d-972c-4ede-9e3e-5e0b68dda88f",
+			"id": "d8c65208-f31d-49a5-a241-f67ab0686929",
 			"key": "connected-app-id",
 			"value": ""
 		},
 		{
-			"id": "f7f61a8b-0974-4789-9919-25dbc02e7433",
+			"id": "3d1662a7-542f-4455-96ee-95db1357633c",
 			"key": "connected-app-name",
 			"value": ""
 		},
 		{
-			"id": "2bb6b907-cee6-4923-ae3e-f7d5d832f2b0",
+			"id": "978ad4da-94f7-4f06-adae-70a29382def1",
 			"key": "connected-app-enabled",
 			"value": ""
 		},
 		{
-			"id": "95a66d54-a7d1-44cf-8ad8-2c35d7ab1878",
+			"id": "b25c22d7-f55c-433d-9219-9322a4a05183",
 			"key": "unrestricted-embedding",
 			"value": ""
 		},
 		{
-			"id": "e6596f13-c795-4cd8-95de-8b3da2381173",
+			"id": "31985fe0-3630-4b55-b726-5e46b8a66d90",
 			"key": "domain-safelist",
 			"value": ""
 		},
 		{
-			"id": "7c1419ad-0636-457f-b0ef-5d6d51ea4012",
+			"id": "2059b4bc-789a-458c-bdd2-329a8f6049ab",
 			"key": "connected-app-secret-id",
 			"value": ""
 		},
 		{
-			"id": "f99995ae-b4d9-48c3-8e89-ba30bf131247",
+			"id": "3f1476bf-431b-46fb-be7f-7b8ff35c7def",
 			"key": "connected-app-secret-value",
 			"value": ""
 		},
 		{
-			"id": "6f14b516-be2e-4121-837e-844dd97e8822",
+			"id": "c056c9a6-8fcb-4acf-b3d6-c6c7f1dccc5e",
 			"key": "data-alert-id",
 			"value": ""
 		},
 		{
-			"id": "6c2ef6bf-4883-44e1-bf33-eace31c8c5fa",
+			"id": "338b75a5-ad38-4dc6-ae94-f8fc7dfd8c89",
 			"key": "webhook-url",
 			"value": ""
 		},
 		{
-			"id": "eac21214-c7b6-457c-a6bd-d61f35d8ec6d",
+			"id": "348713ba-5b83-4c3e-aa92-8f82e32d5af7",
 			"key": "webhook-event",
 			"value": ""
 		},
 		{
-			"id": "f83a9fc5-b426-4063-ad77-9542eeb3f942",
+			"id": "866cb07e-62a0-4249-95f7-b77dd07cd95a",
 			"key": "webhook-id",
 			"value": ""
 		},
 		{
-			"id": "907179f0-06d9-4aca-9331-9d7439196c3d",
+			"id": "b9545f10-0f24-479b-a51c-68b2c55b426c",
 			"key": "domain-id",
 			"value": ""
 		},
 		{
-			"id": "b529e629-6e22-4b0f-9b88-d352b29d037f",
+			"id": "eb2d177a-3605-4271-b886-75af4a44b7fd",
 			"key": "session-id",
 			"value": ""
 		},
 		{
-			"id": "39a8d7da-97b3-42f3-9a99-774cbd596005",
+			"id": "d9d9d52e-17f8-46e4-91f8-1f48f61624b2",
 			"key": "lens-id",
 			"value": ""
 		},
 		{
-			"id": "65f41f2d-4c1b-4ee5-aae7-7972cffb71b2",
+			"id": "62fca42f-d252-4892-9df2-bab157fff1af",
 			"key": "block-list-item-luid",
 			"value": ""
 		},
 		{
-			"id": "c7dedd22-4264-4059-b74c-d7ac52007607",
+			"id": "bc17e754-5ae0-4f0f-b61f-d5f0b90fd1b1",
 			"key": "safe-list-item-luid",
 			"value": ""
 		},
 		{
-			"id": "3cbacc2b-421e-488e-bbf0-feed86008a0f",
+			"id": "0f399f22-cbe4-4e11-804d-19dc84339bbc",
 			"key": "dashboard-extension-url",
+			"value": ""
+		},
+		{
+			"id": "cbc53b81-ce78-47f1-995e-20e63fb58fa0",
+			"key": "custom-view-luid",
+			"value": ""
+		},
+		{
+			"id": "0cc4b2ff-f7c5-4656-bc08-1bb8742f42e1",
+			"key": "downgrade-target-version",
+			"value": ""
+		},
+		{
+			"id": "7e5bab0d-0d77-4aa3-bf67-edcc63e5273c",
+			"key": "view-name",
+			"value": ""
+		},
+		{
+			"id": "8ab68f8c-3f2e-443f-b171-31008089a86b",
+			"key": "connection-id",
 			"value": ""
 		}
 	]
