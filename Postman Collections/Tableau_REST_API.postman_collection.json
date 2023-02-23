@@ -13592,7 +13592,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5bce6757-4146-4b6d-9505-096d03c17b8c",
+				"id": "06e7f9b9-7932-4185-b12a-b0f0d7a07403",
 				"type": "text/javascript",
 				"exec": [
 					"class AuthBody {",
@@ -13730,6 +13730,7 @@
 					"                    }, (err, res) => {",
 					"                        if (err) {",
 					"                            // throw new Error(err);",
+					"                            console.error('auto-auth set to false, manual authentication required! (use Authenticate methods before making this call)');",
 					"                        } else {",
 					"                            // parse the response body to JSON",
 					"                            const jsonRes = JSON.parse(res.text());",
@@ -13792,7 +13793,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "ef950027-feac-4619-89b5-62886d18a224",
+				"id": "50c476fe-bc6e-449c-b17c-b85e3ebe451f",
 				"type": "text/javascript",
 				"exec": [
 					"// convert XML body to JSON",
