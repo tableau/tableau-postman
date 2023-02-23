@@ -13857,32 +13857,32 @@
 	],
 	"variable": [
 		{
-			"id": "a8abd02c-8baa-433c-8c8d-66f7e8337e89",
+			"id": "0651cf2a-0704-493a-839d-c775c41c9e11",
 			"key": "auto-auth",
 			"value": "false"
 		},
 		{
-			"id": "cc7216b5-27f2-4ade-9bc7-bcf69c7b5158",
+			"id": "169400e1-2bd3-4f93-9a4b-bb140f60f8d6",
 			"key": "impersonation",
 			"value": "false"
 		},
 		{
-			"id": "cc6a2a9c-8fb8-4e01-9e48-952c7f27c1b4",
+			"id": "dcb95a2d-35f1-44af-8600-04364a68fec9",
 			"key": "protocol",
 			"value": "https"
 		},
 		{
-			"id": "386f1bc3-2c94-47ee-b6ba-9a4b78fa45d0",
+			"id": "698a4fef-f20e-4d1a-8f66-e45380d981a9",
 			"key": "base-path",
 			"value": "{{protocol}}://{{server}}/api/{{api-version}}"
 		},
 		{
-			"id": "35396684-cae2-44f6-9da0-446aacf3276b",
+			"id": "744e1e60-64e0-4aba-ad2b-ba8334c72af1",
 			"key": "new-path",
 			"value": "{{protocol}}://{{server}}"
 		},
 		{
-			"id": "0c1ce532-894f-4c1f-a251-ab3b514c189d",
+			"id": "0d866636-8224-48a9-ba1f-eaba8d663b84",
 			"key": "api-key",
 			"value": ""
 		}
