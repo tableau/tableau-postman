@@ -15372,32 +15372,32 @@
 	],
 	"variable": [
 		{
-			"id": "d270310f-7ec8-4ca6-a78f-281423949143",
+			"id": "ed6a3896-6bd2-4a9d-ad11-e9ffcf146de6",
 			"key": "auto-auth",
 			"value": "false"
 		},
 		{
-			"id": "e266c36b-5154-4d44-b57e-69ac2d735a0e",
+			"id": "02cbf402-9b7d-4ca6-9137-239cb24246af",
 			"key": "impersonation",
 			"value": "false"
 		},
 		{
-			"id": "7f1ed936-435c-455e-bbfb-43b96c920cf4",
+			"id": "e2a1bbbd-a848-4122-b508-505a0d038a26",
 			"key": "protocol",
 			"value": "https"
 		},
 		{
-			"id": "13750c2c-cc86-4612-87e0-61b46ffc8177",
+			"id": "2d9ab230-c201-4e8a-8427-874081a76d73",
 			"key": "base-path",
 			"value": "{{protocol}}://{{server}}/api/{{api-version}}"
 		},
 		{
-			"id": "fdab8800-6041-4dab-a962-9df2e66d5f46",
+			"id": "d5627fb2-f650-4bd7-b8a7-02ddac2d24e6",
 			"key": "new-path",
 			"value": "{{protocol}}://{{server}}"
 		},
 		{
-			"id": "3a7721c7-df78-4db8-8968-f203a8cf67c2",
+			"id": "7acf20b5-8da1-4702-8008-bbf812063be1",
 			"key": "api-key",
 			"value": ""
 		}
