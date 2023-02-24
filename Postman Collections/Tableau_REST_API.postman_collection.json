@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "c3ec8bf7-9432-45e7-a8b3-ed6fa61470f6",
 		"name": "Tableau REST API",
+		"description": "# PREVIEW RELEASE:\n\nThe Tableau REST API enables you to perform many Tableau actions from scripts to programs. You can use this Postman Collection to send requests to your Tableau site and see the response, without writing a single line of code to do it.  \n\n  \nThis preview Collection is open source and we welcome your contributions by \\[forking the Postman Collection and creating a pull request\\]([https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/](https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/)). \n\n  \nFor method details and behaviors, see the \\[Tableau REST API Reference\\]([https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm)).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -15371,32 +15372,32 @@
 	],
 	"variable": [
 		{
-			"id": "cfda5396-aea8-4dfa-871f-bcd7275cd988",
+			"id": "84fa0c0a-c4ff-42a0-a57f-79f9a5facdb9",
 			"key": "auto-auth",
 			"value": "false"
 		},
 		{
-			"id": "04dbdd52-c2fc-4244-8c14-6e2a5c628df9",
+			"id": "aef482d9-2253-40b8-a849-a0a49a6b64a8",
 			"key": "impersonation",
 			"value": "false"
 		},
 		{
-			"id": "c60f2306-3dad-4ea4-9063-ad487157d06d",
+			"id": "464369ac-c66d-470f-a798-6e760d9b99ab",
 			"key": "protocol",
 			"value": "https"
 		},
 		{
-			"id": "29b89b9b-1e14-4ec8-bf8d-26ca7aa1dd77",
+			"id": "a59231a0-09c3-42ae-b62d-9b6351d1ccee",
 			"key": "base-path",
 			"value": "{{protocol}}://{{server}}/api/{{api-version}}"
 		},
 		{
-			"id": "11ebcb86-8e29-44db-a4b7-0403202ed251",
+			"id": "a39ded33-0bd6-45d6-94c4-a3d82e735be2",
 			"key": "new-path",
 			"value": "{{protocol}}://{{server}}"
 		},
 		{
-			"id": "50ff5cdd-8e35-491d-8dff-8694b5c718a4",
+			"id": "e76d3cfb-d2f6-4b25-b2b3-58c047f942de",
 			"key": "api-key",
 			"value": ""
 		}
