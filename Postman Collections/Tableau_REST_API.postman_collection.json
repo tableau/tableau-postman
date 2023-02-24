@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "c3ec8bf7-9432-45e7-a8b3-ed6fa61470f6",
 		"name": "Tableau REST API",
-		"description": "# PREVIEW RELEASE:\n\nThe Tableau REST API enables you to perform many Tableau actions from scripts to programs. You can use this Postman Collection to send requests to your Tableau site and see the response, without writing a single line of code to do it.  \n\n  \nThis preview Collection is open source and we welcome your contributions by \\[forking the Postman Collection and creating a pull request\\]([https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/](https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/)). \n\n  \nFor method details and behaviors, see the \\[Tableau REST API Reference\\]([https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm)).",
+		"description": "# PREVIEW RELEASE\n\nThe Tableau REST API enables you to perform many Tableau actions from scripts to programs. You can use this Postman Collection to send requests to your Tableau site and see the response, without writing a single line of code.\n\nThis preview Collection is open source and we welcome your contributions by \\[forking the Postman Collection and creating a pull request\\]([https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/](https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/)).\n\nFor method details and behaviors, see the \\[Tableau REST API Reference\\]([https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm)).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -15372,32 +15372,32 @@
 	],
 	"variable": [
 		{
-			"id": "ed6a3896-6bd2-4a9d-ad11-e9ffcf146de6",
+			"id": "17f93df4-b357-4778-8b91-94cbe1df8adf",
 			"key": "auto-auth",
 			"value": "false"
 		},
 		{
-			"id": "02cbf402-9b7d-4ca6-9137-239cb24246af",
+			"id": "a1d9a4f5-2722-4ce2-9c7c-dc6309e10704",
 			"key": "impersonation",
 			"value": "false"
 		},
 		{
-			"id": "e2a1bbbd-a848-4122-b508-505a0d038a26",
+			"id": "ef573b5b-91e4-448e-80e4-d25f26184ce7",
 			"key": "protocol",
 			"value": "https"
 		},
 		{
-			"id": "2d9ab230-c201-4e8a-8427-874081a76d73",
+			"id": "8b6f3b5c-0417-4e06-9c55-4e47e48ccb9e",
 			"key": "base-path",
 			"value": "{{protocol}}://{{server}}/api/{{api-version}}"
 		},
 		{
-			"id": "d5627fb2-f650-4bd7-b8a7-02ddac2d24e6",
+			"id": "4a5b0a26-dc41-4373-8800-48e32355ae82",
 			"key": "new-path",
 			"value": "{{protocol}}://{{server}}"
 		},
 		{
-			"id": "7acf20b5-8da1-4702-8008-bbf812063be1",
+			"id": "0665cb4f-f880-4cef-b784-357231db510c",
 			"key": "api-key",
 			"value": ""
 		}
