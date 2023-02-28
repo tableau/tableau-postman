@@ -15107,7 +15107,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "81e7d7e0-4c49-4443-99bc-2a29a821162e",
+				"id": "c4aeea39-b182-40c9-a39c-8d7731042470",
 				"type": "text/javascript",
 				"exec": [
 					"class AuthBody {",
@@ -15308,7 +15308,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "d276e254-6a9b-4a88-9b69-906b5d77e85a",
+				"id": "a96cedce-2af2-4171-bcac-db8e921833e8",
 				"type": "text/javascript",
 				"exec": [
 					"let payload;",
@@ -15372,32 +15372,32 @@
 	],
 	"variable": [
 		{
-			"id": "2c473e7b-3c45-4f83-b7ab-0ba8aaaef9fb",
+			"id": "634daa7a-b9fe-48cc-ae7b-3b1aa72780e3",
 			"key": "auto-auth",
 			"value": "false"
 		},
 		{
-			"id": "7aaec91b-caed-4ba1-a9d4-8b6f97b3fb97",
+			"id": "b014eea9-5b21-4a83-8b0f-e423e131f847",
 			"key": "impersonation",
 			"value": "false"
 		},
 		{
-			"id": "3ae93132-c213-4344-8cfe-46ddafec41cc",
+			"id": "64d80972-0155-4f07-a593-4ea9524a7abb",
 			"key": "protocol",
 			"value": "https"
 		},
 		{
-			"id": "d15ffad1-3c10-4f95-9769-d3f051c09921",
+			"id": "d2f08df6-0493-41e2-b7f0-a433b6f3b6c0",
 			"key": "base-path",
 			"value": "{{protocol}}://{{server}}/api/{{api-version}}"
 		},
 		{
-			"id": "a7799d3a-1398-4a75-a8af-3d33a5aead16",
+			"id": "0df24c0a-5f2b-4c17-965e-64b6dfee99cb",
 			"key": "new-path",
 			"value": "{{protocol}}://{{server}}"
 		},
 		{
-			"id": "788c7bf1-7acf-4705-b6b7-f5701b474bd7",
+			"id": "ff6d7f22-5369-4b28-a180-378cd1aee979",
 			"key": "api-key",
 			"value": ""
 		}
