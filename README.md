@@ -11,7 +11,7 @@ This repo contains an open source collection of Postman requests for each endpoi
 
 - **[CONTRIBUTE TO THE COLLECTION IN THE POSTMAN APP](#how-to-contribute)**
 
-- SEE **[COLLECTION ISSUES](https://github.com/tableau/tableau-postman/issues) In THIS REPO** 
+- **[CREATE OR SEE COLLECTION ISSUES IN THIS REPO](https://github.com/tableau/tableau-postman/issues)** 
 
 > **About this repo:** This GitHub repo is used only for [issue tracking](https://github.com/tableau/tableau-postman/issues). Using and contributing to the collection happen in Postman, not in this repo. See the _[How to Use the Collection](#how-to-use-the-collection)_ and _[How to Contribute](#how-to-contribute)_ sections of this README.
 
