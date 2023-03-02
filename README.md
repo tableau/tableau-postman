@@ -28,7 +28,7 @@ Managing a Postman collections is very similar to working with a Git repo. To ge
 2. _In Postman:_ [Fork the environment variables for the collection](#fork-the-environment-variables-for-the-collection).
 3. _In your fork_: [Customize a few of the variable values](#customize-your-collection)
 
-Once you have completed these you are ready to [make a request]().
+Once you have completed these you are ready to make requests to your Tableau environment!
 
 Check out [Working with the Collection](#work-with-the-collection) for more info and [Who to Thank](#who-to-thank) to find the original authors of this collection.
 ___
@@ -123,6 +123,8 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 Postman allows you to right-clck on the returned value in a request's response body and assign that value to an environment value.  This is helpful because a very common action is to make a REST request in order to find the ID or name of a resource (workbook, user, datasource...) in order to use that value in the next REST request. 
   
 This collection supplies a comprehensive list of variables for each Tableau resource type. Those variables are also formatted in the URI paths for each request. This means that using an ID or name from a response in the next request is quick, easy, and much less bug prone than copy pasting these values.
+
+<img src="assets/images/assign_id_to_variable.png">
 _______
 ## How to Contribute
 This collection is open source and we welcome your contributions! 
