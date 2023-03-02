@@ -24,13 +24,13 @@ ___
 
 Managing a Postman collections is very similar to working with a Git repo. To get the collection and customize it for your environment, you will take three steps: 
 
-1. [Fork the collection itself](#fork-the-tableau-rest-api-collection).
-2. [Fork the environment variables for the collection](#fork-the-environment-variables-for-the-collection).
-3. [Customize a few of the variable values](#customize-your-collection)
+1. _In Postman:_ [Fork the collection itself](#fork-the-tableau-rest-api-collection).
+2. _In Postman:_ [Fork the environment variables for the collection](#fork-the-environment-variables-for-the-collection).
+3. _In your fork_: [Customize a few of the variable values](#customize-your-collection)
 
-   Once you have completed these you are ready to [make a request]().
+Once you have completed these you are ready to [make a request]().
 
-   Check out [Working with the Collection](#work-with-the-collection) for more info and [Who to Thank](#who-to-thank) to find the original authors of this collection.
+Check out [Working with the Collection](#work-with-the-collection) for more info and [Who to Thank](#who-to-thank) to find the original authors of this collection.
 ___
 ### **1. Fork the Tableau REST API collection:**
 
