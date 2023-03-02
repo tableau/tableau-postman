@@ -113,7 +113,7 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
   <img src="assets/images/auto_auth.png">
 
-  > Note that setting `auto-auth` will try any credentials that are configured in sequence. This can cause unexpected errors. For instance, if you have both PAT and username credentials configured in your environment variables, `auto-auth` will use the username when the PAT expires. 
+  > Note that if authentication fails with one auth type, `auto-auth` will try the next auth type. This can cause unexpected circumstances or errors, for instance, if you have both PAT and username credentials configured in your environment variables, `auto-auth` will use the username when the PAT expires. Or a method may work with PAT credentials but fail if `auto-auth` falls through to JWT credentials that are not scoped for that method.
 
 -----------
 #### - **Auto Fill environment variables from response values**
