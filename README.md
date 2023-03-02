@@ -40,7 +40,7 @@ ___
    <img src="assets/images/create_a_fork.png">
 3. Choose **Create a fork**.
 4. Name the fork and the Postman workspace you want it to live in.
-   <img src="assets/fork_collection.png">
+   <img src="assets//images/fork_collection.png">
 5.  Keep the **Watch original collection** checkbox selected to be alerted whenever updates are available to the collection.
 6. Choose **Fork collection**. 
    
