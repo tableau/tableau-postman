@@ -56,7 +56,7 @@ ___
 5.  Keep the **Watch original collection** checkbox selected to be alerted whenever updates are available to the collection.
 6. Choose **Fork environment**.
 
-   > Now you should see the environment variables in your Postman workspace.
+   > Now you should see the **Tableau REST API Environment** environment variables in your Postman workspace.
 
 7. Choose the three dots next to the forked environment and rename it to differentiate it from the original.
 
@@ -67,7 +67,7 @@ ___
 
 To configure the collection for your Tableau environment: 
 
-1. Go to the **Environment Variable** section of Postman and choose **Tableau REST API Environment**.
+1. Go to the **Environment Variable** section of Postman and choose duplicate of **Tableau REST API Environment** that you created.
 
    <img src="assets/images/environment_variables.png">
 
@@ -87,7 +87,9 @@ To configure the collection for your Tableau environment:
 
    `https://us-west-2a.online.tableau.com/#/site/myWorkbooks/home`
 
-5. Set `api-version` to match the version of your Tableau Server or the Tableau Cloud site you use.
+5. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
+
+6. Save your changes.
 
 6. Authenticate by running a sign in request and BOOM!, you are ready to use the collection.
 
