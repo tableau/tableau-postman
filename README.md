@@ -126,6 +126,7 @@ This collection supplies a comprehensive list of variables for each Tableau reso
 
 <img src="assets/images/assign_id_to_variable.png">
 _______
+
 ## How to Contribute
 This collection is open source and we welcome your contributions! 
 
