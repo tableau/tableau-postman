@@ -1,34 +1,44 @@
 ![banner](https://help.tableau.com/current/api/rest_api/en-us/Resources/tableau-logo.png)
 
-tableau-postman
-
-#  Tableau REST API Postman Collection
+# Tableau REST API Postman Collection
 
 ## Overview
-This repo contains an open source collection of Postman requests for each endpoint in the Tableau REST API surface. 
+This repository contains an open source collection of Postman requests for each method in the [Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm) surface. 
 
 - **[How to use the collection](#how-to-use-the-collection)**
-
 - **[How to contribute to the collection](#how-to-contribute)** _(in the Postman app)_
-
 - **[View or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
 
-> **About this repo:** This GitHub repo is used only for [issue tracking](https://github.com/tableau/tableau-postman/issues). Using and contributing to the collection happen in Postman, not in this repo. See the _[How to Use the Collection](#how-to-use-the-collection)_ and _[How to Contribute](#how-to-contribute)_ sections of this README.
+</br>
 
-> **About the Tableau REST API:** The Tableau REST API enables you to perform many of the actions available through the Tableau UI from scripts or programs. Resources you might find useful: <br/>- Find details for each method the [REST API reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm).<br/>- Join the [Tableau Developer Program](https://developer.tableau.com) (_includes a free Tableau sandbox!_).<br/>- Slack with REST API creators and users on **Tableau #Datadev** **#help-rest-api**.<br/>- Interact with fellow devs in the [Tableau REST API Community Forum](https://community.tableau.com/s/topic/0TO4T000000QFAxWAO/rest-api).
+> **About the repository:** This GitHub repo is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repo. See the _[How to Use the Collection](#how-to-use-the-collection)_ and _[How to Contribute](#how-to-contribute)_ sections of this README.
+
+</br>
+
+> **About the Tableau REST API:** The Tableau REST API enables you to perform many of the actions available through the Tableau UI programmatically in scripts, terminals and applications. Resources you might find useful: 
+>
+>- For detailed descriptions of each method read the [REST API reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm).
+>- Join the [Tableau Developer Program](https://developer.tableau.com) (_includes a free Tableau sandbox and an invitation to join the #DataDev workspace on Slack!_).
+>- Slack with REST API creators and users on **Tableau #Datadev** **#help-rest-api**.
+>- Interact with fellow devs in the [Tableau REST API Community Forum](https://community.tableau.com/s/topic/0TO4T000000QFAxWAO/rest-api).
+
+</br>
 
 > **About this collection:** The preformatted requests in this collection allow you to discover and make calls for each method in the REST API to your Tableau Cloud site or Tableau Server. You can use it to make small administrative changes, prototype the request for your script, see a real example of the response for your request, and more. 
-<br/><br/>The collection has also been extensively customized with scripts and environment variables to make it easier to use, and more informative about errors.
-___
+>
+>The collection has also been enhanced with scripts and environment variables to make it easier to use.
+
+</br>
+
 ## How to use the collection
 
-Managing a Postman collection is similar to working with a Git repo. To get the collection and customize it for your environment, you will take three steps: 
+To get started, follow these three steps:
 
 1. _In Postman:_ [Fork the collection itself](#fork-the-tableau-rest-api-collection).
 2. _In Postman:_ [Fork the environment variables for the collection](#fork-the-environment-variables-for-the-collection).
-3. _In your fork_: [Customize a few of the variable values](#customize-your-collection)
+3. _In your fork_: [Declare values for variables](#customize-your-collection).
 
-Once you have completed these steps you are ready to make requests to your Tableau environment!
+Once you have completed these steps you are ready to send requests to your Tableau environment!
 
 Check out [Working with the Collection](#work-with-the-collection) for more info and [Who to Thank](#who-to-thank) to find the original authors of this collection.
 ___
