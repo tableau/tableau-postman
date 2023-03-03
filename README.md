@@ -96,18 +96,21 @@ To configure the collection for your Tableau environment:
 
 </br>
 
->***NOTE:*** credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
+>***NOTE:*** Credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
 >
->With this in mind it is usually preferred
-
-</br>
-
-> Each type of credential has its own set of variables as listed here:
+>To understand how credentials are kept safe within Postman, refer to the documentation on [initial and current variables](https://learning.postman.com/docs/sending-requests/managing-environments/#adding-environment-variables) as well as [variable types](https://learning.postman.com/docs/sending-requests/variables/#variable-types).
 >
->| Credential      | Variables |
->| ----------- | ----------- |
->| Username & Password      | Title       |
->| Paragraph   | Text        |
+>With this in mind it is often preferred by developers to use credentials for an admin user with greater access to API methods while also being able to [impersonate other users](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in) when needed.
+>
+>| Credential                  | Variables              |
+>| -----------                 | -----------            |
+>| Username & Password         | `admin-username`       |
+>|                             | `admin-password`       |
+>| Personal Access Token (PAT) | `admin-PAT-name`       |
+>|                             | `admin-PAT-secret`     |
+>| Connected Apps (JWT)        | `JWT`                  |
+
+
 
 </br>
 
