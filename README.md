@@ -9,9 +9,9 @@ This repo contains an open source collection of Postman requests for each endpoi
 
 - **[How to use the collection](#how-to-use-the-collection)**
 
-- **[How to contribute to the collection](#how-to-contribute)** _(in the Postman App)_
+- **[How to contribute to the collection](#how-to-contribute)** _(in the Postman app)_
 
-- **[How to view or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
+- **[View or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
 
 > **About this repo:** This GitHub repo is used only for [issue tracking](https://github.com/tableau/tableau-postman/issues). Using and contributing to the collection happen in Postman, not in this repo. See the _[How to Use the Collection](#how-to-use-the-collection)_ and _[How to Contribute](#how-to-contribute)_ sections of this README.
 
@@ -73,19 +73,26 @@ To configure the collection for your Tableau environment:
 
 2. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE field. For instance: 
 
-   `myserver.example.com` or 
+   ```
+   myserver.example.com
+   ```
+    or 
    
-   `10ay.online.tableau.com`
+   ```
+   10ay.online.tableau.com
+   ```
 
 3. Create a [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT) for your Tableau site, and insert the PAT name and PAT secret into the `admin-PAT-name` and `admin-PAT-secret` as the `CURRENT VALUE` for those fields. You can also use user name and password, or JWT authentication. You will see variables and Authenticate methods in the collection for each of these auth types. 
 
 4. Modify `content-url` with the contentURL of your site. The contentURL in the following examples is "myWorkbooks":
 
-   `http://MyServer/#/views/myWorkbooks/sheet1`
+   ```
+   http://MyServer/#/views/myWorkbooks/sheet1
 
-   `https://10ay.online.tableau.com/authoring/myWorkbooks/sheet1`
+   https://10ay.online.tableau.com/authoring/myWorkbooks/sheet1
 
-   `https://us-west-2a.online.tableau.com/#/site/myWorkbooks/home`
+   https://us-west-2a.online.tableau.com/#/site/myWorkbooks/home
+   ```
 
 5. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
 
@@ -102,7 +109,7 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
 - [Update the collection](#update-the-collection)
 - [Use Auto Authentication](#use-auto-authentication)
-- [Auto fill environment variables from response values](#auto-fill-environment-variables-from-response-values)
+- [Set environment variables from response values](#set-environment-variables-from-response-values)
 
 #### - **Update the collection**
 
@@ -122,7 +129,7 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
   > Note that if authentication fails with one auth type, `auto-auth` will try the next auth type. This can cause unexpected circumstances or errors, for instance, if you have both PAT and username credentials configured in your environment variables, `auto-auth` will use the username when the PAT expires. Or a method may work with PAT credentials but fail if `auto-auth` falls through to JWT credentials that are not scoped for that method.
 
 -----------
-#### - **Auto fill environment variables from response values**
+#### - **Set environment variables from response values**
 
 Postman allows you to right-click on the returned value in a request's response body and assign that value to an environment value.  This is helpful because a common action is to make a REST request in order to find the ID or name of a resource (workbook, user, datasource., etc.) in order to use that value in the next REST request. 
   
