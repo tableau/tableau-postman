@@ -79,9 +79,11 @@ To configure the collection for your Tableau environment:
 
 1. Go to the **Environment Variable** section of Postman and open the **Tableau REST API Environment** file.
 
+    > ***NOTE:*** you can duplicate your fork to declare environment variables for different Tableau sites and servers. That way each set of environment variables can be saved for later use. 
+
 ![environment variables](assets/images/environment_variables.png)
 
-2. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE` field. For instance: 
+1. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE` field. For instance: 
 
    ```
    myserver.example.com
@@ -92,7 +94,7 @@ To configure the collection for your Tableau environment:
    10ay.online.tableau.com
    ```
 
-3. Select the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
+2. Select the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
 
 </br>
 
@@ -112,17 +114,15 @@ To configure the collection for your Tableau environment:
 
 </br>
 
-4. Modify `content-url` with the contentURL of your site. The contentURL in the following examples is "myWorkbooks":
+1. Modify `content-url`, the permanent name of a Tableau site. The `content-url` in the following examples is "mySite":
 
    ```
-   http://MyServer/#/views/myWorkbooks/sheet1
+   http://myServer.com/#/site/mySite/
 
-   https://10ay.online.tableau.com/authoring/myWorkbooks/sheet1
-
-   https://us-west-2a.online.tableau.com/#/site/myWorkbooks/home
+   https://10ay.online.tableau.com/#/site/mySite
    ```
 
-2. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
+2. Set `api-version` to match the version of the REST API that you wish to use ([see REST API versioning](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm#rest_api_versioning)).
 
 3. Save your changes.
 
