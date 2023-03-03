@@ -34,9 +34,9 @@ This repository contains an open source collection of Postman requests for each 
 
 To get started, follow these three steps:
 
-1. _In Postman:_ [Fork the collection itself](#fork-the-tableau-rest-api-collection).
-2. _In Postman:_ [Fork the environment variables for the collection](#fork-the-environment-variables-for-the-collection).
-3. _In your fork_: [Declare values for variables](#customize-your-collection).
+1. _In Postman:_ [Fork the collection itself](#step-1-fork-the-tableau-rest-api-collection).
+2. _In Postman:_ [Fork the environment variables for the collection](#step-2-fork-the-environment-variables-for-the-collection).
+3. _In your fork_: [Declare values for variables](#step-3-declare-values-for-variables).
 
 Once you have completed these steps you are ready to send requests to your Tableau environment!
 
@@ -81,7 +81,7 @@ To configure the collection for your Tableau environment:
 
 ![environment variables](assets/images/environment_variables.png)
 
-1. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE` field. For instance: 
+2. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE` field. For instance: 
 
    ```
    myserver.example.com
@@ -92,7 +92,7 @@ To configure the collection for your Tableau environment:
    10ay.online.tableau.com
    ```
 
-2. Select the authentication method you wish to use. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
+3. Select the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
 
 </br>
 
@@ -110,13 +110,9 @@ To configure the collection for your Tableau environment:
 >|                             | `admin-PAT-secret`     |
 >| Connected Apps (JWT)        | `JWT`                  |
 
-
-
 </br>
 
-1. Create a [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT) for your Tableau site, and insert the PAT name and PAT secret into the `admin-PAT-name` and `admin-PAT-secret` as the `CURRENT VALUE` for those fields. You can also use user name and password, or JWT authentication. You will see variables and Authenticate methods in the collection for each of these auth types. 
-
-2. Modify `content-url` with the contentURL of your site. The contentURL in the following examples is "myWorkbooks":
+4. Modify `content-url` with the contentURL of your site. The contentURL in the following examples is "myWorkbooks":
 
    ```
    http://MyServer/#/views/myWorkbooks/sheet1
@@ -126,11 +122,11 @@ To configure the collection for your Tableau environment:
    https://us-west-2a.online.tableau.com/#/site/myWorkbooks/home
    ```
 
-3. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
+2. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
 
-4. Save your changes.
+3. Save your changes.
 
-5. Authenticate by running a sign in request and BOOM!, you are ready to use the collection.
+4. Authenticate by running a sign in request and BOOM!, you are ready to use the collection.
 
    See [Auto Authentication](#auto-authentication) to skip manual sign in.
 
