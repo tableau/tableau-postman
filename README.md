@@ -154,7 +154,7 @@ For detailed info, see [creating a Postman pull request for a fork](https://lear
 
 Use the [Issues](https://github.com/tableau/tableau-postman/issues) page of this repo to create or see existing issues with the collection.
 ## Who to Thank
-The Tableau Postman collection is a gift to the Tableau community from three of Tableau's great Solutions Engineers: [Stephen Price](stephenlprice) @stephenlprice, [Jeremy Mayo](jeremymayo), and [Alex Cortez](joseacortez91). 
+The Tableau Postman collection is a gift to the Tableau community from three of Tableau's great Solutions Engineers: [Stephen Price](@stephenlprice), [Jeremy Mayo](@jeremymayo), and [Alex Cortez](@joseacortez91). 
 
 
 
