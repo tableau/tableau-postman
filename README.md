@@ -45,14 +45,14 @@ ___
 ### **Step 1: Fork the Tableau REST API collection**
 
 1. Go to the [Tableau collection in the Salesforce Postman workspace ](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) in a browser.
-1. Sign in to or create a free Postman account.  
-2. Choose the three dots next to **Tableau REST API** to view more actions.
-   <img src="assets/images/create_a_fork.png">
-3. Choose **Create a fork**.
-4. Name the fork and the Postman workspace you want it to live in.
-   <img src="assets//images/fork_collection.png">
-5.  Keep the **Watch original collection** checkbox selected to be alerted whenever updates are available to the collection.
-6. Choose **Fork collection**. 
+2. Sign in to or create a free Postman account.  
+3. Choose the three dots next to **Tableau REST API** to view more actions.
+![create a fork](assets/images/create_a_fork.png)
+4. Choose **Create a fork**.
+5. Name the fork and the Postman workspace you want it to live in.
+   ![fork collection](assets//images/fork_collection.png)
+6.  Keep the **Watch original collection** checkbox selected to be alerted whenever updates are available to the collection.
+7. Choose **Fork collection**. 
    
    > At this point you should see the collection in your Postman workspace.
 
@@ -73,15 +73,15 @@ ___
    > This way, if you want to set up multiple environments for different Tableau servers or sites, you can duplicate the original environment variables and customize credentials and other values per environment.
    
 
-### **Step 3: Customize your collection**
+### **Step 3: Declare values for variables**
 
 To configure the collection for your Tableau environment: 
 
-1. Go to the **Environment Variable** section of Postman and choose duplicate of **Tableau REST API Environment** that you created.
+1. Go to the **Environment Variable** section of Postman and open the **Tableau REST API Environment** file.
 
-   <img src="assets/images/environment_variables.png">
+![environment variables](assets/images/environment_variables.png)
 
-2. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE field. For instance: 
+1. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE` field. For instance: 
 
    ```
    myserver.example.com
@@ -92,9 +92,28 @@ To configure the collection for your Tableau environment:
    10ay.online.tableau.com
    ```
 
-3. Create a [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT) for your Tableau site, and insert the PAT name and PAT secret into the `admin-PAT-name` and `admin-PAT-secret` as the `CURRENT VALUE` for those fields. You can also use user name and password, or JWT authentication. You will see variables and Authenticate methods in the collection for each of these auth types. 
+2. Select the authentication method you wish to use. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
 
-4. Modify `content-url` with the contentURL of your site. The contentURL in the following examples is "myWorkbooks":
+</br>
+
+>***NOTE:*** credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
+>
+>With this in mind it is usually preferred
+
+</br>
+
+> Each type of credential has its own set of variables as listed here:
+>
+>| Credential      | Variables |
+>| ----------- | ----------- |
+>| Username & Password      | Title       |
+>| Paragraph   | Text        |
+
+</br>
+
+1. Create a [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT) for your Tableau site, and insert the PAT name and PAT secret into the `admin-PAT-name` and `admin-PAT-secret` as the `CURRENT VALUE` for those fields. You can also use user name and password, or JWT authentication. You will see variables and Authenticate methods in the collection for each of these auth types. 
+
+2. Modify `content-url` with the contentURL of your site. The contentURL in the following examples is "myWorkbooks":
 
    ```
    http://MyServer/#/views/myWorkbooks/sheet1
@@ -104,11 +123,11 @@ To configure the collection for your Tableau environment:
    https://us-west-2a.online.tableau.com/#/site/myWorkbooks/home
    ```
 
-5. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
+3. Set `api-version` to match the version of the Tableau Server or the Tableau Cloud site you use.
 
-6. Save your changes.
+4. Save your changes.
 
-6. Authenticate by running a sign in request and BOOM!, you are ready to use the collection.
+5. Authenticate by running a sign in request and BOOM!, you are ready to use the collection.
 
    See [Auto Authentication](#auto-authentication) to skip manual sign in.
 
