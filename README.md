@@ -6,12 +6,8 @@
 This repository contains an open source collection of Postman requests for each method in the [Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm) surface. 
 
 - **[How to use the collection](#how-to-use-the-collection)**
-- **[How to contribute to the collection](#how-to-contribute)** _(in the Postman app)_
+- **[How to contribute to the collection](#contributing-to-the-postman-respository)** _(in the Postman app)_
 - **[View or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
-
-</br>
-
-> **About the repository:** This GitHub repo is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repo. See the _[How to Use the Collection](#how-to-use-the-collection)_ and _[How to Contribute](#how-to-contribute)_ sections of this README.
 
 </br>
 
@@ -41,7 +37,9 @@ To get started, follow these three steps:
 Once you have completed these steps you are ready to send requests to your Tableau environment!
 
 Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to Thank](#who-to-thank) to find the original authors of this collection.
-___
+
+</br>
+
 ### **Step 1: Fork the Tableau REST API collection**
 
 1. Go to the [Tableau collection in the Salesforce Postman workspace ](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) in a browser.
@@ -79,7 +77,7 @@ To configure the collection for your Tableau environment:
 
 1. Go to the **Environment Variable** section of Postman and open the **Tableau REST API Environment** file.
 
-    > ***NOTE:*** you can duplicate your fork to declare environment variables for different Tableau sites and servers. That way each set of environment variables can be saved for later use. 
+    > ***NOTE:*** You can duplicate your fork to declare environment variables for different Tableau sites and servers. That way each set of environment variables can be saved for later use. 
 
 ![environment variables](assets/images/environment_variables.png)
 
@@ -104,7 +102,7 @@ To configure the collection for your Tableau environment:
 >
 >With this in mind it is often preferred by developers to use credentials for an admin user with greater access to API methods while also being able to [impersonate other users](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in) when needed.
 >
->| Credential                  | Variables              |
+>| CREDENTIAL                  | VARIABLES              |
 >| -----------                 | -----------            |
 >| Username & Password         | `admin-username`       |
 >|                             | `admin-password`       |
@@ -136,8 +134,10 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 ## Advanced Usage
 
 - [Update your forks](#update-your-forks)
-- [Use Auto Authentication](#use-auto-authentication)
+- [Automatic Authentication](#automatic-authentication)
 - [Set environment variables from response values](#set-environment-variables-from-response-values)
+
+</br>
 
 #### **Update your forks**
 
@@ -145,52 +145,51 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
   ![pull changes in postman](assets/images/pull_changes.png)
 
---------------
-#### **Use Auto Authentication** 
+</br>
 
-  To authenticate yourself in Tableau manually, choose and use one of the authentication methods that matches the credential type that you have configured in your environment variables. You can configure the collection to skip manual authentication and automatically authenticate when you make a request.
+#### **Automatic Authentication** 
+
+  To authenticate yourself in Tableau manually, choose and use one of the authentication methods that matches the credential type that you have configured in your environment variables. As a quality of life feature, you can configure the collection to skip manual authentication and automatically authenticate when you make a request.
 
   To turn on auto authentication, choose the **Tableau REST API Collection** in Postman at the top level, and then choose the **Variables** tab, and set the current value of `auto-auth` to `true`.
 
   ![automatic authentication](assets/images/auto_auth.png)
 
-  > Note that if authentication fails with one auth type, `auto-auth` will try the next auth type. This can cause unexpected circumstances or errors, for instance, if you have both PAT and username credentials configured in your environment variables, `auto-auth` will use the username when the PAT expires. Or a method may work with PAT credentials but fail if `auto-auth` falls through to JWT credentials that are not scoped for that method.
+  >***NOTE:*** The `auto-auth` feature will attempt to login with credentials that possess values inside the `CURRENT VALUE` column of the environment file. 
+  >
+  >It will try to authenticate with all available credentials and fails silently if any errors occur such as an expired Personal Access Token (PAT). In case all credential attempts fail (in other words automatic authentication failed), the console will notify users that none of the credential methods are valid.
+  >
+  >Since all available credentials are used, automatic authentication is better suited for workflows where a single user or admin user authenticates to the REST API. Users who wish to test a specific authentication method should perform manual authentication while setting `auto-auth` to false.
+  >
+  >Automatic authentication can also perform impersonation by setting the  `impersonation` variable to true. This will use the declared `user-id` variable to impersonate.
 
------------
-#### - **Set environment variables from response values**
+</br>
 
-Postman allows you to right-click on the returned value in a request's response body and assign that value to an environment value.  This is helpful because a common action is to make a REST request in order to find the ID or name of a resource (workbook, user, datasource., etc.) in order to use that value in the next REST request. 
+#### **Set environment variables from response values**
+
+Postman allows you to right-click on the returned value in a request's response body and assign that value to an environment value.  This is helpful because a common action is to make an initial request in order to obtain the ID or name of a resource (workbook, user, datasource, etc.) in order to use that value in a subsequent request to the REST API. 
   
-This collection supplies a comprehensive list of variables for each Tableau resource type. Those variables are also formatted in the URI paths for each request. This means that using an ID or name from a response in the next request is quick, easy, and much less bug prone than copy pasting these values.
+This collection supplies a comprehensive list of variables for each Tableau resource type. Those variables are also formatted in the URI paths for each request. This means that using an ID or name from a response in the next request is quick, easy, and much less bug prone than copy pasting said values.
 
-<img src="assets/images/assign_id_to_variable.png">
-_______
+![set environment variables from response values](assets/images/assign_id_to_variable.png)
 
-## How to contribute
+</br>
+
+## Contributing to the Postman Respository
+
 This collection is open source and we welcome your contributions! 
 
-### Make pull requests
+Contributions usually come in the form of enhancements to Postman files or documentation via pull requests as well as by reporting bugs as issues.
 
-> Make your pull requests for contributions to the collection **in the Postman environment**, not in this repo!
+For more information, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The steps are very similar to making a pull request in Git:
+</br>
 
-1. [Create a fork of the collection](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-7d783742-165f-4d10-8c4c-5719fb60fba2/fork?origin=sidebar) in Postman.
+> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repository. Therefore, the canonical versions of the Postman collection and environment files are hosted on the [Salesforce Developers Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2). These files will be updated on this repository as well.
+> 
+>  For more information, see the _[How to Use the Collection](README.md#how-to-use-the-collection)_ section.
 
-2. Make additions or other changes.
+</br>
 
-3. Choose **Create a pull request** using the three dots to the right of the collection name.
-
-For detailed info, see [creating a Postman pull request for a fork](https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/).
-
-### Report or explore issues
-
-> Issues are tracked **in this GitHub repo**.
-
-Use the [Issues](https://github.com/tableau/tableau-postman/issues) page of this repo to create or see existing issues with the collection.
 ## Who to Thank
 The Tableau Postman collection is a gift to the Tableau community from three of Tableau's great Solutions Engineers: [Stephen Price](https://github.com/stephenlprice), [Jeremy Mayo](https://github.com/jeremymayo), and [Alex Cortez](https://github.com/joseacortez91). 
-
-
-
- 
