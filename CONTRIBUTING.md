@@ -4,7 +4,7 @@ This collection is open source and we welcome your contributions!
 
 Contributions usually come in the form of enhancements to Postman files or documentation via pull requests as well as by reporting bugs as issues. 
 
-</br>
+![area chart banner](./assets/images/area-chart-banner.png)
 
 > **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repository. Therefore, the canonical versions of the Postman collection and environment files are hosted on the [Salesforce Developers Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2). These files will be updated on this repository as well.
 > 
@@ -26,7 +26,7 @@ The steps are very similar to making a pull request in Git:
 
 4. It is a good idea to pair a pull request with an issue describing the enhancement your work aims to address.
 
-For detailed info, see [creating a Postman pull request for a fork](https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/).
+For details, see [creating a Postman pull request for a fork](https://learning.postman.com/docs/collaborating-in-postman/using-version-control/version-control-overview/).
 
 </br>
 
