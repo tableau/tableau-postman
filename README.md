@@ -40,7 +40,7 @@ To get started, follow these three steps:
 
 Once you have completed these steps you are ready to send requests to your Tableau environment!
 
-Check out [Working with the Collection](#work-with-the-collection) for more info and [Who to Thank](#who-to-thank) to find the original authors of this collection.
+Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to Thank](#who-to-thank) to find the original authors of this collection.
 ___
 ### **Step 1: Fork the Tableau REST API collection**
 
@@ -133,26 +133,26 @@ To configure the collection for your Tableau environment:
 To learn more about using the REST API, try the [Get Started Tutorial](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_intro.htm) in the API reference.
 
 
-## Work with the collection
+## Advanced Usage
 
-- [Update the collection](#update-the-collection)
+- [Update your forks](#update-your-forks)
 - [Use Auto Authentication](#use-auto-authentication)
 - [Set environment variables from response values](#set-environment-variables-from-response-values)
 
-#### - **Update the collection**
+#### **Update your forks**
 
-  To update the collection, choose the three dots next to the collection name, and then choose **Pull changes**.
+  To update your collection forks, select the three dots next to the collection name, and then select **Pull changes**.
 
-  <img src="assets/images/pull_changes.png">
+  ![pull changes in postman](assets/images/pull_changes.png)
 
 --------------
-#### - **Use Auto Authentication** 
+#### **Use Auto Authentication** 
 
   To authenticate yourself in Tableau manually, choose and use one of the authentication methods that matches the credential type that you have configured in your environment variables. You can configure the collection to skip manual authentication and automatically authenticate when you make a request.
 
   To turn on auto authentication, choose the **Tableau REST API Collection** in Postman at the top level, and then choose the **Variables** tab, and set the current value of `auto-auth` to `true`.
 
-  <img src="assets/images/auto_auth.png">
+  ![automatic authentication](assets/images/auto_auth.png)
 
   > Note that if authentication fails with one auth type, `auto-auth` will try the next auth type. This can cause unexpected circumstances or errors, for instance, if you have both PAT and username credentials configured in your environment variables, `auto-auth` will use the username when the PAT expires. Or a method may work with PAT credentials but fail if `auto-auth` falls through to JWT credentials that are not scoped for that method.
 
