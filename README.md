@@ -26,6 +26,8 @@ This repository contains an open source collection of Postman requests for each 
 
 </br>
 
+![area chart banner](./assets/images/area-chart-banner.png)
+
 ## How to use the collection
 
 To get started, follow these three steps:
@@ -53,6 +55,8 @@ Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to
 7. Choose **Fork collection**. 
    
    > At this point you should see the collection in your Postman workspace.
+
+</br>
 
 ### **Step 2: Fork the environment variables for the collection**
 
@@ -130,6 +134,9 @@ To configure the collection for your Tableau environment:
 
 To learn more about using the REST API, try the [Get Started Tutorial](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_intro.htm) in the API reference.
 
+</br>
+
+![blue-banner](./assets/images/blue-banner.png)
 
 ## Advanced Usage
 
@@ -175,6 +182,8 @@ This collection supplies a comprehensive list of variables for each Tableau reso
 
 </br>
 
+![up and down chart](./assets/images/up-down-area.png)
+
 ## Contributing to the Postman Respository
 
 This collection is open source and we welcome your contributions! 
@@ -193,3 +202,12 @@ For more information, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Who to Thank
 The Tableau Postman collection is a gift to the Tableau community from three of Tableau's great Solutions Engineers: [Stephen Price](https://github.com/stephenlprice), [Jeremy Mayo](https://github.com/jeremymayo), and [Alex Cortez](https://github.com/joseacortez91). 
+
+</br>
+<a href="https://github.com/API-Guild/tableau-postman/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=API-Guild/tableau-postman" />
+</a>
+
+###### Made with [contrib.rocks](https://contrib.rocks).
+
+![area chart](./assets/images/area-chart.png)
