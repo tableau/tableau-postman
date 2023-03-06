@@ -12,7 +12,7 @@ Contributions usually come in the form of enhancements to Postman files or docum
 
 </br>
 
-### Make a Postman pull request
+### Make a **Postman** pull request
 
 > Make your pull requests for contributions to the collection **in the Postman environment**, not in this repo!
 
@@ -30,7 +30,7 @@ For details, see [creating a Postman pull request for a fork](https://learning.p
 
 </br>
 
-### Report or explore issues in Github
+### Report or explore issues **in Github**
 
 > Issues are tracked **in this GitHub repo**.
 

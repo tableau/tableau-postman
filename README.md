@@ -8,6 +8,7 @@ This repository contains an open source collection of Postman requests for each 
 - **[How to use the collection](#how-to-use-the-collection)**
 - **[How to contribute to the collection](#contributing-to-the-postman-respository)** _(in the Postman app)_
 - **[View or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
+- **[Advanced usage](#advanced-usage)**
 
 </br>
 
@@ -73,6 +74,7 @@ Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to
 
    > This way, if you want to set up multiple environments for different Tableau servers or sites, you can duplicate the original environment variables and customize credentials and other values per environment.
    
+<br/>
 
 ### **Step 3: Declare values for variables**
 
@@ -82,7 +84,7 @@ To configure the collection for your Tableau environment:
 
     > ***NOTE:*** You can duplicate your fork to declare environment variables for different Tableau sites and servers. That way each set of environment variables can be saved for later use. 
 
-![environment variables](assets/images/environment_variables.png)
+   ![environment variables](assets/images/environment_variables.png)
 
 1. For the `server` variable value, enter the domain of your Tableau service into the `CURRENT VALUE` field. For instance: 
 
@@ -97,9 +99,9 @@ To configure the collection for your Tableau environment:
 
 2. Select the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
 
-To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau Authentication and Credentials](#tableau-authentication-and-credentials).
+   To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau authentication credentials and permissions](#tableau-authentication-credential-and-permissions).
 
-</br>
+   </br>
 
 1. Modify `content-url`, the permanent name of a Tableau site. The `content-url` in the following examples is "mySite":
 
@@ -123,12 +125,12 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
 ![blue-banner](./assets/images/blue-banner.png)
 
-## Advanced Usage
+## Advanced usage
 
 - [Update your forks](#update-your-forks)
+- [Tableau authentication credential and permissions](#tableau-authentication-credential-and-permissions)
 - [Automatic Authentication](#automatic-authentication)
 - [Set environment variables from response values](#set-environment-variables-from-response-values)
-- [Advanced usage](#advanced-usage)
 
 </br>
 
@@ -140,43 +142,37 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
 </br>
 
-#### **Tableau Authentication and Credentials** 
+#### **Tableau authentication credential and permissions** 
+
+Tableau credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
 
 A detailed description of authentication methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
 
-Credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
-
 To understand how credentials are kept safe within Postman, refer to the documentation on [initial and current variables](https://learning.postman.com/docs/sending-requests/managing-environments/#adding-environment-variables) as well as [variable types](https://learning.postman.com/docs/sending-requests/variables/#variable-types).
 
-With this in mind it is often preferred by developers to use credentials for an admin user with greater access to API methods while also being able to [impersonate other users](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in) when needed.
+You can use credentials for an admin user to get broad access to API methods and the resources they touch. That kind of access is reduced for Users with lesser permissions. To test granted permissions or troubleshoot a user's problem, an admin can  [impersonate other users](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in) when needed.
 
-| CREDENTIAL                  | VARIABLES              |
+This table shows the types of authentication supported in REST API requests.
+
+| CREDENTIAL                  | VARIABLES (_Administrator , Impersonated User_)             |
 | -----------                 | -----------            |
-| Username & Password         | `admin-username`       |
-|                             | `admin-password`       |
-| Personal Access Token (PAT) | `admin-PAT-name`       |
-|                             | `admin-PAT-secret`     |
-| Connected Apps (JWT)        | `JWT`                  |
+| Username & Password         | `admin-username` , `user-username`       |
+|                             | `admin-password` , `user-password`    |
+| Personal Access Token (PAT) | `admin-PAT-name` , `user-PAT-name`      |
+|                             | `admin-PAT-secret` , `user-PAT-secret`    |
+| Connected Apps (JWT)        | `JWT` (_scoped access via app code_)                 |
 
 </br>
 
 #### **Automatic Authentication** 
 
-  To authenticate yourself in Tableau manually, choose and use one of the authentication methods that matches the credential type that you have configured in your environment variables. As a quality of life feature, you can configure the collection to skip manual authentication and automatically authenticate when you make a request.
+  To authenticate yourself in Tableau manually, you can choose and use one of the authentication methods that matches the credential type(s) that you have configured in your environment variables. You can also configure the collection to skip manual authentication and automatically authenticate when you make a request.
 
   To turn on auto authentication, choose the **Tableau REST API Collection** in Postman at the top level, and then choose the **Variables** tab, and set the current value of `auto-auth` to `true`.
 
   ![automatic authentication](assets/images/auto_auth.png)
 
-  >***NOTE:*** If you wish to use a specific authentication method you should perform manual authentication while setting `auto-auth` to false.
-  >
-  > The `auto-auth` feature will attempt to login with credentials that possess values inside the `CURRENT VALUE` column of the environment file. Configure credentials for a single user in order to use `auto-auth` since it will try to authenticate with all available credentials which means that they should all belong to the same user to avoid confusion. 
-  >
-  >It will try to authenticate with all available credentials and fails silently if any errors occur such as an expired Personal Access Token (PAT). In case all credential attempts fail (in other words automatic authentication failed), the console will notify users that none of the credential methods are valid.
-  >
-  >Since all available credentials are used, automatic authentication is better suited for workflows where a single user or admin user authenticates to the REST API. 
-  >
-  >Automatic authentication can also perform impersonation by setting the  `impersonation` variable to true. This will use the declared `user-id` variable to impersonate.
+  >***NOTE:*** If more than one type of credentials are configured in your environment variables, the type used by automatic authientication is not predictable. For instance, if valid credentials for both an administrator and a user to be impersonated are configured, the user that gets validated last will be the one signed in. Likewise, if PAT and username/password credentails are configured, the type of configuration used to sign in can't be predicted. If you need to control the sign in method, we recommend using manual sign in, or only configuring a single set of credentials in your environment variables.
   
 </br>
 
@@ -190,19 +186,20 @@ This collection supplies a comprehensive list of variables for each Tableau reso
 
 </br>
 
-- **Credentials token, site id, and auto sign in** The response to a sign in request includes a value for `site.id` which is  to populate the `site-id` environment variable, and `credentials.token` which is used to populate the collection variable `api-key`. Every request requires the value of `api-key` as the value of its `X-Tableau-Auth` header to validate that the requester has access permissions. The majority of methods use the `site-id` value to specify the Tableau site being called. 
+#### **Credentials token, site id, and auto sign in** 
 
-  Note that, for security purposes, the `api-key` value is shortlived, and needs to be refreshed regularly. When `auto-auth` is `true`, a script in the collection runs before each request that performs the sign in flow, ensuring that the `api-key` value is always valid. When `auto-auth` is `false`, you will need to manually sign in to refresh the `credentials.token` value. A manual sign in script will populate `api-key` when you do.
+The Tableau Server REST API requires that you send a credentials token with each request. The credentials token lets the server verify you as a valid, signed in user. To get a token, you call Sign In and pass credentials of a valid user, either a Personal Access Token (PAT), a user name and password, along with the content URL (subpath) of the site you are signing in to. A [subset of Tableau REST methods](https://help.tableau.com/current/online/en-us/connected_apps_scopes.htm#scopes-available-for-the-tableau-rest-api-tableau-online-only) support sign in using a JSON Web Token (JWT), typically generated by a Tableau [connected app](https://help.tableau.com/current/online/en-us/connected_apps.htm).
+
+  Once you have supplied credentials in your environment variables and signed in, the collection script will apply the token for your further requests. However, for security purposes, the credentials token value is shortlived, and needs to be refreshed regularly. When `auto-auth` is `true`, a script that performs the sign in flow runs before each request, ensuring that the token value is always valid. When `auto-auth` is `false`, you will need to manually sign in to refresh the `token value. 
   
- </br>
+ <!-- </br> -->
+<!-- - **Collection testing script** -->
 
-- **Collection testing script**
+<!-- </br> -->
 
-</br>
+<!-- - **Setting the accept header** -->
 
-- **Setting the accept header**
-
-</br>
+<!-- </br>  -->
 
 ![up and down chart](./assets/images/up-down-area.png)
 
@@ -230,6 +227,6 @@ The Tableau Postman collection is a gift to the Tableau community from three of 
   <img src="https://contrib.rocks/image?repo=API-Guild/tableau-postman" />
 </a>
 
-###### Made with [contrib.rocks](https://contrib.rocks).
+_Made with [contrib.rocks](https://contrib.rocks)._
 
 ![area chart](./assets/images/area-chart.png)
