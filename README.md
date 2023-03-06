@@ -11,9 +11,8 @@ This repository contains an open source collection of Postman requests for each 
 
 </br>
 
-> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repository. Therefore, the canonical versions of the Postman collection and environment files are hosted on the [Salesforce Developers Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2). These files will be updated on this repository as well.
-> 
->  For more information, see the _[How to Use the Collection](README.md#how-to-use-the-collection)_ section.
+> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Use [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) to get the latest versions of the collection and environment files for your own use.
+> The collection and environment files are hosted on Postman and synchronized to this repository for source control.
 
 > **About the Tableau REST API:** The Tableau REST API enables you to perform many of the actions available through the Tableau UI programmatically in scripts, terminals and applications. Resources you might find useful: 
 >
@@ -44,7 +43,7 @@ Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to
 
 ### **Step 1: Fork the Tableau REST API collection**
 
-1. Go to the [Tableau collection in the Salesforce Postman workspace ](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) in a browser.
+1. Go to the [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) in a browser.
 2. Sign in to or create a free Postman account.  
 3. Choose the three dots next to **Tableau REST API** to view more actions.
 ![create a fork](assets/images/create_a_fork.png)
@@ -98,21 +97,7 @@ To configure the collection for your Tableau environment:
 
 2. Select the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
 
-</br>
-
->***NOTE:*** Credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
->
->To understand how credentials are kept safe within Postman, refer to the documentation on [initial and current variables](https://learning.postman.com/docs/sending-requests/managing-environments/#adding-environment-variables) as well as [variable types](https://learning.postman.com/docs/sending-requests/variables/#variable-types).
->
->With this in mind it is often preferred by developers to use credentials for an admin user with greater access to API methods while also being able to [impersonate other users](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in) when needed.
->
->| CREDENTIAL                  | VARIABLES              |
->| -----------                 | -----------            |
->| Username & Password         | `admin-username`       |
->|                             | `admin-password`       |
->| Personal Access Token (PAT) | `admin-PAT-name`       |
->|                             | `admin-PAT-secret`     |
->| Connected Apps (JWT)        | `JWT`                  |
+To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau Authentication and Credentials](#tableau-authentication-and-credentials).
 
 </br>
 
@@ -154,6 +139,26 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
 </br>
 
+#### **Tableau Authentication and Credentials** 
+
+A detailed description of authentication methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
+
+Credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
+
+To understand how credentials are kept safe within Postman, refer to the documentation on [initial and current variables](https://learning.postman.com/docs/sending-requests/managing-environments/#adding-environment-variables) as well as [variable types](https://learning.postman.com/docs/sending-requests/variables/#variable-types).
+
+With this in mind it is often preferred by developers to use credentials for an admin user with greater access to API methods while also being able to [impersonate other users](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in) when needed.
+
+| CREDENTIAL                  | VARIABLES              |
+| -----------                 | -----------            |
+| Username & Password         | `admin-username`       |
+|                             | `admin-password`       |
+| Personal Access Token (PAT) | `admin-PAT-name`       |
+|                             | `admin-PAT-secret`     |
+| Connected Apps (JWT)        | `JWT`                  |
+
+</br>
+
 #### **Automatic Authentication** 
 
   To authenticate yourself in Tableau manually, choose and use one of the authentication methods that matches the credential type that you have configured in your environment variables. As a quality of life feature, you can configure the collection to skip manual authentication and automatically authenticate when you make a request.
@@ -162,13 +167,16 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
   ![automatic authentication](assets/images/auto_auth.png)
 
-  >***NOTE:*** The `auto-auth` feature will attempt to login with credentials that possess values inside the `CURRENT VALUE` column of the environment file. 
+  >***NOTE:*** If you wish to use a specific authentication method you should perform manual authentication while setting `auto-auth` to false.
+  >
+  > The `auto-auth` feature will attempt to login with credentials that possess values inside the `CURRENT VALUE` column of the environment file. Configure credentials for a single user in order to use `auto-auth` since it will try to authenticate with all available credentials which means that they should all belong to the same user to avoid confusion. 
   >
   >It will try to authenticate with all available credentials and fails silently if any errors occur such as an expired Personal Access Token (PAT). In case all credential attempts fail (in other words automatic authentication failed), the console will notify users that none of the credential methods are valid.
   >
-  >Since all available credentials are used, automatic authentication is better suited for workflows where a single user or admin user authenticates to the REST API. Users who wish to test a specific authentication method should perform manual authentication while setting `auto-auth` to false.
+  >Since all available credentials are used, automatic authentication is better suited for workflows where a single user or admin user authenticates to the REST API. 
   >
   >Automatic authentication can also perform impersonation by setting the  `impersonation` variable to true. This will use the declared `user-id` variable to impersonate.
+  
 
 </br>
 
@@ -194,9 +202,9 @@ For more information, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 </br>
 
-> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repository. Therefore, the canonical versions of the Postman collection and environment files are hosted on the [Salesforce Developers Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2). These files will be updated on this repository as well.
-> 
->  For more information, see the _[How to Use the Collection](README.md#how-to-use-the-collection)_ section.
+> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Use [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) to get the latest versions of the collection and environment files for your own use.
+> The collection and environment files are hosted on Postman and synchronized to this repository for source control.
+>For more information, see the _[How to Use the Collection](README.md#how-to-use-the-collection)_ section.
 
 </br>
 
