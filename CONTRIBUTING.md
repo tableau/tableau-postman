@@ -6,8 +6,9 @@ Contributions usually come in the form of enhancements to Postman files or docum
 
 ![area chart banner](./assets/images/area-chart-banner.png)
 
-> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Use [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) to get the latest versions of the Collection and Environment Files for your own use.
-> The Collection and Environment files are hosted on Postman and synchronized to this repository for source control.
+> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Use [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) to get the latest versions of the collection and environment files for your own use.
+> The collection and environment files are hosted on Postman and synchronized to this repository for source control.
+>For more information, see the _[How to Use the Collection](README.md#how-to-use-the-collection)_ section.
 
 </br>
 
