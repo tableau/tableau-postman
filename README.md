@@ -110,6 +110,7 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 - [Update the collection](#update-the-collection)
 - [Use Auto Authentication](#use-auto-authentication)
 - [Set environment variables from response values](#set-environment-variables-from-response-values)
+- [Advanced usage](#advanced-usage)
 
 #### - **Update the collection**
 
@@ -137,6 +138,16 @@ This collection supplies a comprehensive list of variables for each Tableau reso
 
 <img src="assets/images/assign_id_to_variable.png">
 _______
+
+#### - **Advanced Usage**
+
+- **Credentials token, site id, and auto sign in** The response to a sign in request includes a value for `site.id` which is  to populate the `site-id` environment variable, and `credentials.token` which is used to populate the collection variable `api-key`. Every request requires the value of `api-key` as the value of its `X-Tableau-Auth` header to validate that the requester has access permissions. The majority of methods use the `site-id` value to specify the Tableau site being called. 
+
+  Note that, for security purposes, the `api-key` value is shortlived, and needs to be refreshed regularly. When `auto-auth` is `true`, a script in the collection runs before each request that performs the sign in flow, ensuring that the `api-key` value is always valid. When `auto-auth` is `false`, you will need to manually sign in to refresh the `credentials.token` value. A manual sign in script will populate `api-key` when you do.
+
+- **Collection testing script**
+
+- **Setting the accept header**
 
 ## How to contribute
 This collection is open source and we welcome your contributions! 
