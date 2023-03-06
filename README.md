@@ -11,6 +11,10 @@ This repository contains an open source collection of Postman requests for each 
 
 </br>
 
+> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Usage of the collection and environment files as well as contributions or enhancements to said files will take place in Postman, not on this repository. Therefore, the canonical versions of the Postman collection and environment files are hosted on the [Salesforce Developers Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2). These files will be updated on this repository as well.
+> 
+>  For more information, see the _[How to Use the Collection](README.md#how-to-use-the-collection)_ section.
+
 > **About the Tableau REST API:** The Tableau REST API enables you to perform many of the actions available through the Tableau UI programmatically in scripts, terminals and applications. Resources you might find useful: 
 >
 >- For detailed descriptions of each method read the [REST API reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm).
@@ -18,13 +22,9 @@ This repository contains an open source collection of Postman requests for each 
 >- Slack with REST API creators and users on **Tableau #Datadev** **#help-rest-api**.
 >- Interact with fellow devs in the [Tableau REST API Community Forum](https://community.tableau.com/s/topic/0TO4T000000QFAxWAO/rest-api).
 
-</br>
-
 > **About this collection:** The preformatted requests in this collection allow you to discover and make calls for each method in the REST API to your Tableau Cloud site or Tableau Server. You can use it to make small administrative changes, prototype the request for your script, see a real example of the response for your request, and more. 
 >
 >The collection has also been enhanced with scripts and environment variables to make it easier to use.
-
-</br>
 
 ![area chart banner](./assets/images/area-chart-banner.png)
 
