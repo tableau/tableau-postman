@@ -2,11 +2,14 @@
 
 # Tableau REST API Postman Collection
 
+[![Tableau Supported](https://img.shields.io/badge/Support%20Level-Tableau%20Supported-53bd92.svg)](https://www.tableau.com/support-levels-it-and-developer-tools)
+[![GitHub](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/Tableau/TabPy/master/LICENSE)
+
 ## Overview
 This repository contains an open source collection of Postman requests for each method in the [Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm) surface. 
 
 - **[How to use the collection](#how-to-use-the-collection)**
-- **[How to contribute to the collection](#contributing-to-the-postman-collection)** _(in the Postman app)_
+- **[How to contribute to the collection](#how-to-contribute-to-collection)** _(in the Postman app)_
 - **[View or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
 - **[Advanced usage](#advanced-usage)**
 
@@ -210,7 +213,7 @@ For security purposes the API key or session will expire and needs to be refresh
 
 ![up and down chart](./assets/images/up-down-area.png)
 
-## Contributing to the Postman Collection
+## How to contribute to the collection
 
 This collection is open source and we welcome your contributions! 
 
