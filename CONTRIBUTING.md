@@ -1,4 +1,4 @@
-# Contributing to the Postman Respository
+# Contributing to the Postman Collection
 
 This collection is open source and we welcome your contributions! 
 
@@ -14,7 +14,7 @@ Contributions usually come in the form of enhancements to Postman files or docum
 
 ### Make a **Postman** pull request
 
-> Make your pull requests for contributions to the collection **in the Postman environment**, not in this repo!
+> Make your pull requests for contributions to the collection **in the Postman environment**, not on this repo!
 
 The steps are very similar to making a pull request in Git:
 
