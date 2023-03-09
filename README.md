@@ -47,7 +47,7 @@ Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to
 
 ### **Step 1: Fork the Tableau REST API collection**
 
-1. Go to the [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) in a browser.
+1. Go to the Tableau REST API collection in the [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-7d783742-165f-4d10-8c4c-5719fb60fba2?ctx=documentation) in a browser.
 2. Sign in to or create a free Postman account.  
 3. Choose the three dots next to **Tableau REST API** to view more actions.
 ![create a fork](assets/images/create_a_fork.png)
@@ -68,12 +68,11 @@ Check out [Advanced Usage](#advanced-usage) for more additional tips and [Who to
 3. Choose **Create a fork**.
 4. Name the fork. 
 1. Make sure to use the same Postman workspace you used for the collection.  
-5.  Keep the **Watch original collection** checkbox selected to be alerted whenever updates are available to the collection.
 6. Choose **Fork environment**.
 
    > Now you should see the **Tableau REST API Environment** environment variables in your Postman workspace.
 
-7. Choose the three dots next to the forked environment and rename it to differentiate it from the original.
+7. (Optional) Choose the three dots next to the forked environment and rename it to differentiate it from the original.
 
    > This way, if you want to set up multiple environments for different Tableau servers or sites, you can duplicate the original environment variables and customize credentials and other values per environment.
    
@@ -100,11 +99,9 @@ To configure the collection for your Tableau environment:
    10ay.online.tableau.com
    ```
 
-2. Select the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. A detailed description of available methods can be found in the [Authentication section of the API Reference](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_authentication.htm#sign_in). Authentication methods include Username & Password, [Personal Access Token](https://help.tableau.com/current/online/en-us/security_personal_access_tokens.htm) (PAT), and JWT (Connected Apps).
+2. Determine the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. You can find a list of the variables for your authentication method in [Tableau authentication credential and permissions](#tableau-authentication-credential-and-permissions). 
 
    To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau authentication credentials and permissions](#tableau-authentication-credential-and-permissions).
-
-   </br>
 
 1. Modify `content-url`, the permanent name of a Tableau site. The `content-url` in the following examples is "mySite":
 
@@ -118,9 +115,11 @@ To configure the collection for your Tableau environment:
 
 3. Save your changes.
 
+4. Modify the Environment in the top right corner to your environment variables.
+
 4. Authenticate by running a sign in request and BOOM!, you are ready to use the collection.
 
-   See [Auto Authentication](#auto-authentication) to skip manual sign in.
+   See [Automatic Authentication](#automatic-authentication) to skip manual sign in.
 
 To learn more about using the REST API, try the [Get Started Tutorial](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_intro.htm) in the API reference.
 
@@ -229,7 +228,7 @@ For more information, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 </br>
 
-## Who to Thank
+## Who to thank
 The Tableau Postman collection is a gift to the Tableau community from three of Tableau's great Solutions Engineers: [Stephen Price](https://github.com/stephenlprice), [Jeremy Mayo](https://github.com/jeremymayo), and [Alex Cortez](https://github.com/joseacortez91). 
 
 </br>
