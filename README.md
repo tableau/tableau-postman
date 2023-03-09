@@ -99,9 +99,7 @@ To configure the collection for your Tableau environment:
    10ay.online.tableau.com
    ```
 
-2. Determine the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. To see a list of available authentication variables and understand how users' credentials impact the content of Tableau's REST API responses, see [Tableau authentication credential and permissions](#tableau-authentication-credential-and-permissions). 
-
-   To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau authentication credentials and permissions](#tableau-authentication-credential-and-permissions).
+2. Determine the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau authentication credentials and permissions](#tableau-authentication-credential-and-permissions).
 
 1. Modify `content-url`, the permanent name of a Tableau site. The `content-url` in the following examples is "mySite":
 
