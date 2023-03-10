@@ -99,7 +99,7 @@ To configure the collection for your Tableau environment:
    10ay.online.tableau.com
    ```
 
-2. Determine the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau authentication credentials and permissions](#tableau-authentication-credential-and-permissions).
+2. Determine the authentication method you wish to use and declare the `CURRENT VALUE` for those fields in the environment file. To understand how credentials impact the responses to obtain from Tableau's REST API, see [Tableau authentication credentials and permissions](#tableau-authentication-credentials-and-permissions).
 
 1. Modify `content-url`, the permanent name of a Tableau site. The `content-url` in the following examples is "mySite":
 
@@ -128,7 +128,7 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 ## Advanced usage
 
 - [Update your forks](#update-your-forks)
-- [Tableau authentication credential and permissions](#tableau-authentication-credential-and-permissions)
+- [Tableau authentication credentials and permissions](#tableau-authentication-credentials-and-permissions)
 - [Automatic Authentication](#automatic-authentication)
 - [Set environment variables from response values](#set-environment-variables-from-response-values)
 - [Credentials token, `site-id`, and `auto-auth`](#credentials-token-site-id-and-auto-auth)
@@ -143,7 +143,7 @@ To learn more about using the REST API, try the [Get Started Tutorial](https://h
 
 </br>
 
-#### **Tableau authentication credential and permissions** 
+#### **Tableau authentication credentials and permissions** 
 
 Tableau credentials are mapped to individual users which enforce access controls and permissions defined in your Tableau environment. This means that certain methods are only available to admin users and API responses will only contain data that the given user has access to. 
 
