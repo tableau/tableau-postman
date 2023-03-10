@@ -9,7 +9,7 @@
 This repository contains an open source collection of Postman requests for each method in the [Tableau REST API](https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm) surface. 
 
 - **[How to use the collection](#how-to-use-the-collection)**
-- **[How to contribute to the collection](#how-to-contribute-to-collection)** _(in the Postman app)_
+- **[How to contribute to the collection](#how-to-contribute-to-the-collection)** _(in the Postman app)_
 - **[View or add issues](https://github.com/tableau/tableau-postman/issues)** _(in this repo)_
 - **[Advanced usage](#advanced-usage)**
 
