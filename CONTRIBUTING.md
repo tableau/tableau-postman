@@ -41,7 +41,7 @@ This collection uses Postman environment variables to enable each person to cust
    1. Fork the environment file and the collection.
    2. Add the variable to the environment file list 
 
-      ![Add the variable to the environment file list](#add_environment_variable.png)
+      ![Add the variable to the environment file list](assets/images/add_environment_variable.png)
       
       Environment variable names in this collection are simple, lower case, hyphen separated descriptions of the resource they are pointed to.
 
@@ -49,7 +49,7 @@ This collection uses Postman environment variables to enable each person to cust
 4. Use the appropriate environment variables in the URI and request body of your request. For example, for the Add Tags to Data Source request, 
       note that `{{site-id}}` uses an environment variable placeholder in the URI, and a `{{tag-name}}` placeholder in the request body.
       
-      ![Add tags to data source example](add-tags-to-data-source.png)
+      ![Add tags to data source example](assets/images/add-tags-to-data-source.png)
  
 
 ### Report or explore issues **in Github**
