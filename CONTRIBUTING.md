@@ -49,14 +49,14 @@ This collection uses Postman environment variables to enable each person to cust
 
 3. Create a new request.
 4. Use the appropriate environment variables in the URI and request body of your request. 
-
+ 
    For example, for the Add Tags to Data Source request, 
       note that `{{site-id}}` uses an environment variable placeholder in the URI, and a `{{tag-name}}` placeholder in the request body.
       
       ![Add tags to data source example](assets/images/add-tags-to-data-source.png)
  
 
-### Report or explore issues **in Github**
+### Report or explore issues **in Github** 
 
 > Issues are tracked **in this GitHub repo**.
 
