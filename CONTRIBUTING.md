@@ -49,7 +49,7 @@ This collection uses Postman environment variables to enable each person to cust
 
 3. Create a new request.
 4. Use the appropriate environment variables in the URI and request body of your request. 
- 
+
    For example, for the Add Tags to Data Source request, 
       note that `{{site-id}}` uses an environment variable placeholder in the URI, and a `{{tag-name}}` placeholder in the request body.
       
@@ -60,4 +60,4 @@ This collection uses Postman environment variables to enable each person to cust
 
 > Issues are tracked **in this GitHub repo**.
 
-Use the [Issues](https://github.com/tableau/tableau-postman/issues) page of this repo to create or see existing issues with the collection.
+Use the [Issues](https://github.com/tableau/tableau-postman/issues) page of this repo to create or see existing issues with the collection.  
