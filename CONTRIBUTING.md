@@ -53,10 +53,10 @@ This collection uses Postman environment variables to enable each person to cust
 3. Create a new request.
 4. Use the appropriate environment variables in the URI and request body of your request. 
 
-   For example, for the Add Tags to Data Source request, 
-      note that `{{site-id}}` uses an environment variable placeholder in the URI, and a `{{tag-name}}` placeholder in the request body.
+   For example, for the Create Connected App Secret request, 
+      note that the `:connected-app-id` path parameter uses the value of the `connected-app-id` environment variable.
       
-      ![Add tags to data source example](assets/images/add-tags-to-data-source.png)
+      ![Add tags to data source example](assets/images/path_param_example.png)
  
 
 ### Report or explore issues **in Github** 
