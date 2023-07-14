@@ -46,7 +46,7 @@ This collection uses Postman environment variables to enable each person to cust
    1. Also fork the environment file.
    2. Add the variable to the environment file list 
 
-      ![Add the variable to the environment file list](assets/images/add_environment_variable.png)
+      ![Add the variable to the environment file list](assets/images/add-environment-variable.png)
       
       > Environment variable names in this collection are simple, lower case, hyphen separated descriptions of the resource they are pointed to.
 
