@@ -15,7 +15,7 @@ This repository contains an open source collection of Postman requests for each 
 
 </br>
 
-> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Use [Salesforce Developer's Postman workspace](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2) to get the latest versions of the collection and environment files for your own use.
+> **About the repository:** This GitHub repository is only used for [issue tracking](https://github.com/tableau/tableau-postman/issues). Use [Tableau APIs Postman](https://www.postman.com/salesforce-developers/salesforce-developers/collection/x06mp2m/tableau-apis) in the Salesforce Developers workspaceto get the latest versions of the collection and environment files for your own use.
 > The collection and environment files are hosted on Postman and synchronized to this repository for source control.
 
 > **About the Tableau REST API:** The Tableau REST API enables you to perform many of the actions available through the Tableau UI programmatically in scripts, terminals and applications. Resources you might find useful: 
